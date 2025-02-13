@@ -2,7 +2,7 @@
 
 _Descripción_
 
-<div align="center"><img src="assets/img/screenshot.gif" alt="Currículum" width="683" height="384" style="border-radius: 10px;"></div>
+<div align="center"><img src="src/assets/img/screenshot.gif" alt="Currículum" width="683" height="384" style="border-radius: 10px;"></div>
 
 ## Característícas
 
