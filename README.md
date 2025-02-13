@@ -8,7 +8,7 @@ _Descripción_
 
 _Descripción_
 
-## Tecnologías y metodologías empleadas
+## Tecnologías y "metodologías empleadas"
 
 - HTML
 - CSS
@@ -39,9 +39,3 @@ _Descripción_
 ## Mejoras futuras
 
 _Descripción_
-
----
-
-> **Professional description**<br>
-> José Antonio Azócar Marcano<br>
-> _Technology Advisory | Computer Security | Data Science | Java / Python Programming | Backend Development | Continuous Improvement | Problem Solving_
