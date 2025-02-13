@@ -16,7 +16,7 @@ function setupEventListener() {
 
 async function loadLanguage(language) {
     try {
-        const { cv } = await import(`./assets/js/${language}.js`);
+        const { cv } = await import(`../assets/js/${language}.js`);
         return { cv };
     } catch (error) {
         alert(`Error: Falta traducción para el idioma '${language}'.`);

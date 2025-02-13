@@ -8,13 +8,15 @@ _Descripción_
 
 _Descripción_
 
-## Tecnologías empleadas
+## Tecnologías y metodologías empleadas
 
 - HTML
 - CSS
 - JavaScript
 - Git
 - GitHub
+- Modularización
+- Estructura de carpetas
 
 ## Instalación y ejecución
 
