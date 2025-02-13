@@ -1,3 +1,4 @@
+.gitignore
 .vscode/
 src/assets/js/_private
 src/assets/pdf/_private
