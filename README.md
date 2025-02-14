@@ -60,6 +60,8 @@ initialize();
 
 - Asignar las clases faltantes al código HTML utilizando la metodología BEM;
 - Actualizar los selectores CSS para reflejar los cambios realizados según la metodología BEM;
+- Convertir el sitio web a un diseñó responsive para garantizar la visualización optima en todo tipo de dispositivo;
 - Refactorizar el código JavaScript para adaptarlo a los nuevos nombres de clases.
+
 
 ... 😉😄
