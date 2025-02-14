@@ -3,7 +3,7 @@ export const cv = {
         name: "José Antonio Azócar Marcano",
         contact: {
             location: "Location",
-            url: 'URL',
+            url: '#',
             phone: "Phone",
             email: "email@example.com",
         },
