@@ -8,13 +8,13 @@ export async function setupLanguage(language){
     } else {
         console.error("Error cargando datos del CV.");
         alert('Error: No se pudieron cargar los datos del CV. Mostrando contenido predeterminado.')
-        // Falta lógica para mostrar el lenguaje por defecto
+        // Muestra el contenido por defecto del index.html
     }
 }
 
 export async function loadLanguage(language) {
     try {
-        const { cv } = await import(`../assets/js/${language}.js`);
+        const { cv } = await import(`./data/${language}.js`);
         return { cv };
     } catch (error) {
         console.error(`Error cargando idioma '${language}':`, error);

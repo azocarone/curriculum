@@ -1,8 +1,8 @@
 export function updateNavigationMenu(language) {
     const navigationElements = document.querySelectorAll('.header__navigation-menu-link');
     const downloadUrls = {
-        es: './src/assets/pdf/cv_jose_azocar_es.pdf',
-        en: './src/assets/pdf/cv_jose_azocar_en.pdf'
+        es: './assets/pdf/cv_jose_azocar_es.pdf',
+        en: './assets/pdf/cv_jose_azocar_en.pdf'
     };
     const navigationTexts = {
         es: ['Descargar', 'English'],
