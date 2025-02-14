@@ -17,7 +17,7 @@ Este proyecto implementa un sitio web dinámico para un Currículum Vitae (CV) c
 
 - HTML, CSS, y JavaScript;
 - Git y GitHub;
-- Block Element Modifier (BEM), modularización, estructura de carpetas.
+- Block Element Modifier (BEM), Estructura de carpetas, Módulos ES6. 
 
 ## Instalación y ejecución
 
