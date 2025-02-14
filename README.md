@@ -1,6 +1,6 @@
 # Currículum
 
-Este proyecto implementa un sitio web dinámico para un Currículum Vitae (CV) con soporte para múltiples idiomas. Utiliza módulos de JavaScript para gestionar la carga de idiomas, la aplicación de traducciones y las actualizaciones de la interfaz de usuario.
+Prototipo funcional de un sitio web dinámico para un Currículum Vitae (CV) con soporte para múltiples idiomas. Utiliza módulos de JavaScript para gestionar la carga de idiomas, la aplicación de traducciones y las actualizaciones de la interfaz de usuario.
 
 <div align="center"><img src="assets/img/screenshot.gif" alt="Currículum" width="683" height="384" style="border-radius: 10px;"></div>
 
@@ -57,5 +57,9 @@ initialize();
 ```
 
 ## Mejoras futuras
+
+- Asignar las clases faltantes al código HTML utilizando la metodología BEM;
+- Actualizar los selectores CSS para reflejar los cambios realizados según la metodología BEM;
+- Refactorizar el código JavaScript para adaptarlo a los nuevos nombres de clases.
 
 ... 😉😄
