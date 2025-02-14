@@ -58,4 +58,4 @@ initialize();
 
 ## Mejoras futuras
 
-_Falta por desarrollar._
+... 😉😄
