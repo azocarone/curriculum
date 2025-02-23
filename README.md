@@ -1,6 +1,6 @@
 # Currículum
 
-Prototipo funcional de un sitio web dinámico para un Currículum Vitae (CV) con soporte para múltiples idiomas. Utiliza módulos de JavaScript para gestionar la carga de idiomas, la aplicación de traducciones y las actualizaciones de la interfaz de usuario.
+Prototipo funcional de una página web dinámica para un Currículum Vitae (CV) con diseño tipo Harvard y soporte multilingüe. Utiliza módulos de JavaScript para gestionar la carga de idiomas, la aplicación de traducciones y las actualizaciones de la interfaz de usuario.
 
 <div align="center"><img src="assets/img/screenshot.gif" alt="Currículum" width="683" height="384" style="border-radius: 10px;"></div>
 
