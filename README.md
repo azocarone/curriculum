@@ -62,4 +62,5 @@ initialize();
 - Actualizar los selectores CSS para reflejar los cambios realizados según la metodología BEM;
 - Refactorizar el código JavaScript para adaptarlo a los nuevos nombres de clases.
 
-😉 azocarone 😄
+---
+<div align="right"><br>😉 azocarone 😄</div>
