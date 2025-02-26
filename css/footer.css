@@ -1,6 +1,12 @@
+:root {
+    --footer-spacing-small: 0.909rem; /* 10px */
+    --footer-spacing-medium: 1.818rem; /* 20px */
+    --footer-border-color: #000;
+}
+
 .footer {
     text-align: center;
-    padding-top: 0.909rem; /* 10px */
-    border-top: 1px solid #000;
-    margin-top: 1.818rem; /* 20px */
+    padding-top: var(--footer-spacing-small);
+    border-top: 1px solid var(--footer-border-color);
+    margin-top: var(--footer-spacing-medium);
 }

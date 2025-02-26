@@ -1,5 +1,37 @@
-/* Navigator */
+:root {
+  --header-spacing-small: 0.455rem; /* 5px */
+  --header-spacing-medium: 1.818rem; /* 20px */
+  --header-text-color: #f7f9fb;
+  --header-background-color: #18181a;
+  --header-border-color: #aaaaaa;
+}
 
+/* Commons */
+.header {
+  text-align: center;
+  margin-bottom: var(--header-spacing-medium);
+}
+
+.header h1 {
+  font-size: 2.182rem; /* 24px */
+  margin: 0;
+}
+
+.header p {
+  margin: 0;
+  padding: var(--header-spacing-small) 0;
+  border-bottom: 1px solid var(--header-border-color);
+}
+
+.header p:last-of-type {
+  font-size: 0.955rem; /* 10.5px */
+  font-style: italic;
+  text-align: justify;
+  line-height: 1.0;
+  border-bottom: none; /* Eliminar borde inferior en el último párrafo */
+}
+
+/* Navigator */
 .header__navigation-checkbox {
   opacity: 0;
   position: absolute;
@@ -13,71 +45,67 @@
   position: absolute;
   top: 0.875rem;
   right: 0.875rem;
-  cursor: pointer; /* Make the label clickable */
-  display: flex; /* Use flexbox for icon alignment */
+  cursor: pointer;
+  display: flex;
   align-items: center;
-  justify-content: center; /* Center the icons */
+  justify-content: center;
 }
 
-.header__navigation-icon > span { /* Style the spans inside the label */
-    font-family: "Font Awesome 6 Free";
-    font-size: 1.25rem;
+.header__navigation-icon > span,
+.header__navigation-menu-link i {
+  font-family: "Font Awesome 6 Free";
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
 }
 
 .header__navigation-icon--bars::before {
-  font-weight: 600;
   content: "\f0c9"; /* Bars icon */
 }
 
 .header__navigation-icon--close::before {
-  font-weight: 400;
   content: "\f057"; /* Close icon */
+  font-weight: 400;
 }
 
 .header__navigation-icon--close {
-  display: none; /* Initially hide the close icon */
+  display: none;
 }
 
 .header__navigation-menu {
   display: none;
-  position: absolute; /* Or fixed, depending on your layout */
-  top: 3rem; /* Adjust as needed */
+  position: absolute;
+  top: 3rem;
   right: 0.5rem;
-  background-color: #18181a; /* Consistent background */
+  background-color: var(--header-background-color);
   max-width: 8rem;
-  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Add a subtle shadow */
-  z-index: 1; /* Ensure it's above other content */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+  z-index: 1;
 }
 
 .header__navigation-menu-list {
-    list-style: none; /*Remove bullet points*/
-    padding: 0;
-    margin: 0;
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
 .header__navigation-menu-link {
   display: flex;
   align-items: center;
-  gap: 0.5rem; /* Space between icon and text */
+  gap: 0.5rem;
   height: 2rem;
-  color: #f7f9fb;
+  color: var(--header-text-color);
   font-size: 0.875rem;
   text-decoration: none;
-  padding: 0 1rem; /* Add some padding */
-  border-bottom: 0.0625rem solid #aaaaaa; /* Consistent border */
-}
-
-.header__navigation-menu-link i { /* Style the icons directly */
-  font-family: "Font Awesome 6 Free";
-  font-weight: 600;
-  width: 1.25rem; /* Fixed width for icons */
-  text-align: center; /* Center icons */
+  padding: 0 1rem;
+  border-bottom: 0.0625rem solid var(--header-border-color);
 }
 
 /* Toggle menu visibility */
 .header__navigation-checkbox:checked + .header__navigation-icon .header__navigation-icon--bars {
   display: none;
 }
+
 .header__navigation-checkbox:checked + .header__navigation-icon .header__navigation-icon--close {
   display: block;
 }
@@ -86,6 +114,7 @@
   display: block;
 }
 
+/* Media Queries */
 @media screen and (max-width: 970px) {
   .header__navigation-icon--bars {
     color: #f7f9fb;
@@ -96,33 +125,4 @@
   .header__navigation-icon {
     display: none;
   }
-}
-
-/* Commons */
-
-.header {
-  text-align: center;
-  margin-bottom: 1.818rem; /* 20px */
-}
-
-.header h1 {
-  font-size: 2.182rem; /* 24px */
-  margin: 0;
-}
-
-.header p {
-  margin: 0;
-}
-
-.header p:first-of-type {
-  padding: 0.455rem 0; /* 5px */
-  border-bottom: 1px solid #000;
-}
-
-.header p:last-of-type {
-  font-size: 0.955rem; /* 10.5px */
-  font-style: italic;
-  text-align: justify;
-  line-height: 1.0;
-  padding: 0.455rem 0; /* 5px */
 }
