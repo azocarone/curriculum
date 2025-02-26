@@ -1,11 +1,11 @@
 :root {
-  --font-size-base: 1rem;
+  --font-size-base: clamp(0.8rem, 2vw, 1rem); /* Fluid font size */
   --line-height-base: 1.6;
   --text-color: #333;
   --link-color: #007BFF;
   --background-color: white;
-  --max-width: 216mm;
-  --spacing: 1.818rem;
+  --max-width: clamp(300px, 90vw, 216mm); /* Responsive max-width */
+  --spacing: clamp(1rem, 2vw, 1.818rem); /* Fluid spacing */
 }
 
 body {

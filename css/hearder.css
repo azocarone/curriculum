@@ -1,6 +1,6 @@
 :root {
-  --header-spacing-small: 0.455rem; /* 5px */
-  --header-spacing-medium: 1.818rem; /* 20px */
+  --header-spacing-small: clamp(0.5rem, 1vw, 0.909rem); /* Fluid spacing */
+  --header-spacing-medium: clamp(1rem, 2vw, 1.818rem);
   --header-text-color: #f7f9fb;
   --header-background-color: #18181a;
   --header-border-color: #aaaaaa;
@@ -13,7 +13,7 @@
 }
 
 .header h1 {
-  font-size: 2.182rem; /* 24px */
+  font-size: clamp(1.5rem, 3vw, 2.182rem); /* Fluid font size */
   margin: 0;
 }
 
@@ -24,7 +24,7 @@
 }
 
 .header p:last-of-type {
-  font-size: 0.955rem; /* 10.5px */
+  font-size: clamp(0.7rem, 1.5vw, 0.955rem); /* Fluid font size */
   font-style: italic;
   text-align: justify;
   line-height: 1.0;
@@ -35,16 +35,16 @@
 .header__navigation-checkbox {
   opacity: 0;
   position: absolute;
-  top: 0.875rem;
-  right: 0.875rem;
+  top: clamp(0.5rem, 1vw, 0.875rem); /* Fluid positioning */
+  right: clamp(0.5rem, 1vw, 0.875rem);
 }
 
 .header__navigation-icon {
-  width: 1.25rem;
-  height: 1.25rem;
+  width: clamp(1rem, 2vw, 1.25rem); /* Fluid size */
+  height: clamp(1rem, 2vw, 1.25rem);
   position: absolute;
-  top: 0.875rem;
-  right: 0.875rem;
+  top: clamp(0.5rem, 1vw, 0.875rem);
+  right: clamp(0.5rem, 1vw, 0.875rem);
   cursor: pointer;
   display: flex;
   align-items: center;
@@ -75,10 +75,10 @@
 .header__navigation-menu {
   display: none;
   position: absolute;
-  top: 3rem;
-  right: 0.5rem;
+  top: clamp(2rem, 4vw, 3rem); /* Fluid positioning */
+  right: clamp(0.5rem, 1vw, 0.875rem);
   background-color: var(--header-background-color);
-  max-width: 8rem;
+  max-width: clamp(5rem, 10vw, 8rem); /* Fluid width */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
   z-index: 1;
 }
@@ -95,9 +95,9 @@
   gap: 0.5rem;
   height: 2rem;
   color: var(--header-text-color);
-  font-size: 0.875rem;
+  font-size: clamp(0.5rem, 1.5vw, 0.675rem); /* Fluid font size */
   text-decoration: none;
-  padding: 0 1rem;
+  padding: 0 clamp(0.5rem, 1vw, 1rem); /* Fluid padding */
   border-bottom: 0.0625rem solid var(--header-border-color);
 }
 
@@ -114,15 +114,8 @@
   display: block;
 }
 
-/* Media Queries */
-@media screen and (max-width: 970px) {
-  .header__navigation-icon--bars {
-    color: #f7f9fb;
-  }
-}
-
 @media print {
-  .header__navigation-icon {
+  .header__navigation {
     display: none;
   }
 }

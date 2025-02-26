@@ -1,12 +1,13 @@
 :root {
-    --footer-spacing-small: 0.909rem; /* 10px */
-    --footer-spacing-medium: 1.818rem; /* 20px */
+    --footer-spacing-small: clamp(0.5rem, 1vw, 0.909rem); /* Fluid spacing */
+    --footer-spacing-medium: clamp(1rem, 2vw, 1.818rem);
     --footer-border-color: #000;
-}
-
-.footer {
+  }
+  
+  .footer {
     text-align: center;
     padding-top: var(--footer-spacing-small);
     border-top: 1px solid var(--footer-border-color);
     margin-top: var(--footer-spacing-medium);
-}
+    font-size: clamp(0.7rem, 1.5vw, 1rem); /* Fluid font size */
+  }

@@ -1,20 +1,20 @@
 :root {
-  --main-spacing-small: 0.909rem; /* 10px */
-  --main-spacing-medium: 1.818rem; /* 20px */
-  --main-text-color: #333;
-  --main-border-color: #000;
+  --spacing-small: clamp(0.5rem, 1vw, 1rem); /* Espaciado pequeño */
+  --spacing-medium: clamp(1rem, 2vw, 1.818rem); /* Espaciado medio */
+  --text-color: #333; /* Color de texto */
+  --border-color: #000; /* Color del borde */
 }
 
 /* Estilos generales para secciones */
 .section {
-  margin-bottom: var(--main-spacing-medium);
+  margin-bottom: var(--spacing-medium);
 }
 
 .section h2 {
-  font-size: 1.091rem;
-  border-bottom: 1px solid var(--main-border-color);
-  margin-bottom: var(--main-spacing-small);
-  color: var(--main-text-color);
+  font-size: clamp(0.9rem, 2vw, 1.1rem); /* Tamaño de fuente fluido */
+  border-bottom: 1px solid var(--border-color);
+  margin-bottom: var(--spacing-small);
+  color: var(--text-color);
   text-transform: uppercase;
 }
 
@@ -22,7 +22,7 @@
 .job,
 .education,
 .skills {
-  margin-bottom: 1.818rem; /* 20px */
+  margin-bottom: var(--spacing-medium);
 }
 
 .job h3,
@@ -30,15 +30,23 @@
 .skills h3 {
   font-weight: bold;
   line-height: 1.0;
-  color: #333;
+  color: var(--text-color);
   margin: 0;
+  display: flex; /* Usamos Flexbox */
+  justify-content: space-between; /* Espacio entre el título y la ubicación */
+  align-items: center; /* Alineación vertical */
+  font-size: clamp(0.9rem, 1.5vw, 1.1rem); /* Tamaño de fuente fluido */
 }
 
-.job p:last-of-type,
-.education p:last-of-type,
-.skills p:last-of-type {
+.job p,
+.education p,
+.skills p {
   line-height: 1.0;
   margin: 0;
+  display: flex; /* Usamos Flexbox */
+  justify-content: space-between; /* Espacio entre la posición/título y las fechas */
+  align-items: center; /* Alineación vertical */
+  font-size: clamp(0.7rem, 1.2vw, 0.9rem); /* Tamaño de fuente fluido */
 }
 
 .job .location,
@@ -47,24 +55,47 @@
 .job .dates,
 .education .dates,
 .skills .dates {
-  float: right;
-}
-
-.job .dates,
-.education .dates,
-.skills .dates {
   font-style: italic;
+  white-space: nowrap; /* Evitar rupturas de línea */
 }
 
+/* Estilos para listas */
 .job ul,
 .education ul,
 .skills ul {
   padding: 0;
+  margin-top: var(--spacing-small); /* Espacio entre la lista y su elemento anterior */
+  padding-left: 2rem; /* Mover el bullet más a la derecha */
+  list-style-type: disc; /* Usar bullets tipo "disc" */
+  list-style-position: outside; /* Colocar bullets fuera del flujo del texto */
 }
 
 .job ul li,
 .education ul li,
 .skills ul li {
-  line-height: 1.0;
-  padding: 0 2.898rem 0.205rem 2.195rem; /* Padding combinado (top, right, bottom, left) */
+  line-height: 1.4; /* Interlineado adecuado */
+  margin: 0; /* Eliminar margen adicional */
+  padding: 0.2rem 0; /* Padding vertical para separar los elementos */
+}
+
+/* Responsive adjustments */
+@media (max-width: 480px) {
+  .job h3,
+  .education h3,
+  .skills h3,
+  .job p,
+  .education p,
+  .skills p {
+    flex-direction: column; /* Apilar elementos verticalmente */
+    align-items: flex-start; /* Alinear elementos a la izquierda */
+  }
+
+  .job .location,
+  .education .location,
+  .skills .location,
+  .job .dates,
+  .education .dates,
+  .skills .dates {
+    margin-top: 0.2rem; /* Espaciado adicional para móviles */
+  }
 }
