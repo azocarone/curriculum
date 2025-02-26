@@ -3,11 +3,11 @@ export const cv = {
         name: "José Antonio Azócar Marcano",
         contact: {
             location: "San Diego, Carabobo – Venezuela",
-            url: 'linkedin.com/in/azocarone',
+            url: 'azocar.one',
             phone: "+58 414 415 86 26",
             email: "azocarone@gmail.com",
         },
-        summary: '"Ingeniero en Informática con un Máster en Comercio Electrónico y amplia experiencia en Tecnologías de la Información. Especializado en ofrecer asesoría y soluciones tecnológicas a empresas y personas, con un enfoque en administración de sistemas, redes, seguridad informática y proyectos innovadores. Interesado en ciencia de datos, programación en Java y Python, y desarrollo backend. Destaca por su capacidad de adaptación, resolución de problemas y enfoque en la mejora continua."',
+        summary: '"Ingeniero en Informática con Máster en Comercio Electrónico. Especialista en consultoría y desarrollo de soluciones tecnológicas, gestión de sistemas, seguridad informática y proyectos innovadores. Interesado en ciencia de datos, programación en Java y Python, y desarrollo backend."',
     },
     sections: {
         experience: {

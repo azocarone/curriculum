@@ -7,7 +7,7 @@ export const cv = {
             phone: 'Phone',
             email: 'email@example.com'
         },
-        summary: '"Computer Engineer with a Master’s in E-commerce and extensive experience in Information Technology. Specialized in providing technological advice and solutions to businesses and individuals, with a focus on system administration, networks, cybersecurity, and innovative projects. Interested in data science, programming in Java and Python, and backend development. Known for adaptability, problem-solving skills, and a commitment to continuous improvement."'
+        summary: '"Computer Science Engineer with a Master’s in E-commerce. Specialist in consulting and developing technological solutions, system management, cybersecurity, and innovative projects. Interested in data science, programming in Java and Python, and backend development."'
     },
     sections: {
         experience: {
