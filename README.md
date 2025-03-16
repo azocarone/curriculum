@@ -1,6 +1,6 @@
 # Currículum
 
-Prototipo funcional de una página web dinámica para un Currículum Vitae (CV) con diseño tipo Harvard y soporte multilingüe. Utiliza módulos de JavaScript para gestionar la carga de idiomas, la aplicación de traducciones y las actualizaciones de la interfaz de usuario.
+Prototipo funcional de una página web dinámica para un Currículum Vitae (CV) con diseño tipo Harvard, compatible con Sistemas de Seguimiento de Candidatos (ATS) y soporte multilingüe. Utiliza módulos de JavaScript para gestionar la carga de idiomas, la aplicación de traducciones y las actualizaciones de la interfaz de usuario.
 
 <div align="center"><img src="assets/img/screenshot.gif" alt="Currículum" width="683" height="384" style="border-radius: 10px;"></div>
 
@@ -36,9 +36,107 @@ Prototipo funcional de una página web dinámica para un Currículum Vitae (CV) 
 3. **Estructura HTML**: Asegúrate de que tu HTML tenga elementos con las clases e ID apropiados que se utilizan en el módulo `uiRenderer.js` para actualizar el contenido (por ejemplo, `.header`, `#experience`, `#education`, `#skills`, `.footer`). El menú de navegación debe tener un enlace con el ID `menuLink` para activar el cambio de idioma.
 4. **Inicializar**: Llama a la función `initialize()` en tu script principal para iniciar el proceso de localización. Esta función detectará el idioma del usuario y cargará los datos del CV apropiados.
 
-## Código Principal
+## HTML Template
+
+``` html 
+
+<body>
+    <header class="header">
+        <div class="header__contact" id="contact">
+            <h1 class="header__name">name</h1>
+            <address class="header__contact-address">
+                <p class="header__contact-item">
+                    <span class="header__contact-label">Location:</span>
+                    <a class="header__contact-link header__contact-link--location"
+                        href="https://maps.google.com/?q=City - State, Country" target="_blank"
+                        rel="noopener noreferrer">location</a>
+                </p>
+                <p class="header__contact-item">
+                    <span class="header__contact-label">Email:</span>
+                    <a class="header__contact-link header__contact-link--email"
+                        href="mailto:email@example.com">email</a>
+                </p>
+                <p class="header__contact-item">
+                    <span class="header__contact-label">Phone:</span>
+                    <a class="header__contact-link header__contact-link--phone" href="tel:+001234567890">phone</a>
+                </p>
+                <p class="header__contact-item">
+                    <span class="header__contact-label">Website:</span>
+                    <a class="header__contact-link header__contact-link--website" href="https://example.com"
+                        target="_blank" rel="noopener noreferrer">website</a>
+                </p>
+            </address>
+        </div>
+    </header>
+
+    <main class="main">
+        <!-- Sección Resumen Profesional -->
+        <section class="main__section" id="summary">
+            <h2 class="main__section-title"></h2>
+            <p class="main__section-content"></p>
+        </section>
+
+        <!-- Sección Experiencia Laboral -->
+        <section class="main__section" id="experience">
+            <h2 class="main__section-title"></h2>
+            <ul class="main__experience-list">
+                <li class="main__experience-item">
+                    <div class="main__experience-info">
+                        <h3 class="main__experience-position"></h3>
+                        <p class="main__experience-dates"></p>
+                        <p class="main__experience-company"></p>
+                        <p class="main__experience-location"></p>
+                    </div>
+                    <ul class="main__experience-responsibilities-list">
+                        <li class="main__experience-responsibility-item"></li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Sección Educación -->
+        <section class="main__section main__section--flex" id="education">
+            <ul class="main__section-list">
+                <li class="main__section-item">
+                    <h2 class="main__section-title"></h2>
+                    <ul class="main__section-sublist main__section-sublist--flex">
+                        <li class="main__section-subitem">
+                            <p class="main__section-subitem__sentence main__section-subitem__sentence--comma">
+                                <span class="main__section-subitem__title"></span>
+                                <span class="main__section-subitem__institution"></span>
+                                <span class="main__section-subitem__location"></span>
+                                <span class="main__section-subitem__dates"></span>
+                            </p>
+                        </li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+
+        <!-- Sección Habilidades -->
+        <section class="main__section main__section--flex" id="skills">
+            <ul class="main__section-list">
+                <li class="main__section-item">
+                    <h2 class="main__section-title"></h2>
+                    <ul class="main__section-sublist main__section-sublist--flex">
+                        <li class="main__section-subitem main__section-subitem--comma"></li>
+                    </ul>
+                </li>
+            </ul>
+        </section>
+    </main>
+
+    <footer class="footer" id="footer">
+        <p class="footer__copyright"></p>
+    </footer>
+</body>
+
+``` 
+
+## Código Principal JS
 
 ``` js
+
 import { setupLanguage } from './languageService.js';
 
 async function initialize() {
@@ -54,13 +152,8 @@ async function initialize() {
 }
 
 initialize();
+
 ```
-
-## Mejoras futuras
-
-- Asignar las clases faltantes al código HTML utilizando la metodología BEM;
-- Actualizar los selectores CSS para reflejar los cambios realizados según la metodología BEM;
-- Refactorizar el código JavaScript para adaptarlo a los nuevos nombres de clases.
 
 ---
 <div align="right"><br>😉 azocarone 😄</div>

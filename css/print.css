@@ -1,0 +1,101 @@
+@media print {
+    /* Estilos generales */
+    body {
+        font-family: 'Lato', sans-serif;
+        font-size: 10pt;
+        line-height: 1.2;
+        color: #000;
+        background-color: #fff;
+    }
+
+    /* Ocultar elementos innecesarios */
+    nav,
+    aside,
+    footer,
+    /*header,*/
+    .no-imprimir { /* Clase para elementos específicos */
+        display: none;
+    }
+
+    /* Ajustar imágenes */
+    img {
+        max-width: 100%;
+        height: auto;
+    }
+
+    /* Ajustar enlaces */
+    a {
+        text-decoration: none;
+        color: #000;
+    }
+
+    /* Mostrar URL después del enlace */
+    /*a::after {
+        content: " (" attr(href) ") "; 
+    }*/
+    
+    /* Controlar saltos de página */
+    h2,
+    h3 {
+        page-break-after: avoid;
+    }
+
+    .page-break { /* Clase para saltos de página manuales */
+        page-break-before: always;
+    }
+
+    /* Ajustar tablas */
+    table {
+        width: 100%;
+        border-collapse: collapse;
+    }
+
+    th,
+    td {
+        border: 1px solid #ccc;
+        padding: 8px;
+        text-align: left;
+    }
+
+    /* Ajustar listas */
+    ul,
+    ol {
+        padding-left: 20px;
+    }
+
+    .main__experience-list li {
+        margin-left: 0;
+    }
+
+    li >* li {
+        list-style-type: disc;
+        list-style-position: outside;
+        margin-left: 16px;
+    }
+
+    /* Ajustar citas */
+    blockquote {
+        margin: 10px 0;
+        padding: 5px 20px;
+        border-left: 2px solid #ccc;
+    }
+
+    /* Ajustar código */
+    pre,
+    code {
+        font-family: monospace;
+        white-space: pre-wrap;
+    }
+
+    /* Ajustar colores */
+    body {
+        -webkit-print-color-adjust: exact; /* Para Chrome */
+        print-color-adjust: exact; /* Para Firefox */
+    }
+
+    /* Ajustar márgenes */
+    @page {
+        margin-top: 1cm;
+        margin-bottom: 2cm;
+    }
+}

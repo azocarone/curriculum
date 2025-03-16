@@ -1,12 +1,14 @@
 export function updateNavigationMenu(language) {
-    const navigationElements = document.querySelectorAll('.header__navigation-menu-link');
+    const navigationElements = document.querySelectorAll('.header__nav-link');
+
     const downloadUrls = {
-        es: './assets/pdf/cv_jose_azocar_es.pdf',
-        en: './assets/pdf/cv_jose_azocar_en.pdf'
+        es: './assets/pdf/CV_JosE_AzOcar_es.pdf',
+        en: './assets/pdf/CV_JosE_AzOcar_en.pdf'
     };
+
     const navigationTexts = {
-        es: ['Descargar', 'English'],
-        en: ['Download', 'Español']
+        es: ['Descargar', 'English', 'Portafolio'],
+        en: ['Download', 'Español', 'Portfolio']
     };
 
     navigationElements.forEach((element, index) => {
@@ -16,7 +18,8 @@ export function updateNavigationMenu(language) {
 
 function updateNavigationElement(element, index, url, texts) {
     const icon = element.querySelector('i');
-    const newText = ` ${texts[index]}`; // Espacio antes del texto
+
+    const newText = ` ${texts[index]}`; // Se deja un espacio antes del texto
 
     // Actualizar solo si el contenido ha cambiado
     if (element.textContent.trim() !== newText.trim()) {
@@ -33,91 +36,127 @@ function updateNavigationElement(element, index, url, texts) {
     }
 }
 
-export function updateHeader(profile) {
-    const header = document.querySelector('.header');
-    const { name, contact: { location, url, phone, email }, summary } = profile;
-    const contactInfo = `
-        <span>${location}</span> · 
-        <a href="https://${url}" target="_blank" rel="noopener noreferrer">${url}</a> · 
-        <span>${phone}</span> · 
-        <a href="mailto:${email}">${email}</a>
-    `;
- 
-    header.querySelector('h1').textContent = name;
-    header.querySelector('p:first-of-type').innerHTML = contactInfo;
-    header.querySelector('p:last-of-type').textContent = summary
-};
+export function updateContact(contact) {
+    const headerContact = document.getElementById('contact');
 
-export function updateExperience(experience) {
-    const experienceSection = document.getElementById('experience');
-    
-    experienceSection.querySelector('h2').textContent = experience.label;
+    const urlTemplates = {
+        location: value => `https://maps.google.com/?q=$${encodeURIComponent(value)}`,
+        email: value => `mailto:${encodeURIComponent(value)}`,
+        phone: value => `tel:${encodeURIComponent(value)}`,
+        website: value => `https://${encodeURIComponent(value)}`
+    };
 
-    document.querySelectorAll('.job').forEach(job => {
-        job.remove();
-    });
-    
-    experience.list.forEach(job => {
-        const article = document.createElement('article');
-        article.classList.add('job');
-        article.innerHTML = `
-            <h3>${job.company}<span class="location">${job.location}</span></h3>
-            <p>${job.position}<span class="dates">${job.dates}</span></p>
-            <ul>
-                ${job.responsibilities.map(responsibility => `<li>${responsibility}</li>`).join('')}
-            </ul>
+    const htmlContent = Object.entries(contact.address).map(([key, value]) => {
+        const label = value.label; // Obtiene el label directamente del objeto
+        const href = urlTemplates[key](value.content); // Obtiene el content para generar el href
+
+        return `
+            <p class="header__contact-item">
+                <span class="header__contact-label">${label}:</span>
+                <a class="header__contact-link header__contact-link--${key}" href="${href}" target="_blank" rel="noopener noreferrer">${value.content}</a>
+            </p>
         `;
-        experienceSection.appendChild(article)
-    })
+    }).join('');
+
+    headerContact.innerHTML = `
+        <h1 class="header__name">${contact.name}</h1>
+        <address class="header__contact-address">
+            ${htmlContent}
+        </address>
+    `;
+}
+
+export function updateSummary(summary) {
+    const summarySection = document.getElementById('summary');
+
+    const htmlContent = `
+        <h2 class="main__section-title main__section-title--${summary.id}">${summary.label}</h2>
+        <p class="main__section-content">${summary.content}</p>
+    `;
+
+    summarySection.innerHTML = htmlContent;
 };
+
+export function UpdateExperience(experience) {
+    const experienceSection = document.getElementById('experience');
+
+    const htmlContent = experience.list.map(category => `
+        <ul class="main__experience-list">
+            <li class="main__experience-item">
+                <div class="main__experience-info">
+                    <h3 class="main__experience-position">${category.position}</h3>
+                    <p class="main__experience-dates">${category.dates}</p>
+                    <p class="main__experience-company">${category.company}</p>
+                    <p class="main__experience-location">${category.location}</p>
+                </div>
+                <ul class="main__experience-responsibilities-list">
+                    ${category.responsibilities.map(item => `
+                        <li class="main__experience-responsibility-item">${item}</li>
+                    `).join('')}
+                </ul>
+            </li>
+        </ul>
+    `).join('');
+
+    experienceSection.innerHTML = `
+        <h2 class="main__section-title main__section-title--${experience.id}">${experience.label}</h2>
+        ${htmlContent}
+    `;
+}
 
 export function updateEducation(education) {
     const educationSection = document.getElementById('education');
 
-    educationSection.querySelector('h2').textContent = education.label;
+    const htmlContent = education.map(category => `
+        <ul class="main__section-list">
+            <li class="main__section-item">
+                <h2 class="main__section-title main__section-title--${category.id}">${category.label}</h2>
+                <ul class="main__section-sublist main__section-sublist--flex">
+                    ${category.list.map(item => `
+                        <li class="main__section-subitem">
+                            <p class="main__section-subitem__sentence main__section-subitem__sentence--comma">
+                                <span class="main__section-subitem__title">${item.title}</span>
+                                <span class="main__section-subitem__institution">${item.institution}</span>
+                                <span class="main__section-subitem__location">${item.location}</span>
+                                <span class="main__section-subitem__dates">${item.dates}</span>
+                            </p>
+                        </li>
+                    `).join('')}
+                </ul>
+            </li>
+        </ul>
+    `).join('');
 
-    document.querySelectorAll('.education').forEach(job => {
-        job.remove();
-    });
-
-    education.list.forEach(degree => {
-        const article = document.createElement('article');
-        article.classList.add('education');
-        article.innerHTML = `
-            <h3>${degree.institution}<span class="location">${degree.location}</span></h3>
-            <p>${degree.title}<span class="dates">${degree.dates}</span></p>
-        `;
-        educationSection.appendChild(article)
-    })
-};
+    educationSection.innerHTML = htmlContent;
+}
 
 export function updateSkills(skills) {
     const skillsSection = document.getElementById('skills');
 
-    skillsSection.querySelector('h2').textContent = skills.label;
+    const htmlContent = skills.map(category => `
+        <ul class="main__section-list">
+            <li class="main__section-item">
+                <h2 class="main__section-title main__section-title--${category.id}">${category.label}</h2>
+                <ul class="main__section-sublist main__section-sublist--flex">
+                    ${category.list.map(item => `
+                        <li class="main__section-subitem main__section-subitem--comma">${item}</li>
+                    `).join('')}
+                </ul>
+            </li>
+        </ul>
+    `).join('');
 
-     document.querySelectorAll('.skills').forEach(job => {
-        job.remove();
-    });
+    skillsSection.innerHTML = htmlContent;
+}
 
-    skills.list.forEach(skill => {
-        const article = document.createElement('article');
-        article.classList.add('skills');
-        article.innerHTML = `
-            <h3>${skill.label}</h3>
-            <ul>
-                ${skill.items.map(item => `<li>${item}</li>`).join('')}
-            </ul>
-        `;
-        skillsSection.appendChild(article)
-    })
-};
+export function updateFooter(contactName, label) {
+    const elementFooter = document.getElementById('footer');
 
-export function updateFooter(footer, profileName) {
-    const footerSection = document.querySelector('.footer');
-    const footerText = `
-        &copy; ${new Date().getFullYear()} ${profileName}. ${footer.label}
+    const htmlContent = `
+        <p class="footer__copyright">
+            &copy; ${new Date().getFullYear()} ${contactName}. ${label}
+        </p>
     `;
-    
-    footerSection.querySelector('p').innerHTML = footerText;
+
+    elementFooter.innerHTML = htmlContent;
 }

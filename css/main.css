@@ -1,103 +1,195 @@
 :root {
-    --spacing-small: clamp(0.5rem, 1vw, 1rem); /* Espaciado pequeño */
-    --spacing-medium: clamp(1rem, 2vw, 1.818rem); /* Espaciado medio */
-    --text-color: #333; /* Color de texto */
-    --border-color: #000; /* Color del borde */
+    --main-spacing-small: clamp(0.5rem, 1vw, 1rem);
+    --main-spacing-medium: clamp(1rem, 2vw, 1.818rem);
+    --main-gap-small: 0.5rem;
+    --main-gap-medium: 0.875rem;
+    --main-icon-weight: 600;
+    --main-icon-spacing: 0.5rem;
+    --main-icon-stroke: 0.0625rem;
 }
 
-/* Estilos generales para secciones */
-.section {
-    margin-bottom: var(--spacing-medium);
+.main__section,
+.main__experience-item {
+    margin-bottom: var(--main-spacing-medium);
 }
 
-.section h2 {
-    font-size: clamp(0.9rem, 2vw, 1.1rem);
-    /* Tamaño de fuente fluido */
-    border-bottom: 1px solid var(--border-color);
-    margin-bottom: var(--spacing-small);
-    color: var(--text-color);
-    text-transform: uppercase;
+.main__section-title {
+    font-size: calc(var(--font-size-base) * 1.2);
+    text-transform: capitalize;
+    margin: 0 0 var(--main-spacing-medium) 0;
 }
 
-/* Estilos compartidos para .job, .education y .skills */
-.job,
-.education,
-.skills {
-    margin-bottom: var(--spacing-medium);
+.main__section-title--summary::before,
+.main__section-title--experience::before,
+.main__section-title--academicEducation::before,
+.main__section-title--continuousTraining::before,
+.main__section-title--certifications::before,
+.main__section-title--technical::before,
+.main__section-title--soft::before,
+.main__section-title--languages::before {
+    font-family: "Font Awesome 6 Free";
+    font-weight: var(--main-icon-weight);
+    color: transparent;
+    -webkit-text-stroke: var(--main-icon-stroke) black;
+    margin-right: var(--main-icon-spacing);
 }
 
-.job h3,
-.education h3,
-.skills h3 {
-    font-weight: bold;
-    line-height: 1.0;
-    color: var(--text-color);
-    margin: 0;
-    display: flex; /* Usamos Flexbox */
-    justify-content: space-between; /* Espacio entre el título y la ubicación */
-    align-items: center; /* Alineación vertical */
-    font-size: clamp(0.9rem, 1.5vw, 1.1rem); /* Tamaño de fuente fluido */
+.main__section-title--summary::before {
+    content: "\f508";
 }
 
-.job p,
-.education p,
-.skills p {
-    line-height: 1.0;
-    margin: 0;
-    display: flex; /* Usamos Flexbox */
-    justify-content: space-between; /* Espacio entre la posición/título y las fechas */
-    align-items: center; /* Alineación vertical */
-    font-size: clamp(0.7rem, 1.2vw, 0.9rem); /* Tamaño de fuente fluido */
+.main__section-title--experience::before {
+    content: "\f0b1";
 }
 
-.job .location,
-.education .location,
-.skills .location,
-.job .dates,
-.education .dates,
-.skills .dates {
-    font-style: italic;
-    white-space: nowrap; /* Evitar rupturas de línea */
+.main__section-title--academicEducation::before {
+    content: "\f19d";
 }
 
-/* Estilos para listas */
-.job ul,
-.education ul,
-.skills ul {
+.main__section-title--continuousTraining::before {
+    content: "\f51b";
+}
+
+.main__section-title--certifications::before {
+    content: "\f0A3";
+}
+
+.main__section-title--technical::before {
+    content: "\f5dc";
+}
+
+.main__section-title--soft::before {
+    content: "\f004";
+}
+
+.main__section-title--languages::before {
+    content: "\f1ab";
+}
+
+.main__experience-list,
+.main__section-list,
+.main__section-sublist {
+    list-style: none;
     padding: 0;
-    margin-top: var(--spacing-small); /* Espacio entre la lista y su elemento anterior */
-    padding-left: 2rem; /* Mover el bullet más a la derecha */
-    list-style-type: disc; /* Usar bullets tipo "disc" */
-    list-style-position: outside; /* Colocar bullets fuera del flujo del texto */
+    margin: 0;
 }
 
-.job ul li,
-.education ul li,
-.skills ul li {
-    line-height: 1.4; /* Interlineado adecuado */
-    margin: 0; /* Eliminar margen adicional */
-    padding: 0.2rem 0; /* Padding vertical para separar los elementos */
+.main__section--flex {
+    display: flex;
+    flex-direction: row;
+    gap: var(--main-gap-medium);
+    font-size: calc(var(--font-size-base) - 10%);
 }
 
-/* Responsive adjustments */
-@media (max-width: 480px) {
+.main__section--flex>* {
+    box-sizing: border-box;
+    flex: 1;
+}
 
-    .job h3,
-    .education h3,
-    .skills h3,
-    .job p,
-    .education p,
-    .skills p {
-        flex-direction: column; /* Apilar elementos verticalmente */
-        align-items: flex-start; /* Alinear elementos a la izquierda */
+.main__experience-info {
+    display: grid;
+    grid-template-columns: auto auto;
+    gap: var(--main-gap-small);
+    font-size: calc(var(--font-size-base) - 10%);
+    line-height: calc(var(--line-height-base) - 0.86);
+}
+
+.main__experience-info>* {
+    white-space: nowrap;
+    margin: 0;
+}
+
+.main__experience-info>*:nth-child(odd) {
+    justify-self: start;
+    text-align: left;
+}
+
+.main__experience-info>*:nth-child(even) {
+    justify-self: end;
+    text-align: right;
+}
+
+.main__experience-info>*:nth-child(n+2):nth-child(-n+4) {
+    font-style: italic;
+}
+
+.main__experience-responsibilities-list {
+    list-style-type: disc;
+    list-style-position: outside;
+    padding-left: 1rem;
+    margin: var(--main-spacing-medium) 0;
+}
+
+.main__experience-responsibility-item {
+    padding: 0.15rem 0;
+}
+
+.main__section-sublist--flex {
+    display: flex;
+    flex-wrap: wrap;
+    gap: var(--main-gap-small);
+    line-height: calc(var(--line-height-base) - 0.6);
+}
+
+.main__section-subitem {
+    border: 0.0625rem  solid var(--border-color);
+    border-radius: 0.25rem;
+    padding: 0.25rem;
+}
+
+.main__section-subitem__sentence {
+    line-height: var(--line-height-base);
+    padding: 0;
+    margin: 0;
+}
+
+.main__section-subitem--comma:not(:last-child)::after,
+.main__section-subitem__sentence--comma span:not(:last-child)::after {
+    content: ",";
+}
+
+.main__section-subitem__title {
+    font-weight: bold;
+}
+
+.main__section-subitem__institution {
+    font-style: italic;
+}
+
+.main__section-subitem__location {
+    text-decoration: underline;
+}
+
+@media screen and (max-width: 480px), print {
+    .main__section--flex {
+        flex-direction: column;
     }
 
-    .job .location,
-    .education .location,
-    .skills .location,
-    .job .dates,
-    .education .dates,
-    .skills .dates {
-        margin-top: 0.2rem; /* Espaciado adicional para móviles */
+    .main__experience-info {
+        display: flex;
+        flex-direction: column;
+        gap: var(--main-gap-small);
+    }
+
+    .main__experience-info>* {
+        align-self: flex-start;
+        text-align: left;
+    }
+
+    .main__section-title--summary::before,
+    .main__section-title--experience::before,
+    .main__section-title--academicEducation::before,
+    .main__section-title--continuousTraining::before,
+    .main__section-title--certifications::before,
+    .main__section-title--technical::before,
+    .main__section-title--soft::before,
+    .main__section-title--languages::before {
+        display: none;
+    }
+
+    .main__section-subitem {
+        border: none;
+        padding: inherit;
+    
     }
 }
