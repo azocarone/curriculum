@@ -1,39 +1,41 @@
 export function updateNavigationMenu(language) {
-    const navigationElements = document.querySelectorAll('.header__nav-link');
+    const headerNavContainer = document.getElementById('nav');
 
-    const downloadUrls = {
-        es: './assets/pdf/CV_JosE_AzOcar_es.pdf',
-        en: './assets/pdf/CV_JosE_AzOcar_en.pdf'
+    const navigationData = {
+        es: [
+            { text: 'Descargar', href: './assets/pdf/CV_JosE_AzOcar_es.pdf', icon: 'fa-solid fa-file-pdf', download: true, id: null },
+            { text: 'English', href: '#', icon: 'fa-solid fa-language', download: false, id: 'menuLink' },
+            { text: 'Portafolio', href: 'https://azocar.one', icon: 'fa-solid fa-suitcase', download: false, id: null }
+        ],
+        en: [
+            { text: 'Download', href: './assets/pdf/CV_JosE_AzOcar_en.pdf', icon: 'fa-solid fa-file-pdf', download: true, id: null },
+            { text: 'Español', href: '#', icon: 'fa-solid fa-language', download: false, id: 'menuLink' },
+            { text: 'Portfolio', href: 'https://azocar.one', icon: 'fa-solid fa-suitcase', download: false, id: null }
+        ]
     };
 
-    const navigationTexts = {
-        es: ['Descargar', 'English', 'Portafolio'],
-        en: ['Download', 'Español', 'Portfolio']
-    };
-
-    navigationElements.forEach((element, index) => {
-        updateNavigationElement(element, index, downloadUrls[language], navigationTexts[language]);
-    });
-}
-
-function updateNavigationElement(element, index, url, texts) {
-    const icon = element.querySelector('i');
-
-    const newText = ` ${texts[index]}`; // Se deja un espacio antes del texto
-
-    // Actualizar solo si el contenido ha cambiado
-    if (element.textContent.trim() !== newText.trim()) {
-        element.textContent = ''; // Limpiar contenido previo
-        if (icon) {
-            element.appendChild(icon); // Reinsertar el ícono
-        }
-        element.append(newText); // Agregar el texto
-    }
-
-    // Actualizar el atributo href si es un enlace de descarga
-    if (element.dataset.download === 'true') {
-        element.href = url;
-    }
+    const navigationItems = navigationData[language];
+    
+    const navigationHTML = ((items) => `
+        <input class="header__nav-toggle" type="checkbox" id="menu-toggle" />
+        <label for="menu-toggle" class="header__nav-icon">
+            <span class="header__nav-icon-bar"></span>
+            <span class="header__nav-icon-close"></span>
+        </label>
+        <div class="header__nav-menu">
+            <ul class="header__nav-list">
+                ${items.map(item => `
+                    <li class="header__nav-item">
+                        <a class="header__nav-link" href="${item.href}" target="_blank" rel="noopener noreferrer" ${item.download ? 'data-download="true"' : ''} ${item.id ? `id="${item.id}"` : ''}>
+                            <i class="${item.icon}"></i>${item.text}
+                        </a>
+                    </li>
+                `).join('')}
+            </ul>
+        </div>
+    `)(navigationItems);
+  
+    headerNavContainer.innerHTML = navigationHTML;
 }
 
 export function updateContact(contact) {

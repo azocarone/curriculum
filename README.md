@@ -42,6 +42,32 @@ Prototipo funcional de una página web dinámica para un Currículum Vitae (CV) 
 
 <body>
     <header class="header">
+        <nav class="header__nav">
+            <input class="header__nav-toggle" type="checkbox" id="menu-toggle" />
+            <label for="menu-toggle" class="header__nav-icon">
+                <span class="header__nav-icon-bar"></span>
+                <span class="header__nav-icon-close"></span>
+            </label>
+            <div class="header__nav-menu">
+                <ul class="header__nav-list">
+                    <li class="header__nav-item">
+                        <a class="header__nav-link" href="#" target="_blank" rel="noopener noreferrer" data-download="true">
+                            <i class="fa-solid fa-file-pdf"></i>Descargar
+                        </a>
+                    </li>
+                    <li class="header__nav-item">
+                        <a class="header__nav-link" href="#" target="_blank" rel="noopener noreferrer" id="menuLink">
+                            <i class="fa-solid fa-language"></i>English
+                        </a>
+                    </li>
+                    <li class="header__nav-item">
+                        <a class="header__nav-link" href="https://azocar.one" target="_blank" rel="noopener noreferrer">
+                            <i class="fa-solid fa-suitcase"></i>Portafolio
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
         <div class="header__contact" id="contact">
             <h1 class="header__name">name</h1>
             <address class="header__contact-address">
