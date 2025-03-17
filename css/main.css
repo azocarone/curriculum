@@ -132,9 +132,11 @@
 }
 
 .main__section-subitem {
-    border: 0.0625rem  solid var(--border-color);
+    /*border: 0.0625rem  solid var(--border-color);*/
+    border: 0.0625rem  solid transparent;
     border-radius: 0.25rem;
     padding: 0.25rem;
+    background-color: #dfdddd;
 }
 
 .main__section-subitem__sentence {
