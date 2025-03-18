@@ -1,3 +1,3 @@
-./vscode
-./js/data/_private
-./assets/pdf/_private
+.vscode
+js/data/_private
+assets/pdf/_private
