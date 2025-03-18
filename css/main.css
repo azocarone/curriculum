@@ -132,11 +132,10 @@
 }
 
 .main__section-subitem {
-    /*border: 0.0625rem  solid var(--border-color);*/
-    border: 0.0625rem  solid transparent;
+    background-color: #E6E6E6;
+    padding: 0.3rem;
     border-radius: 0.25rem;
-    padding: 0.25rem;
-    background-color: #dfdddd;
+    border: 0.0625rem  solid #D2D2D2;
 }
 
 .main__section-subitem__sentence {
@@ -189,9 +188,8 @@
         display: none;
     }
 
-    .main__section-subitem {
+    /*.main__section-subitem {
         border: none;
         padding: inherit;
-    
-    }
+    }*/
 }

@@ -73,6 +73,12 @@
         margin-left: 16px;
     }
 
+    .main__section-subitem {
+        background-color: inherit;
+        border: none;
+        padding: inherit;
+    }
+
     /* Ajustar citas */
     blockquote {
         margin: 10px 0;
