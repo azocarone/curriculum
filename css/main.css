@@ -91,6 +91,7 @@
     grid-template-columns: auto auto;
     gap: var(--main-gap-small);
     font-size: calc(var(--font-size-base) - 10%);
+    color: inherit;
     line-height: calc(var(--line-height-base) - 0.86);
 }
 
@@ -132,20 +133,21 @@
 }
 
 .main__section-subitem {
-    background-color: #E6E6E6;
+    background-color: #F6F6F6;
     padding: 0.3rem;
     border-radius: 0.25rem;
     border: 0.0625rem  solid #D2D2D2;
 }
 
-.main__section-subitem__sentence {
+.main__section-subitem__link {
+    color: inherit;
     line-height: var(--line-height-base);
     padding: 0;
     margin: 0;
 }
 
 .main__section-subitem--comma:not(:last-child)::after,
-.main__section-subitem__sentence--comma span:not(:last-child)::after {
+.main__section-subitem__link--comma span:not(:last-child)::after {
     content: ",";
 }
 

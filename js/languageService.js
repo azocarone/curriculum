@@ -30,7 +30,7 @@ function setupMenuLinkEventListener() {
 
     menuLink.addEventListener('click', async (event) => {
         event.preventDefault();
-        const targetLanguage = menuLink.textContent.trim().includes('English') ? 'en' : 'es';
+        const targetLanguage = menuLink.textContent.trim().includes('Ingles') ? 'en' : 'es';
         await setupLanguage(targetLanguage);
     });
 }

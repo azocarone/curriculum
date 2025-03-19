@@ -2,8 +2,8 @@
     --font-size-base: clamp(0.8rem, 2vw, 1rem);
     --line-height-base: 1.6;
     --text-color: #333333;
-    --background-color: white;
-    --border-color: #aaaaaa;
+    --background-color: #FCFCFC;
+    --border-color: #AAAAAA;
     --max-width: clamp(300px, 90vw, 216mm); /* Ancho máximo tipo hoja tamaño carta */
     --spacing: clamp(1rem, 2vw, 1.818rem);
 }

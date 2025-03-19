@@ -1,22 +1,58 @@
-export function updateNavigationMenu(language) {
-    const headerNavContainer = document.getElementById('nav');
+export function updateNav(language) {
+    const headerNav = document.getElementById("nav");
 
-    const navigationData = {
+    const navData = {
         es: [
-            { text: 'Descargar', href: './assets/pdf/CV_JosE_AzOcar_es.pdf', icon: 'fa-solid fa-file-pdf', download: true, id: null },
-            { text: 'English', href: '#', icon: 'fa-solid fa-language', download: false, id: 'menuLink' },
-            { text: 'Portafolio', href: 'https://azocar.one', icon: 'fa-solid fa-suitcase', download: false, id: null }
+            {
+                href: "./assets/pdf/CV_JosE_AzOcar_es.pdf",
+                download: true,
+                id: null,
+                icon: "fa-solid fa-file-pdf",
+                text: "Descargar",
+            },
+            {
+                href: "#",
+                download: false,
+                id: "menuLink",
+                icon: "fa-solid fa-language",
+                text: "Ingles",
+            },
+            {
+                href: "https://azocar.one",
+                download: false,
+                id: null,
+                icon: "fa-solid fa-suitcase",
+                text: "Portafolio",
+            },
         ],
         en: [
-            { text: 'Download', href: './assets/pdf/CV_JosE_AzOcar_en.pdf', icon: 'fa-solid fa-file-pdf', download: true, id: null },
-            { text: 'Español', href: '#', icon: 'fa-solid fa-language', download: false, id: 'menuLink' },
-            { text: 'Portfolio', href: 'https://azocar.one', icon: 'fa-solid fa-suitcase', download: false, id: null }
-        ]
+            {
+                href: "./assets/pdf/CV_JosE_AzOcar_en.pdf",
+                download: true,
+                id: null,
+                icon: "fa-solid fa-file-pdf",
+                text: "Download",
+            },
+            {
+                href: "#",
+                download: false,
+                id: "menuLink",
+                icon: "fa-solid fa-language",
+                text: "Spanish",
+            },
+            {
+                href: "https://azocar.one",
+                download: false,
+                id: null,
+                icon: "fa-solid fa-suitcase",
+                text: "Portfolio",
+            },
+        ],
     };
 
-    const navigationItems = navigationData[language];
-    
-    const navigationHTML = ((items) => `
+    const navItems = navData[language];
+
+    const navHTML = ((items) => `
         <input class="header__nav-toggle" type="checkbox" id="menu-toggle" />
         <label for="menu-toggle" class="header__nav-icon">
             <span class="header__nav-icon-bar"></span>
@@ -24,31 +60,33 @@ export function updateNavigationMenu(language) {
         </label>
         <div class="header__nav-menu">
             <ul class="header__nav-list">
-                ${items.map(item => `
+                ${items.map(({ href, download, id, icon, text }) => `
                     <li class="header__nav-item">
-                        <a class="header__nav-link" href="${item.href}" target="_blank" rel="noopener noreferrer" ${item.download ? 'data-download="true"' : ''} ${item.id ? `id="${item.id}"` : ''}>
-                            <i class="${item.icon}"></i>${item.text}
+                        <a class="header__nav-link" href="${href}" target="_blank" rel="noopener noreferrer" ${download ? 'data-download="true"' : ""} ${id ? `id="${id}"` : ""}>
+                            <i class="${icon}"></i>${text}
                         </a>
                     </li>
-                `).join('')}
+                `).join("")}
             </ul>
         </div>
-    `)(navigationItems);
-  
-    headerNavContainer.innerHTML = navigationHTML;
+    `)(navItems);
+
+    headerNav.innerHTML = navHTML;
 }
 
 export function updateContact(contact) {
-    const headerContact = document.getElementById('contact');
+    const headerContact = document.getElementById("contact");
 
     const urlTemplates = {
-        location: value => `https://maps.google.com/?q=$${encodeURIComponent(value)}`,
-        email: value => `mailto:${encodeURIComponent(value)}`,
-        phone: value => `tel:${encodeURIComponent(value)}`,
-        website: value => `https://${encodeURIComponent(value)}`
+        location: (value) => `https://maps.google.com/?q=$${encodeURIComponent(value)}`,
+        email: (value) => `mailto:${encodeURIComponent(value)}`,
+        phone: (value) => `tel:${encodeURIComponent(value)}`,
+        website: (value) => `https://${encodeURIComponent(value)}`,
     };
 
-    const htmlContent = Object.entries(contact.address).map(([key, value]) => {
+    const address = Object.entries(contact.address);
+
+    const htmlContent = address.map(([key, value]) => {
         const label = value.label; // Obtiene el label directamente del objeto
         const href = urlTemplates[key](value.content); // Obtiene el content para generar el href
 
@@ -58,7 +96,7 @@ export function updateContact(contact) {
                 <a class="header__contact-link header__contact-link--${key}" href="${href}" target="_blank" rel="noopener noreferrer">${value.content}</a>
             </p>
         `;
-    }).join('');
+    }).join("");
 
     headerContact.innerHTML = `
         <h1 class="header__name">${contact.name}</h1>
@@ -68,91 +106,151 @@ export function updateContact(contact) {
     `;
 }
 
-export function updateSummary(summary) {
-    const summarySection = document.getElementById('summary');
+export function updateSummary({id, label, content}) {
+    const summarySection = document.getElementById("summary");
 
     const htmlContent = `
-        <h2 class="main__section-title main__section-title--${summary.id}">${summary.label}</h2>
-        <p class="main__section-content">${summary.content}</p>
+        <h2 class="main__section-title main__section-title--${id}">${label}</h2>
+        <p class="main__section-content">${content}</p>
     `;
 
     summarySection.innerHTML = htmlContent;
-};
+}
 
-export function UpdateExperience(experience) {
-    const experienceSection = document.getElementById('experience');
+export function UpdateExperience({ id, label, list }) {
+    const experienceSection = document.getElementById("experience");
 
-    const htmlContent = experience.list.map(category => `
+    const htmlContent = list.map(({ position, dates, company, location, responsibilities, url }) => `
         <ul class="main__experience-list">
             <li class="main__experience-item">
-                <div class="main__experience-info">
-                    <h3 class="main__experience-position">${category.position}</h3>
-                    <p class="main__experience-dates">${category.dates}</p>
-                    <p class="main__experience-company">${category.company}</p>
-                    <p class="main__experience-location">${category.location}</p>
-                </div>
+                <a class="main__experience-info" href="${url}" target="_blank" rel="noopener noreferrer">
+                    <h3 class="main__experience-position">${position}</h3>
+                    <p class="main__experience-dates">${dates}</p>
+                    <p class="main__experience-company">${company}</p>
+                    <p class="main__experience-location">${location}</p>
+                </a>
                 <ul class="main__experience-responsibilities-list">
-                    ${category.responsibilities.map(item => `
+                    ${responsibilities.map((item) => `
                         <li class="main__experience-responsibility-item">${item}</li>
-                    `).join('')}
+                    `).join("")}
                 </ul>
             </li>
         </ul>
-    `).join('');
+    `).join("");
 
     experienceSection.innerHTML = `
-        <h2 class="main__section-title main__section-title--${experience.id}">${experience.label}</h2>
+        <h2 class="main__section-title main__section-title--${id}">${label}</h2>
         ${htmlContent}
     `;
 }
 
 export function updateEducation(education) {
-    const educationSection = document.getElementById('education');
+    const educationSection = document.getElementById("education");
 
-    const htmlContent = education.map(category => `
+    const htmlContent = education.map(({ id, label, list }) => `
         <ul class="main__section-list">
             <li class="main__section-item">
-                <h2 class="main__section-title main__section-title--${category.id}">${category.label}</h2>
+                <h2 class="main__section-title main__section-title--${id}">${label}</h2>
                 <ul class="main__section-sublist main__section-sublist--flex">
-                    ${category.list.map(item => `
+                    ${processList(list).map((item) => `
                         <li class="main__section-subitem">
-                            <p class="main__section-subitem__sentence main__section-subitem__sentence--comma">
+                            <a class="main__section-subitem__link main__section-subitem__link--comma" href="${item.url}" target="_blank" rel="noopener noreferrer">
                                 <span class="main__section-subitem__title">${item.title}</span>
                                 <span class="main__section-subitem__institution">${item.institution}</span>
                                 <span class="main__section-subitem__location">${item.location}</span>
-                                <span class="main__section-subitem__dates">${item.dates}</span>
-                            </p>
+                                <span class="main__section-subitem__dates">${formatDate(item)}</span>
+                            </a>
                         </li>
-                    `).join('')}
+                    `).join("")}
                 </ul>
             </li>
         </ul>
-    `).join('');
+    `).join("");
 
     educationSection.innerHTML = htmlContent;
 }
 
-export function updateSkills(skills) {
-    const skillsSection = document.getElementById('skills');
+function processList(list) {
+    return list.filter(item => item.active).sort((a, b) => {
+        const dateA = a.dates && a.dates.end ? new Date(a.dates.end) : null;
+        const dateB = b.dates && b.dates.end ? new Date(b.dates.end) : null;
+  
+        if (!dateA || !dateB || isNaN(dateA) || isNaN(dateB)) {
+            return 0;
+        }
+        
+        return dateB - dateA;
+    });
+}
 
-    const htmlContent = skills.map(category => `
+function formatDate(item) {
+    if (item.dates) {
+        return formatDateRangeSeparately(item.dates);
+    } else {
+        return 'Fecha(s) inválida(s)';
+    }
+  }
+
+function formatDateRangeSeparately(dates) {
+    const endDateObj = new Date(dates.end);
+  
+    if (isNaN(endDateObj)) {
+        return 'Fecha inválida';
+    }
+  
+    if (dates.start) {
+        const startDateObj = new Date(dates.start);
+        if(!isNaN(startDateObj)){
+            const formattedStartDate = formatDateCapitalizedMonthYear(startDateObj);
+            const formattedEndDate = formatDateCapitalizedMonthYear(endDateObj);
+            return `${formattedStartDate} – ${formattedEndDate}`;
+        }
+    }
+    return formatDateCapitalizedMonthYear(endDateObj);
+}
+ 
+function formatDateCapitalizedMonthYear(dateString) {
+    const date = new Date(dateString);
+    
+    if (isNaN(date)) {
+        return 'Fecha inválida';
+    }
+  
+    const formatter = new Intl.DateTimeFormat('en-US', {
+        month: 'long',
+        year: 'numeric',
+    });
+  
+    const parts = formatter.formatToParts(date);
+    const month = parts.find(part => part.type === 'month').value;
+    const year = parts.find(part => part.type === 'year').value;
+  
+    const capitalizedMonth = month.charAt(0).toUpperCase() + month.slice(1);
+    return `${capitalizedMonth} ${year}`;
+}
+  
+export function updateSkills(skills) {
+    const skillsSection = document.getElementById("skills");
+
+    const htmlContent = skills.map((category) => `
+
         <ul class="main__section-list">
             <li class="main__section-item">
                 <h2 class="main__section-title main__section-title--${category.id}">${category.label}</h2>
                 <ul class="main__section-sublist main__section-sublist--flex">
-                    ${category.list.map(item => `
+                    ${category.list.map((item) => `
                         <li class="main__section-subitem main__section-subitem--comma">${item}</li>
-                    `).join('')}
+                    `).join("")}
                 </ul>
             </li>
         </ul>
-    `).join('');
+    `).join("");
 
     skillsSection.innerHTML = htmlContent;
 }
 
 export function updateFooter(contactName, label) {
-    const elementFooter = document.getElementById('footer');
+    const elementFooter = document.getElementById("footer");
 
     const htmlContent = `
         <p class="footer__copyright">
