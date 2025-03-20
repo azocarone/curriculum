@@ -236,7 +236,6 @@ export function updateSkills(skills) {
     const skillsSection = document.getElementById("skills");
 
     const htmlContent = skills.map((category) => `
-
         <ul class="main__section-list">
             <li class="main__section-item">
                 <h2 class="main__section-title main__section-title--${category.id}">${category.label}</h2>

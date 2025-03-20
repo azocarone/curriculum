@@ -50,46 +50,22 @@ Prototipo funcional de una página web dinámica para un Currículum Vitae (CV) 
             </label>
             <div class="header__nav-menu">
                 <ul class="header__nav-list">
-                    <li class="header__nav-item">
-                        <a class="header__nav-link" href="#" target="_blank" rel="noopener noreferrer" data-download="true">
-                            <i class="fa-solid fa-file-pdf"></i>Descargar
-                        </a>
-                    </li>
-                    <li class="header__nav-item">
-                        <a class="header__nav-link" href="#" target="_blank" rel="noopener noreferrer" id="menuLink">
-                            <i class="fa-solid fa-language"></i>English
-                        </a>
-                    </li>
-                    <li class="header__nav-item">
-                        <a class="header__nav-link" href="https://azocar.one" target="_blank" rel="noopener noreferrer">
-                            <i class="fa-solid fa-suitcase"></i>Portafolio
-                        </a>
-                    </li>
+                    ${items.map(({ href, download, id, icon, text }) => `
+                        <li class="header__nav-item">
+                            <a class="header__nav-link" href="${href}" target="_blank" rel="noopener noreferrer" ${download ? 'data-download="true"' : ""} ${id ? `id="${id}"` : ""}>
+                            <i class="${icon}"></i>${text}
+                            </a>
+                        </li>
+                    `).join("")}
                 </ul>
             </div>
         </nav>
         <div class="header__contact" id="contact">
-            <h1 class="header__name">name</h1>
+            <h1 class="header__name">${contact.name}</h1>
             <address class="header__contact-address">
                 <p class="header__contact-item">
-                    <span class="header__contact-label">Location:</span>
-                    <a class="header__contact-link header__contact-link--location"
-                        href="https://maps.google.com/?q=City - State, Country" target="_blank"
-                        rel="noopener noreferrer">location</a>
-                </p>
-                <p class="header__contact-item">
-                    <span class="header__contact-label">Email:</span>
-                    <a class="header__contact-link header__contact-link--email"
-                        href="mailto:email@example.com">email</a>
-                </p>
-                <p class="header__contact-item">
-                    <span class="header__contact-label">Phone:</span>
-                    <a class="header__contact-link header__contact-link--phone" href="tel:+001234567890">phone</a>
-                </p>
-                <p class="header__contact-item">
-                    <span class="header__contact-label">Website:</span>
-                    <a class="header__contact-link header__contact-link--website" href="https://example.com"
-                        target="_blank" rel="noopener noreferrer">website</a>
+                    <span class="header__contact-label">${label}:</span>
+                    <a class="header__contact-link header__contact-link--${key}" href="${href}" target="_blank" rel="noopener noreferrer">${value.content}</a>
                 </p>
             </address>
         </div>
@@ -98,42 +74,46 @@ Prototipo funcional de una página web dinámica para un Currículum Vitae (CV) 
     <main class="main">
         <!-- Sección Resumen Profesional -->
         <section class="main__section" id="summary">
-            <h2 class="main__section-title"></h2>
-            <p class="main__section-content"></p>
+            <h2 class="main__section-title main__section-title--${id}">${label}</h2>
+            <p class="main__section-content">${content}</p>
         </section>
 
         <!-- Sección Experiencia Laboral -->
         <section class="main__section" id="experience">
-            <h2 class="main__section-title"></h2>
+            <h2 class="main__section-title main__section-title--${id}">${label}</h2>
             <ul class="main__experience-list">
-                <li class="main__experience-item">
-                    <div class="main__experience-info">
-                        <h3 class="main__experience-position"></h3>
-                        <p class="main__experience-dates"></p>
-                        <p class="main__experience-company"></p>
-                        <p class="main__experience-location"></p>
-                    </div>
-                    <ul class="main__experience-responsibilities-list">
-                        <li class="main__experience-responsibility-item"></li>
-                    </ul>
-                </li>
-            </ul>
+            <li class="main__experience-item">
+                <a class="main__experience-info" href="${item.url}" target="_blank" rel="noopener noreferrer">
+                    <h3 class="main__experience-position">${item.position}</h3>
+                    <p class="main__experience-dates">${formatDate(item)}</p>
+                    <p class="main__experience-company">${item.company}</p>
+                    <p class="main__experience-location">${item.location}</p>
+                </a>
+                <ul class="main__experience-responsibilities-list">
+                    ${item.responsibilities.map((item) => `
+                        <li class="main__experience-responsibility-item">${item}</li>
+                    `).join("")}
+                </ul>
+            </li>
+        </ul>
         </section>
 
         <!-- Sección Educación -->
         <section class="main__section main__section--flex" id="education">
             <ul class="main__section-list">
                 <li class="main__section-item">
-                    <h2 class="main__section-title"></h2>
+                    <h2 class="main__section-title main__section-title--${id}">${label}</h2>
                     <ul class="main__section-sublist main__section-sublist--flex">
-                        <li class="main__section-subitem">
-                            <p class="main__section-subitem__sentence main__section-subitem__sentence--comma">
-                                <span class="main__section-subitem__title"></span>
-                                <span class="main__section-subitem__institution"></span>
-                                <span class="main__section-subitem__location"></span>
-                                <span class="main__section-subitem__dates"></span>
-                            </p>
-                        </li>
+                        ${processList(list).map((item) => `
+                            <li class="main__section-subitem">
+                                <a class="main__section-subitem__link main__section-subitem__link--comma" href="${item.url}" target="_blank" rel="noopener noreferrer">
+                                    <span class="main__section-subitem__title">${item.title}</span>
+                                    <span class="main__section-subitem__institution">${item.institution}</span>
+                                    <span class="main__section-subitem__location">${item.location}</span>
+                                    <span class="main__section-subitem__dates">${formatDate(item)}</span>
+                                </a>
+                            </li>
+                        `).join("")}
                     </ul>
                 </li>
             </ul>
@@ -143,9 +123,11 @@ Prototipo funcional de una página web dinámica para un Currículum Vitae (CV) 
         <section class="main__section main__section--flex" id="skills">
             <ul class="main__section-list">
                 <li class="main__section-item">
-                    <h2 class="main__section-title"></h2>
+                    <h2 class="main__section-title main__section-title--${category.id}">${category.label}</h2>
                     <ul class="main__section-sublist main__section-sublist--flex">
-                        <li class="main__section-subitem main__section-subitem--comma"></li>
+                        ${category.list.map((item) => `
+                            <li class="main__section-subitem main__section-subitem--comma">${item}</li>
+                        `).join("")}
                     </ul>
                 </li>
             </ul>
@@ -153,7 +135,9 @@ Prototipo funcional de una página web dinámica para un Currículum Vitae (CV) 
     </main>
 
     <footer class="footer" id="footer">
-        <p class="footer__copyright"></p>
+        <p class="footer__copyright">
+            &copy; ${new Date().getFullYear()} ${contactName}. ${label}
+        </p>
     </footer>
 </body>
 
