@@ -31,8 +31,12 @@ export const cv = {
             label: "Work Experience",
             list: [
                 {
+                    active : true,
                     position: 'IT Advisor',
-                    dates: 'January 2010 – Present',
+                    dates: {
+                        start: "2010-01-01",
+                        end: null,
+                    },
                     company: 'Self-Employed',
                     location: 'Valencia, Venezuela',
                     responsibilities: [
@@ -48,8 +52,12 @@ export const cv = {
                     url: "https://azocar.one",
                 },
                 {
+                    active : true,
                     position: 'Systems Coordinator',
-                    dates: 'May 2007 – October 2009',
+                    dates: {
+                        start: "2007-05-01",
+                        end: "2009-10-01",
+                    },
                     company: 'Almacenes y Depósitos Integrales Portuarios, C.A.',
                     location: 'Puerto Cabello, Venezuela',
                     responsibilities: [
@@ -64,8 +72,12 @@ export const cv = {
                     url: "https://drive.google.com/file/d/15UP-_bxBGPBW5Z1lkk62BZPf25dZYUtj/view?usp=drive_link",
                 },
                 {
+                    active : true,
                     position: 'Master’s Intern in E-commerce',
-                    dates: 'March 2006 – July 2006',
+                    dates: {
+                        start: "2006-03-01",
+                        end: "2006-06-01",
+                    },
                     company: 'CompuMarket S.A.',
                     location: 'Madrid, Spain',
                     responsibilities: [
