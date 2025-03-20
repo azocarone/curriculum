@@ -4,7 +4,7 @@ export const cv = {
         address: {
             location: {
                 label: "Location",
-                content: "City - State, Country"
+                content: "Valencia - Carabobo, Venezuela"
             },
             email: {
                 label: "Email",
@@ -12,11 +12,11 @@ export const cv = {
             },
             phone: {
                 label: "Phone",
-                content: "+001234567890"
+                content: "+580123456789"
             },
             website: {
                 label: "Website",
-                content: "example.com"
+                content: "azocar.one"
             },
         },
     },
@@ -87,9 +87,9 @@ export const cv = {
                 list: [
                     {
                         active: true,
-                        title: "Máster en Comercio Electrónico",
-                        institution: 'Universidad "Carlos III de Madrid"',
-                        location: "Madrid, España",
+                        title: "Master's in E-commerce",
+                        institution: 'University "Carlos III de Madrid"',
+                        location: "Madrid, Spain",
                         dates: {
                             start: "2005-10-10",
                             end: "2006-09-10",
@@ -98,8 +98,8 @@ export const cv = {
                     },
                     {
                         active: true,
-                        title: "Ingeniería en Informática",
-                        institution: 'Universidad "Alejandro de Humboldt"',
+                        title: "Computer Engineering",
+                        institution: 'University "Alejandro de Humboldt"',
                         location: "Caracas, Venezuela",
                         dates: {
                             start: "1999-09-10",
@@ -109,8 +109,8 @@ export const cv = {
                     },
                     {
                         active: true,
-                        title: "Técnico Superior en Computación",
-                        institution: 'Instituto Universitario de "Nuevas Profesiones"',
+                        title: "Advanced Technician in Computing",
+                        institution: 'University Institute of "Nuevas Profesiones"',
                         location: "Valencia, Venezuela",
                         dates: {
                             start: "1988-09-10",
@@ -127,7 +127,7 @@ export const cv = {
                     {
                         active: true,
                         number: "01",
-                        title: "Profesional de Python",
+                        title: "Python Professional",
                         institution: "Código Facilito",
                         location: "Tuxtla Gutiérrez, México",
                         dates: {
@@ -149,21 +149,21 @@ export const cv = {
                         url: "https://drive.google.com/file/d/1qPSzcZJVm8jVIDJ8U8Guwqtjlao-gbyM/view?usp=drive_link",
                     },
                     {
-                        active: false,
+                        active: true,
                         number: "03",
-                        title: "Introducción al análisis de datos con Python",
+                        title: "Introduction to Data Analysis with Python",
                         institution: "Código Facilito",
                         location: "Tuxtla Gutiérrez, México",
                         dates: {
                             start: null,
                             end: "2023-07-06",
                         },
-                        url: "https://codigofacilito.com/certificates/91260",
+                        url: "https://drive.google.com/file/d/1gNtnw6OIEcYehHiANXYV3G4JmMPyniGq/view?usp=drive_link",
                     },
                     {
                         active: false,
                         number: "04",
-                        title: "Lógica proposicional",
+                        title: "Propositional Logic",
                         institution: "Código Facilito",
                         location: "Tuxtla Gutiérrez, México",
                         dates: {
@@ -175,7 +175,7 @@ export const cv = {
                     {
                         active: false,
                         number: "05",
-                        title: "Teoría de conjuntos",
+                        title: "Set Theory",
                         institution: "Código Facilito",
                         location: "Tuxtla Gutiérrez, México",
                         dates: {
@@ -187,7 +187,7 @@ export const cv = {
                     {
                         active: false,
                         number: "06",
-                        title: "Álgebra lineal",
+                        title: "Linear Algebra",
                         institution: "Código Facilito",
                         location: "Tuxtla Gutiérrez, México",
                         dates: {
@@ -199,7 +199,7 @@ export const cv = {
                     {
                         active: true,
                         number: "07",
-                        title: "Álgebra lineal",
+                        title: "Linear Algebra",
                         institution: "Código Facilito",
                         location: "Tuxtla Gutiérrez, México",
                         dates: {
@@ -209,9 +209,9 @@ export const cv = {
                         url: "https://drive.google.com/file/d/1btGSX8Z8tNfd3mAOcXyeggJAVv4vJ5tg/view?usp=drive_link",
                     },
                     {
-                        active: true,
+                        active: false,
                         number: "08",
-                        title: "Regresión",
+                        title: "Regression",
                         institution: "Código Facilito",
                         location: "Tuxtla Gutiérrez, México",
                         dates: {
@@ -223,7 +223,7 @@ export const cv = {
                     {
                         active: false,
                         number: "09",
-                        title: "Árboles de decisión",
+                        title: "Decision Trees",
                         institution: "Código Facilito",
                         location: "Tuxtla Gutiérrez, México",
                         dates: {
@@ -235,7 +235,7 @@ export const cv = {
                     {
                         active: true,
                         number: "10",
-                        title: "Fundamentos de Estadística I & II",
+                        title: "Fundamentals of Statistics I & II",
                         institution: "Código Facilito",
                         location: "Tuxtla Gutiérrez, México",
                         dates: {
@@ -247,7 +247,7 @@ export const cv = {
                     {
                         active: false,
                         number: "11",
-                        title: "Instalación y configuración de Python",
+                        title: "Python Installation and Configuration",
                         institution: "Código Facilito",
                         location: "Tuxtla Gutiérrez, México",
                         dates: {
@@ -259,7 +259,7 @@ export const cv = {
                     {
                         active: false,
                         number: "12",
-                        title: "Anotaciones y Type Hints con Python",
+                        title: "Annotations and Type Hints with Python",
                         institution: "Código Facilito",
                         location: "Tuxtla Gutiérrez, México",
                         dates: {
@@ -271,7 +271,7 @@ export const cv = {
                     {
                         active: false,
                         number: "13",
-                        title: "Profesional de Docker",
+                        title: "Docker Professional",
                         institution: "Código Facilito",
                         location: "Tuxtla Gutiérrez, México",
                         dates: {
@@ -283,7 +283,7 @@ export const cv = {
                     {
                         active: false,
                         number: "14",
-                        title: "Manejo de archivos con Python",
+                        title: "File Handling with Python",
                         institution: "Código Facilito",
                         location: "Tuxtla Gutiérrez, México",
                         dates: {
@@ -295,7 +295,7 @@ export const cv = {
                     {
                         active: false,
                         number: "15",
-                        title: "Reto Python",
+                        title: "Python Challenge",
                         institution: "Código Facilito",
                         location: "Tuxtla Gutiérrez, México",
                         dates: {
@@ -317,19 +317,19 @@ export const cv = {
                         url: "https://drive.google.com/file/d/1fC4B70Ply3HznSfiIrJU4kLmuZDgtoX0/view?usp=drive_link",
                     },
                     {
-                        active: false,
+                        active: true,
                         number: "17",
-                        title: "Introducción a Machine Learning",
+                        title: "Introduction to Machine Learning",
                         institution: "Código Facilito",
                         location: "Tuxtla Gutiérrez, México",
                         dates: {
                             start: null,
                             end: "2024-03-17",
                         },
-                        url: "https://codigofacilito.com/certificates/132773",
+                        url: "https://drive.google.com/file/d/1dyX-o3kAu-7QKg3VB1K1uiaw-TfJ8gQZ/view?usp=drive_link",
                     },
                     {
-                        active: true,
+                        active: false,
                         number: "18",
                         title: "MLOps",
                         institution: "Código Facilito",

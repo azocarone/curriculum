@@ -4,7 +4,7 @@ export const cv = {
         address: {
             location: {
                 label: "Ubicación",
-                content: "City - State, Country",
+                content: "Valencia - Carabobo, Venezuela",
             },
             email: {
                 label: "Email",
@@ -12,11 +12,11 @@ export const cv = {
             },
             phone: {
                 label: "Teléfono",
-                content: "+001234567890",
+                content: "+580123456789",
             },
             website: {
                 label: "Website",
-                content: "example.com",
+                content: "azocar.one",
             },
         },
     },
@@ -149,7 +149,7 @@ export const cv = {
                         url: "https://drive.google.com/file/d/1qPSzcZJVm8jVIDJ8U8Guwqtjlao-gbyM/view?usp=drive_link",
                     },
                     {
-                        active: false,
+                        active: true,
                         number: "03",
                         title: "Introducción al análisis de datos con Python",
                         institution: "Código Facilito",
@@ -158,7 +158,7 @@ export const cv = {
                             start: null,
                             end: "2023-07-06",
                         },
-                        url: "https://codigofacilito.com/certificates/91260",
+                        url: "https://drive.google.com/file/d/1gNtnw6OIEcYehHiANXYV3G4JmMPyniGq/view?usp=drive_link",
                     },
                     {
                         active: false,
@@ -209,7 +209,7 @@ export const cv = {
                         url: "https://drive.google.com/file/d/1btGSX8Z8tNfd3mAOcXyeggJAVv4vJ5tg/view?usp=drive_link",
                     },
                     {
-                        active: true,
+                        active: false,
                         number: "08",
                         title: "Regresión",
                         institution: "Código Facilito",
@@ -317,7 +317,7 @@ export const cv = {
                         url: "https://drive.google.com/file/d/1fC4B70Ply3HznSfiIrJU4kLmuZDgtoX0/view?usp=drive_link",
                     },
                     {
-                        active: false,
+                        active: true,
                         number: "17",
                         title: "Introducción a Machine Learning",
                         institution: "Código Facilito",
@@ -326,10 +326,10 @@ export const cv = {
                             start: null,
                             end: "2024-03-17",
                         },
-                        url: "https://codigofacilito.com/certificates/132773",
+                        url: "https://drive.google.com/file/d/1dyX-o3kAu-7QKg3VB1K1uiaw-TfJ8gQZ/view?usp=drive_link",
                     },
                     {
-                        active: true,
+                        active: false,
                         number: "18",
                         title: "MLOps",
                         institution: "Código Facilito",
