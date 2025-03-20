@@ -347,6 +347,7 @@ export const cv = {
                 label: "Certifications",
                 list: [
                     {
+                        active: true,
                         title: "Program Oracle Next Education",
                         institution: "Alura Latam",
                         location: "São Paulo, Brasil",

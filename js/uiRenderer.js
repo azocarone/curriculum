@@ -210,13 +210,16 @@ function formatDateRangeSeparately(dates) {
 }
  
 function formatDateCapitalizedMonthYear(dateString) {
+    const menuLink = document.getElementById('menuLink');
+    const formatLanguage = menuLink.textContent.trim().includes('Ingles') ? 'es-ES' : 'en-US';
+
     const date = new Date(dateString);
     
     if (isNaN(date)) {
         return 'Fecha inválida';
     }
-  
-    const formatter = new Intl.DateTimeFormat('en-US', {
+
+    const formatter = new Intl.DateTimeFormat(formatLanguage, {
         month: 'long',
         year: 'numeric',
     });
