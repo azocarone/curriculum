@@ -34,8 +34,8 @@ export const cv = {
                     active : true,
                     position: "Asesor IT",
                     dates: {
-                        start: "2010-01-01",
-                        end: null,
+                        start: "2010-01-10",
+                        end: new Date().toLocaleDateString('en-US'),
                     },
                     company: "Por Cuenta Propia",
                     location: "Valencia, Venezuela",
@@ -55,8 +55,8 @@ export const cv = {
                     active : true,
                     position: "Coordinador de Sistemas",
                     dates: {
-                        start: "2007-05-01",
-                        end: "2009-10-01",
+                        start: "2007-05-10",
+                        end: "2009-10-10",
                     },
                     company: "Almacenes y Depósitos Integrales Portuarios, C.A.",
                     location: "Puerto Cabello, Venezuela",
@@ -75,8 +75,8 @@ export const cv = {
                     active : true,
                     position: "Pasante de Máster en Comercio Electrónico",
                     dates: {
-                        start: "2006-03-01",
-                        end: "2006-06-01",
+                        start: "2006-03-10",
+                        end: "2006-06-10",
                     },
                     company: "CompuMarket S.A.",
                     location: "Madrid, España",
