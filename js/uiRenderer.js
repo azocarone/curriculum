@@ -120,17 +120,17 @@ export function updateSummary({id, label, content}) {
 export function UpdateExperience({ id, label, list }) {
     const experienceSection = document.getElementById("experience");
 
-    const htmlContent = list.map(({ position, dates, company, location, responsibilities, url }) => `
+    const htmlContent = processList(list).map((item) => `
         <ul class="main__experience-list">
             <li class="main__experience-item">
-                <a class="main__experience-info" href="${url}" target="_blank" rel="noopener noreferrer">
-                    <h3 class="main__experience-position">${position}</h3>
-                    <p class="main__experience-dates">${dates}</p>
-                    <p class="main__experience-company">${company}</p>
-                    <p class="main__experience-location">${location}</p>
+                <a class="main__experience-info" href="${item.url}" target="_blank" rel="noopener noreferrer">
+                    <h3 class="main__experience-position">${item.position}</h3>
+                    <p class="main__experience-dates">${formatDate(item)}</p>
+                    <p class="main__experience-company">${item.company}</p>
+                    <p class="main__experience-location">${item.location}</p>
                 </a>
                 <ul class="main__experience-responsibilities-list">
-                    ${responsibilities.map((item) => `
+                    ${item.responsibilities.map((item) => `
                         <li class="main__experience-responsibility-item">${item}</li>
                     `).join("")}
                 </ul>
