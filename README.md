@@ -37,4 +37,4 @@ Prototipo funcional de una página web dinámica para un Currículum Vitae (CV) 
 4. **Inicializar**: Llama a la función `initialize()` en tu script principal para iniciar el proceso de localización. Esta función detectará el idioma del usuario y cargará los datos del CV apropiados.
 
 ---
-<div align="right"><br>😉 azocarone 😄</div>
+<div align="right"><br>José AZÓCAR (azocarone)</div>
