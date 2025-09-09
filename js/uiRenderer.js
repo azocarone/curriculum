@@ -18,7 +18,7 @@ export function updateNav(language) {
                 text: "Ingles",
             },
             {
-                href: "https://azocar.one",
+                href: "https://joseazocar.pro",
                 download: false,
                 id: null,
                 icon: "fa-solid fa-suitcase",
@@ -41,7 +41,7 @@ export function updateNav(language) {
                 text: "Spanish",
             },
             {
-                href: "https://azocar.one",
+                href: "https://joseazocar.pro",
                 download: false,
                 id: null,
                 icon: "fa-solid fa-suitcase",

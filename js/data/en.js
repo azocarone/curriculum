@@ -16,7 +16,7 @@ export const cv = {
             },
             website: {
                 label: "Website",
-                content: "azocar.one"
+                content: "joseazocar.pro"
             },
         },
     },
@@ -49,7 +49,7 @@ export const cv = {
                         'Resolve computer incidents efficiently',
                         'Perform specialized electrical installations',
                     ],
-                    url: "https://azocar.one",
+                    url: "https://joseazocar.pro",
                 },
                 {
                     active : true,
