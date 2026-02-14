@@ -70,6 +70,10 @@
     content: "\f0ac";
 }
 
+.header__contact-content--print {
+    display: none;
+}
+
 /* Navigator */
 .header__nav-toggle {
     opacity: 0;
@@ -89,7 +93,6 @@
     right: clamp(0.5rem, 1vw, 0.875rem);
     cursor: pointer;
 }
-
 
 .header__nav-icon>span,
 .header__nav-link i {
@@ -179,5 +182,17 @@
     .header__contact-link--phone::before,
     .header__contact-link--website::before {
         display: none;
+    }
+}
+
+@media print {
+    .header__contact-content--screen {
+        display: none !important;
+    }
+    
+    .header__contact-content--print {
+        display: inline !important;
+        text-decoration: none;
+        color: black;
     }
 }

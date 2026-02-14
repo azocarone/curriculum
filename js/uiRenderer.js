@@ -74,26 +74,51 @@ export function updateNav(language) {
     headerNav.innerHTML = navHTML;
 }
 
-export function updateContact(contact) {
+export function updateContact(language, contact) {
     const headerContact = document.getElementById("contact");
 
     const urlTemplates = {
-        location: (value) => `https://maps.google.com/?q=$${encodeURIComponent(value)}`,
-        email: (value) => `mailto:${encodeURIComponent(value)}`,
-        phone: (value) => `tel:${encodeURIComponent(value)}`,
+        location: (value) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(value)}`,
+        email: () => `javascript:void(0)`,
+        phone: () => `javascript:void(0)`,
         website: (value) => `https://${encodeURIComponent(value)}`,
     };
+
+    const sensitiveLinkText = (language === "es") ? "Haga clic para ver" : "Click to view";
 
     const address = Object.entries(contact.address);
 
     const htmlContent = address.map(([key, value]) => {
+        const isSensitive = key === 'email' || key === 'phone';
         const label = value.label; // Obtiene el label directamente del objeto
-        const href = urlTemplates[key](value.content); // Obtiene el content para generar el href
+        const rawContent = value.content; // Aquí viene codificado o texto plano
+
+        // Atributos de enlace
+        const href = urlTemplates[key](rawContent);
+        const targetAttr = isSensitive ? "" : 'target="_blank" rel="noopener noreferrer"';
+
+        // Lógica de visualización
+        let extraClass = "";
+        let sensitiveDataAttr = "";
+        let displayContent = rawContent;
+   
+        if (isSensitive) {
+            const clearText = atob(rawContent); // Decodifica solo para la versión de impresión
+            extraClass = "js-contact-sensitive";
+            sensitiveDataAttr = `data-encoded="${rawContent}" data-type="${key}"`;
+            displayContent = `
+                <span class="header__contact-content header__contact-content--screen">${sensitiveLinkText}</span>
+                <span class="header__contact-content header__contact-content--print">${clearText}</span>
+            `;
+        }
 
         return `
             <p class="header__contact-item">
                 <span class="header__contact-label">${label}:</span>
-                <a class="header__contact-link header__contact-link--${key}" href="${href}" target="_blank" rel="noopener noreferrer">${value.content}</a>
+                <a class="header__contact-link header__contact-link--${key} ${extraClass}" 
+                    href="${href}"
+                    ${targetAttr}
+                    ${sensitiveDataAttr}>${displayContent}</a>
             </p>
         `;
     }).join("");
@@ -104,6 +129,31 @@ export function updateContact(contact) {
             ${htmlContent}
         </address>
     `;
+
+    // Activar listener de eventos una sola vez
+    initContactListeners(headerContact);
+}
+
+function initContactListeners(container) {
+    container.addEventListener("click", (e) => {
+        // Buscamos el ancestro más cercano que sea el enlace sensible
+        const sensitiveLink = e.target.closest(".js-contact-sensitive");
+        
+        if (sensitiveLink) {
+            e.preventDefault(); // Detenemos el salto del href
+
+            const encodedData = sensitiveLink.getAttribute("data-encoded");
+            const type = sensitiveLink.getAttribute("data-type");
+            const decodedData = atob(encodedData);
+
+            if (type === "email") {
+                window.location.href = `mailto:${decodedData}`;
+            } else if (type === "phone") {
+                const cleanPhone = decodedData.replace(/\D/g, "");
+                window.location.href = `https://wa.me/${cleanPhone}`;
+            }
+        }
+    });
 }
 
 export function updateSummary({id, label, content}) {

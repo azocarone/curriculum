@@ -4,15 +4,15 @@ export const cv = {
         address: {
             location: {
                 label: "Location",
-                content: "Valencia - Carabobo, Venezuela"
+                content: "San Diego, Carabobo, Venezuela"
             },
             email: {
                 label: "Email",
-                content: "email@example.com"
+                content: "YXpvY2Fyb25lQGdtYWlsLmNvbQ=="
             },
             phone: {
                 label: "Phone",
-                content: "+580123456789"
+                content: "KzU4NDE0NDE1ODYyNg=="
             },
             website: {
                 label: "Website",
@@ -44,7 +44,7 @@ export const cv = {
                         'Design and administer LAN networks',
                         'Implement cybersecurity measures and perform forensic analysis',
                         'Develop technological projects using platforms such as Arduino and Raspberry Pi',
-                        'Develop technological projects using platforms such as Arduino and Raspberry Pi',
+                        'Register and manage internet domains',
                         'Implement and optimize web hosting services',
                         'Resolve computer incidents efficiently',
                         'Perform specialized electrical installations',

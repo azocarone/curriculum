@@ -4,15 +4,15 @@ export const cv = {
         address: {
             location: {
                 label: "Ubicación",
-                content: "Valencia - Carabobo, Venezuela",
+                content: "San Diego, Carabobo, Venezuela",
             },
             email: {
                 label: "Email",
-                content: "email@example.com",
+                content: "YXpvY2Fyb25lQGdtYWlsLmNvbQ==",
             },
             phone: {
                 label: "Teléfono",
-                content: "+580123456789",
+                content: "KzU4NDE0NDE1ODYyNg==",
             },
             website: {
                 label: "Website",

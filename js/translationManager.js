@@ -5,7 +5,7 @@ export function applyTranslations(language, cv) {
     const { summary, experience, education, skills } = sections
 
     ui.updateNav(language);
-    ui.updateContact(contact);
+    ui.updateContact(language, contact);
     
     ui.updateSummary(summary);
     ui.UpdateExperience(experience);
