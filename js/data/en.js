@@ -8,11 +8,11 @@ export const cv = {
             },
             email: {
                 label: "Email",
-                content: "YXpvY2Fyb25lQHByb3Rvbi5tZQ=="
+                content: "Ti9B"
             },
             phone: {
                 label: "Phone",
-                content: "KzU4NDE0NDE1ODYyNg=="
+                content: "Ti9B"
             },
             website: {
                 label: "Website",
