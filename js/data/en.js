@@ -23,8 +23,8 @@ export const cv = {
     sections: {
         summary: {
             id: "summary",
-            label: "Professional Summary",
-            content: "Computer Engineer and Master’s in e-Commerce with 20+ years of experience in digital strategy and infrastructure. Specialist in <a href='https://en.wikipedia.org/wiki/GNU/Linux' target='_blank'>GNU/Linux</a> environment administration, cybersecurity, and critical logistics systems (<a href='https://asycuda.org/en/' target='_blank'>ASYCUDA</a>). Expert in network design and automation solutions using IoT hardware (<a href='https://www.raspberrypi.com/' target='_blank'>Raspberry Pi</a> / <a href='https://en.wikipedia.org/wiki/Arduino' target='_blank'>Arduino</a>), focused on ensuring operational continuity and efficiency in complex business models.",
+            label: "Professional profile",
+            content: "IT Engineer and M.S. in e-Commerce with +20 years of experience in IT infrastructure and digital strategy. Specialist in <a href='https://en.wikipedia.org/wiki/GNU/Linux' target='_blank'>GNU/Linux</a> systems administration, cybersecurity, and mission-critical logistics systems. Extensive track record in network design and automation solutions via IoT hardware, with a solid focus on ensuring operational continuity and efficiency in high-complexity business models.",
         },
         experience: {
             id: "experience",
@@ -371,16 +371,17 @@ export const cv = {
                 id: "technical",
                 label: "Hard Skills",
                 list: [
-                    "HTML/CSS",
-                    "JavaScript",
-                    "Git",
-                    "SQL/MySQL",
-                    "Bash Scripting",
                     "Automation",
-                    "Technical Writing",
-                    "SSH/VPN",
+                    "Raspberry Pi/Arduino",
                     "KVM/QEMU",
                     "PodMan",
+                    "SSH/VPN",
+                    "Bash Scripting",
+                    "SQL/MySQL",
+                    "HTML/CSS",
+                    "JavaScript",
+                    "Technical Writing",
+                    "Git",
                 ],
             },
             {

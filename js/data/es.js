@@ -23,8 +23,8 @@ export const cv = {
     sections: {
         summary: {
             id: "summary",
-            label: "Resumen profesional",
-            content: "Ing. en Informática y Máster en e-Commerce con +20 años de trayectoria en infraestructura y estrategia digital. Especialista en administración de entornos <a href='https://es.wikipedia.org/wiki/GNU/Linux' target='_blank'>GNU/Linux</a>, seguridad informática y sistemas logísticos críticos (<a href='https://asycuda.org/es/' target='_blank'>SIDUNEA</a>). Experto en el diseño de redes y soluciones de automatización con hardware IoT (<a href='https://www.raspberrypi.com/' target='_blank'>Raspberry Pi</a> / <a href='https://arduino.cl/' target='_blank'>Arduino</a>), enfocado en garantizar la continuidad operativa y la eficiencia en modelos de negocio complejos.",
+            label: "Perfil profesional",
+            content: "Ing. en Informática y Máster en e-Commerce con +20 años de trayectoria en infraestructura y estrategia digital. Especialista en administración de entornos <a href='https://es.wikipedia.org/wiki/GNU/Linux' target='_blank'>GNU/Linux</a>, seguridad informática y sistemas logísticos de misión crítica. Amplia trayectoria en el diseño de redes y soluciones de automatización mediante hardware IoT, con un enfoque sólido en garantizar la continuidad operativa y la eficiencia en modelos de negocio de alta complejidad.",
         },
         experience: {
             id: "experience",
@@ -371,16 +371,17 @@ export const cv = {
                 id: "technical",
                 label: "Habilidades técnicas",
                 list: [
-                    "HTML/CSS",
-                    "JavaScript",
-                    "Git",
-                    "SQL/MySQL",
-                    "Bash Scripting",
                     "Automatización",
-                    "Documentación",
-                    "SSH/VPN",
+                    "Raspberry Pi/Arduino",
                     "KVM/QEMU",
                     "PodMan",
+                    "SSH/VPN",
+                    "Bash Scripting",
+                    "SQL/MySQL",
+                    "HTML/CSS",
+                    "JavaScript",
+                    "Documentación",
+                    "Git",
                 ],
             },
             {
