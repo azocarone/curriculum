@@ -4,7 +4,7 @@ export const cv = {
         address: {
             location: {
                 label: "Location",
-                content: "San Diego Municipality (Carabobo), Venezuela"
+                content: "San Diego, Carabobo, Venezuela"
             },
             email: {
                 label: "Email",
@@ -374,7 +374,7 @@ export const cv = {
                     "Automation",
                     "Raspberry Pi/Arduino",
                     "KVM/QEMU",
-                    "PodMan",
+                    "Podman",
                     "SSH/VPN",
                     "Bash Scripting",
                     "SQL/MySQL",

@@ -4,7 +4,7 @@ export const cv = {
         address: {
             location: {
                 label: "Ubicación",
-                content: "Municipio San Diego (Carabobo), Venezuela",
+                content: "San Diego (Carabobo), Venezuela",
             },
             email: {
                 label: "Email",
@@ -401,7 +401,10 @@ export const cv = {
             {
                 id: "languages",
                 label: "Idiomas",
-                list: ["Español nativo (C2)", "Inglés básico-intermedio (A1-A2)"],
+                list: [
+                    "Español nativo (C2)",
+                    "Inglés básico-intermedio (A1-A2)"
+                ],
             },
         ],
     },
