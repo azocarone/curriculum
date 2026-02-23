@@ -27,7 +27,7 @@
 .main__section-title--technical::before,
 .main__section-title--soft::before,
 .main__section-title--languages::before {
-    font-family: "Font Awesome 6 Free";
+    font-family: "Font Awesome 7 Free";
     font-weight: var(--main-icon-weight);
     color: transparent;
     -webkit-text-stroke: var(--main-icon-stroke) black;

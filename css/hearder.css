@@ -48,7 +48,7 @@
 .header__contact-link--email::before,
 .header__contact-link--phone::before,
 .header__contact-link--website::before {
-    font-family: "Font Awesome 6 Free";
+    font-family: "Font Awesome 7 Free";
     font-weight: 600;
     color: transparent; /* Hace el relleno transparente */
     -webkit-text-stroke: 0.0625rem black; /* Añade un borde negro */
@@ -96,7 +96,7 @@
 
 .header__nav-icon>span,
 .header__nav-link i {
-    font-family: "Font Awesome 6 Free";
+    font-family: "Font Awesome 7 Free";
     font-size: 1.25rem;
     font-weight: 600;
     text-align: center;
