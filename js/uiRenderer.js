@@ -4,7 +4,7 @@ export function updateNav(language) {
     const navData = {
         es: [
             {
-                href: "./assets/pdf/CV_JosE_AzOcar_es.pdf",
+                href: "./assets/pdf/cv_jose_azocar_es.pdf",
                 download: true,
                 id: null,
                 icon: "fa-solid fa-file-pdf",
@@ -27,7 +27,7 @@ export function updateNav(language) {
         ],
         en: [
             {
-                href: "./assets/pdf/CV_JosE_AzOcar_en.pdf",
+                href: "./assets/pdf/cv_jose_azocar_en.pdf",
                 download: true,
                 id: null,
                 icon: "fa-solid fa-file-pdf",
