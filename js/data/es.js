@@ -24,7 +24,7 @@ export const cv = {
         summary: {
             id: "summary",
             label: "Perfil profesional",
-            content: "Ingeniero en Informática y Máster en e-Commerce con más de veinte años de trayectoria vinculando la estrategia digital y la gestión de sistemas críticos. Desde 2010, como asesor IT, gestiono entornos GNU/Linux, ciberseguridad y arquitectura de redes. Especializado en la convergencia de infraestructura convencional y hardware IoT para diseñar soluciones técnicas donde las herramientas estándar resultan insuficientes.",
+            content: "<strong>Ingeniero en Informática</strong> y Máster en <strong>e-Commerce</strong> con más de veinte años de trayectoria vinculando la estrategia digital y la gestión de <strong>sistemas críticos</strong>. Desde 2010, como <strong>asesor IT</strong>, gestiono entornos <a href='https://es.wikipedia.org/wiki/GNU/Linux' target='_blank'><strong>GNU/Linux</strong></a>, <strong>ciberseguridad</strong> y arquitectura de <strong>redes</strong>. Especializado en la convergencia de <strong>infraestructura</strong> convencional y hardware <strong>IoT</strong> para diseñar soluciones técnicas donde las herramientas estándar resultan insuficientes.",
         },
         experience: {
             id: "experience",

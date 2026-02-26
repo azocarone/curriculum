@@ -24,7 +24,7 @@ export const cv = {
         summary: {
             id: "summary",
             label: "Professional profile",
-            content: "Computer Engineer and Master in e-Commerce with over twenty years of experience linking digital strategy and mission-critical systems management. Since 2010, as an IT Advisor, I manage GNU/Linux environments, cybersecurity, and network architecture. I focus on the convergence of traditional infrastructure and IoT hardware to design technical solutions where standard tools fall short.",
+            content: "<strong>Computer Engineer</strong> and Master in <strong>e-Commerce</strong> with over twenty years of experience linking digital strategy and <strong>mission-critical systems</strong> management. Since 2010, as an <strong>IT Advisor</strong>, I manage <a href='https://en.wikipedia.org/wiki/GNU/Linux' target='_blank'><strong>GNU/Linux</strong></a> environments, <strong>cybersecurity</strong>, and <strong>network architecture</strong>. I focus on the convergence of traditional <strong>infrastructure</strong> and <strong>IoT</strong> hardware to design technical solutions where standard tools fall short.",
         },
         experience: {
             id: "experience",
