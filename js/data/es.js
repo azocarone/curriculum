@@ -24,7 +24,7 @@ export const cv = {
         summary: {
             id: "summary",
             label: "Perfil profesional",
-            content: "Ing. en Informática y Máster en e-Commerce con +20 años de trayectoria en infraestructura y estrategia digital. Especialista en administración de entornos <a href='https://es.wikipedia.org/wiki/GNU/Linux' target='_blank'>GNU/Linux</a>, seguridad informática y sistemas logísticos de misión crítica. Amplia trayectoria en el diseño de redes y soluciones de automatización mediante hardware IoT, con un enfoque sólido en garantizar la continuidad operativa y la eficiencia en modelos de negocio de alta complejidad.",
+            content: "Ingeniero en Informática y Máster en e-Commerce con más de veinte años de trayectoria vinculando la estrategia digital y la gestión de sistemas críticos. Desde 2010, como asesor IT, gestiono entornos GNU/Linux, ciberseguridad y arquitectura de redes. Especializado en la convergencia de infraestructura convencional y hardware IoT para diseñar soluciones técnicas donde las herramientas estándar resultan insuficientes.",
         },
         experience: {
             id: "experience",
