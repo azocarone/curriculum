@@ -24,7 +24,7 @@ export const cv = {
         summary: {
             id: "summary",
             label: "Perfil profesional",
-            content: "<strong>Ingeniero en Informática</strong> y Máster en <strong>e-Commerce</strong> con más de veinte años de trayectoria vinculando la estrategia digital y la gestión de <strong>sistemas críticos</strong>. Desde 2010, como <strong>asesor IT</strong>, gestiono entornos <a href='https://es.wikipedia.org/wiki/GNU/Linux' target='_blank'><strong>GNU/Linux</strong></a>, <strong>ciberseguridad</strong> y arquitectura de <strong>redes</strong>. Especializado en la convergencia de <strong>infraestructura</strong> convencional y hardware <strong>IoT</strong> para diseñar soluciones técnicas donde las herramientas estándar resultan insuficientes.",
+            content: "Ingeniero en Informática y Máster en e-Commerce con más de 20 años de trayectoria vinculando la estrategia digital y la gestión de sistemas críticos. Desde 2010, como <strong>Consultor de Infraestructura y Operaciones IT</strong>, orquesto de forma transversal la <strong>arquitectura técnica</strong>, la <strong>continuidad de procesos</strong> y el <strong>blindaje del ecosistema</strong> para optimizar la conectividad empresarial, garantizar la disponibilidad de servicios y mitigar riesgos en entornos donde las <strong>soluciones estándar resultan insuficientes</strong>.",
         },
         experience: {
             id: "experience",
@@ -32,7 +32,7 @@ export const cv = {
             list: [
                 {
                     active : true,
-                    position: "Asesor de Infraestructura Tecnológica",
+                    position: "Consultor de Infraestructura y Operaciones IT",
                     dates: {
                         start: "2010-01-10",
                         end: new Date().toLocaleDateString('en-US'),
@@ -40,12 +40,12 @@ export const cv = {
                     company: "Freelance",
                     location: "Valencia, Venezuela",
                     responsibilities: [
-                        "Gestión integral de servidores y estaciones de trabajo en entornos GNU/Linux (<a href='https://www.debian.org/index.es.html' target='_blank'>Debian</a>, <a href='https://fedoraproject.org/' target='_blank'>Fedora</a>), asegurando la estabilidad y seguridad del sistema operativo.",
-                        "Diseño y despliegue de infraestructuras de red LAN escalables, optimizando la conectividad y reduciendo la latencia en entornos corporativos.",
-                        "Implementación de protocolos de seguridad perimetral y ejecución de análisis forenses tras incidentes, mitigando vulnerabilidades críticas.",
+                        "Diseño y despliegue de redes LAN, optimizando la conectividad y reduciendo la latencia en entornos empresariales.",
+                        "Dirección de proyectos de cableado estructurado e instalaciones eléctricas especializadas para equipos informáticos, cumpliendo con normas técnicas de seguridad.",
+                        "Administración de servidores y estaciones de trabajo en entornos GNU/Linux, asegurando la estabilidad y seguridad del sistema operativo.",
                         "Gestión del ciclo de vida de activos digitales, desde el registro de dominios hasta el despliegue y optimización de hosting de alto rendimiento.",
-                        "Liderazgo en la resolución de incidentes críticos de Nivel 2 y 3, garantizando la continuidad del negocio y disponibilidad de servicios",
-                        "Dirección de proyectos de cableado estructurado e instalaciones eléctricas especializadas para centros de datos, cumpliendo con normas técnicas de seguridad.",
+                        "Liderazgo en la resolución de incidentes críticos de Nivel 2 y 3, garantizando la continuidad del negocio y disponibilidad de servicios.",
+                        "Implementación de protocolos de seguridad perimetral y ejecución de análisis forenses tras incidentes, mitigando vulnerabilidades críticas.",
                     ],
                     url: "https://joseazocar.pro",
                 },
@@ -373,6 +373,7 @@ export const cv = {
                 list: [
                     "Automatización",
                     "Raspberry Pi/Arduino",
+                    "Debian/Fedora",
                     "KVM/QEMU",
                     "PodMan",
                     "SSH/VPN",

@@ -24,7 +24,7 @@ export const cv = {
         summary: {
             id: "summary",
             label: "Professional profile",
-            content: "<strong>Computer Engineer</strong> and Master in <strong>e-Commerce</strong> with over twenty years of experience linking digital strategy and <strong>mission-critical systems</strong> management. Since 2010, as an <strong>IT Advisor</strong>, I manage <a href='https://en.wikipedia.org/wiki/GNU/Linux' target='_blank'><strong>GNU/Linux</strong></a> environments, <strong>cybersecurity</strong>, and <strong>network architecture</strong>. I focus on the convergence of traditional <strong>infrastructure</strong> and <strong>IoT</strong> hardware to design technical solutions where standard tools fall short.",
+            content: "Computer Engineer and Master in e-Commerce with over 20 years of experience bridging digital strategy and critical systems management. Since 2010, as an <strong>IT Infrastructure & Operations Consultant</strong>, I have orchestrated <strong>technical architecture</strong>, <strong>process continuity</strong>, and <strong>ecosystem hardening</strong> across diverse platforms. My focus is on optimizing enterprise connectivity, ensuring service availability, and mitigating risks in complex environments where <strong>standard solutions fall short</strong>.",
         },
         experience: {
             id: "experience",
@@ -32,7 +32,7 @@ export const cv = {
             list: [
                 {
                     active : true,
-                    position: 'IT Infrastructure Advisor',
+                    position: 'IT Infrastructure & Operations Consultant',
                     dates: {
                         start: "2010-01-10",
                         end: new Date().toLocaleDateString('en-US'),
@@ -40,12 +40,12 @@ export const cv = {
                     company: 'Freelance',
                     location: 'Valencia, Venezuela',
                     responsibilities: [
-                        "Comprehensive management of servers and workstations in GNU/Linux environments (<a href='https://www.debian.org/index.es.html' target='_blank'>Debian</a>, <a href='https://fedoraproject.org/' target='_blank'>Fedora</a>), ensuring operating system stability and security.",
-                        "Design and deployment of scalable LAN network infrastructures, optimizing connectivity and reducing latency in corporate environments.",
-                        "Implementation of network security protocols and execution of post-incident forensic analysis, mitigating critical vulnerabilities.",
-                        "Digital asset lifecycle management, from domain registration to high-performance hosting deployment and optimization.",
-                        "Leadership in resolving Tier 2 and Tier 3 critical incidents, guaranteeing business continuity and service availability.",
-                        "Direction of structured cabling projects and specialized electrical installations for data centers, ensuring compliance with technical safety standards.",
+                        "Design and deployment of LAN networks, optimizing connectivity and reducing latency in enterprise environments.",
+                        "Project management of structured cabling and specialized electrical installations for IT equipment, ensuring compliance with technical safety standards.",
+                        "Server and workstation administration in GNU/Linux environments, ensuring operating system stability and security.",
+                        "Digital asset lifecycle management, ranging from domain registration to the deployment and optimization of high-performance hosting.",
+                        "Leadership in Tier 2 and 3 critical incident resolution, ensuring business continuity and service availability.",
+                        "Implementation of perimeter security protocols and post-incident forensic analysis to mitigate critical vulnerabilities.",
                     ],
                     url: "https://joseazocar.pro",
                 },
@@ -373,6 +373,7 @@ export const cv = {
                 list: [
                     "Automation",
                     "Raspberry Pi/Arduino",
+                    "Debian/Fedora",
                     "KVM/QEMU",
                     "Podman",
                     "SSH/VPN",
