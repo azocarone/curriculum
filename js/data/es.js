@@ -42,7 +42,7 @@ export const cv = {
                     responsibilities: [
                         "Diseño y despliegue de redes LAN, optimizando la conectividad y reduciendo la latencia en entornos empresariales.",
                         "Dirección de proyectos de cableado estructurado e instalaciones eléctricas especializadas para equipos informáticos, cumpliendo con normas técnicas de seguridad.",
-                        "Administración de servidores y estaciones de trabajo en entornos GNU/Linux, asegurando la estabilidad y seguridad del sistema operativo.",
+                        "Administración de servidores y estaciones de trabajo en entornos <a href='https://es.wikipedia.org/wiki/GNU/Linux' target='_blank'><strong>GNU/Linux</strong></a>, asegurando la estabilidad y seguridad del sistema operativo.",
                         "Gestión del ciclo de vida de activos digitales, desde el registro de dominios hasta el despliegue y optimización de hosting de alto rendimiento.",
                         "Liderazgo en la resolución de incidentes críticos de Nivel 2 y 3, garantizando la continuidad del negocio y disponibilidad de servicios.",
                         "Implementación de protocolos de seguridad perimetral y ejecución de análisis forenses tras incidentes, mitigando vulnerabilidades críticas.",

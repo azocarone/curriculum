@@ -42,7 +42,7 @@ export const cv = {
                     responsibilities: [
                         "Design and deployment of LAN networks, optimizing connectivity and reducing latency in enterprise environments.",
                         "Project management of structured cabling and specialized electrical installations for IT equipment, ensuring compliance with technical safety standards.",
-                        "Server and workstation administration in GNU/Linux environments, ensuring operating system stability and security.",
+                        "Server and workstation administration in <a href='https://en.wikipedia.org/wiki/GNU/Linux' target='_blank'><strong>GNU/Linux</strong></a> environments, ensuring operating system stability and security.",
                         "Digital asset lifecycle management, ranging from domain registration to the deployment and optimization of high-performance hosting.",
                         "Leadership in Tier 2 and 3 critical incident resolution, ensuring business continuity and service availability.",
                         "Implementation of perimeter security protocols and post-incident forensic analysis to mitigate critical vulnerabilities.",
