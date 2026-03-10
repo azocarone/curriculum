@@ -306,7 +306,7 @@ export function updateFooter(contactName, label) {
 
     const htmlContent = `
         <p class="footer__copyright">
-            &copy; ${new Date().getFullYear()} ${contactName}. ${label}
+            &copy; 2025-${new Date().getFullYear()} ${contactName}. ${label}
         </p>
     `;
 
