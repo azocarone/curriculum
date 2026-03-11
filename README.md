@@ -5,7 +5,7 @@ Este repositorio contiene el código fuente del currículum profesional de **Jos
 El sitio centraliza la experiencia laboral, formación académica y certificaciones técnicas en un entorno web de alto rendimiento y fácil lectura.
 
 <div align="center">
-  <img src="assets/img/screenshot-cv.gif" alt="Vista previa del Curriculum Vitae" width="683" height="384" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+  <img src="assets/img/screenshot.gif" alt="Vista previa del Curriculum Vitae" width="683" height="384" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 </div>
 
 ---
@@ -62,6 +62,6 @@ Si deseas revisar la estructura del código o realizar pruebas en un entorno loc
 
 <div align="right">
   <strong>José Antonio Azócar Marcano</strong><br>
-  Desarrollador de Software | Especialista en IT<br>
+  Ing. Informático | Consultor I&O: Infraestructura y Ops.<br>
   <a href="https://github.com/azocarone">@azocarone</a>
 </div>
