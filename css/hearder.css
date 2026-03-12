@@ -5,6 +5,11 @@
 } 
 
 .header {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: #fff;
     padding-bottom: var(--spacing);
     border-bottom: 0.0625rem solid var(--border-color);
     margin-bottom: var(--spacing);
@@ -80,6 +85,7 @@
     position: absolute;
     top: clamp(0.5rem, 1vw, 0.875rem);
     right: clamp(0.5rem, 1vw, 0.875rem);
+    z-index: 1001;
 }
 
 .header__nav-icon {
