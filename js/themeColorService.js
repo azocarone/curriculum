@@ -20,7 +20,7 @@ export function initThemeEventListener() {
     
     header.addEventListener('click', (event) => {
         // Buscar el enlace con id "themeToggle" (ver paso siguiente)
-        const themeToggle = event.target.closest('#themeToggle');
+        const themeToggle = event.target.closest('#theme-toggle');
         if (themeToggle) {
             event.preventDefault();
             toggleTheme();

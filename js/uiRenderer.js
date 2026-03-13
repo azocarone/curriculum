@@ -13,7 +13,7 @@ export function updateNav(language) {
             {
                 href: "#",
                 download: false,
-                id: "languageToggle",
+                id: "language-toggle",
                 icon: "fa-solid fa-language",
                 text: "Ingles",
             },
@@ -27,7 +27,7 @@ export function updateNav(language) {
             {
                 href: "#",
                 download: false,
-                id: "themeToggle",
+                id: "theme-toggle",
                 icon: "fa-solid fa-circle-half-stroke",
                 text: language === "es" ? "Tema" : "Theme"
             }            
@@ -43,7 +43,7 @@ export function updateNav(language) {
             {
                 href: "#",
                 download: false,
-                id: "languageToggle",
+                id: "language-toggle",
                 icon: "fa-solid fa-language",
                 text: "Spanish",
             },
@@ -57,7 +57,7 @@ export function updateNav(language) {
             {
                 href: "#",
                 download: false,
-                id: "themeToggle",
+                id: "theme-toggle",
                 icon: "fa-solid fa-circle-half-stroke",
                 text: language === "es" ? "Tema" : "Theme"
             }            
@@ -149,12 +149,12 @@ export function updateContact(language, contact) {
 }
 
 function initContactListeners(container) {
-    container.addEventListener("click", (e) => {
+    container.addEventListener("click", (event) => {
         // Buscamos el ancestro más cercano que sea el enlace sensible
-        const sensitiveLink = e.target.closest(".js-contact-sensitive");
+        const sensitiveLink = event.target.closest(".js-contact-sensitive");
         
         if (sensitiveLink) {
-            e.preventDefault(); // Detenemos el salto del href
+            event.preventDefault(); // Detenemos el salto del href
 
             const encodedData = sensitiveLink.getAttribute("data-encoded");
             const type = sensitiveLink.getAttribute("data-type");
@@ -274,7 +274,7 @@ function formatDateRangeSeparately(dates) {
 }
  
 function formatDateCapitalizedMonthYear(dateString) {
-    const languageToggle = document.getElementById('languageToggle');
+    const languageToggle = document.getElementById('language-toggle');
     const formatLanguage = languageToggle.textContent.trim().includes('Ingles') ? 'es-ES' : 'en-US';
 
     const date = new Date(dateString);

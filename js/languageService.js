@@ -26,7 +26,7 @@ async function loadLanguage(language) {
 }
 
 function setupLanguageToggleEventListener() {
-    const languageToggle = document.getElementById('languageToggle');
+    const languageToggle = document.getElementById('language-toggle');
 
     languageToggle.addEventListener('click', async (event) => {
         event.preventDefault();
