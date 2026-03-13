@@ -5,9 +5,9 @@ export async function setupLanguage(language) {
 
     if (cv) {
         applyTranslations(language, cv);
-        // Para crea el menuLink EventListener del idioma, 
+        // Para crear el languageToggle EventListener del idioma, 
         // llamar desde aquí, el DOM ya estará completo.
-        setupMenuLinkEventListener(); 
+        setupLanguageToggleEventListener(); 
     } else {
         console.error("Error cargando datos del CV.");
         alert('Error: No se pudieron cargar los datos del CV.')
@@ -25,12 +25,12 @@ async function loadLanguage(language) {
     }
 }
 
-function setupMenuLinkEventListener() {
-    const menuLink = document.getElementById('menuLink');
+function setupLanguageToggleEventListener() {
+    const languageToggle = document.getElementById('languageToggle');
 
-    menuLink.addEventListener('click', async (event) => {
+    languageToggle.addEventListener('click', async (event) => {
         event.preventDefault();
-        const targetLanguage = menuLink.textContent.trim().includes('Ingles') ? 'en' : 'es';
+        const targetLanguage = languageToggle.textContent.trim().includes('Ingles') ? 'en' : 'es';
         await setupLanguage(targetLanguage);
     });
 }

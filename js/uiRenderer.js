@@ -13,7 +13,7 @@ export function updateNav(language) {
             {
                 href: "#",
                 download: false,
-                id: "menuLink",
+                id: "languageToggle",
                 icon: "fa-solid fa-language",
                 text: "Ingles",
             },
@@ -24,6 +24,13 @@ export function updateNav(language) {
                 icon: "fa-solid fa-suitcase",
                 text: "Portafolio",
             },
+            {
+                href: "#",
+                download: false,
+                id: "themeToggle",
+                icon: "fa-solid fa-circle-half-stroke",
+                text: language === "es" ? "Tema" : "Theme"
+            }            
         ],
         en: [
             {
@@ -36,7 +43,7 @@ export function updateNav(language) {
             {
                 href: "#",
                 download: false,
-                id: "menuLink",
+                id: "languageToggle",
                 icon: "fa-solid fa-language",
                 text: "Spanish",
             },
@@ -47,7 +54,14 @@ export function updateNav(language) {
                 icon: "fa-solid fa-suitcase",
                 text: "Portfolio",
             },
-        ],
+            {
+                href: "#",
+                download: false,
+                id: "themeToggle",
+                icon: "fa-solid fa-circle-half-stroke",
+                text: language === "es" ? "Tema" : "Theme"
+            }            
+        ]
     };
 
     const navItems = navData[language];
@@ -260,8 +274,8 @@ function formatDateRangeSeparately(dates) {
 }
  
 function formatDateCapitalizedMonthYear(dateString) {
-    const menuLink = document.getElementById('menuLink');
-    const formatLanguage = menuLink.textContent.trim().includes('Ingles') ? 'es-ES' : 'en-US';
+    const languageToggle = document.getElementById('languageToggle');
+    const formatLanguage = languageToggle.textContent.trim().includes('Ingles') ? 'es-ES' : 'en-US';
 
     const date = new Date(dateString);
     
