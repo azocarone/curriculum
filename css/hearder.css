@@ -9,10 +9,12 @@
     position: sticky;
     top: 0;
     z-index: 1000;
-    background-color: #fff;
+    background-color: var(--header-bg); /* CAMBIO: de #fff a variable */
+    color: var(--text-color);           /* Asegura que el texto cambie */
     padding-bottom: var(--spacing);
     border-bottom: 0.0625rem solid var(--border-color);
     margin-bottom: var(--spacing);
+    transition: background-color 0.3s ease;
 }
 
 .header__contact {
@@ -56,7 +58,7 @@
     font-family: "Font Awesome 7 Free";
     font-weight: 600;
     color: transparent; /* Hace el relleno transparente */
-    -webkit-text-stroke: 0.0625rem black; /* Añade un borde negro */
+    -webkit-text-stroke: 0.0625rem var(--icon-stroke); /* CAMBIO: de negro a uso de  variable */
 }
 
 .header__contact-link--location::before {

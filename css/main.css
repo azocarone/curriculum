@@ -15,6 +15,7 @@
 
 .main__section-title {
     font-size: calc(var(--font-size-base) * 1.2);
+    color: var(--accent-color); /* Títulos en tu azul característico */
     text-transform: capitalize;
     margin: 0 0 var(--main-spacing-medium) 0;
 }
@@ -30,7 +31,7 @@
     font-family: "Font Awesome 7 Free";
     font-weight: var(--main-icon-weight);
     color: transparent;
-    -webkit-text-stroke: var(--main-icon-stroke) black;
+    -webkit-text-stroke: var(--main-icon-stroke) var(--icon-stroke); /* CAMBIO: usa variable */
     margin-right: var(--main-icon-spacing);
 }
 
@@ -133,10 +134,11 @@
 }
 
 .main__section-subitem {
-    background-color: #F6F6F6;
-    padding: 0.3rem;
+    background-color: var(--card-bg); /* CAMBIO: de #F6F6F6 a variable */
+    border: 0.0625rem solid var(--border-color); /* CAMBIO: de #D2D2D2 a variable */
     border-radius: 0.25rem;
-    border: 0.0625rem  solid #D2D2D2;
+    color: var(--text-color); /* CAMBIO: de #333 a variable */
+    padding: 0.3rem;
 }
 
 .main__section-subitem__link {
@@ -189,9 +191,4 @@
     .main__section-title--languages::before {
         display: none;
     }
-
-    /*.main__section-subitem {
-        border: none;
-        padding: inherit;
-    }*/
 }
