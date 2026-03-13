@@ -9,8 +9,8 @@
     position: sticky;
     top: 0;
     z-index: 1000;
-    background-color: var(--header-bg); /* CAMBIO: de #fff a variable */
-    color: var(--text-color);           /* Asegura que el texto cambie */
+    background-color: var(--header-bg);
+    color: var(--text-color);
     padding-bottom: var(--spacing);
     border-bottom: 0.0625rem solid var(--border-color);
     margin-bottom: var(--spacing);
@@ -58,7 +58,7 @@
     font-family: "Font Awesome 7 Free";
     font-weight: 600;
     color: transparent; /* Hace el relleno transparente */
-    -webkit-text-stroke: 0.0625rem var(--icon-stroke); /* CAMBIO: de negro a uso de  variable */
+    -webkit-text-stroke: 0.0625rem var(--icon-stroke);
 }
 
 .header__contact-link--location::before {

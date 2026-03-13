@@ -15,7 +15,7 @@
 
 .main__section-title {
     font-size: calc(var(--font-size-base) * 1.2);
-    color: var(--accent-color); /* Títulos en tu azul característico */
+    color: var(--accent-color);
     text-transform: capitalize;
     margin: 0 0 var(--main-spacing-medium) 0;
 }
@@ -31,7 +31,7 @@
     font-family: "Font Awesome 7 Free";
     font-weight: var(--main-icon-weight);
     color: transparent;
-    -webkit-text-stroke: var(--main-icon-stroke) var(--icon-stroke); /* CAMBIO: usa variable */
+    -webkit-text-stroke: var(--main-icon-stroke) var(--icon-stroke);
     margin-right: var(--main-icon-spacing);
 }
 
@@ -134,10 +134,10 @@
 }
 
 .main__section-subitem {
-    background-color: var(--card-bg); /* CAMBIO: de #F6F6F6 a variable */
-    border: 0.0625rem solid var(--border-color); /* CAMBIO: de #D2D2D2 a variable */
+    background-color: var(--card-bg);
+    border: 0.0625rem solid var(--border-color);
     border-radius: 0.25rem;
-    color: var(--text-color); /* CAMBIO: de #333 a variable */
+    color: var(--text-color);
     padding: 0.3rem;
 }
 

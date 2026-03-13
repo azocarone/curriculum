@@ -35,7 +35,7 @@ body {
     max-width: var(--max-width);
     padding: var(--spacing);
     margin: 0 auto;
-    /* Transición suave para el cambio de modo */
+    /* Transición suave para el cambio de tema */
     transition: background-color 0.4s ease, color 0.4s ease;
 }
 
