@@ -16,16 +16,16 @@
     --icon-stroke: #000000;
 }
 
-/* Clase que aplicará el schemeColorService */
+/* Clase que aplicará el themeColorService */
 body.dark-theme {
-    --background-color: #1c1e21; /* Gris oscuro fondo */
-    --text-color: #f5f5f5;      /* Blanco humo */
-    --text-muted: #cccccc;      /* Gris plata */
-    --border-color: #444444;    /* Gris medio */
-    --accent-color: #007bff;    /* Azul marca */
-    --card-bg: #222222;         /* Gris carbón subitems */
-    --header-bg: #040642;       /* Azul marino profundo */
-    --icon-stroke: #007bff;     /* Iconos en azul */
+    --background-color: #1c1e21;
+    --text-color: #f5f5f5;
+    --text-muted: #cccccc;
+    --border-color: #3b424a;
+    --accent-color: #007bff;
+    --card-bg: #222222;
+    --header-bg: #24292e;
+    --icon-stroke: #007bff;
 }
 
 body {

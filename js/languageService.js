@@ -5,7 +5,7 @@ export async function setupLanguage(language) {
 
     if (cv) {
         applyTranslations(language, cv);
-        // Para crear el languageToggle EventListener del idioma, 
+        // Para crear el language-toggle EventListener del idioma, 
         // llamar desde aquí, el DOM ya estará completo.
         setupLanguageToggleEventListener(); 
     } else {
