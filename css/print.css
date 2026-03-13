@@ -1,11 +1,29 @@
 @media print {
-    /* Estilos generales */
+    /* Forzamos las variables a modo claro, incluso si el body tiene .dark-theme */
+    :root, body, body.dark-theme {
+        --background-color: #ffffff;
+        --text-color: #000000;
+        --text-muted: #444444;
+        --border-color: #AAAAAA;
+        --accent-color: #000000;
+        --card-bg: transparent;
+        --header-bg: transparent;
+        --icon-stroke: #000000;
+    }
+    
+    /* Estilos generales de impresión */
     body {
         font-family: 'Lato', sans-serif;
         font-size: 10pt;
         line-height: 1.2;
-        color: #000;
-        background-color: #fff;
+        color: var(--text-color);
+        background-color: var(--background-color);
+    }
+
+    /* Asegurar que el header no use el color oscuro */
+    .header {
+        background-color: var(--header-bg) !important;
+        border-bottom: 0.0625rem solid var(--border-color);
     }
 
     /* Ocultar elementos innecesarios */
