@@ -29,7 +29,7 @@ export function updateNav(language) {
                 download: false,
                 id: "theme-toggle",
                 icon: "fa-solid fa-circle-half-stroke",
-                text: language === "es" ? "Tema" : "Theme"
+                text: "Tema"
             }            
         ],
         en: [
@@ -59,7 +59,7 @@ export function updateNav(language) {
                 download: false,
                 id: "theme-toggle",
                 icon: "fa-solid fa-circle-half-stroke",
-                text: language === "es" ? "Tema" : "Theme"
+                text: "Theme"
             }            
         ]
     };
