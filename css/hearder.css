@@ -102,12 +102,21 @@
     cursor: pointer;
 }
 
-.header__nav-icon>span,
-.header__nav-link i {
+.header__nav-icon>span {
     font-family: "Font Awesome 7 Free";
     font-size: 1.25rem;
     font-weight: 600;
     text-align: center;
+}
+
+.header__nav-link i {
+    font-family: "Font Awesome 7 Free";
+    font-size: 1.1rem;
+    font-weight: 600;
+    width: 1.25rem;
+    display: inline-block;
+    text-align: center;
+    flex-shrink: 0;
 }
 
 .header__nav-icon-bar::before {
@@ -152,7 +161,7 @@
 .header__nav-link {
     display: flex;
     align-items: center;
-    gap: 0.75rem;
+    gap: 0.5rem;
     height: 2.5rem; /* Un poco más de espacio para clicks fáciles */
     color: var(--text-color); /* Usamos la variable general de texto */
     font-size: clamp(0.7rem, 1.5vw, 0.85rem);
