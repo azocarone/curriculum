@@ -1,36 +1,23 @@
 import { applyTranslations } from './translationManager.js';
 
 export async function setupLanguage(language) {
-    const { cv } = await loadLanguage(language);
+    const { content } = await loadLanguage(language);
 
-    if (cv) {
-        applyTranslations(language, cv);
-        // Para crear el language-toggle EventListener del idioma, 
-        // llamar desde aquí, el DOM ya estará completo.
-        setupLanguageToggleEventListener(); 
+    if (content) {
+        applyTranslations(language, content);
     } else {
-        console.error("Error cargando datos del CV.");
-        alert('Error: No se pudieron cargar los datos del CV.')
+        console.error("Error cargando datos del contenido.");
+        alert('Error: No se pudieron cargar los datos del contenido.')
     }
 }
 
 async function loadLanguage(language) {
     try {
-        const { cv } = await import(`./data/${language}.js`);
-        return { cv };
+        const { content } = await import(`./data/${language}.js`);
+        return { content };
     } catch (error) {
         console.error(`Error cargando idioma '${language}':`, error);
         alert(`Error: Falta traducción para el idioma '${language}'.`);
-        return { cv: null };
+        return { content: null };
     }
-}
-
-function setupLanguageToggleEventListener() {
-    const languageToggle = document.getElementById('language-toggle');
-
-    languageToggle.addEventListener('click', async (event) => {
-        event.preventDefault();
-        const targetLanguage = languageToggle.textContent.trim().includes('Ingles') ? 'en' : 'es';
-        await setupLanguage(targetLanguage);
-    });
 }

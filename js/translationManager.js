@@ -1,15 +1,15 @@
 import * as ui from './uiRenderer.js';
 
-export function applyTranslations(language, cv) {
-    const { contact, sections, footer } = cv;
-    const { summary, experience, education, skills } = sections
+export function applyTranslations(language, content) {
+    const { nav, contact, sections, footer } = content;
+    const { summary, experience, education, skills } = sections;
 
-    ui.updateNav(language);
+    ui.updateNav(nav);
     ui.updateContact(language, contact);
     
     ui.updateSummary(summary);
-    ui.UpdateExperience(experience);
-    ui.updateEducation(education);
+    ui.updateExperience(language, experience);
+    ui.updateEducation(language, education);
     ui.updateSkills(skills);
     
     ui.updateFooter(contact.name, footer.label);

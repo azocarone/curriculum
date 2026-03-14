@@ -1,72 +1,7 @@
-export function updateNav(language) {
+export function updateNav(navItems) {
     const headerNav = document.getElementById("nav");
 
-    const navData = {
-        es: [
-            {
-                href: "./assets/pdf/cv_jose_azocar_es.pdf",
-                download: true,
-                id: null,
-                icon: "fa-solid fa-file-pdf",
-                text: "Descargar",
-            },
-            {
-                href: "#",
-                download: false,
-                id: "language-toggle",
-                icon: "fa-solid fa-language",
-                text: "Ingles",
-            },
-            {
-                href: "https://joseazocar.pro",
-                download: false,
-                id: null,
-                icon: "fa-solid fa-suitcase",
-                text: "Portafolio",
-            },
-            {
-                href: "#",
-                download: false,
-                id: "theme-toggle",
-                icon: "fa-solid fa-circle-half-stroke",
-                text: "Tema"
-            }            
-        ],
-        en: [
-            {
-                href: "./assets/pdf/cv_jose_azocar_en.pdf",
-                download: true,
-                id: null,
-                icon: "fa-solid fa-file-pdf",
-                text: "Download",
-            },
-            {
-                href: "#",
-                download: false,
-                id: "language-toggle",
-                icon: "fa-solid fa-language",
-                text: "Spanish",
-            },
-            {
-                href: "https://joseazocar.pro",
-                download: false,
-                id: null,
-                icon: "fa-solid fa-suitcase",
-                text: "Portfolio",
-            },
-            {
-                href: "#",
-                download: false,
-                id: "theme-toggle",
-                icon: "fa-solid fa-circle-half-stroke",
-                text: "Theme"
-            }            
-        ]
-    };
-
-    const navItems = navData[language];
-
-    const navHTML = ((items) => `
+    const navHTML = `
         <input class="header__nav-toggle" type="checkbox" id="menu-toggle" />
         <label for="menu-toggle" class="header__nav-icon">
             <span class="header__nav-icon-bar"></span>
@@ -74,16 +9,20 @@ export function updateNav(language) {
         </label>
         <div class="header__nav-menu">
             <ul class="header__nav-list">
-                ${items.map(({ href, download, id, icon, text }) => `
+                ${navItems.map(item => `
                     <li class="header__nav-item">
-                        <a class="header__nav-link" href="${href}" target="_blank" rel="noopener noreferrer" ${download ? 'data-download="true"' : ""} ${id ? `id="${id}"` : ""}>
-                            <i class="${icon}"></i>${text}
+                        <a class="header__nav-link"
+                            href="${item.href}" target="_blank" rel="noopener noreferrer"
+                            ${item.download ? 'data-download="true"' : ""}
+                            ${item.id ? `id="${item.id}"` : ""}
+                            ${item.lang ? `data-lang="${item.lang}"` : ''}>
+                                <i class="${item.icon}"></i>${item.text}
                         </a>
                     </li>
                 `).join("")}
             </ul>
         </div>
-    `)(navItems);
+    `;
 
     headerNav.innerHTML = navHTML;
 }
@@ -181,7 +120,7 @@ export function updateSummary({id, label, content}) {
     summarySection.innerHTML = htmlContent;
 }
 
-export function UpdateExperience({ id, label, list }) {
+export function updateExperience(language, { id, label, list }) {
     const experienceSection = document.getElementById("experience");
 
     const htmlContent = processList(list).map((item) => `
@@ -189,7 +128,7 @@ export function UpdateExperience({ id, label, list }) {
             <li class="main__experience-item">
                 <a class="main__experience-info" href="${item.url}" target="_blank" rel="noopener noreferrer">
                     <h3 class="main__experience-position">${item.position}</h3>
-                    <p class="main__experience-dates">${formatDate(item)}</p>
+                    <p class="main__experience-dates">${formatDate(language, item)}</p>
                     <p class="main__experience-company">${item.company}</p>
                     <p class="main__experience-location">${item.location}</p>
                 </a>
@@ -208,7 +147,7 @@ export function UpdateExperience({ id, label, list }) {
     `;
 }
 
-export function updateEducation(education) {
+export function updateEducation(language, education) {
     const educationSection = document.getElementById("education");
 
     const htmlContent = education.map(({ id, label, list }) => `
@@ -222,7 +161,7 @@ export function updateEducation(education) {
                                 <span class="main__section-subitem__title">${item.title}</span>
                                 <span class="main__section-subitem__institution">${item.institution}</span>
                                 <span class="main__section-subitem__location">${item.location}</span>
-                                <span class="main__section-subitem__dates">${formatDate(item)}</span>
+                                <span class="main__section-subitem__dates">${formatDate(language, item)}</span>
                             </a>
                         </li>
                     `).join("")}
@@ -247,15 +186,15 @@ function processList(list) {
     });
 }
 
-function formatDate(item) {
+function formatDate(language,item) {
     if (item.dates) {
-        return formatDateRangeSeparately(item.dates);
+        return formatDateRangeSeparately(language, item.dates);
     } else {
         return 'Fecha(s) inválida(s)';
     }
   }
 
-function formatDateRangeSeparately(dates) {
+function formatDateRangeSeparately(language, dates) {
     const endDateObj = new Date(dates.end);
   
     if (isNaN(endDateObj)) {
@@ -265,17 +204,17 @@ function formatDateRangeSeparately(dates) {
     if (dates.start) {
         const startDateObj = new Date(dates.start);
         if(!isNaN(startDateObj)){
-            const formattedStartDate = formatDateCapitalizedMonthYear(startDateObj);
-            const formattedEndDate = formatDateCapitalizedMonthYear(endDateObj);
+            const formattedStartDate = formatDateCapitalizedMonthYear(language, startDateObj);
+            const formattedEndDate = formatDateCapitalizedMonthYear(language, endDateObj);
             return `${formattedStartDate} – ${formattedEndDate}`;
         }
     }
-    return formatDateCapitalizedMonthYear(endDateObj);
+    return formatDateCapitalizedMonthYear(language, endDateObj);
 }
  
-function formatDateCapitalizedMonthYear(dateString) {
+function formatDateCapitalizedMonthYear(language, dateString) {
     const languageToggle = document.getElementById('language-toggle');
-    const formatLanguage = languageToggle.textContent.trim().includes('Ingles') ? 'es-ES' : 'en-US';
+    const formatLanguage = (language === "es") ? 'es-ES' : 'en-US';
 
     const date = new Date(dateString);
     

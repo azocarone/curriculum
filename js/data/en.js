@@ -1,4 +1,35 @@
-export const cv = {
+export const content = {
+    nav: [
+        {
+            href: "./assets/pdf/cv_jose_azocar_en.pdf",
+            download: true,
+            id: null,
+            icon: "fa-solid fa-file-pdf",
+            text: "Download",
+        },
+        {
+            href: "#",
+            download: false,
+            id: "language-toggle",
+            icon: "fa-solid fa-language",
+            text: "Spanish",
+            lang: "es",
+        },
+        {
+            href: "https://joseazocar.pro",
+            download: false,
+            id: null,
+            icon: "fa-solid fa-suitcase",
+            text: "Portfolio",
+        },
+        {
+            href: "#",
+            download: false,
+            id: "theme-toggle",
+            icon: "fa-solid fa-circle-half-stroke",
+            text: "Theme"
+        }            
+    ],
     contact: {
         name: "José Antonio Azócar Marcano",
         address: {
