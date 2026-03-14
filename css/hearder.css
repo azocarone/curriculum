@@ -123,17 +123,23 @@
     display: none;
 }
 
+/* Ajuste general del menú para que use variables */
 .header__nav-menu {
     display: none;
     position: absolute;
     top: clamp(2rem, 4vw, 3rem);
     right: clamp(0.5rem, 1vw, 0.875rem);
     z-index: 100;
-    max-width: clamp(5rem, 10vw, 8rem);
-    background-color: var(--header-background-color);
-    border: 1px solid rgba(0, 0, 0, 0.1);
-    border-radius: 4px;
-    box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15), 0 3px 6px rgba(0, 0, 0, 0.1);
+    max-width: clamp(6rem, 12vw, 10rem); /* Un poco más ancho para legibilidad */
+    
+    /* Usamos el fondo del header para consistencia */
+    background-color: var(--header-bg); 
+    border: 0.0625rem solid var(--border-color);
+    border-radius: 0.5rem; /* Bordes más redondeados para un look moderno */
+    
+    /* Sombra profunda para el efecto de elevación */
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.3);
+    overflow: hidden; /* Para que el hover no se salga de los bordes redondeados */
 }
 
 .header__nav-list {
@@ -142,16 +148,40 @@
     margin: 0;
 }
 
+/* Estilos de los enlaces del menú */
 .header__nav-link {
     display: flex;
     align-items: center;
-    gap: 0.5rem;
-    height: 2rem;
-    color: var(--header-text-color);
-    font-size: clamp(0.5rem, 1.5vw, 0.675rem);
-    text-decoration: none;
-    padding: 0 clamp(0.5rem, 1vw, 1rem);
+    gap: 0.75rem;
+    height: 2.5rem; /* Un poco más de espacio para clicks fáciles */
+    color: var(--text-color); /* Usamos la variable general de texto */
+    font-size: clamp(0.7rem, 1.5vw, 0.85rem);
+    padding: 0 1rem;
     border-bottom: 0.0625rem solid var(--border-color);
+    transition: background-color 0.2s ease, color 0.2s ease;
+}
+
+/* El último elemento no necesita borde inferior */
+.header__nav-list li:last-child .header__nav-link {
+    border-bottom: none;
+}
+
+/* Resaltado de iconos en Modo Oscuro */
+body.dark-theme .header__nav-link i {
+    color: var(--accent-color); /* Tus iconos brillan en azul marca */
+    opacity: 0.9;
+}
+
+/* Efecto Hover mejorado para Modo Oscuro */
+body.dark-theme .header__nav-link:hover {
+    background-color: #2d333b; /* Color de elevación */
+    color: #ffffff;
+    text-decoration: none;
+}
+
+/* Ajuste del icono del menú (bars/close) en modo oscuro */
+body.dark-theme .header__nav-icon {
+    color: var(--text-color);
 }
 
 /* Navigator Toggle menu visibility */

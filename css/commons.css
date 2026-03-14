@@ -21,10 +21,10 @@ body.dark-theme {
     --background-color: #1c1e21;
     --text-color: #f5f5f5;
     --text-muted: #cccccc;
-    --border-color: #3b424a;
-    --accent-color: #007bff;
-    --card-bg: #222222;
-    --header-bg: #24292e;
+    --border-color: #3b424a; /* Un gris sutil para separar elementos */
+    --accent-color: #007bff; 
+    --card-bg: #2d333b;      /* Un gris ligeramente más claro para elevación */
+    --header-bg: #24292e;    /* Tu nuevo Slate Gray para el header */
     --icon-stroke: #007bff;
 }
 
