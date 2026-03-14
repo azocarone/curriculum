@@ -1,5 +1,6 @@
 import { setupLanguage } from './languageService.js';
 import { applyInitialTheme, initThemeEventListener } from './themeColorService.js';
+import { setupNavListeners } from './navService.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     // Aplicar tema guardado inmediatamente para evitar parpadeos
@@ -12,12 +13,15 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Configurar idioma (esto llama internamente a updateNav)
         await setupLanguage(browserLanguage);
 
-        // Activar el listener del theme-toggle (una sola vez)
+        // Activar el cambio de tema (esquema)
         initThemeEventListener();
         
-        console.log("Configuración lista con soporte de modo oscuro.");
+        // Activar el control total de cierre del menú (click-away + click-item)
+        setupNavListeners();
+
+        console.log("Configuración lista.");
     } catch (error) {
-        // Capturar cualquier error en la carga del servicio de idiomas
-        console.error("Error al inicializar el idioma de la aplicación:", error);
+        // Capturar cualquier error en la carga de los servicios
+        console.error("Error al inicializar la aplicación:", error);
     }
 });
