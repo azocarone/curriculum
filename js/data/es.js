@@ -46,7 +46,7 @@ export const content = {
                 content: "Ti9E",
             },
             website: {
-                label: "Website",
+                label: "Portafolio",
                 content: "joseazocar.pro",
             },
         },

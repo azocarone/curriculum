@@ -71,7 +71,8 @@ export function updateContact(language, contact) {
                 <a class="header__contact-link header__contact-link--${key} ${extraClass}" 
                     href="${href}"
                     ${targetAttr}
-                    ${sensitiveDataAttr}>${displayContent}</a>
+                    ${sensitiveDataAttr}>${displayContent}
+                </a>
             </p>
         `;
     }).join("");
@@ -157,11 +158,12 @@ export function updateEducation(language, education) {
                 <ul class="main__section-sublist main__section-sublist--flex">
                     ${processList(list).map((item) => `
                         <li class="main__section-subitem">
-                            <a class="main__section-subitem__link main__section-subitem__link--comma" href="${item.url}" target="_blank" rel="noopener noreferrer">
-                                <span class="main__section-subitem__title">${item.title}</span>
-                                <span class="main__section-subitem__institution">${item.institution}</span>
-                                <span class="main__section-subitem__location">${item.location}</span>
-                                <span class="main__section-subitem__dates">${formatDate(language, item)}</span>
+                            <a class="main__section-subitem__link main__section-subitem__link--comma"
+                                href="${item.url}" target="_blank" rel="noopener noreferrer">
+                                    <span class="main__section-subitem__title">${item.title}</span>
+                                    <span class="main__section-subitem__institution">${item.institution}</span>
+                                    <span class="main__section-subitem__location">${item.location}</span>
+                                    <span class="main__section-subitem__dates">${formatDate(language, item)}</span>
                             </a>
                         </li>
                     `).join("")}

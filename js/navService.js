@@ -9,7 +9,7 @@ export function setupNavListeners() {
         // El menú no existe o ya está cerrado, no hacemos nada.
         if (!menuToggle || !menuToggle.checked) return;
 
-        // Gestión del cambio de idioma.
+        // Gestión de cambio de idioma.
         const languageToggle = event.target.closest("[data-lang]");
         if (languageToggle) {
             event.preventDefault();
@@ -19,16 +19,14 @@ export function setupNavListeners() {
             return;
         }
 
-        // Gestión de cierre (clic en link o clic fuera).
+        // Gestión de cierre (clic en link o clic fuera de menu).
         const isNavLink = event.target.closest(".header__nav-link");
         const isOutside = !navContainer.contains(event.target);
     
-        if (isNavLink || isOutside) {
-            menuToggle.checked = false;
-        }
+        if (isNavLink || isOutside) menuToggle.checked = false;
     });
 
-    // Cerrar con la tecla Escape para mejor accesibilidad
+    // Cerrar menu con la tecla Escape
     document.addEventListener('keydown', (event) => {
         if (event.key === 'Escape') {
             const menuToggle = document.getElementById("menu-toggle");
