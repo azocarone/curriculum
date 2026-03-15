@@ -1,6 +1,6 @@
-import { applyInitialTheme, initThemeEventListener } from './themeColorService.js';
-import { setupLanguage } from './languageService.js';
-import { setupNavListeners } from './navService.js';
+import { applyInitialTheme } from './themeService.js';
+import { setupLanguage } from './contentService.js';
+import { setupNavListeners } from './navController.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     applyInitialTheme();
@@ -10,7 +10,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         await setupLanguage(browserLanguage);
 
-        initThemeEventListener();
         setupNavListeners();
 
         console.log("Configuración lista.");

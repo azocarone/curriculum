@@ -1,4 +1,4 @@
-import { applyTranslations } from './translationManager.js';
+import { applyTranslations } from './contentManager.js';
 
 export async function setupLanguage(language) {
     const { content } = await loadLanguage(language);

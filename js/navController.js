@@ -1,12 +1,12 @@
-import { setupLanguage } from './languageService.js';
+import { setupLanguage } from './contentService.js';
+import { toggleTheme } from './themeService.js';
 
 export function setupNavListeners() {
     const navContainer = document.getElementById("nav");
 
     document.addEventListener('click', async (event) => {
-        const menuToggle = document.getElementById("menu-toggle");
-        
         // El menú no existe o ya está cerrado, no hacemos nada.
+        const menuToggle = document.getElementById("menu-toggle");
         if (!menuToggle || !menuToggle.checked) return;
 
         // Gestión de cambio de idioma.
@@ -16,6 +16,15 @@ export function setupNavListeners() {
             const targetLanguage = languageToggle.dataset.lang;;
             await setupLanguage(targetLanguage);
             menuToggle.checked = false;
+            return;
+        }
+
+        // Cambio de Tema (por ID)
+        const themeToggle = event.target.closest('#theme-toggle');
+        if (themeToggle) {
+            event.preventDefault();
+            toggleTheme();
+            // menuToggle.checked = false;
             return;
         }
 
