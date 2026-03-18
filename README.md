@@ -5,7 +5,7 @@ Este repositorio contiene el código fuente del currículum profesional de **Jos
 El sitio centraliza la experiencia laboral, formación académica y certificaciones técnicas en un entorno web de alto rendimiento y fácil lectura.
 
 <div align="center">
-  <img src="assets/img/screenshot.gif" alt="Vista previa del Curriculum Vitae" width="683" height="384" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
+  <img src="./assets/img/screenshot.gif" alt="Vista previa del Curriculum Vitae" width="683" height="384" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 </div>
 
 ---
