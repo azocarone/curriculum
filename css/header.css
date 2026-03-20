@@ -1,6 +1,3 @@
-/* ==========================================================================
-   VARIABLES Y CONFIGURACIÓN DE CABECERA
-   ========================================================================== */
 :root {
     --header-text-color: #f7f9fb;
     --header-background-color: #18181a;
@@ -24,9 +21,6 @@
     transition: background-color 0.3s ease;
 }
 
-/* ==========================================================================
-   SECCIÓN DE CONTACTO (ADDRESS)
-   ========================================================================== */
 .header__contact {
     display: flex;
     flex-direction: column;
@@ -52,7 +46,7 @@
 }
 
 .header__contact-label {
-    display: none; /* Oculto en pantalla por defecto */
+    display: none;
 }
 
 .header__contact-link {
@@ -63,7 +57,10 @@
     text-decoration: none !important;
 }
 
-/* Iconos con Stroke (Efecto de contorno) */
+.header__contact-link:hover {
+    color: var(--accent-color);
+}
+
 .header__contact-link--location::before,
 .header__contact-link--email::before,
 .header__contact-link--phone::before,
@@ -83,9 +80,7 @@
     display: none;
 }
 
-/* ==========================================================================
-   NAVEGACIÓN (CHECKBOX HACK)
-   ========================================================================== */
+/* NAVEGACIÓN (CHECKBOX HACK) */
 .header__nav-toggle {
     opacity: 0;
     position: absolute;
@@ -104,7 +99,7 @@
     top: clamp(0.5rem, 1vw, 0.875rem);
     right: clamp(0.5rem, 1vw, 0.875rem);
     cursor: pointer;
-    color: var(--text-color); /* Asegura visibilidad en ambos modos */
+    color: var(--text-color);
 }
 
 .header__nav-icon > span {
@@ -125,7 +120,7 @@
     right: 0; 
     z-index: 100;
     
-    /* Configuración Automática de Ancho y Respiración */
+    /* Configuración Automática de Ancho y Espaciado */
     width: max-content;
     min-width: 160px;
     max-width: 300px;
@@ -150,12 +145,18 @@
     height: 2.8rem;
     color: var(--text-color);
     font-size: clamp(0.75rem, 1.5vw, 0.85rem);
-    padding: 0 1.5rem; /* Respiración lateral constante */
-    white-space: nowrap; /* Evita saltos de línea */
+    padding: 0 1.5rem;
+    white-space: nowrap;
     border-bottom: 0.0625rem solid var(--border-color);
     transition: background-color 0.2s ease, color 0.2s ease;
     text-decoration: none !important;
 }
+
+.header__nav-link:hover {
+    background-color: rgba(0, 0, 0, 0.12); 
+    color: var(--accent-color);
+    text-decoration: none;
+}   
 
 .header__nav-link i {
     font-family: "Font Awesome 7 Free";
@@ -170,17 +171,13 @@
     border-bottom: none;
 }
 
-/* ==========================================================================
-   ESTADOS DE INTERACCIÓN Y TEMAS (CORREGIDO)
-   ========================================================================== */
-
-/* 1. Hover para Modo Claro (Por defecto) */
+/* Hover para Modo Claro (Por defecto) */
 .header__nav-link:hover {
     background-color: rgba(0, 0, 0, 0.12); 
     color: var(--accent-color);
 }
 
-/* 2. Ajustes específicos para Modo Oscuro */
+/* Ajustes específicos para Modo Oscuro */
 body.dark-theme .header__nav-link i { 
     color: var(--accent-color); 
 }
@@ -199,9 +196,6 @@ body.dark-theme .header__nav-icon {
 .header__nav-toggle:checked + .header__nav-icon .header__nav-icon-close { display: block; }
 .header__nav-toggle:checked ~ .header__nav-menu { display: block; }
 
-/* ==========================================================================
-   RESPONSIVE Y MEDIA QUERIES
-   ========================================================================== */
 @media screen and (max-width: 480px), print {
     .header__contact {
         align-items: flex-start;
@@ -228,9 +222,6 @@ body.dark-theme .header__nav-icon {
     }
 }
 
-/* ==========================================================================
-   ESTILOS DE IMPRESIÓN
-   ========================================================================== */
 @media print {
     .header__contact-content--screen {
         display: none !important;

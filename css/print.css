@@ -18,7 +18,7 @@
     body {
         font-family: 'Lato', sans-serif;
         font-size: 10pt;
-        line-height: 1.1; /* REDUCIDO: De 1.2 a 1.1 para compactar líneas de texto */
+        line-height: 1.1;
         color: var(--text-color);
         background-color: var(--background-color);
     }
@@ -27,7 +27,7 @@
     .header {
         background-color: var(--header-bg) !important;
         border-bottom: 0.0625rem solid var(--border-color);
-        margin-bottom: 0.3cm !important; /* REDUCIDO: De 0.5cm a 0.3cm */
+        margin-bottom: 0.3cm !important;
     }
 
     /* Ocultar elementos innecesarios */
@@ -51,6 +51,7 @@
     a {
         text-decoration: none;
         color: #000;
+        font-weight: bold;
     }
     
     /* Controlar saltos de página */
@@ -58,13 +59,13 @@
     h3,
     .main__section-title {
         page-break-after: avoid;
-        margin-top: 0.2cm !important; /* AJUSTE: Controla el espacio sobre el título */
-        margin-bottom: 0.1cm !important; /* REDUCIDO: De 0.2cm a 0.1cm */
+        margin-top: 0.2cm !important;
+        margin-bottom: 0.1cm !important;
     }
 
     .main__section {
         page-break-before: auto !important;
-        margin-bottom: 0.3cm !important; /* REDUCIDO: De 0.4cm a 0.3cm */
+        margin-bottom: 0.3cm !important;
     }
 
     .page-break { 
@@ -80,19 +81,19 @@
     th,
     td {
         border: 1px solid #ccc;
-        padding: 4px; /* REDUCIDO: De 8px a 4px */
+        padding: 4px;
         text-align: left;
     }
 
     /* Ajustar listas */
     ul,
     ol {
-        padding-left: 15px; /* REDUCIDO: De 20px a 15px */
+        padding-left: 15px;
     }
 
-    /* COMPACTACIÓN DE LÍNEAS EN LISTAS: Este es el cambio clave */
+    /* COMPACTACIÓN DE LÍNEAS EN LISTAS */
     li {
-        margin-bottom: 0.05cm !important; /* Añade un espacio mínimo entre viñetas */
+        margin-bottom: 0.05cm !important;
     }
 
     .main__experience-list li {
@@ -106,13 +107,13 @@
     }
 
     .main__experience-responsibility-item {
-        padding: 0 !important; /* ELIMINADO: Quita cualquier padding residual de las líneas */
+        padding: 0 !important;
     }
 
     li >* li {
         list-style-type: disc;
         list-style-position: outside;
-        margin-left: 12px; /* REDUCIDO: De 16px a 12px */
+        margin-left: 12px;
     }
 
     .main__section-subitem {
@@ -125,7 +126,7 @@
 
     /* Ajustar citas */
     blockquote {
-        margin: 5px 0; /* REDUCIDO: De 10px a 5px */
+        margin: 5px 0;
         padding: 2px 15px;
         border-left: 2px solid #ccc;
     }
@@ -145,6 +146,6 @@
 
     /* Ajustar márgenes de página */
     @page {
-        margin: 1cm 1.2cm; /* AJUSTADO: Márgenes laterales un poco más estrechos */
+        margin: 1cm 1.2cm;
     }
 }

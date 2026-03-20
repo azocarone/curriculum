@@ -1,5 +1,4 @@
 :root {
-    /* Variables originales preservadas */
     --font-size-base: clamp(0.8rem, 2vw, 1rem);
     --line-height-base: 1.6;
     --max-width: clamp(300px, 90vw, 216mm);
@@ -14,6 +13,8 @@
     --card-bg: #F6F6F6;
     --header-bg: #ffffff;
     --icon-stroke: #000000;
+    /* Subrayado sutil */
+    --underline-color: rgba(59, 130, 246, 0.3);
 }
 
 body.dark-theme {
@@ -25,6 +26,7 @@ body.dark-theme {
     --card-bg: #2d333b;
     --header-bg: #24292e;
     --icon-stroke: #3b82f6;
+    --underline-color: rgba(59, 130, 246, 0.5);
 }
 
 body {
@@ -37,13 +39,17 @@ body {
     transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* Cambio sutil: Eliminación de subrayado global */
+/* Subrayado moderno y accesible */
 a {
-    text-decoration: none !important;
+    text-decoration: underline;
+    text-decoration-color: var(--underline-color);
+    text-underline-offset: 3px;
+    text-decoration-thickness: 1.5px;
     color: inherit;
-    transition: color 0.3s ease;
+    transition: all 0.3s ease;
 }
 
 a:hover {
     color: var(--accent-color);
+    text-decoration-color: var(--accent-color);
 }
