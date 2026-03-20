@@ -1,10 +1,13 @@
+/* ==========================================================================
+   VARIABLES Y CONFIGURACIÓN PRINCIPAL
+   ========================================================================== */
 :root {
     --main-spacing-small: clamp(0.5rem, 1vw, 1rem);
     --main-spacing-medium: clamp(1rem, 2vw, 1.818rem);
     --main-gap-small: 0.5rem;
     --main-gap-medium: 0.875rem;
     --main-icon-weight: 600;
-    --main-icon-spacing: 0.5rem;
+    --main-icon-spacing: 0.6rem; /* Incrementado ligeramente */
     --main-icon-stroke: 0.0625rem;
 }
 
@@ -13,11 +16,17 @@
     margin-bottom: var(--main-spacing-medium);
 }
 
+/* ==========================================================================
+   TÍTULOS DE SECCIÓN
+   ========================================================================== */
 .main__section-title {
-    font-size: calc(var(--font-size-base) * 1.2);
+    font-size: calc(var(--font-size-base) * 1.25); /* Un poco más grande para jerarquía */
     color: var(--accent-color);
     text-transform: capitalize;
     margin: 0 0 var(--main-spacing-medium) 0;
+    display: flex;
+    align-items: center;
+    transition: color 0.3s ease;
 }
 
 .main__section-title--summary::before,
@@ -33,40 +42,22 @@
     color: transparent;
     -webkit-text-stroke: var(--main-icon-stroke) var(--icon-stroke);
     margin-right: var(--main-icon-spacing);
+    transition: -webkit-text-stroke 0.3s ease;
 }
 
-.main__section-title--summary::before {
-    content: "\f508";
-}
+/* Mapeo de Iconos Content */
+.main__section-title--summary::before { content: "\f508"; }
+.main__section-title--experience::before { content: "\f0b1"; }
+.main__section-title--academicEducation::before { content: "\f19d"; }
+.main__section-title--continuousTraining::before { content: "\f51b"; }
+.main__section-title--certifications::before { content: "\f0A3"; }
+.main__section-title--technical::before { content: "\f5dc"; }
+.main__section-title--soft::before { content: "\f004"; }
+.main__section-title--languages::before { content: "\f1ab"; }
 
-.main__section-title--experience::before {
-    content: "\f0b1";
-}
-
-.main__section-title--academicEducation::before {
-    content: "\f19d";
-}
-
-.main__section-title--continuousTraining::before {
-    content: "\f51b";
-}
-
-.main__section-title--certifications::before {
-    content: "\f0A3";
-}
-
-.main__section-title--technical::before {
-    content: "\f5dc";
-}
-
-.main__section-title--soft::before {
-    content: "\f004";
-}
-
-.main__section-title--languages::before {
-    content: "\f1ab";
-}
-
+/* ==========================================================================
+   LISTAS Y CONTENEDORES FLEX
+   ========================================================================== */
 .main__experience-list,
 .main__section-list,
 .main__section-sublist {
@@ -79,85 +70,98 @@
     display: flex;
     flex-direction: row;
     gap: var(--main-gap-medium);
-    font-size: calc(var(--font-size-base) - 10%);
+    font-size: 0.95em; /* Ajuste relativo más limpio */
 }
 
-.main__section--flex>* {
+.main__section--flex > * {
     box-sizing: border-box;
     flex: 1;
 }
 
+/* ==========================================================================
+   INFO DE EXPERIENCIA (GRID)
+   ========================================================================== */
 .main__experience-info {
     display: grid;
-    grid-template-columns: auto auto;
+    grid-template-columns: 1fr 1fr;
     gap: var(--main-gap-small);
-    font-size: calc(var(--font-size-base) - 10%);
+    font-size: 0.9em;
     color: inherit;
-    line-height: calc(var(--line-height-base) - 0.86);
+    line-height: 1.4;
+    border-bottom: 1px solid var(--border-color); /* Línea sutil divisoria */
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
 }
 
-.main__experience-info>* {
+.main__experience-info > * {
     white-space: nowrap;
     margin: 0;
 }
 
-.main__experience-info>*:nth-child(odd) {
+.main__experience-info > *:nth-child(odd) {
     justify-self: start;
     text-align: left;
+    font-weight: 700; /* Resalta el Cargo/Título */
 }
 
-.main__experience-info>*:nth-child(even) {
+.main__experience-info > *:nth-child(even) {
     justify-self: end;
     text-align: right;
+    color: var(--text-muted); /* Suaviza fechas y lugares */
 }
 
-.main__experience-info>*:nth-child(n+2):nth-child(-n+4) {
+.main__experience-info > *:nth-child(n+2):nth-child(-n+4) {
     font-style: italic;
 }
 
 .main__experience-responsibilities-list {
     list-style-type: disc;
     list-style-position: outside;
-    padding-left: 1rem;
-    margin: var(--main-spacing-medium) 0;
+    padding-left: 1.2rem;
+    margin: 0.5rem 0 var(--main-spacing-medium) 0;
+    color: var(--text-color);
 }
 
 .main__experience-responsibility-item {
-    padding: 0.15rem 0;
+    padding: 0.25rem 0;
+    line-height: 1.5;
 }
 
+/* ==========================================================================
+   SUB-ITEMS (SKILLS, TAGS, PILLS)
+   ========================================================================== */
 .main__section-sublist--flex {
     display: flex;
     flex-wrap: wrap;
     gap: var(--main-gap-small);
-    line-height: calc(var(--line-height-base) - 0.6);
+    line-height: 1.4;
 }
 
 .main__section-subitem {
     background-color: var(--card-bg);
     border: 0.0625rem solid var(--border-color);
-    border-radius: 0.25rem;
+    border-radius: 0.35rem; /* Bordes un poco más suaves */
     color: var(--text-color);
-    padding: 0.3rem 0.6rem;
-    transition: all 0.3s ease;
+    padding: 0.4rem 0.8rem;
+    font-size: 0.85rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Transición más fluida */
+    cursor: default;
 }
 
-.main__section-subitem:hover {
-    border-color: var(--accent-color);
-    color: var(--accent-color);
-    transform: translateY(-2px);
+/* Efectos Modo Screen */
+@media screen {
+    .main__section-subitem:hover {
+        border-color: var(--accent-color);
+        color: var(--accent-color);
+        transform: translateY(-3px);
+        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+        background-color: var(--header-bg); /* Cambio sutil de fondo */
+    }
 }
 
 .main__section-subitem__link {
     color: inherit;
-    line-height: var(--line-height-base);
-    padding: 0;
-    margin: 0;
-}
-
-.main__section-subitem--comma:not(:last-child)::after,
-.main__section-subitem__link--comma span:not(:last-child)::after {
-    content: ",";
+    text-decoration: none;
 }
 
 .main__section-subitem__title {
@@ -166,12 +170,17 @@
 
 .main__section-subitem__institution {
     font-style: italic;
+    opacity: 0.9;
 }
 
 .main__section-subitem__location {
     text-decoration: underline;
+    text-underline-offset: 2px;
 }
 
+/* ==========================================================================
+   MEDIA QUERIES (ADAPTACIÓN MÓVIL Y PRINT)
+   ========================================================================== */
 @media screen and (max-width: 480px), print {
     .main__section--flex {
         flex-direction: column;
@@ -180,14 +189,18 @@
     .main__experience-info {
         display: flex;
         flex-direction: column;
-        gap: var(--main-gap-small);
+        gap: 0.3rem;
+        border-bottom: none;
+        padding-bottom: 0;
     }
 
-    .main__experience-info>* {
+    .main__experience-info > * {
         align-self: flex-start;
         text-align: left;
+        white-space: normal; /* Permite que el texto rompa en móvil */
     }
 
+    /* Ocultar iconos en móvil/print para ahorrar espacio y tinta */
     .main__section-title--summary::before,
     .main__section-title--experience::before,
     .main__section-title--academicEducation::before,
@@ -197,5 +210,10 @@
     .main__section-title--soft::before,
     .main__section-title--languages::before {
         display: none;
+    }
+    
+    .main__section-subitem {
+        transform: none !important;
+        box-shadow: none !important;
     }
 }

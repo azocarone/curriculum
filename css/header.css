@@ -1,0 +1,247 @@
+/* ==========================================================================
+   VARIABLES Y CONFIGURACIÓN DE CABECERA
+   ========================================================================== */
+:root {
+    --header-text-color: #f7f9fb;
+    --header-background-color: #18181a;
+    --header-spacing-small: clamp(0.5rem, 1vw, 0.909rem);
+} 
+
+.header {
+    position: -webkit-sticky;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+    background-color: var(--header-bg);
+    color: var(--text-color);
+    padding-left: calc(var(--spacing) * 2);
+    padding-right: calc(var(--spacing) * 2);
+    padding-bottom: var(--spacing);
+    border-bottom: 0.0625rem solid var(--border-color);
+    margin-left: -1rem;
+    margin-right: -1rem;
+    margin-bottom: var(--spacing);
+    transition: background-color 0.3s ease;
+}
+
+/* ==========================================================================
+   SECCIÓN DE CONTACTO (ADDRESS)
+   ========================================================================== */
+.header__contact {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.header__name {
+    font-size: calc(var(--font-size-base) * 2.5);
+    margin-bottom: 0;
+    font-weight: 700;
+}
+
+.header__contact-address {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    width: calc(var(--max-width) - 10%);
+    padding: var(--header-spacing-small) 0;
+}
+
+.header__contact-item {
+    margin: 0;
+}
+
+.header__contact-label {
+    display: none; /* Oculto en pantalla por defecto */
+}
+
+.header__contact-link {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    color: inherit;
+    text-decoration: none !important;
+}
+
+/* Iconos con Stroke (Efecto de contorno) */
+.header__contact-link--location::before,
+.header__contact-link--email::before,
+.header__contact-link--phone::before,
+.header__contact-link--website::before {
+    font-family: "Font Awesome 7 Free";
+    font-weight: 600;
+    color: transparent;
+    -webkit-text-stroke: 0.0625rem var(--icon-stroke);
+}
+
+.header__contact-link--location::before { content: "\f3c5"; }
+.header__contact-link--email::before    { content: "\f0e0"; }
+.header__contact-link--phone::before    { content: "\f095"; }
+.header__contact-link--website::before  { content: "\f0ac"; }
+
+.header__contact-content--print {
+    display: none;
+}
+
+/* ==========================================================================
+   NAVEGACIÓN (CHECKBOX HACK)
+   ========================================================================== */
+.header__nav-toggle {
+    opacity: 0;
+    position: absolute;
+    top: clamp(0.5rem, 1vw, 0.875rem);
+    right: clamp(0.5rem, 1vw, 0.875rem);
+    z-index: 1001;
+}
+
+.header__nav-icon {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: clamp(1rem, 2vw, 1.25rem);
+    height: clamp(1rem, 2vw, 1.25rem);
+    position: absolute;
+    top: clamp(0.5rem, 1vw, 0.875rem);
+    right: clamp(0.5rem, 1vw, 0.875rem);
+    cursor: pointer;
+    color: var(--text-color); /* Asegura visibilidad en ambos modos */
+}
+
+.header__nav-icon > span {
+    font-family: "Font Awesome 7 Free";
+    font-size: 1.25rem;
+    font-weight: 600;
+}
+
+.header__nav-icon-bar::before { content: "\f0c9"; }
+.header__nav-icon-close::before { content: "\f057"; font-weight: 400; }
+.header__nav-icon-close { display: none; }
+
+/* Menú Desplegable Inteligente */
+.header__nav-menu {
+    display: none;
+    position: absolute;
+    top: clamp(2rem, 4vw, 3.2rem);
+    right: 0; 
+    z-index: 100;
+    
+    /* Configuración Automática de Ancho y Respiración */
+    width: max-content;
+    min-width: 160px;
+    max-width: 300px;
+    
+    background-color: var(--header-bg); 
+    border: 0.0625rem solid var(--border-color);
+    border-radius: 0.5rem; 
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.2);
+    overflow: hidden;
+}
+
+.header__nav-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.header__nav-link {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    height: 2.8rem;
+    color: var(--text-color);
+    font-size: clamp(0.75rem, 1.5vw, 0.85rem);
+    padding: 0 1.5rem; /* Respiración lateral constante */
+    white-space: nowrap; /* Evita saltos de línea */
+    border-bottom: 0.0625rem solid var(--border-color);
+    transition: background-color 0.2s ease, color 0.2s ease;
+    text-decoration: none !important;
+}
+
+.header__nav-link i {
+    font-family: "Font Awesome 7 Free";
+    font-size: 1.1rem;
+    font-weight: 600;
+    width: 1.25rem;
+    text-align: center;
+    flex-shrink: 0;
+}
+
+.header__nav-list li:last-child .header__nav-link {
+    border-bottom: none;
+}
+
+/* ==========================================================================
+   ESTADOS DE INTERACCIÓN Y TEMAS (CORREGIDO)
+   ========================================================================== */
+
+/* 1. Hover para Modo Claro (Por defecto) */
+.header__nav-link:hover {
+    background-color: rgba(0, 0, 0, 0.12); 
+    color: var(--accent-color);
+}
+
+/* 2. Ajustes específicos para Modo Oscuro */
+body.dark-theme .header__nav-link i { 
+    color: var(--accent-color); 
+}
+
+body.dark-theme .header__nav-link:hover { 
+    background-color: #2d333b; 
+    color: #ffffff; 
+}
+
+body.dark-theme .header__nav-icon { 
+    color: var(--text-color); 
+}
+
+/* Lógica de Activación del Menú */
+.header__nav-toggle:checked + .header__nav-icon .header__nav-icon-bar { display: none; }
+.header__nav-toggle:checked + .header__nav-icon .header__nav-icon-close { display: block; }
+.header__nav-toggle:checked ~ .header__nav-menu { display: block; }
+
+/* ==========================================================================
+   RESPONSIVE Y MEDIA QUERIES
+   ========================================================================== */
+@media screen and (max-width: 480px), print {
+    .header__contact {
+        align-items: flex-start;
+    }
+    .header__contact-address {
+        flex-direction: column;
+        width: 100%;
+        gap: 0.4rem;
+    }
+    .header__contact-item {
+        display: flex;
+        flex-direction: row;
+        gap: 0.5rem;
+    }   
+    .header__contact-label {
+        display: block; 
+        font-weight: bold;
+    }
+    .header__contact-link--location::before,
+    .header__contact-link--email::before,
+    .header__contact-link--phone::before,
+    .header__contact-link--website::before {
+        display: none;
+    }
+}
+
+/* ==========================================================================
+   ESTILOS DE IMPRESIÓN
+   ========================================================================== */
+@media print {
+    .header__contact-content--screen {
+        display: none !important;
+    }
+    .header__contact-content--print {
+        display: inline !important;
+        text-decoration: none;
+        color: black;
+    }
+    .header {
+        position: relative;
+        border-bottom: 2px solid #000;
+    }
+}
