@@ -156,17 +156,20 @@ export function updateEducation(language, education) {
             <li class="main__section-item">
                 <h2 class="main__section-title main__section-title--${id}">${label}</h2>
                 <ul class="main__section-sublist main__section-sublist--flex">
-                    ${processList(list).map((item) => `
-                        <li class="main__section-subitem">
-                            <a class="main__section-subitem__link main__section-subitem__link--comma"
-                                href="${item.url}" target="_blank" rel="noopener noreferrer">
-                                    <span class="main__section-subitem__title">${item.title}</span>
-                                    <span class="main__section-subitem__institution">${item.institution}</span>
-                                    <span class="main__section-subitem__location">${item.location}</span>
+                    ${processList(list).map((item) => {
+                        const { title, institution, location, url } = item;
+
+                        return `
+                            <li class="main__section-subitem">
+                                <a class="main__section-subitem__link" href="${url}" target="_blank" rel="noopener noreferrer">
+                                    <span class="main__section-subitem__title">${title}: </span>
+                                    <span class="main__section-subitem__institution">${institution}; </span>
+                                    <span class="main__section-subitem__location">${location}; </span>
                                     <span class="main__section-subitem__dates">${formatDate(language, item)}</span>
-                            </a>
-                        </li>
-                    `).join("")}
+                                </a>
+                            </li>
+                        `;
+                    }).join("")}
                 </ul>
             </li>
         </ul>
@@ -188,7 +191,7 @@ function processList(list) {
     });
 }
 
-function formatDate(language,item) {
+/* function formatDate(language,item) {
     if (item.dates) {
         return formatDateRangeSeparately(language, item.dates);
     } else {
@@ -236,7 +239,47 @@ function formatDateCapitalizedMonthYear(language, dateString) {
     const capitalizedMonth = month.charAt(0).toUpperCase() + month.slice(1);
     return `${capitalizedMonth} ${year}`;
 }
-  
+ */
+
+
+
+
+
+
+
+
+
+export function formatDate(language, item) {
+    if (!item?.dates) return 'Fecha inválida.';
+
+    const { start, end } = item.dates;
+    const endObj = new Date(end);
+
+    if (isNaN(endObj)) return 'Fecha inválida.';
+
+    // Si existe fecha de inicio, formateamos el rango
+    if (start) {
+        const startObj = new Date(start);
+        if (!isNaN(startObj)) {
+            return `${formatSingleDate(language, startObj)} – ${formatSingleDate(language, endObj)}.`;
+        }
+    }
+
+    // Si no hay inicio o es inválido, solo retornamos la fecha final
+    return `${formatSingleDate(language, endObj)}.`;
+}
+
+function formatSingleDate(language, date) {
+    const locale = language === "es" ? 'es-ES' : 'en-US';
+    
+    // Obtenemos el mes y el año por separado
+    const month = date.toLocaleString(locale, { month: 'long' });
+    const year = date.toLocaleString(locale, { year: 'numeric' });
+
+    // Capitalizar la primera letra del mes
+    return `${month.charAt(0).toUpperCase() + month.slice(1)} ${year}`;
+}
+
 export function updateSkills(skills) {
     const skillsSection = document.getElementById("skills");
 
@@ -246,7 +289,7 @@ export function updateSkills(skills) {
                 <h2 class="main__section-title main__section-title--${category.id}">${category.label}</h2>
                 <ul class="main__section-sublist main__section-sublist--flex">
                     ${category.list.map((item) => `
-                        <li class="main__section-subitem main__section-subitem--comma">${item}</li>
+                        <li class="main__section-subitem main__section-subitem--punctuation">${item}</li>
                     `).join("")}
                 </ul>
             </li>

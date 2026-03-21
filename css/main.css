@@ -133,6 +133,14 @@
     cursor: default;
 }
 
+.main__section-subitem--punctuation:not(:last-child)::after {
+    content: ",";
+}
+
+.main__section-subitem--punctuation:last-child::after {
+    content: ".";
+}
+
 @media screen {
     .main__section-subitem:hover {
         border-color: var(--accent-color);
