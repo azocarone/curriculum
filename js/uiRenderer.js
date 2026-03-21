@@ -191,64 +191,6 @@ function processList(list) {
     });
 }
 
-/* function formatDate(language,item) {
-    if (item.dates) {
-        return formatDateRangeSeparately(language, item.dates);
-    } else {
-        return 'Fecha(s) inválida(s)';
-    }
-  }
-
-function formatDateRangeSeparately(language, dates) {
-    const endDateObj = new Date(dates.end);
-  
-    if (isNaN(endDateObj)) {
-        return 'Fecha inválida';
-    }
-  
-    if (dates.start) {
-        const startDateObj = new Date(dates.start);
-        if(!isNaN(startDateObj)){
-            const formattedStartDate = formatDateCapitalizedMonthYear(language, startDateObj);
-            const formattedEndDate = formatDateCapitalizedMonthYear(language, endDateObj);
-            return `${formattedStartDate} – ${formattedEndDate}`;
-        }
-    }
-    return formatDateCapitalizedMonthYear(language, endDateObj);
-}
- 
-function formatDateCapitalizedMonthYear(language, dateString) {
-    const languageToggle = document.getElementById('language-toggle');
-    const formatLanguage = (language === "es") ? 'es-ES' : 'en-US';
-
-    const date = new Date(dateString);
-    
-    if (isNaN(date)) {
-        return 'Fecha inválida';
-    }
-
-    const formatter = new Intl.DateTimeFormat(formatLanguage, {
-        month: 'long',
-        year: 'numeric',
-    });
-  
-    const parts = formatter.formatToParts(date);
-    const month = parts.find(part => part.type === 'month').value;
-    const year = parts.find(part => part.type === 'year').value;
-  
-    const capitalizedMonth = month.charAt(0).toUpperCase() + month.slice(1);
-    return `${capitalizedMonth} ${year}`;
-}
- */
-
-
-
-
-
-
-
-
-
 export function formatDate(language, item) {
     if (!item?.dates) return 'Fecha inválida.';
 
