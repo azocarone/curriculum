@@ -48,7 +48,7 @@
         background-color: var(--header-bg);
         border-bottom: 1px solid var(--border-color);
         padding-bottom: var(--spacing);
-        margin-bottom: var(--spacing);
+        margin-bottom: calc(var(--spacing) * 2);
     }
 
     .header__contact-address {
@@ -71,8 +71,10 @@
     }
 
     .main__section-title {
-        margin-top: var(--main-spacing-medium);
-        margin-bottom: var(--main-spacing-medium);
+        font-size: 14pt; /* Un poco más grande para marcar secciones */
+        padding-bottom: var(--main-spacing-small);
+        margin-bottom: var(--spacing);
+        border-bottom: 1px solid var(--border-color);
     }
 
    .main__section-content {
@@ -124,11 +126,13 @@
 
     /* UTILIDADES DE IMPRESIÓN */
 
-    .page-break { 
-        page-break-before: always;
-    }
-
+    /* Evita que los títulos se queden solos al final de una página */
     h1, h2, h3 {
         page-break-after: avoid;
+    }
+
+    /* Forzar el inicio de una nueva página en el momento exacto que tú decidas */
+    .page-break { 
+        page-break-before: always;
     }
 }

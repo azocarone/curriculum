@@ -14,12 +14,12 @@
 }
 
 .main__section-title {
+    display: flex;
+    align-items: center;
     font-size: calc(var(--font-size-base) * 1.25); /* Un poco más grande para jerarquía */
     color: var(--accent-color);
     text-transform: capitalize;
     margin: 0 0 var(--main-spacing-medium) 0;
-    display: flex;
-    align-items: center;
     transition: color 0.3s ease;
 }
 
