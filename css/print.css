@@ -1,6 +1,6 @@
 @media print {
-    /* Forzamos las variables a modo claro, incluso si el body tiene .dark-theme */
     :root, body, body.dark-theme {
+         /* Forzado a un modo claro, incluso si el body tiene .dark-theme */
         --background-color: #ffffff;
         --text-color: #000000;
         --text-muted: #444444;
@@ -9,143 +9,113 @@
         --card-bg: transparent;
         --header-bg: transparent;
         --icon-stroke: #000000;
-        /* Reducción de variables de espacio de main.css */
-        --main-spacing-medium: 0.25cm !important; /* Reducido de 0.3cm */
-        --spacing: 0.25cm !important;
+        --underline-color: rgba(59, 130, 246, 0.3);
+
+        --spacing: 0.25cm;
+        --main-spacing-small: 0.1cm;
+        --main-spacing-medium: 0.4cm;
+     }
+
+    @page {
+        margin: 1.2cm 1.5cm;
     }
     
-    /* Estilos generales de impresión */
     body {
         font-family: 'Lato', sans-serif;
         font-size: 10pt;
-        line-height: 1.1;
+        line-height: 1.3;
         color: var(--text-color);
         background-color: var(--background-color);
+        -webkit-print-color-adjust: exact;
+        print-color-adjust: exact;
     }
 
-    /* Asegurar que el header no use el color oscuro */
-    .header {
-        background-color: var(--header-bg) !important;
-        border-bottom: 0.0625rem solid var(--border-color);
-        margin-bottom: 0.3cm !important;
-    }
-
-    /* Ocultar elementos innecesarios */
-    nav,
-    aside,
+    /* Ocultar elementos irrelevantes */
+    #nav,
+    .header__nav,
     footer,
-    .header__nav-toggle,
-    .header__nav-icon,
-    .header__nav-menu,
-    .no-imprimir { 
+    .no-imprimir, 
+    .script { 
         display: none !important;
     }
-
-    /* Ajustar imágenes */
-    img {
-        max-width: 100%;
-        height: auto;
-    }
-
-    /* Ajustar enlaces */
+   
     a {
         text-decoration: none;
-        color: #000;
-        font-weight: bold;
+        color: inherit;
     }
-    
-    /* Controlar saltos de página */
-    h2,
-    h3,
-    .main__section-title {
-        page-break-after: avoid;
-        margin-top: 0.2cm !important;
-        margin-bottom: 0.1cm !important;
+
+    .header {
+        background-color: var(--header-bg);
+        border-bottom: 1px solid var(--border-color);
+        padding-bottom: var(--spacing);
+        margin-bottom: var(--spacing);
+    }
+
+    .header__contact-address {
+        gap: var(--main-spacing-small);
+    }
+
+    /* Manejo de datos sensibles (JS) */
+    .header__contact-content--screen {
+        display: none;
+    }
+
+    .header__contact-content--print {
+        display: inline;
+        font-weight: normal;
     }
 
     .main__section {
-        page-break-before: auto !important;
-        margin-bottom: 0.3cm !important;
+        margin-bottom: var(--main-spacing-medium);
+        page-break-before: auto; /* Evita que una sección se corte a la mitad */
     }
 
-    .page-break { 
-        page-break-before: always;
+    .main__section-title {
+        margin-top: var(--main-spacing-medium);
+        margin-bottom: var(--main-spacing-medium);
     }
 
-    /* Ajustar tablas */
-    table {
-        width: 100%;
-        border-collapse: collapse;
-    }
-
-    th,
-    td {
-        border: 1px solid #ccc;
-        padding: 4px;
-        text-align: left;
-    }
-
-    /* Ajustar listas */
-    ul,
-    ol {
-        padding-left: 15px;
-    }
-
-    /* COMPACTACIÓN DE LÍNEAS EN LISTAS */
-    li {
-        margin-bottom: 0.05cm !important;
-    }
-
-    .main__experience-list li {
-        margin-left: 0;
+   .main__section-content {
+        margin: 0;
+        text-align: justify;
     }
 
     .main__experience-info {
-        border: none !important;
-        margin-bottom: 0 !important;
-        padding-bottom: 0 !important;
+        gap: var(--main-spacing-small);
+        margin-bottom: var(--main-spacing-medium);
     }
 
     .main__experience-responsibility-item {
-        padding: 0 !important;
+        padding: 0;
     }
 
-    li >* li {
+    /* */
+
+    .main__section-sublist {
         list-style-type: disc;
         list-style-position: outside;
-        margin-left: 12px;
+        margin-left: calc(var(--spacing) * 2);
+        padding-left: 0;
+    }
+
+    .main__section-sublist--flex {
+        display: block;
     }
 
     .main__section-subitem {
         background-color: inherit;
         border: none;
         padding: 0;
-        margin-right: 5px;
-        display: inline-block; /* Asegura que se comporten como texto seguido */
+        margin-right: 0;
     }
 
-    /* Ajustar citas */
-    blockquote {
-        margin: 5px 0;
-        padding: 2px 15px;
-        border-left: 2px solid #ccc;
+    /* UTILIDADES DE IMPRESIÓN */
+
+    .page-break { 
+        page-break-before: always;
     }
 
-    /* Ajustar código */
-    pre,
-    code {
-        font-family: monospace;
-        white-space: pre-wrap;
-    }
-
-    /* Ajustar colores */
-    body {
-        -webkit-print-color-adjust: exact;
-        print-color-adjust: exact;
-    }
-
-    /* Ajustar márgenes de página */
-    @page {
-        margin: 1cm 1.2cm;
+    h1, h2, h3 {
+        page-break-after: avoid;
     }
 }

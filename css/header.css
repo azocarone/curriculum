@@ -200,39 +200,28 @@ body.dark-theme .header__nav-icon {
     .header__contact {
         align-items: flex-start;
     }
+
     .header__contact-address {
         flex-direction: column;
         width: 100%;
         gap: 0.4rem;
     }
+
     .header__contact-item {
         display: flex;
         flex-direction: row;
         gap: 0.5rem;
-    }   
+    } 
+
     .header__contact-label {
         display: block; 
         font-weight: bold;
     }
+    
     .header__contact-link--location::before,
     .header__contact-link--email::before,
     .header__contact-link--phone::before,
     .header__contact-link--website::before {
         display: none;
-    }
-}
-
-@media print {
-    .header__contact-content--screen {
-        display: none !important;
-    }
-    .header__contact-content--print {
-        display: inline !important;
-        text-decoration: none;
-        color: black;
-    }
-    .header {
-        position: relative;
-        border-bottom: 2px solid #000;
     }
 }

@@ -13,7 +13,6 @@
     --card-bg: #F6F6F6;
     --header-bg: #ffffff;
     --icon-stroke: #000000;
-    /* Subrayado sutil */
     --underline-color: rgba(59, 130, 246, 0.3);
 }
 
@@ -39,7 +38,6 @@ body {
     transition: background-color 0.4s ease, color 0.4s ease;
 }
 
-/* Subrayado moderno y accesible */
 a {
     text-decoration: underline;
     text-decoration-color: var(--underline-color);
