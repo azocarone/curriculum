@@ -1,0 +1,14 @@
+# https://www.robotstxt.org/robotstxt.html
+User-agent: *
+Allow: /
+
+# Bloquear el rastreo de carpetas de recursos internos para ahorrar presupuesto de rastreo
+Disallow: /css/
+Disallow: /js/
+Disallow: /assets/webfonts/
+
+# Permitir que los buscadores vean las imágenes (importante para Google Imágenes)
+Allow: /assets/img/
+
+# Indicar la ubicación del mapa del sitio (Sitemap)
+Sitemap: https://curriculum.joseazocar.pro/sitemap.xml
