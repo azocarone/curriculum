@@ -25,7 +25,7 @@ Para este proyecto se han aplicado estándares modernos de desarrollo web:
 
 * **Core**: HTML5 Semántico, CSS3 (Flexbox/Grid), JavaScript (ES6+).
 * **Estilización**: Metodología BEM, Google Fonts, Font Awesome.
-* **nfraestructura**: Git, SSL/TLS (HTTPS).
+* **Infraestructura**: Git, SSL/TLS (HTTPS).
 
 ## 🎨 Uso y Experiencia de Usuario (UX)
 
