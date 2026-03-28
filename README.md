@@ -77,6 +77,7 @@ Si deseas revisar la estructura del código o realizar pruebas en un entorno loc
 - [x] Lanzamiento del dominio personalizado para el CV.
 - [x] Optimización de la versión móvil.
 - [X] Implementación de soporte multi-idioma (Español/Inglés).
+- [ ] Refactorizar proyecto para escalabilidad y API.
 - [ ] Integración de un sistema de generación de PDF dinámico.
 
 ## ⚖️ Licencia
