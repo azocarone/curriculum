@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         UI.renderContact(profileData, profileData.profiles_translations[0], lang);
         UI.renderSummary(profileData.summaries[0].summaries_translations[0], lang);
         UI.renderExperience(profileData.experiences);
-        //document.getElementById('education').innerHTML = UI.renderEducation(profileData.education);
+        //UI.renderEducation(profileData.education);
         //document.getElementById('skills').innerHTML = UI.renderSkills(profileData.skills);
 
      } catch (error) {

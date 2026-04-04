@@ -103,7 +103,7 @@ function createContactItem(key, label, content, sensitiveText) {
 
 function createExperienceItemHTML(exp, lang) {
     const trans = exp.experiences_translations?.[0] ?? {};
-    const dateRange = formatCVDate(lang, exp.start_date, exp.end_date);
+    const dateRange = formatCVDateRange(lang, exp.start_date, exp.end_date);
     
     const responsibilities = (exp.responsibilities ?? [])
         .map(res => res.responsibilities_translations?.[0]?.description)
@@ -159,19 +159,30 @@ function getContactUrl(key, value) {
     return templates[key] ? templates[key](value) : "#";
 }
 
-function formatCVDate(lang, start, end) {
+function formatCVDateRange(lang, start, end) {
     if (!start) return "";
-    const locale = lang === "es" ? 'es-ES' : 'en-US';
 
-    const formatDate = (dateStr) => {
-        const date = new Date(dateStr);
-        if (isNaN(date)) return "";
-        const month = date.toLocaleString(locale, { month: 'long' });
-        const year = date.toLocaleString(locale, { year: 'numeric' });
-        return `${month.charAt(0).toUpperCase() + month.slice(1)} ${year}`;
-    };
+    const startText = formatMonthYear(start, lang);
+    
+    // Lógica de negocio para la fecha de fin
+    let endText = "";
+    if (end) {
+        endText = formatMonthYear(end, lang);
+    } else {
+        endText = lang === "es" ? "Presente" : "Present";
+    }
 
-    const startText = formatDate(start);
-    const endText = end ? formatDate(end) : (lang === "es" ? "Presente" : "Present");
     return `${startText} – ${endText}.`;
+}
+
+function formatMonthYear(dateStr, lang) {
+    const date = new Date(dateStr);
+    if (isNaN(date)) return "";
+
+    const locale = lang === "es" ? 'es-ES' : 'en-US';
+    const month = date.toLocaleString(locale, { month: 'long' });
+    const year = date.toLocaleString(locale, { year: 'numeric' });
+
+    // Capitalizamos y devolvemos solo el par "Mes Año"
+    return `${month.charAt(0).toUpperCase() + month.slice(1)} ${year}`;
 }
