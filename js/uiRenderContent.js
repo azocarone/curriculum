@@ -48,7 +48,17 @@ export const UI = {
             <h2 class="main__section-title main__section-title--experience">${LABELS[lang].experience}</h2>
             ${htmlContent}
         `;
-    }
+    },
+
+    // ======>
+
+
+
+
+
+
+
+
 };
 
 /**
@@ -186,3 +196,5 @@ function formatMonthYear(dateStr, lang) {
     // Capitalizamos y devolvemos solo el par "Mes Año"
     return `${month.charAt(0).toUpperCase() + month.slice(1)} ${year}`;
 }
+
+// ====
