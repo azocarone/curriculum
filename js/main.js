@@ -10,7 +10,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         // Inyección coordinada en el DOM usando la UI
         UI.renderContact(profileData, profileData.profiles_translations[0], lang);
-        //document.getElementById('summary').innerHTML = UI.renderSummary(profileData.summaries[0]);
+        UI.renderSummary(profileData.summaries[0].summaries_translations[0], lang);
         //document.getElementById('experience').innerHTML = UI.renderExperience(profileData.experiences);
         //document.getElementById('education').innerHTML = UI.renderEducation(profileData.education);
         //document.getElementById('skills').innerHTML = UI.renderSkills(profileData.skills);

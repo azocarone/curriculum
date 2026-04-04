@@ -3,12 +3,12 @@ import { LABELS } from './data/lblConfig.js';
 export const UI = {
     renderContact(profile, trans, lang = "es") {
         const headerContact = document.getElementById("contact");
-        if (!headerContact) return;
+        if (!headerContact || !profile || !trans ) return;
 
         // Extrae las etiquetas según el idioma.
         const { profile: i18n } = LABELS[lang];
                
-        // Definición del esquema de datos directamente. Facilita cambiar el orden de los campos.
+        // Definición del esquema de datos. Facilita cambiar el orden de los campos.
         const fields = [
             { key: 'location', label: i18n.location, content: trans.location },
             { key: 'phone',    label: i18n.phone,    content: profile.phone },
@@ -18,10 +18,10 @@ export const UI = {
 
         const sensitiveText = (lang === "es") ? "Haga clic para ver" : "Click to view";
 
-        // Genera el HTML iterando directamente sobre el esquema.
+        // Genera el HTML iterando sobre el esquema.
         const htmlContent = fields
             .filter(f => f.content) // Opcional: No renderiza el campo si está vacío.
-            .map(f => createContactItem(f.key, f.label, f.content, sensitiveText))
+            .map(({ key, label, content}) => createContactItem(key, label, content, sensitiveText))
             .join("");
 
         // Inyección final
@@ -30,12 +30,26 @@ export const UI = {
             <address class="header__contact-address">${htmlContent}</address>
         `;
 
-        // Asume que esta la función existe para manejar los clics en datos sensibles.
+        // Asume la existencia de la función para manejar los clics en datos sensibles.
         if (typeof initContactListeners === "function") initContactListeners(headerContact);
+    },
+
+    renderSummary(trans, lang = "es") {
+        const summarySection = document.getElementById("summary");
+        if (!summarySection || !trans?.content) return;
+
+        const label = LABELS[lang].summary;
+
+        const htmlContent = `
+            <h2 class="main__section-title main__section-title--summary">${label}</h2>
+            <p class="main__section-content">${trans.content}</p>
+        `;
+
+        summarySection.innerHTML = htmlContent;
     }
 }
 
-// Generador del HTML para un solo ítem de contacto.
+// Generador del HTML para un ítem de contacto.
 const createContactItem = (key, label, content, sensitiveText) => {
     const isSensitive = key === 'email' || key === 'phone';
     const href = getContactUrl(key, content);
@@ -66,7 +80,7 @@ const createContactItem = (key, label, content, sensitiveText) => {
     `;
 };
 
-// Generador de URLs según el tipo de campo.
+// Generador de URLs según tipo de campo.
 const getContactUrl = (key, value) => {
     const templates = {
         location: (v) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(v)}`,
@@ -79,7 +93,7 @@ const getContactUrl = (key, value) => {
 
 const initContactListeners = (container) => {
     container.addEventListener("click", (event) => {
-        // Buscar el elemento más cercano que sea el enlace sensible.
+        // Buscar el elemento más cercano al enlace sensible.
         const sensitiveLink = event.target.closest(".js-contact-sensitive");
         
         if (sensitiveLink) {
