@@ -1,22 +1,35 @@
-import { applyInitialTheme } from './themeService.js';
-import { setupLanguage } from './contentService.js';
-import { setupNavListeners } from './navController.js';
+import { profileService } from './profileService.js';
+import { UI } from './uiRenderContent.js'
 
 document.addEventListener('DOMContentLoaded', async () => {
-    applyInitialTheme();
-    
     try {
-        const browserLanguage = navigator.language.slice(0, 2);
+        const lang = navigator.language.slice(0, 2);
+        const profileData = await profileService.fetchFullProfile(lang);
         
-        await setupLanguage(browserLanguage);
+        if (!profileData) return;
 
-        setupNavListeners();
+        // Inyección coordinada en el DOM usando la UI
+        UI.renderContact(profileData, profileData.profiles_translations[0], lang);
+        //document.getElementById('summary').innerHTML = UI.renderSummary(profileData.summaries[0]);
+        //document.getElementById('experience').innerHTML = UI.renderExperience(profileData.experiences);
+        //document.getElementById('education').innerHTML = UI.renderEducation(profileData.education);
+        //document.getElementById('skills').innerHTML = UI.renderSkills(profileData.skills);
 
-        console.log("Configuración lista.");
-    } catch (error) {
-        console.error("Error al inicializar la aplicación:", error);
+     } catch (error) {
+        console.error("Fallo crítico en la aplicación:", error);
+        document.body.innerHTML = `<p>Lo siento, no se pudo cargar el perfil. Error: ${error.message}</p>`;
     }
 });
 
-console.log("%c¡Hola Reclutador! 👋", "color: #007bff; font-size: 20px; font-weight: bold;");
-console.log("Gracias por revisar mi código fuente. Si buscas eficiencia técnica, estás en el lugar correcto.");
+//import { setupLanguage } from './contentService.js';
+//import { setupNavListeners } from './navController.js';
+//
+//document.addEventListener('DOMContentLoaded', async () => {
+//    try {
+//
+//        setupNavListeners();
+//
+//    }
+//});
+//
+//import { UI } from './ui.js';
