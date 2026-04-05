@@ -25,8 +25,8 @@
 
 .main__section-title--summary::before,
 .main__section-title--experience::before,
-.main__section-title--academicEducation::before,
-.main__section-title--continuousTraining::before,
+.main__section-title--academic::before,
+.main__section-title--training::before,
 .main__section-title--certifications::before,
 .main__section-title--technical::before,
 .main__section-title--soft::before,
@@ -42,8 +42,8 @@
 /* Mapeo de Iconos Content */
 .main__section-title--summary::before { content: "\f508"; }
 .main__section-title--experience::before { content: "\f0b1"; }
-.main__section-title--academicEducation::before { content: "\f19d"; }
-.main__section-title--continuousTraining::before { content: "\f51b"; }
+.main__section-title--academic::before { content: "\f19d"; }
+.main__section-title--training::before { content: "\f51b"; }
 .main__section-title--certifications::before { content: "\f0A3"; }
 .main__section-title--technical::before { content: "\f5dc"; }
 .main__section-title--soft::before { content: "\f004"; }
@@ -194,8 +194,8 @@
     /* Ocultar iconos en móvil/print para ahorrar espacio */
     .main__section-title--summary::before,
     .main__section-title--experience::before,
-    .main__section-title--academicEducation::before,
-    .main__section-title--continuousTraining::before,
+    .main__section-title--academic::before,
+    .main__section-title--training::before,
     .main__section-title--certifications::before,
     .main__section-title--technical::before,
     .main__section-title--soft::before,

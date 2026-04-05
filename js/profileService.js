@@ -15,13 +15,20 @@ export const profileService = {
                     experiences_translations!inner(*),
                     responsibilities(*, responsibilities_translations!inner(*))
                 ),
-                education(*, education_translations!inner(*)),
-                skills(*, skill_translations!inner(*))
+                education(
+                    *,
+                    education_translations!inner(*),
+                    education_types!inner(slug)
+                ),
+                skills(
+                    *,
+                    skill_translations!inner(*),
+                    skill_types!inner(slug)
+                )
             `)
             .eq('profiles_translations.language_code', lang)
             .eq('summaries.summaries_translations.language_code', lang)
             .eq('experiences.experiences_translations.language_code', lang)
-            .eq('experiences.responsibilities.responsibilities_translations.language_code', lang)
             .eq('education.education_translations.language_code', lang)
             .eq('skills.skill_translations.language_code', lang)
             .eq('experiences.is_active', true)
@@ -29,6 +36,24 @@ export const profileService = {
             .order('start_date', { foreignTable: 'experiences', ascending: false });
 
         if (error) throw new Error(error.message);
-        return data[0];
+
+        const profile = data[0];
+
+        // Retorna el perfil con los datos agrupados por el SLUG
+        return {
+            ...profile,
+            educationGroups: this._groupItems(profile.education, 'education_types'),
+            skillGroups: this._groupItems(profile.skills, 'skill_types')
+        };
+    },
+
+    _groupItems(list, typeKey) {
+        if (!list) return {};
+        return list.reduce((acc, item) => {
+            const slug = item[typeKey]?.slug || 'others';
+            if (!acc[slug]) acc[slug] = [];
+            acc[slug].push(item);
+            return acc;
+        }, {});
     }
 };

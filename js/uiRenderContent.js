@@ -52,6 +52,30 @@ export const UI = {
 
     // ======>
 
+    renderEducation(educationGroups, lang = "es") {
+        const container = document.getElementById("education");
+        if (!container || !educationGroups) return;
+
+        // Accedemos a las etiquetas del archivo local
+        const categoryLabels = LABELS[lang].education;
+
+        container.innerHTML = Object.entries(educationGroups).map(([slug, list]) => `
+            <ul class="main__section-list">
+                <li class="main__section-item">
+                    <h2 class="main__section-title main__section-title--${slug}">
+                        ${categoryLabels[slug] || slug}
+                    </h2>
+                    <ul class="main__section-sublist main__section-sublist--flex">
+                        ${list
+                            .sort((a, b) => new Date(b.end_date) - new Date(a.end_date))
+                            .map(item => createEducationItemHTML(item, lang))
+                            .join("")}
+                    </ul>
+                </li>
+            </ul>
+        `).join("");
+    }
+
 
 
 
@@ -198,3 +222,19 @@ function formatMonthYear(dateStr, lang) {
 }
 
 // ====
+
+function createEducationItemHTML(item, lang) {
+    const t = item.education_translations?.[0] ?? {};
+    const dateRange = formatCVDateRange(lang, item.start_date, item.end_date);
+
+    return `
+        <li class="main__section-subitem">
+            <a class="main__section-subitem__link" href="${item.url || '#'}" target="_blank" rel="noopener noreferrer">
+                <span class="main__section-subitem__title">${t.title ?? ''}: </span>
+                <span class="main__section-subitem__institution">${t.institution ?? ''}; </span>
+                <span class="main__section-subitem__location">${t.location ?? ''}; </span>
+                <span class="main__section-subitem__dates">${dateRange}</span>
+            </a>
+        </li>
+    `;
+}

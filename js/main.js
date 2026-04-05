@@ -8,11 +8,13 @@ document.addEventListener('DOMContentLoaded', async () => {
         
         if (!profileData) return;
 
+        console.log(profileData);
+
         // Inyección coordinada en el DOM usando la UI
         UI.renderContact(profileData, profileData.profiles_translations[0], lang);
         UI.renderSummary(profileData.summaries[0].summaries_translations[0], lang);
         UI.renderExperience(profileData.experiences, lang);
-        //UI.renderEducation(profileData.education, lang);
+        UI.renderEducation(profileData.educationGroups, lang);
         //document.getElementById('skills').innerHTML = UI.renderSkills(profileData.skills);
 
      } catch (error) {
@@ -33,3 +35,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 //});
 //
 //import { UI } from './ui.js';
+
+
+
