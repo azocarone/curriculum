@@ -21,7 +21,6 @@ document.addEventListener('DOMContentLoaded', async () => {
         UI.renderEducation(profileData.educationGroups, lang);
         UI.renderSkills(profileData.skillGroups, lang);
 
-        // Aquí podrías invocar los nuevos renders que mencionaste antes
         // UI.renderNavbar(lang);
         // UI.renderFooter(profileData, lang);
 
@@ -31,7 +30,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         document.body.innerHTML = `
             <div style="text-align:center; padding: 50px; font-family: sans-serif;">
                 <h2>⚠️ Ups, algo salió mal</h2>
-                <p>No pudimos cargar la información en este momento.</p>
+                <p>Error al cargar el currículum. Reintente en unos minutos.</p>
                 <small style="color: #666;">${error.message}</small>
             </div>
         `;
