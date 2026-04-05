@@ -1,4 +1,4 @@
 .vscode
 assets/pdf/_private
 doc
-js/data/_private
+src/data/_private

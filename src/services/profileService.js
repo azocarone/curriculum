@@ -33,7 +33,15 @@ export const profileService = {
             .eq('skills.skill_translations.language_code', lang)
             .eq('experiences.is_active', true)
             .eq('education.is_active', true)
-            .order('start_date', { foreignTable: 'experiences', ascending: false });
+            .order('start_date', { 
+                foreignTable: 'experiences', 
+                ascending: false 
+            })
+            .order('end_date', { 
+                foreignTable: 'education', 
+                ascending: false, 
+                nullsFirst: true 
+            });
 
         if (error) throw new Error(error.message);
 

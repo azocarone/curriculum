@@ -37,10 +37,7 @@ export const UI = {
         const experienceSection = document.getElementById("experience");
         if (!experienceSection || !Array.isArray(experiences)) return;
 
-        const sortedList = prepareExperienceData(experiences);
-        if (sortedList.length === 0) return;
-
-        const htmlContent = sortedList
+        const htmlContent = experiences
             .map(exp => createExperienceItemHTML(exp, lang))
             .join("");
 
@@ -57,7 +54,6 @@ export const UI = {
             LABELS[lang].education,
             (list, slug) => {
                 return [...list]
-                    .sort((a, b) => new Date(b.end_date) - new Date(a.end_date))
                     .map(item => createEducationItemHTML(item, lang, slug))
                     .join("");
             }
@@ -97,16 +93,6 @@ function prepareContactFields(profile, trans, lang) {
     ].filter(f => f.content);
 }
 
-function prepareExperienceData(experiences) {
-    return [...experiences]
-        .filter(item => item.active !== false)
-        .sort((a, b) => {
-            const dateA = a.end_date ? new Date(a.end_date) : new Date();
-            const dateB = b.end_date ? new Date(b.end_date) : new Date();
-            return dateB - dateA;
-        });
-}
-
 /**
  * GENERADORES DE HTML (Templates)
  */
@@ -134,23 +120,6 @@ function createContactItem(key, label, content, sensitiveText) {
     `;
 }
 
-function renderGroupedSection(containerId, groups, labels, itemRenderer) {
-    const container = document.getElementById(containerId);
-    if (!container || !groups) return;
-
-    container.innerHTML = Object.entries(groups).map(([slug, list]) => `
-        <ul class="main__section-list">
-            <li class="main__section-item">
-                <h2 class="main__section-title main__section-title--${slug}">
-                    ${labels[slug] || slug}
-                </h2>
-                <ul class="main__section-sublist main__section-sublist--flex">
-                    ${itemRenderer(list, slug)} </ul>
-            </li>
-        </ul>
-    `).join("");
-}
-
 function createExperienceItemHTML(exp, lang) {
     const trans = exp.experiences_translations?.[0] ?? {};
     const dateRange = formatCVDateRange(lang, exp.start_date, exp.end_date);
@@ -176,6 +145,23 @@ function createExperienceItemHTML(exp, lang) {
             </li>
         </ul>
     `;
+}
+
+function renderGroupedSection(containerId, groups, labels, itemRenderer) {
+    const container = document.getElementById(containerId);
+    if (!container || !groups) return;
+
+    container.innerHTML = Object.entries(groups).map(([slug, list]) => `
+        <ul class="main__section-list">
+            <li class="main__section-item">
+                <h2 class="main__section-title main__section-title--${slug}">
+                    ${labels[slug] || slug}
+                </h2>
+                <ul class="main__section-sublist main__section-sublist--flex">
+                    ${itemRenderer(list, slug)} </ul>
+            </li>
+        </ul>
+    `).join("");
 }
 
 function createEducationItemHTML(item, lang, slug) {
