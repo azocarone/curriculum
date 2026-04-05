@@ -1,5 +1,5 @@
-import { profileService } from './profileService.js';
-import { UI } from './uiRenderContent.js'
+import { profileService } from './services/profileService.js';
+import { UI } from './ui/uiRenderContent.js'
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
@@ -10,12 +10,12 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         console.log(profileData);
 
-        // Inyección coordinada en el DOM usando la UI
+        // Inyección coordinada en el DOM usando la UI.
         UI.renderContact(profileData, profileData.profiles_translations[0], lang);
         UI.renderSummary(profileData.summaries[0].summaries_translations[0], lang);
         UI.renderExperience(profileData.experiences, lang);
         UI.renderEducation(profileData.educationGroups, lang);
-        //document.getElementById('skills').innerHTML = UI.renderSkills(profileData.skills);
+        UI.renderSkills(profileData.skillGroups, lang);
 
      } catch (error) {
         console.error("Fallo crítico en la aplicación:", error);
@@ -35,6 +35,3 @@ document.addEventListener('DOMContentLoaded', async () => {
 //});
 //
 //import { UI } from './ui.js';
-
-
-

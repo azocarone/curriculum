@@ -1,4 +1,4 @@
-import { ENV } from './data/envConfig.js';
+import { ENV } from '../data/envConfig.js';
 
 const supabaseClient = supabase.createClient(ENV.SUPABASE_URL, ENV.SUPABASE_KEY);
 
@@ -39,7 +39,7 @@ export const profileService = {
 
         const profile = data[0];
 
-        // Retorna el perfil con los datos agrupados por el SLUG
+        // Retorna el perfil con los datos agrupados por el "SLUG".
         return {
             ...profile,
             educationGroups: this._groupItems(profile.education, 'education_types'),

@@ -1,7 +1,7 @@
-import { LABELS } from './data/lblConfig.js';
+import { LABELS } from '../data/lblConfig.js';
 
 /**
- * 1. INTERFAZ PÚBLICA
+ * INTERFAZ PÚBLICA
  */
 export const UI = {
     renderContact(profile, trans, lang = "es") {
@@ -50,43 +50,42 @@ export const UI = {
         `;
     },
 
-    // ======>
-
     renderEducation(educationGroups, lang = "es") {
-        const container = document.getElementById("education");
-        if (!container || !educationGroups) return;
+        renderGroupedSection(
+            "education", 
+            educationGroups, 
+            LABELS[lang].education,
+            (list, slug) => {
+                return [...list]
+                    .sort((a, b) => new Date(b.end_date) - new Date(a.end_date))
+                    .map(item => createEducationItemHTML(item, lang, slug))
+                    .join("");
+            }
+        );
+    },
 
-        // Accedemos a las etiquetas del archivo local
-        const categoryLabels = LABELS[lang].education;
-
-        container.innerHTML = Object.entries(educationGroups).map(([slug, list]) => `
-            <ul class="main__section-list">
-                <li class="main__section-item">
-                    <h2 class="main__section-title main__section-title--${slug}">
-                        ${categoryLabels[slug] || slug}
-                    </h2>
-                    <ul class="main__section-sublist main__section-sublist--flex">
-                        ${list
-                            .sort((a, b) => new Date(b.end_date) - new Date(a.end_date))
-                            .map(item => createEducationItemHTML(item, lang))
-                            .join("")}
-                    </ul>
-                </li>
-            </ul>
-        `).join("");
+    renderSkills(skillGroups, lang = "es") {
+        renderGroupedSection(
+            "skills", 
+            skillGroups, 
+            LABELS[lang].skills,
+            (list) => {
+                // Lógica específica: Mapeo simple con clase de puntuación.
+                return list.map(skill => {
+                    const t = skill.skill_translations?.[0] ?? {};
+                    return `
+                        <li class="main__section-subitem main__section-subitem--punctuation">
+                            ${t.name || ''}
+                        </li>
+                    `;
+                }).join("");
+            }
+        );
     }
-
-
-
-
-
-
-
-
 };
 
 /**
- * 2. LÓGICA DE PREPARACIÓN
+ * LÓGICA DE PREPARACIÓN
  */
 function prepareContactFields(profile, trans, lang) {
     const { profile: i18n } = LABELS[lang];
@@ -109,7 +108,7 @@ function prepareExperienceData(experiences) {
 }
 
 /**
- * 3. GENERADORES DE HTML (Templates)
+ * GENERADORES DE HTML (Templates)
  */
 function createContactItem(key, label, content, sensitiveText) {
     const isSensitive = key === 'email' || key === 'phone';
@@ -133,6 +132,23 @@ function createContactItem(key, label, content, sensitiveText) {
             </a>
         </p>
     `;
+}
+
+function renderGroupedSection(containerId, groups, labels, itemRenderer) {
+    const container = document.getElementById(containerId);
+    if (!container || !groups) return;
+
+    container.innerHTML = Object.entries(groups).map(([slug, list]) => `
+        <ul class="main__section-list">
+            <li class="main__section-item">
+                <h2 class="main__section-title main__section-title--${slug}">
+                    ${labels[slug] || slug}
+                </h2>
+                <ul class="main__section-sublist main__section-sublist--flex">
+                    ${itemRenderer(list, slug)} </ul>
+            </li>
+        </ul>
+    `).join("");
 }
 
 function createExperienceItemHTML(exp, lang) {
@@ -162,8 +178,27 @@ function createExperienceItemHTML(exp, lang) {
     `;
 }
 
+function createEducationItemHTML(item, lang, slug) {
+    const t = item.education_translations?.[0] ?? {};
+    const dateRange = formatCVDateRange(lang, item.start_date, item.end_date);
+
+    // Si es "training", no se quiere mostrar la "Location" o estilo distinto.
+    const showLocation = slug !== 'training' && t.location;
+
+    return `
+        <li class="main__section-subitem">
+            <a class="main__section-subitem__link" href="${item.url || '#'}" target="_blank" rel="noopener noreferrer">
+                <span class="main__section-subitem__title">${t.title ?? ''}: </span>
+                <span class="main__section-subitem__institution">${t.institution ?? ''}; </span>
+                ${showLocation ? `<span class="main__section-subitem__location">${t.location}; </span>` : ''}
+                <span class="main__section-subitem__dates">${dateRange}</span>
+            </a>
+        </li>
+    `;
+}
+
 /**
- * 4. UTILIDADES Y COMPORTAMIENTO
+ * UTILIDADES Y COMPORTAMIENTO
  */
 function initContactListeners(container) {
     container.addEventListener("click", (event) => {
@@ -194,18 +229,22 @@ function getContactUrl(key, value) {
 }
 
 function formatCVDateRange(lang, start, end) {
-    if (!start) return "";
+    const startText = start ? formatMonthYear(start, lang) : null;
+    const endText = end ? formatMonthYear(end, lang) : null;
 
-    const startText = formatMonthYear(start, lang);
-    
-    // Lógica de negocio para la fecha de fin
-    let endText = "";
-    if (end) {
-        endText = formatMonthYear(end, lang);
-    } else {
-        endText = lang === "es" ? "Presente" : "Present";
+    // No hay ninguna fecha.
+    if (!startText && !endText) return "";
+
+    // Solo hay fecha de fin (Muy común en Training/Certificaciones).
+    if (!startText && endText) return `${endText}.`;
+
+    // Solo hay fecha de inicio (Trabajo o estudio actual).
+    if (startText && !endText) {
+        const presentLabel = lang === "es" ? "Presente" : "Present";
+        return `${startText} – ${presentLabel}.`;
     }
 
+    //Ambas fechas existen
     return `${startText} – ${endText}.`;
 }
 
@@ -217,24 +256,6 @@ function formatMonthYear(dateStr, lang) {
     const month = date.toLocaleString(locale, { month: 'long' });
     const year = date.toLocaleString(locale, { year: 'numeric' });
 
-    // Capitalizamos y devolvemos solo el par "Mes Año"
+    // Capitalizamos y devolvemos solo el par "Mes Año".
     return `${month.charAt(0).toUpperCase() + month.slice(1)} ${year}`;
-}
-
-// ====
-
-function createEducationItemHTML(item, lang) {
-    const t = item.education_translations?.[0] ?? {};
-    const dateRange = formatCVDateRange(lang, item.start_date, item.end_date);
-
-    return `
-        <li class="main__section-subitem">
-            <a class="main__section-subitem__link" href="${item.url || '#'}" target="_blank" rel="noopener noreferrer">
-                <span class="main__section-subitem__title">${t.title ?? ''}: </span>
-                <span class="main__section-subitem__institution">${t.institution ?? ''}; </span>
-                <span class="main__section-subitem__location">${t.location ?? ''}; </span>
-                <span class="main__section-subitem__dates">${dateRange}</span>
-            </a>
-        </li>
-    `;
 }
