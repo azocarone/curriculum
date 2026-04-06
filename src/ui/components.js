@@ -14,7 +14,7 @@ export function renderNavbar(lang) {
     const headerNav = document.getElementById("nav");
     const itemsNav = getNavContent(lang);
 
-    const navOptions = itemsNav.map(item => `
+    const navHTML = itemsNav.map(item => `
         <li class="header__nav-item">
             <a class="header__nav-link"
                 href="${item.href}" target="_blank" rel="noopener noreferrer"
@@ -33,7 +33,7 @@ export function renderNavbar(lang) {
             <span class="header__nav-icon-close"></span>
         </label>
         <div class="header__nav-menu">
-            <ul class="header__nav-list">${navOptions}</ul>
+            <ul class="header__nav-list">${navHTML}</ul>
         </div>
     `;
 }
