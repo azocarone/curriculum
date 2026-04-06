@@ -1,5 +1,5 @@
-import { setupLanguage } from './_content-service.js';
-import { toggleTheme } from './_theme-service.js';
+import { setupLanguage } from './content-service.js';
+import { toggleTheme } from './theme-service.js';
 
 export function setupNavListeners() {
     const navContainer = document.getElementById("nav");
