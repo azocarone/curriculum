@@ -30,16 +30,3 @@ document.addEventListener('DOMContentLoaded', async () => {
         UI.renderError(error.message);
     }
 });
-
-//import { setupLanguage } from './contentService.js';
-//import { setupNavListeners } from './navController.js';
-//
-//document.addEventListener('DOMContentLoaded', async () => {
-//    try {
-//
-//        setupNavListeners();
-//
-//    }
-//});
-//
-//import { UI } from './ui.js';

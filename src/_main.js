@@ -1,22 +1,17 @@
-import { applyInitialTheme } from './themeService.js';
-import { setupLanguage } from './contentService.js';
-import { setupNavListeners } from './navController.js';
+import { setupLanguage } from './_content-service.js';
+import { setupNavListeners } from './_nav-controller.js';
+import { renderError } from './ui/components.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
-    applyInitialTheme();
-    
     try {
-        const browserLanguage = navigator.language.slice(0, 2);
-        
-        await setupLanguage(browserLanguage);
+        const detectedLang = navigator.language.slice(0, 2);
+        const lang = ['es', 'en'].includes(detectedLang) ? detectedLang : 'es';
+
+        await setupLanguage(lang);
 
         setupNavListeners();
-
-        console.log("Configuración lista.");
     } catch (error) {
-        console.error("Error al inicializar la aplicación:", error);
+        console.error("Fallo crítico en la aplicación:", error);
+        renderError(error.message);
     }
 });
-
-console.log("%c¡Hola Reclutador! 👋", "color: #007bff; font-size: 20px; font-weight: bold;");
-console.log("Gracias por revisar mi código fuente. Si buscas eficiencia técnica, estás en el lugar correcto.");
