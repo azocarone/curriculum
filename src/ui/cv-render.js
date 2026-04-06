@@ -3,7 +3,7 @@ import * as Utils from '../utils/contact-helpers.js';
 import * as Templates from './templates.js';
 import { renderGroupedSection } from './render-engine.js';
 
-export const UI = {
+export const CV = {
     renderContact(profile, trans, lang = "es") {
         const headerContact = document.getElementById("contact");
         if (!headerContact || !profile || !trans) return;

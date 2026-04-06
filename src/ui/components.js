@@ -1,4 +1,4 @@
-export function updateNav(navItems) {
+export function renderNavbar(navItems) {
     const headerNav = document.getElementById("nav");
 
     const navHTML = `
@@ -27,7 +27,7 @@ export function updateNav(navItems) {
     headerNav.innerHTML = navHTML;
 }
 
-export function updateFooter(contactName, label) {
+export function renderFooter(contactName, label) {
     const elementFooter = document.getElementById("footer");
 
     const htmlContent = `

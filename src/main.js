@@ -1,5 +1,5 @@
 import { profileService } from './services/profileService.js';
-import { UI } from './ui/ui-main.js';
+import { CV } from './ui/cv-render.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
@@ -15,11 +15,11 @@ document.addEventListener('DOMContentLoaded', async () => {
         const profileTranslation = profileData.profiles_translations?.[0];
         const summaryTranslation = profileData.summaries?.[0]?.summaries_translations?.[0];
 
-        UI.renderContact(profileData, profileTranslation, lang);
-        UI.renderSummary(summaryTranslation, lang);
-        UI.renderExperience(profileData.experiences, lang);
-        UI.renderEducation(profileData.educationGroups, lang);
-        UI.renderSkills(profileData.skillGroups, lang);
+        CV.renderContact(profileData, profileTranslation, lang);
+        CV.renderSummary(summaryTranslation, lang);
+        CV.renderExperience(profileData.experiences, lang);
+        CV.renderEducation(profileData.educationGroups, lang);
+        CV.renderSkills(profileData.skillGroups, lang);
 
         // UI.renderNavbar(lang);
         // UI.renderFooter(profileData, lang);
