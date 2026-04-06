@@ -1,4 +1,4 @@
-import { LABELS } from '../data/lblConfig.js';
+import { LABELS } from '../data/lbl-config.js';
 import * as Utils from '../utils/contact-helpers.js';
 import * as Templates from './templates.js';
 import { renderGroupedSection } from './render-engine.js';

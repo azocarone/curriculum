@@ -1,3 +1,13 @@
+export function renderError(errorType) {
+    document.body.innerHTML = `
+        <div style="text-align:center; padding: 50px; font-family: sans-serif;">
+            <h2>⚠️ Ups, algo salió mal</h2>
+            <p>Error al cargar el currículum. Reintente en unos minutos.</p>
+            <small style="color: #666;">${errorType}</small>
+        </div>
+    `;
+}
+
 export function renderNavbar(navItems) {
     const headerNav = document.getElementById("nav");
 

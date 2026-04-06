@@ -1,5 +1,6 @@
-import { profileService } from './services/profileService.js';
+import { profileService } from './services/profile-service.js';
 import { CV } from './ui/cv-render.js';
+import  * as UI from './ui/components.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
@@ -21,43 +22,14 @@ document.addEventListener('DOMContentLoaded', async () => {
         CV.renderEducation(profileData.educationGroups, lang);
         CV.renderSkills(profileData.skillGroups, lang);
 
-        // UI.renderNavbar(lang);
-        // UI.renderFooter(profileData, lang);
+        // renderNavbar(lang);
+        // renderFooter(profileData, lang);
 
      } catch (error) {
         console.error("Fallo crítico en la aplicación:", error);
-        
-        document.body.innerHTML = `
-            <div style="text-align:center; padding: 50px; font-family: sans-serif;">
-                <h2>⚠️ Ups, algo salió mal</h2>
-                <p>Error al cargar el currículum. Reintente en unos minutos.</p>
-                <small style="color: #666;">${error.message}</small>
-            </div>
-        `;
+        UI.renderError(error.message);
     }
 });
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 //import { setupLanguage } from './contentService.js';
 //import { setupNavListeners } from './navController.js';

@@ -1,4 +1,4 @@
-import { ENV } from '../data/envConfig.js';
+import { ENV } from '../data/env-config.js';
 
 const supabaseClient = supabase.createClient(ENV.SUPABASE_URL, ENV.SUPABASE_KEY);
 
