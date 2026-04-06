@@ -3,12 +3,12 @@ const NAV_LABELS = {
     en: { download: "Download", lang: "Spanish", langCode: "es", portfolio: "Portfolio", theme: "Theme" }
 };
 
-export const getNav = (lang) => {
+export const getNavContent = (lang) => {
     const t = NAV_LABELS[lang];
     
     return [
         {
-            href: `./assets/pdf/cv_jose_azocar_${lang}.pdf`, // El idioma ya define el archivo
+            href: `./assets/pdf/cv-jose-azocar-${lang}.pdf`,
             download: true,
             icon: "fa-solid fa-file-pdf",
             label: t.download
@@ -18,7 +18,7 @@ export const getNav = (lang) => {
             id: "language-toggle",
             icon: "fa-solid fa-language",
             label: t.lang,
-            lang: t.langCode // Usamos el código destino definido arriba
+            lang: t.langCode
         },
         {
             href: "https://joseazocar.pro",

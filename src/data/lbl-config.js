@@ -17,9 +17,8 @@ export const LABELS = {
             technical: "Habilidades Técnicas",
             soft: "Habilidades Blandas",
             languages: "Idiomas"
-        }, 
-        footer: "Todos los derechos reservados."
-        },
+        } 
+    },
     en: {
         profile: {
             location: "Location",
@@ -38,7 +37,6 @@ export const LABELS = {
             technical: "Hard Skills",
             soft: "Soft Skills",
             languages: "Languages"
-        }, 
-        footer: "All rights reserved."
+        } 
      }
 }

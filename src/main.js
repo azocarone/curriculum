@@ -22,9 +22,9 @@ document.addEventListener('DOMContentLoaded', async () => {
         CV.renderEducation(profileData.educationGroups, lang);
         CV.renderSkills(profileData.skillGroups, lang);
 
-        // renderNavbar(lang);
-        // renderFooter(profileData, lang);
-
+        UI.renderNavbar(lang);
+        UI.renderFooter(profileData.full_name, lang);
+  
      } catch (error) {
         console.error("Fallo crítico en la aplicación:", error);
         UI.renderError(error.message);
