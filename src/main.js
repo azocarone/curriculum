@@ -8,13 +8,10 @@ document.addEventListener('DOMContentLoaded', async () => {
     try {
         const lang = getInitialLanguage();
 
-        // Aplica el tema guardado o preferencia del sistema
         applyInitialTheme();
 
-        // Carga los datos iniciales
         await loadAndRenderData(lang);
 
-        // Activa los controles de la interfaz
         setupNavListeners();
         
     } catch (error) {
