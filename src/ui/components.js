@@ -2,10 +2,19 @@ import { getNavContent } from '../data/nav-config.js';
 
 export function renderError(errorType) {
     document.body.innerHTML = `
-        <div style="text-align:center; padding: 50px; font-family: sans-serif;">
-            <h2>⚠️ Ups, algo salió mal</h2>
-            <p>Error al cargar el currículum. Reintente en unos minutos.</p>
-            <small style="color: #666;">${errorType}</small>
+        <div class="error-screen">
+            <div class="error-card">
+                <h2>Ups, algo salió mal</h2>
+                <p>No pudimos cargar la información del currículum. Por favor, inténtalo de nuevo.</p>
+                
+                <span class="error-detail">
+                    Código: ${errorType || 'Error Desconocido'}
+                </span>
+
+                <button class="btn-retry" onclick="window.location.reload()">
+                    Intentar de nuevo
+                </button>
+            </div>
         </div>
     `;
 }

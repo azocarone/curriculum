@@ -29,6 +29,7 @@ export const profileService = {
             .eq('profiles_translations.language_code', lang)
             .eq('summaries.summaries_translations.language_code', lang)
             .eq('experiences.experiences_translations.language_code', lang)
+            .eq('experiences.responsibilities.responsibilities_translations.language_code', lang)
             .eq('education.education_translations.language_code', lang)
             .eq('skills.skill_translations.language_code', lang)
             .eq('experiences.is_active', true)

@@ -1,5 +1,6 @@
 import { loadAndRenderData } from '../services/content-service.js';
 import { toggleTheme } from '../services/theme-service.js';
+import { renderError } from '../ui/components.js';
 
 export function setupNavListeners() {
     const navContainer = document.getElementById("nav");
@@ -14,8 +15,14 @@ export function setupNavListeners() {
         if (languageToggle) {
             event.preventDefault();
             const targetLanguage = languageToggle.dataset.lang;;
-            await loadAndRenderData(targetLanguage);
-            menuToggle.checked = false;
+            
+            try {
+                await loadAndRenderData(targetLanguage);
+                menuToggle.checked = false;
+            } catch (error) {
+                console.error("Fallo crítico en la aplicación:", error);
+                renderError(error.message);
+            }
             return;
         }
 

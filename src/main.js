@@ -1,8 +1,8 @@
+import { getInitialLanguage } from './utils/lang-utils.js';
+import { applyInitialTheme } from './services/theme-service.js';
 import { loadAndRenderData } from './services/content-service.js';
 import { setupNavListeners } from './controllers/nav-controller.js';
 import { renderError } from './ui/components.js';
-import { getInitialLanguage } from './utils/lang-utils.js';
-import { applyInitialTheme } from './services/theme-service.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
