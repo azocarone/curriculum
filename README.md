@@ -1,6 +1,7 @@
 # 📑 Curriculum Digital - José Azócar
 
-Este repositorio contiene el código fuente de mi currículum profesional, una plataforma diseñada para ofrecer una experiencia de lectura técnica, eficiente y bilingüe.
+Este repositorio contiene el código fuente de mi currículum profesional, una plataforma diseñada para ofrecer una experiencia de lectura técnica, eficiente y bilingüe, ahora evolucionada hacia una **arquitectura modular escalable**.
+
 
 🚀 Explora la versión en vivo: [curriculum.joseazocar.pro](https://curriculum.joseazocar.pro)
 
@@ -8,54 +9,85 @@ Este repositorio contiene el código fuente de mi currículum profesional, una p
   <img src="./assets/img/screenshot.gif" alt="Vista previa del Curriculum Vitae" width="683" height="384" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 </div>
 
----
-
 ## ✨ Características del Proyecto
 
 - **Ingeniería de Marca Personal**: Evolución del CV estático a una herramienta técnica de alto rendimiento.
 
+- **Arquitectura Profesional**: Implementación de un patrón de diseño desacoplado (MVC) para facilitar el mantenimiento.
+
 - **Eficiencia de Lectura**: Navegación jerárquica y minimalista que prioriza la transmisión de datos sin ruido visual.
 
-- **Optimización de Validación**: Arquitectura diseñada para la entrega y verificación de trayectoria profesional en el menor tiempo posible.
-
+- **Resiliencia Técnica**: Gestión proactiva de errores y estados de carga para una experiencia de usuario sin interrupciones
 
 ## 🛠️ Tecnologías y Metodologías
 
-Para este proyecto se han aplicado estándares modernos de desarrollo web:
+Para este proyecto se han aplicado estándares modernos de desarrollo de software:
 
-* **Core**: HTML5 Semántico, CSS3 (Flexbox/Grid), JavaScript (ES6+).
-* **Estilización**: Metodología BEM, Google Fonts, Font Awesome.
-* **Infraestructura**: Git, SSL/TLS (HTTPS).
+* **Frontend Core**: HTML5 Semántico, CSS3 (Flexbox/Grid), JavaScript (ES6+).
+
+* **Backend & Data**: **Supabase (PostgreSQL)** para la persistencia y gestión de datos dinámicos.
+
+* **Arquitectura**: Patrón modular (Controllers, Services, UI, Utils).
+
+* **Estilización**: Metodología BEM, Google Fonts, Variables CSS (Theming).
+
+## 🚀 Evolución Arquitectónica y Habilidades Aplicadas
+
+Recientemente, el proyecto atravesó una refactorización profunda para transformar un código monolítico en un sistema profesional. Los hitos principales incluyen:
+
+1. **Arquitectura Modular (Pattern-Based)**
+
+    Se rompió el monolito para organizar el código por su función lógica:
+
+    - **Controllers**: Orquestan los eventos y el flujo de la aplicación.
+
+    - **Services**: Gestionan la comunicación con Supabase y el almacenamiento local.
+
+    - **UI Modules**: Componentes puros encargados exclusivamente del renderizado.
+
+    - **Habilidad**: Diseño de sistemas desacoplados, permitiendo cambiar el motor de datos sin afectar la interfaz.
+
+2. **Ingeniería de Datos y Consultas Relacionales**
+
+    Optimización del flujo de datos multi-idioma mediante **PostgREST**:
+
+    - **Filtros de Profundidad**: Implementación de lógica de filtrado en ramas anidadas para traducciones.
+
+    - **Joins Eficientes**: Uso de `!inner` para garantizar la integridad de los datos mostrados.
+
+    - **Habilidad**: Ingeniería de datos para obtener JSONs limpios y optimizar el rendimiento del frontend.
+
+3. **Robustez en JavaScript (ES6+)**
+
+    - **Gestión Asíncrona**: Uso avanzado de `async/await` con bloques `try...catch` en todas las interacciones críticas.
+
+    - **Estándares de Codificación**: Uso estratégico de `function` para declaraciones globales y `arrow functions` para lógica interna y preservación de contexto.
+
+4. **UX Avanzada y Responsive Design**
+
+    - **Iconografía en CSS**: Uso de Data URIs (SVG) directamente en el CSS para una carga instantánea.
+
+    - **Dynamic Viewport**: Uso de unidades dvh para asegurar una visualización perfecta en navegadores móviles modernos.
+
+    - **Theming Dinámico**: Sistema de cambio de tema (Light/Dark) persistente y reactivo.
 
 ## 🎨 Uso y Experiencia de Usuario (UX)
 
-La UX está regida por el principio de **"La información es la interfaz"**, siguiendo el **Estilo Harvard** de currículum:
+La UX está regida por el principio de **"La información es la interfaz"**:
 
-- **Diseño Centrado en la Legibilidad (Typography-First)**: La experiencia de uso se enfoca en el escaneo visual. Se utiliza una jerarquía tipográfica rigurosa (Google Fonts) donde los cargos, fechas y empresas tienen pesos visuales distintos para facilitar la lectura rápida en menos de 10 segundos.
+- **Diseño Centrado en la Legibilidad**: Jerarquía tipográfica rigurosa que permite el escaneo visual en menos de 10 segundos.
 
-- **Minimalismo Funcional y Estética Profesional**: A diferencia de otros sitios con efectos distractores, este utiliza una paleta de colores sobria y mucho espacio en blanco. El uso de la metodología **CSS BEM** garantiza que la interfaz sea consistente y que no haya errores de renderizado que afecten la percepción de profesionalismo.
+- **Gestión de Errores Profesional**: Interfaz dedicada para estados de error, permitiendo al usuario reintentar la carga de forma amigable y responsive.
 
-- **Arquitectura Mobile-First / Responsive**: El sitio está diseñado para ser consultado "en movimiento". En dispositivos móviles, la navegación se reestructura para que los bloques de experiencia se apilen verticalmente sin perder la jerarquía, asegurando que un reclutador pueda leer el perfil cómodamente desde un teléfono.
-
-- **Rendimiento y Velocidad de Respuesta**: Al estar construido con tecnologías nativas (HTML, CSS y JS puro sin pesados frameworks), la carga es prácticamente instantánea. Esto mejora la UX al eliminar la fricción de espera, proyectando una imagen de eficiencia técnica.
-
-- **Compatibilidad Invisible (ATS-Friendly Design)**: Aunque es un sitio web, su estructura está "codificada" para que si un software de reclutamiento intentara procesar el texto, este sea extraíble y lógico, lo cual es una funcionalidad de UX orientada no solo al humano, sino al proceso de selección moderno.
+- **Arquitectura Mobile-First**: El sitio está diseñado para ser consultado "en movimiento", adaptando los bloques de experiencia sin perder jerarquía.
 
 ## 🧭 Navegación y Funcionalidades
 
-El sitio no se comporta como una página web comercial, sino como un documento dinámico. Su navegación está diseñada para la eficiencia extrema de un reclutador:
+- **Selector de Idioma (Dual-Language Toggle)**: Alternancia instantánea entre Español e Inglés mediante manipulación del DOM sin recarga de página.
 
-- **Selector de Idioma (Dual-Language Toggle)**: Una de las funcionalidades críticas es la capacidad de alternar instantáneamente entre **Español e Inglés**. Esta implementación mediante JavaScript permite cambiar el contenido de todo el CV sin recargar la página, manteniendo la posición del usuario en el documento.
+- **Sistema de Temas**: Soporte nativo para modo claro y oscuro basado en preferencias del sistema o elección del usuario.
 
-- **Sistema de Visualización y Descarga (PDF Integration)**: El sitio actúa como un puente hacia la documentación física. Incluye botones específicos para:
-
-    - **Visualización Directa**: Abre el CV en una capa del navegador para lectura rápida.
-
-    - **Descarga Estándar**: Acceso al archivo PDF optimizado para sistemas ATS (Applicant Tracking Systems).
-
-- **Navegación por Anclajes Semánticos**: En lugar de un menú complejo, utiliza un esquema de navegación interna que permite saltar entre los bloques modulares de **Experiencia, Educación, Certificaciones y Habilidades**. Esto se logra mediante una estructura de HTML5 semántico que guía tanto al usuario como a los lectores de pantalla.
-
-- **Enlaces de Referencia Externa**: Integración funcional con perfiles profesionales (LinkedIn) y repositorios de código (GitHub), permitiendo que la navegación se extienda hacia la validación técnica de las habilidades mencionadas.
+- **Navegación por Anclajes Semánticos**: Estructura de HTML5 que guía tanto al usuario como a lectores de pantalla y sistemas ATS.
 
 ## 💻 Instalación y Configuración Local
 
@@ -70,24 +102,28 @@ Si deseas revisar la estructura del código o realizar pruebas en un entorno loc
     cd curriculum
     ```
 3.  **Ejecución:**
-    Abre el archivo `index.html` empleando el plugin **Live Server** en VS Code para visualizar los cambios instantáneamente.
+    Abre el archivo `index.html` empleando el plugin **Live Server** en VS Code. instantáneamente.
 
 ## 🗺️ Roadmap de Actualizaciones
 
-- [x] Lanzamiento del dominio personalizado para el CV.
+- [x] Lanzamiento del dominio personalizado.
+
 - [x] Optimización de la versión móvil.
-- [X] Implementación de soporte multi-idioma (Español/Inglés).
-- [ ] Refactorizar proyecto para escalabilidad y API.
+
+- [x] Implementación de soporte multi-idioma.
+
+- [x] Refactorización modular y escalabilidad (MVC).
+
 - [ ] Integración de un sistema de generación de PDF dinámico.
 
 ## ⚖️ Licencia
 
-Este proyecto está bajo la Licencia **MIT**. Siéntete libre de explorar el código, pero recuerda que el contenido personal y la trayectoria profesional son propiedad intelectual de **José Azócar**.
+Este proyecto está bajo la Licencia **MIT**. El contenido personal y la trayectoria profesional son propiedad intelectual de **José Azócar**.
 
 ---
 
 <div align="right">
-  <strong>José Antonio Azócar Marcano</strong><br>
-  Ing. Informático | Consultor I&O: Infraestructura y Ops.<br>
-  <a href="https://github.com/azocarone">@azocarone</a>
+    <strong>José Antonio Azócar Marcano</strong><br>
+    Ing. Informático | Consultor I&O: Infraestructura y Ops.<br>
+    <a href="https://github.com/azocarone">@azocarone</a>
 </div>
