@@ -1,3 +1,7 @@
 .vscode
 assets/pdf/_private
 doc
+.env
+node_modules/
+dist/
+
