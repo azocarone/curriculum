@@ -1,5 +1,5 @@
-import { setupLanguage } from './contentService.js';
-import { toggleTheme } from './themeService.js';
+import { loadAndRenderData } from '../services/content-service.js';
+import { toggleTheme } from '../services/theme-service.js';
 
 export function setupNavListeners() {
     const navContainer = document.getElementById("nav");
@@ -14,7 +14,7 @@ export function setupNavListeners() {
         if (languageToggle) {
             event.preventDefault();
             const targetLanguage = languageToggle.dataset.lang;;
-            await setupLanguage(targetLanguage);
+            await loadAndRenderData(targetLanguage);
             menuToggle.checked = false;
             return;
         }

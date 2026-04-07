@@ -1,15 +1,22 @@
-import { setupLanguage } from './content-service.js';
-import { setupNavListeners } from './nav-controller.js';
+import { loadAndRenderData } from './services/content-service.js';
+import { setupNavListeners } from './controllers/nav-controller.js';
 import { renderError } from './ui/components.js';
+import { getInitialLanguage } from './utils/lang-utils.js';
+import { applyInitialTheme } from './services/theme-service.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
-        const detectedLang = navigator.language.slice(0, 2);
-        const lang = ['es', 'en'].includes(detectedLang) ? detectedLang : 'es';
+        const lang = getInitialLanguage();
 
-        await setupLanguage(lang);
+        // Aplica el tema guardado o preferencia del sistema
+        applyInitialTheme();
 
+        // Carga los datos iniciales
+        await loadAndRenderData(lang);
+
+        // Activa los controles de la interfaz
         setupNavListeners();
+        
     } catch (error) {
         console.error("Fallo crítico en la aplicación:", error);
         renderError(error.message);
