@@ -8,7 +8,7 @@ export const getNavContent = (lang) => {
     
     return [
         {
-            href: `./assets/pdf/cv-jose-azocar-${lang}.pdf`,
+            href: new URL(`/assets/pdf/cv-jose-azocar-${lang}.pdf`, import.meta.url).href,
             download: true,
             icon: "fa-solid fa-file-pdf",
             label: t.download
