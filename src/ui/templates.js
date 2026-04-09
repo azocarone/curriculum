@@ -2,7 +2,7 @@ import { formatCVDateRange } from '../utils/date-formatters.js';
 import { getContactUrl } from '../utils/contact-helpers.js';
 
 export function createContactItem(key, label, content, sensitiveText) {
-    const isSensitive = key === 'email' || key === 'phone';
+    const isSensitive = key === 'phone' || key === 'email';
     const href = getContactUrl(key, content);
     const extraClass = isSensitive ? "js-contact-sensitive" : "";
     const dataAttr = isSensitive ? `data-encoded="${btoa(content)}" data-type="${key}"` : "";

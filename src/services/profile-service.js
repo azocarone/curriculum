@@ -5,7 +5,7 @@ const supabaseClient = supabase.createClient(ENV.SUPABASE_URL, ENV.SUPABASE_KEY)
 export const profileService = {
     async fetchFullProfile(lang = ENV.DEFAULT_LANG) {
         const { data, error } = await supabaseClient
-            .from('profiles')
+            .from('v_profiles_public')
             .select(`
                 *,
                 profiles_translations!inner(*),

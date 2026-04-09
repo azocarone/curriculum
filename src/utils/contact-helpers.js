@@ -11,8 +11,8 @@ export function prepareContactFields(profile, trans, LABELS, lang) {
 export function getContactUrl(key, value) {
     const templates = {
         location: (v) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(v)}`,
-        email: () => `javascript:void(0)`,
         phone: () => `javascript:void(0)`,
+        email: () => `javascript:void(0)`,
         website: (v) => `https://${v.replace(/^https?:\/\//, '')}`,
     };
     return templates[key] ? templates[key](value) : "#";
@@ -27,11 +27,11 @@ export function initContactListeners(container) {
         const decodedData = atob(sensitiveLink.getAttribute("data-encoded"));
         const type = sensitiveLink.getAttribute("data-type");
 
-        if (type === "email") {
-            window.location.href = `mailto:${decodedData}`;
-        } else if (type === "phone") {
+        if (type === "phone") {
             const cleanPhone = decodedData.replace(/\D/g, "");
             window.location.href = `https://wa.me/${cleanPhone}`;
+        } else if (type === "email") {
+            window.location.href = `mailto:${decodedData}`;
         }
     });
 }
