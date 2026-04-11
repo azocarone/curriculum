@@ -5,7 +5,7 @@ export function createContactItem(key, label, content, sensitiveText) {
     const isSensitive = key === 'phone' || key === 'email';
     const href = getContactUrl(key, content);
     const extraClass = isSensitive ? "js-contact-sensitive" : "";
-    const dataAttr = isSensitive ? `data-encoded="${btoa(content)}" data-type="${key}"` : "";
+    const dataAttr = isSensitive ? `data-masked="${content}" data-type="${key}"` : "";
     
     const display = isSensitive 
         ? `<span class="header__contact-content header__contact-content--screen">${sensitiveText}</span>

@@ -24,14 +24,14 @@ export function initContactListeners(container) {
         if (!sensitiveLink) return;
 
         event.preventDefault();
-        const decodedData = atob(sensitiveLink.getAttribute("data-encoded"));
+        const unMaskedData = sensitiveLink.getAttribute("data-masked");
         const type = sensitiveLink.getAttribute("data-type");
 
         if (type === "phone") {
-            const cleanPhone = decodedData.replace(/\D/g, "");
+            const cleanPhone = unMaskedData.replace(/\D/g, "");
             window.location.href = `https://wa.me/${cleanPhone}`;
         } else if (type === "email") {
-            window.location.href = `mailto:${decodedData}`;
+            window.location.href = `mailto:${unMaskedData}`;
         }
     });
 }

@@ -1,4 +1,4 @@
-import { CV } from '../ui/cv-render.js';
+import { CV } from '../ui/profile-render.js';
 import { renderNavbar, renderFooter } from '../ui/components.js';
 
 export function refreshAppContent(profileData, lang) {
