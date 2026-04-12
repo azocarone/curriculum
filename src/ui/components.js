@@ -1,5 +1,12 @@
 import { getNavContent } from '../data/nav-config.js';
 
+// Aplica target="_blank" solo a enlaces reales (no '#' o vacíos)
+const externalLink = (href) => 
+    (href && href !== "#") ? 'target="_blank" rel="noopener noreferrer"' : "";
+
+// Genera atributos HTML solo si tienen valor
+const attr = (key, value) => (value ? `${key}="${value}"` : "");
+
 export function renderError(errorType) {
     document.body.innerHTML = `
         <div class="error-screen">
@@ -23,18 +30,19 @@ export function renderNavbar(lang) {
     const headerNav = document.getElementById("nav");
     const itemsNav = getNavContent(lang);
 
-    const navHTML = itemsNav.map(item => `
+    const navHTML = itemsNav.map(({ href, id, action, lang: itemLang, icon, label }) => `
         <li class="header__nav-item">
             <a class="header__nav-link"
-                href="${item.href}" target="_blank" rel="noopener noreferrer"
-                ${item.download ? 'data-download="true"' : ""}
-                ${item.id ? `id="${item.id}"` : ""}
-                ${item.lang ? `data-lang="${item.lang}"` : ""}>
-                <i class="${item.icon}"></i>${item.label}
+                href="${href}"
+                ${externalLink(href)}
+                ${attr('id', id)}
+                ${attr('data-action', action)}
+                ${attr('data-lang', itemLang)}>
+                <i class="${icon}"></i> ${label}
             </a>
         </li>
     `).join("");
- 
+
     headerNav.innerHTML = `
         <input class="header__nav-toggle" type="checkbox" id="menu-toggle" />
         <label for="menu-toggle" class="header__nav-icon">

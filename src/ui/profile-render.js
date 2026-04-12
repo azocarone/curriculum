@@ -16,7 +16,7 @@ export const CV = {
             .join("");
 
         headerContact.innerHTML = `
-            <h1 class="header__name">${profile.full_name}</h1>
+            <h1 class="header__name" id="full_name">${profile.full_name}</h1>
             <address class="header__contact-address">${htmlContent}</address>
         `;
 

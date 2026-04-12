@@ -24,6 +24,7 @@ export function initContactListeners(container) {
         if (!sensitiveLink) return;
 
         event.preventDefault();
+        // Aquí se debe implementar la función de bases de datos (RPC)
         const unMaskedData = sensitiveLink.getAttribute("data-masked");
         const type = sensitiveLink.getAttribute("data-type");
 

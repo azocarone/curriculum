@@ -1,52 +1,77 @@
-import { loadAndRenderData } from '../services/content-service.js';
+import { downloadPDF } from '../utils/download-pdf-file.js';
 import { toggleTheme } from '../services/theme-service.js';
+import { loadAndRenderData } from '../services/content-service.js';
 import { renderError } from '../ui/components.js';
 
-export function setupNavListeners() {
+export function setupNavListeners(initialLang = "es") {
+    let currentLang = initialLang;
+
     const navContainer = document.getElementById("nav");
+    const getToggle = () => document.getElementById("menu-toggle");
 
-    document.addEventListener('click', async (event) => {
-        // El menú no existe o ya está cerrado, no hacemos nada.
-        const menuToggle = document.getElementById("menu-toggle");
-        if (!menuToggle || !menuToggle.checked) return;
+    const closeMenu = () => {
+        const toggle = getToggle();
+        if (toggle) toggle.checked = false;
+    };
 
-        // Gestión de cambio de idioma.
-        const languageToggle = event.target.closest("[data-lang]");
-        if (languageToggle) {
-            event.preventDefault();
-            const targetLanguage = languageToggle.dataset.lang;;
-            
+    const actions = {
+        download: (el, e) => {
+            // Si es un link de JS (href=#), se ejecut la función
+            if (el.getAttribute('href') === '#') {
+                e.preventDefault();
+                downloadPDF(currentLang);
+            }
+            // En cualquier caso (link real o función), se cierra el menú
+            closeMenu();
+        },
+        theme: (el, e) => {
+            e.preventDefault();
+            toggleTheme();
+            // closeMenu(); // Descomentar para cerrar al cambiar el tema
+        },
+        lang: async (el, e) => {
+            e.preventDefault();
+
+            const newLang = el.dataset.lang;
+
             try {
-                await loadAndRenderData(targetLanguage);
-                menuToggle.checked = false;
+                await loadAndRenderData(newLang);
+                currentLang = newLang; // Solo se actualiza si la carga fue exitosa
+                closeMenu();
             } catch (error) {
-                console.error("Fallo crítico en la aplicación:", error);
+                console.error("Fallo en cambio de idioma:", error);
                 renderError(error.message);
             }
-            return;
+        },
+        nav: () => {
+            // Acción para links externos: solo cerrar el menú
+            // El navegador se encarga de abrir la URL por el target="_blank"
+            closeMenu();
+        }
+    };
+
+    document.addEventListener('click', async (e) => {
+        const menuToggle = getToggle();
+        if (!menuToggle?.checked) return;
+
+        // Buscar si el clic fue en un elemento con data-action
+        const actionEl = e.target.closest('[data-action]');
+        const actionName = actionEl?.dataset.action;
+
+        // Si hay una acción definida, la ejecutara
+        if (actionName && actions[actionName]) {
+            return await actions[actionName](actionEl, e);
         }
 
-        // Cambio de Tema (por ID)
-        const themeToggle = event.target.closest('#theme-toggle');
-        if (themeToggle) {
-            event.preventDefault();
-            toggleTheme();
-            // menuToggle.checked = false;
-            return;
-        }
+        // Si no hay acción pero es un link normal o clic fuera, cerrar
+        const isNavLink = e.target.closest(".header__nav-link");
+        const isOutside = !navContainer.contains(e.target);
 
-        // Gestión de cierre (clic en link o clic fuera de menu).
-        const isNavLink = event.target.closest(".header__nav-link");
-        const isOutside = !navContainer.contains(event.target);
-    
-        if (isNavLink || isOutside) menuToggle.checked = false;
-    });
+        if (isNavLink || isOutside) closeMenu();
+    })
 
-    // Cerrar menu con la tecla Escape
-    document.addEventListener('keydown', (event) => {
-        if (event.key === 'Escape') {
-            const menuToggle = document.getElementById("menu-toggle");
-            if (menuToggle) menuToggle.checked = false;
-        }
-    });
+    // Cerrar con Escape
+    document.addEventListener('keydown', (e) => {
+        if (e.key === 'Escape') closeMenu();
+    })
 }

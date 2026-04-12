@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         await loadAndRenderData(lang);
 
-        setupNavListeners();
+        setupNavListeners(lang);
         
     } catch (error) {
         console.error("Fallo crítico en la aplicación:", error);

@@ -1,6 +1,6 @@
 const NAV_LABELS = {
-    es: { download: "Descargar", lang: "Inglés", langCode: "en", portfolio: "Portafolio", theme: "Tema" },
-    en: { download: "Download", lang: "Spanish", langCode: "es", portfolio: "Portfolio", theme: "Theme" }
+    es: { portfolio: "Portafolio", download: "Descargar", theme: "Tema", lang: "Inglés", langCode: "en" },
+    en: { portfolio: "Portfolio", download: "Download", theme: "Theme", lang: "Spanish", langCode: "es" }
 };
 
 export const getNavContent = (lang) => {
@@ -8,28 +8,32 @@ export const getNavContent = (lang) => {
     
     return [
         {
-            href: new URL(`/assets/pdf/cv-jose-azocar-${lang}.pdf`, import.meta.url).href,
-            download: true,
+            href: "https://joseazocar.pro",
+            action: "nav", // Acción simple: navegar y cerrar menú
+            icon: "fa-solid fa-suitcase",
+            label: t.portfolio
+        },
+        {
+            href: "#", // O la URL del PDF para descarga nativa
+            id: "download-toggle",
+            action: "download",
             icon: "fa-solid fa-file-pdf",
             label: t.download
         },
         {
             href: "#",
-            id: "language-toggle",
-            icon: "fa-solid fa-language",
-            label: t.lang,
-            lang: t.langCode
-        },
-        {
-            href: "https://joseazocar.pro",
-            icon: "fa-solid fa-suitcase",
-            label: t.portfolio
+            id: "theme-toggle",
+            action: "theme",
+            icon: "fa-solid fa-circle-half-stroke",
+            label: t.theme
         },
         {
             href: "#",
-            id: "theme-toggle",
-            icon: "fa-solid fa-circle-half-stroke",
-            label: t.theme
+            id: "language-toggle",
+            action: "lang",
+            icon: "fa-solid fa-language",
+            label: t.lang,
+            lang: t.langCode
         }
-    ];
-};
+    ]
+}

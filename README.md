@@ -114,7 +114,7 @@ Si deseas revisar la estructura del código o realizar pruebas en un entorno loc
 
 - [x] Refactorización modular y escalabilidad (MVC).
 
-- [ ] Integración de un sistema de generación de PDF dinámico.
+- [X] Integración de un sistema de generación de PDF dinámico.
 
 ## ⚖️ Licencia
 
