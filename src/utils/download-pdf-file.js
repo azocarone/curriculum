@@ -1,13 +1,24 @@
 import { generatePDFName } from "../services/pdf-filename-service.js";
 
 export function downloadPDF(lang) {
-    const headerName = document.getElementById("full_name").textContent;
-    const documentTitle = document.title;
-    const fileName = generatePDFName(headerName, lang);
- 
-    document.title = fileName;
+    let originalTitle = document.title;
+    
+    try {
+        const element = document.getElementById("full_name");
+        if (!element) throw new Error("No se encontró el elemento full_name");
 
-    window.print();
+        const fileName = generatePDFName(element.textContent, lang);
+        document.title = fileName;
 
-    document.title = documentTitle;
+        // Promesa para envolver el proceso y hacerlo más "limpio"
+        setTimeout(() => {
+            window.print();
+            // Restaurar después de que se abra el cuadro de diálogo
+            document.title = originalTitle;
+        }, 100);
+
+    } catch (error) {
+        console.error("Error al generar PDF:", error);
+        document.title = originalTitle; // Asegurar restauración en caso de fallo
+    }
 }
