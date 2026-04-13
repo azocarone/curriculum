@@ -1,6 +1,7 @@
+import { createClient } from '@supabase/supabase-js'
 import { ENV } from '../data/env-config.js';
 
-const supabaseClient = supabase.createClient(ENV.SUPABASE_URL, ENV.SUPABASE_KEY);
+const supabaseClient = createClient(ENV.SUPABASE_URL, ENV.SUPABASE_KEY);
 
 export const profileService = {
     async fetchFullProfile(lang = ENV.DEFAULT_LANG) {
