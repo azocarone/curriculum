@@ -7,7 +7,6 @@ const STOPWORDS = new Set(["de", "del", "la", "las", "los", "y"]);
  * cv-{nombre}-{apellido}-{lang}-{timestamp}-{hash}.pdf
  */
 export function generatePDFName(texto, lang = "es") {
-    console.log(texto);
     const safeLang = ["es", "en"].includes(lang) ? lang : "es";
 
     const parts = normalizeText(texto);
