@@ -2,8 +2,19 @@ import { supabase } from '../utils/supabase-client.js';
 import { ENV } from '../data/env-config.js';
 
 export const profileService = {
-    async fetchFullProfile(identifier = ENV.DEFAULT_PROFILE_ID, lang = ENV.DEFAULT_LANG) {
-        const { data, error } = await supabase
+    // Rutas que necesitan traducción como una "constante de configuración" interna
+    _TRANSLATABLE_PATHS: [
+        'profiles_translations',
+        'summaries.summaries_translations',
+        'experiences.experiences_translations',
+        'experiences.responsibilities.responsibilities_translations',
+        'education.education_translations',
+        'skills.skill_translations'
+    ],
+
+    async fetchFullProfile(identifier, lang = ENV.DEFAULT_LANG) {
+        // Iniciación de la query
+        let query = supabase
             .from('v_profiles_public')
             .select(`
                 *,
@@ -25,22 +36,21 @@ export const profileService = {
                     skill_types!inner(slug)
                 )
             `)
-            .eq('id', identifier)
-            .eq('profiles_translations.language_code', lang)
-            .eq('summaries.summaries_translations.language_code', lang)
-            .eq('experiences.experiences_translations.language_code', lang)
-            .eq('experiences.responsibilities.responsibilities_translations.language_code', lang)
-            .eq('education.education_translations.language_code', lang)
-            .eq('skills.skill_translations.language_code', lang)
+            .eq('id', identifier);
+
+        // Aplicación de los filtros de idioma dinámicamente
+        query = this._applyLanguageFilters(query, lang);
+
+        // Aplicación de los filtros de estado y ordenamiento
+        const { data, error } = await query
             .eq('experiences.is_active', true)
             .eq('education.is_active', true)
             .order('start_date', { foreignTable: 'experiences', ascending: false })
             .order('end_date', { foreignTable: 'education', ascending: false, nullsFirst: true })
             .single();
 
-        if (error) throw new Error(`Error al recuperar el perfil: ${error.message}`);
+        if (error) throw new Error(`Error en el servicio: ${error.message}`);
 
-        // Transformamos los datos antes de enviarlos al controlador
         return {
             ...data,
             educationGroups: this._groupItems(data.education, 'education_types'),
@@ -49,9 +59,15 @@ export const profileService = {
     },
 
     /**
-     * Agrupa elementos dinámicamente según un slug de categoría.
-     * Útil para separar habilidades (frontend/backend) o grados académicos.
+     * Aplica el filtro de código de idioma a todas las rutas definidas.
      */
+    _applyLanguageFilters(query, lang) {
+        this._TRANSLATABLE_PATHS.forEach(path => {
+            query = query.eq(`${path}.language_code`, lang);
+        });
+        return query;
+    },
+
     _groupItems(list, typeKey) {
         if (!list) return {};
         return list.reduce((acc, item) => {
