@@ -12,7 +12,7 @@ export const profileService = {
         'skills.skill_translations'
     ],
 
-    async fetchFullProfile(identifier, lang = ENV.DEFAULT_LANG) {
+    async fetchFullProfile(identifier = ENV.DEFAULT_PROFILE_ID, lang = ENV.DEFAULT_LANG) {
         // Iniciación de la query
         let query = supabase
             .from('v_profiles_public')
@@ -49,12 +49,12 @@ export const profileService = {
             .order('end_date', { foreignTable: 'education', ascending: false, nullsFirst: true })
             .single();
 
-        if (error) throw new Error(`Error en el servicio: ${error.message}`);
+        if (error) throw new Error(`Error al recuperar el perfil: ${error.message}`);
 
         return {
             ...data,
-            educationGroups: this._groupItems(data.education, 'education_types'),
-            skillGroups: this._groupItems(data.skills, 'skill_types')
+            educationGroups: this._groupItems(data.education || [], 'education_types'),
+            skillGroups: this._groupItems(data.skills || [], 'skill_types')
         };
     },
 
