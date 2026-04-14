@@ -1,13 +1,10 @@
 import { generatePDFName } from "../services/pdf-filename-service.js";
 
-export function downloadPDF(lang) {
+export function downloadPDF(full_name, lang) {
     let originalTitle = document.title;
     
     try {
-        const element = document.getElementById("full_name");
-        if (!element) throw new Error("No se encontró el elemento full_name");
-
-        const fileName = generatePDFName(element.textContent, lang);
+        const fileName = generatePDFName(full_name, lang);
         document.title = fileName;
 
         // Promesa para envolver el proceso y hacerlo más "limpio"

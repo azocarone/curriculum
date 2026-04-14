@@ -1,7 +1,7 @@
 import { CV } from '../ui/profile-render.js';
 import { renderNavbar, renderFooter } from '../ui/components.js';
 
-export function refreshAppContent(profileData, lang) {
+export function refreshContent(profileData, lang) {
     const profileTranslation = profileData.profiles_translations?.[0];
     const summaryTranslation = profileData.summaries?.[0]?.summaries_translations?.[0];
 

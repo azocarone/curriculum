@@ -1,11 +1,9 @@
-import { createClient } from '@supabase/supabase-js'
+import { supabase } from '../utils/supabase-client.js';
 import { ENV } from '../data/env-config.js';
 
-const supabaseClient = createClient(ENV.SUPABASE_URL, ENV.SUPABASE_KEY);
-
 export const profileService = {
-    async fetchFullProfile(lang = ENV.DEFAULT_LANG) {
-        const { data, error } = await supabaseClient
+    async fetchFullProfile(identifier = ENV.DEFAULT_PROFILE_ID, lang = ENV.DEFAULT_LANG) {
+        const { data, error } = await supabase
             .from('v_profiles_public')
             .select(`
                 *,
@@ -27,6 +25,7 @@ export const profileService = {
                     skill_types!inner(slug)
                 )
             `)
+            .eq('id', identifier)
             .eq('profiles_translations.language_code', lang)
             .eq('summaries.summaries_translations.language_code', lang)
             .eq('experiences.experiences_translations.language_code', lang)
@@ -35,28 +34,24 @@ export const profileService = {
             .eq('skills.skill_translations.language_code', lang)
             .eq('experiences.is_active', true)
             .eq('education.is_active', true)
-            .order('start_date', { 
-                foreignTable: 'experiences', 
-                ascending: false 
-            })
-            .order('end_date', { 
-                foreignTable: 'education', 
-                ascending: false, 
-                nullsFirst: true 
-            });
+            .order('start_date', { foreignTable: 'experiences', ascending: false })
+            .order('end_date', { foreignTable: 'education', ascending: false, nullsFirst: true })
+            .single();
 
-        if (error) throw new Error(error.message);
+        if (error) throw new Error(`Error al recuperar el perfil: ${error.message}`);
 
-        const profile = data[0];
-
-        // Retorna el perfil con los datos agrupados por el "SLUG".
+        // Transformamos los datos antes de enviarlos al controlador
         return {
-            ...profile,
-            educationGroups: this._groupItems(profile.education, 'education_types'),
-            skillGroups: this._groupItems(profile.skills, 'skill_types')
+            ...data,
+            educationGroups: this._groupItems(data.education, 'education_types'),
+            skillGroups: this._groupItems(data.skills, 'skill_types')
         };
     },
 
+    /**
+     * Agrupa elementos dinámicamente según un slug de categoría.
+     * Útil para separar habilidades (frontend/backend) o grados académicos.
+     */
     _groupItems(list, typeKey) {
         if (!list) return {};
         return list.reduce((acc, item) => {

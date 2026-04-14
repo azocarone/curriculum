@@ -1,9 +1,10 @@
 import { downloadPDF } from '../utils/download-pdf-file.js';
 import { toggleTheme } from '../services/theme-service.js';
-import { loadAndRenderData } from '../services/content-service.js';
+import { getProfileData } from '../services/content-service.js';
+import { refreshContent } from './render-controller.js';
 import { renderError } from '../ui/components.js';
 
-export function setupNavListeners(initialLang = "es") {
+export function setupNavListeners({ id, full_name } = {}, initialLang = "es") {
     let currentLang = initialLang;
 
     const navContainer = document.getElementById("nav");
@@ -19,7 +20,7 @@ export function setupNavListeners(initialLang = "es") {
             // Si es un link de JS (href=#), se ejecut la función
             if (el.getAttribute('href') === '#') {
                 e.preventDefault();
-                downloadPDF(currentLang);
+                downloadPDF(full_name, currentLang);
             }
             // En cualquier caso (link real o función), se cierra el menú
             closeMenu();
@@ -35,8 +36,9 @@ export function setupNavListeners(initialLang = "es") {
             const newLang = el.dataset.lang;
 
             try {
-                await loadAndRenderData(newLang);
+                const profileData = await getProfileData(id, newLang);
                 currentLang = newLang; // Solo se actualiza si la carga fue exitosa
+                refreshContent(profileData, currentLang);
                 closeMenu();
             } catch (error) {
                 console.error("Fallo en cambio de idioma:", error);
