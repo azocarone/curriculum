@@ -1,40 +1,41 @@
 {
-  "name": "curriculum",
-  "version": "1.0.0",
-  "description": "Este repositorio contiene el código fuente de mi currículum profesional, una plataforma diseñada para ofrecer una experiencia de lectura técnica, eficiente y bilingüe, ahora evolucionada hacia una **arquitectura modular escalable**.",
-  "main": "index.js",
-  "directories": {
-    "doc": "doc"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "dev": "vite",
-    "build": "vite build",
-    "preview": "vite preview"
-  },
-  "repository": {
-    "type": "git",
-    "url": "git@github-azocarone:azocarone/curriculum.git"
-  },
-  "keywords": [],
-  "author": "",
-  "license": "ISC",
-  "type": "commonjs",
-  "devDependencies": {
-    "vite": "^8.0.7"
-  },
-  "dependencies": {
-    "@supabase/supabase-js": "^2.103.0",
-    "detect-libc": "^2.1.2",
-    "fdir": "^6.5.0",
-    "lightningcss": "^1.32.0",
-    "lightningcss-linux-x64-gnu": "^1.32.0",
-    "nanoid": "^3.3.11",
-    "picocolors": "^1.1.1",
-    "picomatch": "^4.0.4",
-    "postcss": "^8.5.8",
-    "rolldown": "^1.0.0-rc.13",
-    "source-map-js": "^1.2.1",
-    "tinyglobby": "^0.2.15"
-  }
+    "name": "curriculum",
+    "version": "1.0.0",
+    "description": "Este repositorio contiene el código fuente de mi currículum profesional, una plataforma diseñada para ofrecer una experiencia de lectura técnica, eficiente y bilingüe, ahora evolucionada hacia una **arquitectura modular escalable**.",
+    "main": "index.js",
+    "directories": {
+        "doc": "doc"
+    },
+    "scripts": {
+        "test": "echo \"Error: no test specified\" && exit 1",
+        "dev": "vite",
+        "build": "vite build",
+        "preview": "vite preview",
+        "sync:aliases": "node generate-jsconfig.js"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git@github-azocarone:azocarone/curriculum.git"
+    },
+    "keywords": [],
+    "author": "",
+    "license": "ISC",
+    "type": "module",
+    "devDependencies": {
+        "vite": "^8.0.7"
+    },
+    "dependencies": {
+        "@supabase/supabase-js": "^2.103.0",
+        "detect-libc": "^2.1.2",
+        "fdir": "^6.5.0",
+        "lightningcss": "^1.32.0",
+        "lightningcss-linux-x64-gnu": "^1.32.0",
+        "nanoid": "^3.3.11",
+        "picocolors": "^1.1.1",
+        "picomatch": "^4.0.4",
+        "postcss": "^8.5.8",
+        "rolldown": "^1.0.0-rc.13",
+        "source-map-js": "^1.2.1",
+        "tinyglobby": "^0.2.15"
+    }
 }

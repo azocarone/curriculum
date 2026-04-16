@@ -1,5 +1,6 @@
 import { supabase } from '@/utils/supabase-client.js';
 import { ENV } from '@/data/env-config.js';
+import { groupItems } from '@/utils/group-items.js';
 
 export const profileServiceV1 = {
     // Rutas que necesitan traducción como una "constante de configuración" interna
@@ -12,7 +13,10 @@ export const profileServiceV1 = {
         'skills.skill_translations'
     ],
 
-    async fetchFullProfile(identifier = ENV.DEFAULT_PROFILE_ID, lang = ENV.DEFAULT_LANG) {
+    async fetchFullProfile(
+        identifier = ENV.DEFAULT_PROFILE_ID,
+        lang = ENV.DEFAULT_LANG
+    ) {
         // Iniciación de la query
         let query = supabase
             .from('v_profiles_public')
@@ -53,8 +57,8 @@ export const profileServiceV1 = {
 
         return {
             ...data,
-            educationGroups: this._groupItems(data.education || [], 'education_types'),
-            skillGroups: this._groupItems(data.skills || [], 'skill_types')
+            educationGroups: groupItems(data.education || [], 'education_types'),
+            skillGroups: groupItems(data.skills || [], 'skill_types')
         };
     },
 
@@ -64,15 +68,5 @@ export const profileServiceV1 = {
             query = query.eq(`${path}.language_code`, lang);
         });
         return query;
-    },
-
-    _groupItems(list, typeKey) {
-        if (!list) return {};
-        return list.reduce((acc, item) => {
-            const slug = item[typeKey]?.slug || 'others';
-            if (!acc[slug]) acc[slug] = [];
-            acc[slug].push(item);
-            return acc;
-        }, {});
     }
-};
+}

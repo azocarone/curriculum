@@ -1,10 +1,8 @@
 import { defineConfig } from 'vite';
-import path from 'path';
+import { aliases } from './aliases.js';
 
 export default defineConfig({
     resolve: {
-        alias: {
-            '@': path.resolve(__dirname, './src'),
-        },
+        alias: aliases,
     },
 });
