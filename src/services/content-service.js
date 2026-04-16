@@ -1,4 +1,4 @@
-import { profileService } from './profile-service.js';
+import { profileService } from '@/services/profile/index.js';
 
 export async function getProfileData(identifier, lang) {
     const profileData = await profileService.fetchFullProfile(identifier, lang);

@@ -1,7 +1,7 @@
-import { supabase } from '../utils/supabase-client.js';
-import { ENV } from '../data/env-config.js';
+import { supabase } from '@/utils/supabase-client.js';
+import { ENV } from '@/data/env-config.js';
 
-export const profileService = {
+export const profileServiceV1 = {
     // Rutas que necesitan traducción como una "constante de configuración" interna
     _TRANSLATABLE_PATHS: [
         'profiles_translations',
@@ -58,9 +58,7 @@ export const profileService = {
         };
     },
 
-    /**
-     * Aplica el filtro de código de idioma a todas las rutas definidas.
-     */
+    // Aplica el filtro de código de idioma a todas las rutas definidas.
     _applyLanguageFilters(query, lang) {
         this._TRANSLATABLE_PATHS.forEach(path => {
             query = query.eq(`${path}.language_code`, lang);
