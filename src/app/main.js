@@ -1,10 +1,10 @@
-import { ENV } from './data/env-config.js';
-import { getInitialLanguage } from './utils/lang-utils.js';
-import { applyInitialTheme } from './services/theme-service.js';
-import { getProfileData } from './services/content-service.js';
-import { refreshContent } from './controllers/render-controller.js';
-import { setupNavListeners } from './controllers/nav-controller.js';
-import { renderError } from './ui/components.js';
+import { ENV } from '@core/config/env';
+import { getInitialLanguage } from '@utils/lang-utils.js';
+import { applyInitialTheme } from '@services/theme-service.js';
+import { getProfileData } from '@services/content-service.js';
+import { refreshContent } from '@controllers/render-controller.js';
+import { setupNavListeners } from '@controllers/nav-controller.js';
+import { renderError } from '@ui/components.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {

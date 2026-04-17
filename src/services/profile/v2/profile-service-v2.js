@@ -1,5 +1,5 @@
-import { supabase } from '@/utils/supabase-client.js';
-import { ENV } from '@/data/env-config';
+import { supabase } from '@core/api/supabase-client.js';
+import { ENV } from '@core/config/env';
 import { groupItems } from '@/utils/group-items.js';
 
 export const profileServiceV2 = {

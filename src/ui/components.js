@@ -1,4 +1,4 @@
-import { getNavContent } from '../data/nav-config.js';
+import { getNavContent } from '@/core/config/navbar.js';
 
 // Aplica target="_blank" solo a enlaces reales (no '#' o vacíos)
 const externalLink = (href) => 

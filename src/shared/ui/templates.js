@@ -1,5 +1,5 @@
-import { formatCVDateRange } from '../utils/date-formatters.js';
-import { getContactUrl } from '../utils/contact-helpers.js';
+import { formatCVDateRange } from '@utils/date-formatters.js';
+import { getContactUrl } from '@shared/utils/contact-helpers';
 
 export function createContactItem(key, label, content, sensitiveText) {
     const isSensitive = key === 'phone' || key === 'email';
