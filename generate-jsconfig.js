@@ -8,13 +8,6 @@ const config = {
             '@core/*': ['./src/core/*'],
             '@modules/*': ['./src/modules/*'],
             '@shared/*': ['./src/shared/*'],
-
-            // legacy (temporal)
-            '@controllers/*': ['./src/controllers/*'],
-            '@data/*': ['./src/data/*'],
-            '@services/*': ['./src/services/*'],
-            '@ui/*': ['./src/ui/*'],
-            '@utils/*': ['./src/utils/*'],
         },
     },
 };
