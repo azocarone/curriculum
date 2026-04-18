@@ -1,4 +1,4 @@
-import { ENV } from '@core/config/env';
+import { ENV } from '@core/config/env.js';
 import { getInitialLanguage } from '@/shared/utils/lang.js';
 import { applyInitialTheme } from '@/shared/ui/theme/theme.service.js';
 import { profileService } from '@modules/profile/services/profile.service.js';

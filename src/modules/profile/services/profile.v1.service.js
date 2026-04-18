@@ -1,6 +1,6 @@
 import { supabase } from '@core/api/supabase-client.js';
-import { ENV } from '@core/config/env';
-import { groupItems } from '@/utils/group-items.js';
+import { ENV } from '@core/config/env.js';
+import { groupBy } from '@shared/domain/group-by.js';
 
 export const profileServiceV1 = {
     
@@ -58,8 +58,8 @@ export const profileServiceV1 = {
 
         return {
             ...data,
-            educationGroups: groupItems(data.education || [], 'education_types'),
-            skillGroups: groupItems(data.skills || [], 'skill_types')
+            educationGroups: groupBy(data.education || [], 'education_types'),
+            skillGroups: groupBy(data.skills || [], 'skill_types')
         };
     },
 

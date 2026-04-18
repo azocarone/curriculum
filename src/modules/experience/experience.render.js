@@ -1,5 +1,5 @@
-import * as Templates from '@shared/ui/templates';
-import { LABELS } from '@shared/i18n/labels';
+import * as Templates from '@shared/ui/templates.js';
+import { LABELS } from '@shared/i18n/labels.js';
 
 export function renderExperience(experiences, lang = "es") {
     const experienceSection = document.getElementById("experience");
