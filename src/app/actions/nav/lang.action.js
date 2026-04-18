@@ -1,6 +1,6 @@
-import { profileService } from '@modules/profile/services/profile.service';
-import { refreshContent } from '@app/controllers/render.controller';
-import { renderError } from '@shared/ui/components';
+import { profileService } from '@modules/profile/services/profile.service.js';
+import { refreshContent } from '@app/controllers/render.controller.js';
+import { renderError } from '@shared/ui/feedback/feedback.render.js';
 
 export async function langAction(ctx, el, e, closeMenu) {
     e.preventDefault();
