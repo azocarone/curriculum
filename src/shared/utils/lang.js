@@ -1,6 +1,8 @@
-export function getInitialLanguage() {
+const SUPPORTED_LANGS = ['es', 'en'];
+const DEFAULT_LANG = 'es';
+
+export function getInitialLanguage(supported = SUPPORTED_LANGS) {
     const detectedLang = navigator.language.slice(0, 2);
-    const supportedLangs = ['es', 'en'];
     
-    return supportedLangs.includes(detectedLang) ? detectedLang : 'es';
+    return supported.includes(detectedLang) ? detectedLang : DEFAULT_LANG;
 }
