@@ -1,7 +1,5 @@
 .vscode
-assets/pdf/_private
-doc
-.env
-node_modules/
 dist/
-
+doc
+node_modules/
+.env
