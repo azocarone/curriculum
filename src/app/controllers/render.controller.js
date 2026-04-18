@@ -1,5 +1,5 @@
 import * as section from '@modules';
-import { renderNavbar, renderFooter } from '../ui/components.js';
+import { renderLayout } from '@shared/ui/layout/layout.render';
 import { adaptProfileData } from '@modules/profile/model/profile.adapter';
 
 export function refreshContent(profileData, lang) {
@@ -12,7 +12,6 @@ export function refreshContent(profileData, lang) {
     section.renderEducation(data.education, lang);
     section.renderSkills(data.skills, lang);
 
-    // UI global
-    renderNavbar(lang);
-    renderFooter(data.profile.full_name, lang);
+    // Render layout global
+    renderLayout({ lang, author: data.profile.full_name });
 };

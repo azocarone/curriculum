@@ -74,6 +74,6 @@ function getTimestamp() {
 /**
  * Genera hash corto seguro
  */
-function getHash(len = 6) {
-    return crypto.randomUUID().replace(/-/g, "").slice(0, len);
+function getHash(len = 6, generator = crypto.randomUUID) {
+    return generator().replace(/-/g, "").slice(0, len);
 }

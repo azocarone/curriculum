@@ -1,4 +1,4 @@
-import { generatePDFName } from "../services/pdf-filename-service.js";
+import { generatePDFName } from '@shared/utils/pdf-filename';
 
 export function downloadPDF(full_name, lang) {
     let originalTitle = document.title;
