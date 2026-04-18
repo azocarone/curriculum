@@ -1,10 +1,10 @@
 import { ENV } from '@core/config/env';
-import { getInitialLanguage } from '@utils/lang-utils.js';
+import { getInitialLanguage } from '@/shared/utils/lang.js';
 import { applyInitialTheme } from '@/shared/ui/theme/theme.service.js';
-import { profileService } from '@modules/profile/services/profile.service';
+import { profileService } from '@modules/profile/services/profile.service.js';
 import { refreshContent } from '@/app/controllers/render.controller.js';
 import { setupNavListeners } from '@/app/controllers/nav.controller.js';
-import { renderError } from '@shared/ui/feedback/feedback.render';
+import { renderError } from '@shared/ui/feedback/feedback.render.js';
 
 document.addEventListener('DOMContentLoaded', async () => {
     try {
