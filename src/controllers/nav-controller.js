@@ -1,6 +1,6 @@
 import { downloadPDF } from '../utils/download-pdf-file.js';
 import { toggleTheme } from '../services/theme-service.js';
-import { getProfileData } from '../services/content-service.js';
+import { profileService } from '@modules/profile/services/profile.service';
 import { refreshContent } from './render-controller.js';
 import { renderError } from '../ui/components.js';
 
@@ -36,7 +36,7 @@ export function setupNavListeners({ id, full_name } = {}, initialLang = "es") {
             const newLang = el.dataset.lang;
 
             try {
-                const profileData = await getProfileData(id, newLang);
+                const profileData = await profileService.fetchFullProfile(id, newLang);
                 currentLang = newLang; // Solo se actualiza si la carga fue exitosa
                 refreshContent(profileData, currentLang);
                 closeMenu();

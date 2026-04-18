@@ -1,18 +1,18 @@
-import * as CV from '@modules';
+import * as section from '@modules';
 import { renderNavbar, renderFooter } from '../ui/components.js';
+import { adaptProfileData } from '@modules/profile/model/profile.adapter';
 
 export function refreshContent(profileData, lang) {
-    const profileTranslation = profileData.profiles_translations?.[0];
-    const summaryTranslation = profileData.summaries?.[0]?.summaries_translations?.[0];
+    const data = adaptProfileData(profileData);
 
-    // Delega el renderizado al módulo de UI específico
-    CV.renderContact(profileData, profileTranslation, lang);
-    CV.renderSummary(summaryTranslation, lang);
-    CV.renderExperience(profileData.experiences, lang);
-    CV.renderEducation(profileData.educationGroups, lang);
-    CV.renderSkills(profileData.skillGroups, lang);
+    // Render principal
+    section.renderContact(data.contact.profile, data.contact.translation, lang);
+    section.renderSummary(data.summary, lang);
+    section.renderExperience(data.experiences, lang);
+    section.renderEducation(data.education, lang);
+    section.renderSkills(data.skills, lang);
 
-    // Renderizado de componentes globales
+    // UI global
     renderNavbar(lang);
-    renderFooter(profileData.full_name, lang);
+    renderFooter(data.profile.full_name, lang);
 };

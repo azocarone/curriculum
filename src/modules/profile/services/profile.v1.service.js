@@ -3,6 +3,7 @@ import { ENV } from '@core/config/env';
 import { groupItems } from '@/utils/group-items.js';
 
 export const profileServiceV1 = {
+    
     // Rutas que necesitan traducción como una "constante de configuración" interna
     _TRANSLATABLE_PATHS: [
         'profiles_translations',
