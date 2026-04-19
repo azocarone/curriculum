@@ -11,6 +11,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         // Intentar obtener ID de la URL
         const urlParams = new URLSearchParams(window.location.search);
         const rawId = urlParams.get('id');
+        
         // Convertir a número y verificar si es válido, sino usar el del Config
         const identifier = (rawId && !isNaN(rawId)) ? parseInt(rawId) : ENV.DEFAULT_PROFILE_ID;
 
@@ -18,7 +19,6 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         applyInitialTheme();
 
-        // Usar el identificador dinámico
         const profileData = await profileService.fetchFullProfile(identifier, lang);
 
         refreshContent(profileData, lang);

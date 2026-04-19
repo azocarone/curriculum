@@ -6,10 +6,10 @@ const STOPWORDS = new Set(["de", "del", "la", "las", "los", "y"]);
  * Formato:
  * cv-{nombre}-{apellido}-{lang}-{timestamp}-{hash}.pdf
  */
-export function generatePDFName(texto, lang = "es") {
+export function generatePDFName(text, lang = "es") {
     const safeLang = ["es", "en"].includes(lang) ? lang : "es";
 
-    const parts = normalizeText(texto);
+    const parts = normalizeText(text);
 
     const { primerNombre, primerApellido } = extractNameParts(parts);
 
@@ -74,6 +74,6 @@ function getTimestamp() {
 /**
  * Genera hash corto seguro
  */
-function getHash(len = 6, generator = crypto.randomUUID) {
+function getHash(len = 6, generator = () => crypto.randomUUID()) {
     return generator().replace(/-/g, "").slice(0, len);
 }

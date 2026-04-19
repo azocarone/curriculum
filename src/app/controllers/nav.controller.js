@@ -1,3 +1,5 @@
+import { navActions } from '@app/actions/nav';
+
 export function setupNavListeners({ id, full_name } = {}, initialLang = "es") {
     let currentLang = initialLang;
 
@@ -25,8 +27,8 @@ export function setupNavListeners({ id, full_name } = {}, initialLang = "es") {
         const actionName = actionEl?.dataset.action;
 
         // Si hay una acción definida, la ejecutara
-        if (actionName && actions[actionName]) {
-            return await actions[actionName](actionEl, e);
+        if (actionName && navActions[actionName]) {
+            return await navActions[actionName](ctx, actionEl, e, closeMenu);
         }
 
         // Si no hay acción pero es un link normal o clic fuera, cerrar
