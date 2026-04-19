@@ -23,7 +23,7 @@ document.addEventListener('DOMContentLoaded', async () => {
 
         refreshContent(profileData, lang);
         setupNavListeners(profileData, lang);
-        
+
     } catch (error) {
         console.error("Fallo crítico en la aplicación:", error);
         renderError(error.message);

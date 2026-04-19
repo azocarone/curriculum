@@ -11,21 +11,24 @@ export const getNavContent = (lang) => {
             href: "https://joseazocar.pro",
             action: "nav", // Acción simple: navegar y cerrar menú
             icon: "fa-solid fa-suitcase",
-            label: t.portfolio
+            label: t.portfolio,
+            behavior: { closeMenu: true }
         },
         {
             href: "#", // O la URL del PDF para descarga nativa
             id: "download-toggle",
             action: "download",
             icon: "fa-solid fa-file-pdf",
-            label: t.download
+            label: t.download,
+            behavior: { preventDefault: true, closeMenu: true }
         },
         {
             href: "#",
             id: "theme-toggle",
             action: "theme",
             icon: "fa-solid fa-circle-half-stroke",
-            label: t.theme
+            label: t.theme,
+            behavior: { preventDefault: true, closeMenu: false }
         },
         {
             href: "#",
@@ -33,7 +36,8 @@ export const getNavContent = (lang) => {
             action: "lang",
             icon: "fa-solid fa-language",
             label: t.lang,
-            lang: t.langCode
+            lang: t.langCode,
+            behavior: { preventDefault: true, closeMenu: true }
         }
     ]
 }
