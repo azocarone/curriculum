@@ -1,6 +1,6 @@
 .vscode
 dist/
-docs/
+docs
 node_modules/
 .env
 .env.local
