@@ -1,0 +1,1 @@
+generar el listado de nuevos nombres con su respectiva numeración, todo en letras minúsculas y espacios reemplazados por guiones.
