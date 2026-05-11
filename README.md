@@ -1,124 +1,135 @@
 # 📑 Curriculum Digital - José Azócar
 
-Este repositorio contiene el código fuente de mi currículum profesional, una plataforma diseñada para ofrecer una experiencia de lectura técnica, eficiente y bilingüe, ahora evolucionada hacia una **arquitectura modular escalable**.
+### *Modular Multilingual Digital Curriculum System*
 
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+[![Stack: Vite](https://img.shields.io/badge/Frontend-Vite-646CFF?logo=vite)](https://vitejs.dev/)
+[![Backend: Supabase](https://img.shields.io/badge/Backend-Supabase-3ECF8E?logo=supabase)](https://supabase.com/)
+[![JS: ES6+](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?logo=javascript)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
 
-🚀 Explora la versión en vivo: [curriculum.joseazocar.pro](https://curriculum.joseazocar.pro)
+Este repositorio contiene el ecosistema digital de mi trayectoria profesional. No es solo un currículum estático, sino una plataforma de alto rendimiento con **arquitectura modular escalable**, diseñada para ser compatible con sistemas ATS y ofrecer una experiencia de lectura técnica bilingüe optimizada.
+
+🚀 **Versión en vivo:** [curriculum.joseazocar.pro](https://curriculum.joseazocar.pro)
 
 <div align="center">
   <img src="./assets/img/screenshot.gif" alt="Vista previa del Curriculum Vitae" width="683" height="384" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
 </div>
 
-## ✨ Características del Proyecto
+---
 
-- **Ingeniería de Marca Personal**: Evolución del CV estático a una herramienta técnica de alto rendimiento.
+## 📖 Tabla de Contenidos
 
-- **Arquitectura Profesional**: Implementación de un patrón de diseño desacoplado (MVC) para facilitar el mantenimiento.
+- [🛠 Auditoría del Stack Tecnológico](#-auditoría-del-stack-tecnológico)
+- [🏗 Arquitectura del Sistema](#-arquitectura-del-sistema)
+- [✨ Características Principales](#-características-principales)
+- [💻 Instalación y Configuración](#-instalación-y-configuración)
+- [⚙️ Variables de Entorno](#️-variables-de-entorno)
+- [🚀 Uso y Desarrollo](#-uso-y-desarrollo)
+- [🗺 Roadmap](#-roadmap)
+- [⚖️ Licencia](#️-licencia)
 
-- **Eficiencia de Lectura**: Navegación jerárquica y minimalista que prioriza la transmisión de datos sin ruido visual.
+---
 
-- **Resiliencia Técnica**: Gestión proactiva de errores y estados de carga para una experiencia de usuario sin interrupciones
+## 🛠 Auditoría del Stack Tecnológico
 
-## 🛠️ Tecnologías y Metodologías
+Se identifica el siguiente ecosistema técnico:
 
-Para este proyecto se han aplicado estándares modernos de desarrollo de software:
+- **Frontend Core**: HTML5 Semántico, CSS3 con metodología **BEM** y JavaScript moderno (ES6+).
+- **Herramientas de Construcción**: **Vite** como empaquetador para una experiencia de desarrollo rápida y gestión de aliases de rutas.
+- **Backend & Persistencia**: **Supabase (PostgreSQL)** para la gestión dinámica de datos y traducciones mediante PostgREST.
+- **Lógica de Servidor**: Implementación de **Edge Functions** de Supabase para lógica en el servidor.
+- **Distribución de Lenguajes**: Predominio de PLpgSQL (44.3%) y JavaScript (30.6%), lo que refleja una fuerte lógica de base de datos integrada.
 
-* **Frontend Core**: HTML5 Semántico, CSS3 (Flexbox/Grid), JavaScript (ES6+).
+---
 
-* **Backend & Data**: **Supabase (PostgreSQL)** para la persistencia y gestión de datos dinámicos.
+## 🏗 Arquitectura del Sistema
 
-* **Arquitectura**: Patrón modular (Controllers, Services, UI, Utils).
+El proyecto implementa un patrón **MVC (Model-View-Controller)** desacoplado para asegurar la mantenibilidad:
 
-* **Estilización**: Metodología BEM, Google Fonts, Variables CSS (Theming).
+1. **Controllers**: Orquestan el flujo de datos y los eventos del ciclo de vida de la aplicación.
+2. **Services**: Capa encargada de la comunicación con las APIs de Supabase y el almacenamiento local.
+3. **UI Modules**: Componentes puros de renderizado que transforman datos JSON en interfaces accesibles.
+4. **Utils**: Funciones auxiliares y configuración de aliases para evitar "prop drilling" y rutas relativas complejas.
 
-## 🚀 Evolución Arquitectónica y Habilidades Aplicadas
+---
 
-Recientemente, el proyecto atravesó una refactorización profunda para transformar un código monolítico en un sistema profesional. Los hitos principales incluyen:
+## ✨ Características Principales
 
-1. **Arquitectura Modular (Pattern-Based)**
+- **Dual-Language Engine**: Selector de idioma instantáneo (ES/EN) mediante manipulación reactiva del DOM sin recarga de página.
+- **Resiliencia de Datos**: Uso avanzado de `async/await` con gestión proactiva de errores y estados de carga (Loading/Error UI).
+- **Diseño de Alto Rendimiento**:
+    - **Iconografía In-line**: Uso de Data URIs (SVG) para minimizar peticiones HTTP.
+    - **Viewport Adaptativo**: Implementación de unidades `dvh` para un ajuste perfecto en navegadores móviles modernos.
+- **Theming Dinámico**: Sistema de cambio de tema (Claro/Oscuro) persistente y basado en preferencias del usuario.
 
-    Se rompió el monolito para organizar el código por su función lógica:
+---
 
-    - **Controllers**: Orquestan los eventos y el flujo de la aplicación.
+## 💻 Instalación y Configuración
 
-    - **Services**: Gestionan la comunicación con Supabase y el almacenamiento local.
+Siga estos pasos para configurar el entorno de desarrollo localmente:
 
-    - **UI Modules**: Componentes puros encargados exclusivamente del renderizado.
+1. **Clonar el repositorio:**
 
-    - **Habilidad**: Diseño de sistemas desacoplados, permitiendo cambiar el motor de datos sin afectar la interfaz.
-
-2. **Ingeniería de Datos y Consultas Relacionales**
-
-    Optimización del flujo de datos multi-idioma mediante **PostgREST**:
-
-    - **Filtros de Profundidad**: Implementación de lógica de filtrado en ramas anidadas para traducciones.
-
-    - **Joins Eficientes**: Uso de `!inner` para garantizar la integridad de los datos mostrados.
-
-    - **Habilidad**: Ingeniería de datos para obtener JSONs limpios y optimizar el rendimiento del frontend.
-
-3. **Robustez en JavaScript (ES6+)**
-
-    - **Gestión Asíncrona**: Uso avanzado de `async/await` con bloques `try...catch` en todas las interacciones críticas.
-
-    - **Estándares de Codificación**: Uso estratégico de `function` para declaraciones globales y `arrow functions` para lógica interna y preservación de contexto.
-
-4. **UX Avanzada y Responsive Design**
-
-    - **Iconografía en CSS**: Uso de Data URIs (SVG) directamente en el CSS para una carga instantánea.
-
-    - **Dynamic Viewport**: Uso de unidades dvh para asegurar una visualización perfecta en navegadores móviles modernos.
-
-    - **Theming Dinámico**: Sistema de cambio de tema (Light/Dark) persistente y reactivo.
-
-## 🎨 Uso y Experiencia de Usuario (UX)
-
-La UX está regida por el principio de **"La información es la interfaz"**:
-
-- **Diseño Centrado en la Legibilidad**: Jerarquía tipográfica rigurosa que permite el escaneo visual en menos de 10 segundos.
-
-- **Gestión de Errores Profesional**: Interfaz dedicada para estados de error, permitiendo al usuario reintentar la carga de forma amigable y responsive.
-
-- **Arquitectura Mobile-First**: El sitio está diseñado para ser consultado "en movimiento", adaptando los bloques de experiencia sin perder jerarquía.
-
-## 🧭 Navegación y Funcionalidades
-
-- **Selector de Idioma (Dual-Language Toggle)**: Alternancia instantánea entre Español e Inglés mediante manipulación del DOM sin recarga de página.
-
-- **Sistema de Temas**: Soporte nativo para modo claro y oscuro basado en preferencias del sistema o elección del usuario.
-
-- **Navegación por Anclajes Semánticos**: Estructura de HTML5 que guía tanto al usuario como a lectores de pantalla y sistemas ATS.
-
-## 💻 Instalación y Configuración Local
-
-Si deseas revisar la estructura del código o realizar pruebas en un entorno local:
-
-1.  **Clonar el repositorio:**
     ```bash
     git clone https://github.com/azocarone/curriculum.git
-    ```
-2.  **Acceder al directorio:**
-    ```bash
     cd curriculum
     ```
-3.  **Ejecución:**
-    Abre el archivo `index.html` empleando el plugin **Live Server** en VS Code. instantáneamente.
 
-## 🗺️ Roadmap de Actualizaciones
+2. **Instalar dependencias:**
+    
+    ```bash
+    npm install
+    ```
 
-- [x] Lanzamiento del dominio personalizado.
+3. **Configurar el entorno:** Cree un archivo `.env` en la raíz (ver sección de variables de entorno).
 
-- [x] Optimización de la versión móvil.
+---
 
-- [x] Implementación de soporte multi-idioma.
+## ⚙️ Variables de Entorno
 
-- [x] Refactorización modular y escalabilidad (MVC).
+Para que el sistema se comunique con la base de datos de Supabase, es necesario configurar las siguientes variables:
 
-- [X] Integración de un sistema de generación de PDF dinámico.
+| Variable                 | Descripción                         | Requerido |
+| :----------------------- | :---------------------------------- | :-------- |
+| `VITE_SUPABASE_URL`      | URL del proyecto en Supabase        | Sí        |
+| `VITE_SUPABASE_ANON_KEY` | Clave pública de la API de Supabase | Sí        |
+
+---
+
+## 🚀 Uso y Desarrollo
+
+Aunque el proyecto puede visualizarse mediante un servidor estático simple, se recomienda el flujo de trabajo profesional integrado:
+
+- **Entorno de Desarrollo:**
+    
+    ```bash
+    npm run dev
+    ```
+
+- **Construcción para Producción:**
+    
+    ```bash
+    npm run build
+    ```
+
+- **Servidor Local Alternativo:** Si solo desea revisar la interfaz estática, puede usar la extensión **Live Server** de VS Code abriendo el archivo `index.html`.
+
+---
+
+## 🗺 Roadmap
+
+- [x] Lanzamiento de dominio personalizado y optimización móvil.
+- [x] Refactorización modular (MVC) y escalabilidad.
+- [x] Integración de Supabase para gestión de datos dinámicos.
+- [x] Implementación de soporte multi-idioma (Dual-Language Toggle).
+- [ ] Generación dinámica de CV en formato PDF desde la web.
+- [ ] Dashboard administrativo para actualización de experiencia en tiempo real.
+
+---
 
 ## ⚖️ Licencia
 
-Este proyecto está bajo la Licencia **MIT**. El contenido personal y la trayectoria profesional son propiedad intelectual de **José Azócar**.
+Este proyecto se distribuye bajo la **Licencia MIT**. El contenido personal y la trayectoria profesional son propiedad intelectual de **José Azócar**.
 
 ---
 
