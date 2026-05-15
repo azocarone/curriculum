@@ -13,7 +13,7 @@ Este repositorio contiene el ecosistema digital de mi trayectoria profesional. N
        width="683" 
        style="max-width: 100%; border-radius: 10px;">
   <figcaption>
-    <a href="https://curriculum.joseazocar.pro">🚀 Versión en vivo</a>
+    <a href="https://curriculum.joseazocar.pro">🔗 Versión en vivo</a>
   </figcaption>
 </figure>
 
@@ -22,8 +22,8 @@ Este repositorio contiene el ecosistema digital de mi trayectoria profesional. N
 ## 📖 Tabla de Contenidos
 
 - [🛠 Auditoría del Stack Tecnológico](#-auditoría-del-stack-tecnológico)
+- [🗄️ Arquitectura de Base de Datos para Perfiles Multilingües](#️-arquitectura-de-base-de-datos-para-perfiles-multilingües)
 - [🏗 Arquitectura del Sistema](#-arquitectura-del-sistema)
-- [🗄️ Arquitectura de Base de Datos para Perfiles Multilingües](docs/database/README.md)
 - [✨ Características Principales](#-características-principales)
 - [💻 Instalación y Configuración](#-instalación-y-configuración)
 - [⚙️ Variables de Entorno](#️-variables-de-entorno)
@@ -42,6 +42,13 @@ Se identifica el siguiente ecosistema técnico:
 - **Backend & Persistencia**: **Supabase (PostgreSQL)** para la gestión dinámica de datos y traducciones mediante PostgREST.
 - **Lógica de Servidor**: Implementación de **Edge Functions** de Supabase para lógica en el servidor.
 - **Distribución de Lenguajes**: Predominio de PLpgSQL (44.3%) y JavaScript (30.6%), lo que refleja una fuerte lógica de base de datos integrada.
+
+---
+
+## 🗄️ Arquitectura de Base de Datos para Perfiles Multilingües
+
+> ℹ️ **Nota:** El diseño detallado de tablas, relaciones y lógica multilingüe se encuentra en el archivo anexo:
+> [Consultar especificaciones técnicas ↗️](docs/database/README.md)
 
 ---
 

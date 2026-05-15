@@ -2,17 +2,32 @@
 
 Este documento presenta la arquitectura técnica detallada de una base de datos diseñada para la gestión de perfiles profesionales con soporte de internacionalización (i18n) nativo. El diseño prioriza la integridad referencial y el desacoplamiento entre la estructura lógica de los datos y su representación en distintos idiomas.
 
-## Introducción al Modelo Entidad-Relación
+## 📖 Tabla de Contenidos
 
-![Diagrama de entidad-relación (ERD)](./assets/profiles-management.svg)
+- [📐 Introducción al Modelo Entidad-Relación (ERD)](#introducción-al-modelo-entidad-relación-erd)
+- [🔗 Resumen de Cardinalidad y Relaciones](#resumen-de-cardinalidad-y-relaciones)
+- [📖 Diccionario de Datos Detallado](#diccionario-de-datos-detallado)
+- [🌐 Sistema de Internacionalización y Reglas de Integridad](#sistema-de-internacionalización-y-reglas-de-integridad)
+- [🐘 Base de Datos PostgresSQL - Supabase](#base-de-datos-postgressql---supabase)
+- [↩️ Regresar al README principal](../../README.md)
 
-_[Diagrama de entidad-relación (ERD):](https://dbdiagram.io/d/profiles-management-69fa525754a51d93d39b7377)_
+## 📐 Introducción al Modelo Entidad-Relación (ERD)
+
+<figure align="center">
+  <img src="./assets/profiles-management.svg" 
+       alt="Diagrama ERD" 
+       width="100%" 
+       style="max-width: 100%; border-radius: 10px;">
+  <figcaption>
+    <a href="https://dbdiagram.io/d/profiles-management-69fa525754a51d93d39b7377">🔗 Diagrama ERD, versión interactiva</a>
+  </figcaption>
+</figure>
 
 El diseño de este esquema sigue un patrón de "núcleo y radios" (hub-and-spoke), donde la entidad `profiles` funciona como el nodo central de toda la arquitectura. De esta tabla raíz dependen jerárquicamente las entidades que componen la identidad profesional del usuario: información de contacto, resúmenes ejecutivos, experiencia laboral, formación académica y competencias técnicas.
 
 Una característica fundamental de este modelo es la separación estricta entre metadatos estructurales y contenido literario. Mientras que las tablas base almacenan datos técnicos, fechas, URLs y relaciones de clasificación, el contenido textual susceptible de traducción se segrega en tablas con el sufijo `*_translations`. Este enfoque de normalización evita el crecimiento horizontal ineficiente de columnas (como `bio_en`, `bio_es`) y permite una escalabilidad ilimitada hacia nuevos idiomas sin alterar la lógica de negocio ni la estructura de las tablas principales.
 
-## Resumen de Cardinalidad y Relaciones
+## 🔗 Resumen de Cardinalidad y Relaciones
 
 La siguiente tabla describe la interconectividad del sistema basada en el análisis de las claves foráneas y restricciones de unicidad definidas en el modelo:
 
@@ -28,7 +43,7 @@ La siguiente tabla describe la interconectividad del sistema basada en el análi
 |`skill_types`    |`skills`               |1:N         |Protección de catálogo con `ON DELETE SET NULL`.       |
 |Tablas Base      |Tablas `*_translations`|1:N         |Clave única compuesta mediante `idx_..._lang`.         |
 
-## Diccionario de Datos Detallado
+## 📖 Diccionario de Datos Detallado
 
 ### Grupo: Perfil e Identidad Directa
 
@@ -189,7 +204,7 @@ Todas las tablas de este grupo comparten la restricción *`UNIQUE`* compuesta po
 |`name`         |VARCHAR(100)|**NOT NULL**                   |Nombre de la competencia traducido.|
 |`created_at`   |TIMESTAMPTZ |**DEFAULT now()**              |Fecha de creación                  |
 
-## Sistema de Internacionalización y Reglas de Integridad
+## 🌐 Sistema de Internacionalización y Reglas de Integridad
 
 ### Estrategia de Internacionalización
 
@@ -201,7 +216,7 @@ Para asegurar la consistencia absoluta de los datos, se ha implementado la cláu
 
 Este mecanismo garantiza que la eliminación de un perfil profesional resulte en una limpieza atómica y automática de todos los registros dependientes: información de contacto, experiencias, responsabilidades y todas sus respectivas traducciones. Esto elimina el riesgo de "orfandad de datos" y reduce la sobrecarga en la capa de aplicación, dejando que el motor de la base de datos gestione la integridad estructural de forma nativa y eficiente. El único caso exceptuado son los catálogos de tipos (`education_types` y `skill_types`), cuya persistencia es necesaria para la consistencia de otros perfiles existentes.
 
-## Base de Datos PostgresSQL - Supabase
+## 🐘 Base de Datos PostgresSQL - Supabase
 
 Abarca todo lo que se es: formación, habilidades y trayectoria. Es "la identidad profesional" normalizada en tablas.
 
