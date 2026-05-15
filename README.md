@@ -1,7 +1,5 @@
 # 📑 Curriculum Digital - José Azócar
 
-### *Modular Multilingual Digital Curriculum System*
-
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 [![Stack: Vite](https://img.shields.io/badge/Frontend-Vite-646CFF?logo=vite)](https://vitejs.dev/)
 [![Backend: Supabase](https://img.shields.io/badge/Backend-Supabase-3ECF8E?logo=supabase)](https://supabase.com/)
@@ -9,11 +7,15 @@
 
 Este repositorio contiene el ecosistema digital de mi trayectoria profesional. No es solo un currículum estático, sino una plataforma de alto rendimiento con **arquitectura modular escalable**, diseñada para ser compatible con sistemas ATS y ofrecer una experiencia de lectura técnica bilingüe optimizada.
 
-🚀 **Versión en vivo:** [curriculum.joseazocar.pro](https://curriculum.joseazocar.pro)
-
-<div align="center">
-  <img src="./assets/img/screenshot.gif" alt="Vista previa del Curriculum Vitae" width="683" height="384" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
-</div>
+<figure align="center">
+  <img src="./assets/img/screenshot.gif" 
+       alt="Vista previa del Curriculum Vitae" 
+       width="683" 
+       style="max-width: 100%; border-radius: 10px;">
+  <figcaption>
+    <a href="https://curriculum.joseazocar.pro">🚀 Versión en vivo</a>
+  </figcaption>
+</figure>
 
 ---
 
@@ -21,6 +23,7 @@ Este repositorio contiene el ecosistema digital de mi trayectoria profesional. N
 
 - [🛠 Auditoría del Stack Tecnológico](#-auditoría-del-stack-tecnológico)
 - [🏗 Arquitectura del Sistema](#-arquitectura-del-sistema)
+- [🗄️ Arquitectura de Base de Datos para Perfiles Multilingües](docs/database/README.md)
 - [✨ Características Principales](#-características-principales)
 - [💻 Instalación y Configuración](#-instalación-y-configuración)
 - [⚙️ Variables de Entorno](#️-variables-de-entorno)
@@ -44,12 +47,12 @@ Se identifica el siguiente ecosistema técnico:
 
 ## 🏗 Arquitectura del Sistema
 
-El proyecto implementa un patrón **MVC (Model-View-Controller)** desacoplado para asegurar la mantenibilidad:
+El proyecto implementa un **Diseño Orientado a Dominios (DDD)**, para maximizar la escalabilidad y el desacoplamiento en la aplicación JavaScript Vanilla:
 
-1. **Controllers**: Orquestan el flujo de datos y los eventos del ciclo de vida de la aplicación.
-2. **Services**: Capa encargada de la comunicación con las APIs de Supabase y el almacenamiento local.
-3. **UI Modules**: Componentes puros de renderizado que transforman datos JSON en interfaces accesibles.
-4. **Utils**: Funciones auxiliares y configuración de aliases para evitar "prop drilling" y rutas relativas complejas.
+1. **app (Capa de Aplicación)**: Actúa como el nivel de orquestación del sistema. En esta capa residen los Controllers, que no siguen un patrón MVC tradicional, sino que funcionan como orquestadores de la interfaz de usuario (UI). Sus responsabilidades incluyen coordinar los datos, manejar el flujo de la aplicación (como estados de carga o eventos globales) y decidir qué componentes deben renderizarse.
+2. **core (Infraestructura)**: Representa los cimientos y la infraestructura del proyecto. Contiene la configuración global y las conexiones con servicios externos (por ejemplo, Supabase). Es donde se define, en conjunto con los módulos, la lógica de cómo obtener los datos a través de servicios.
+3. **modules (El QUÉ)**: Representa las secciones funcionales y el dominio del negocio. Es la parte que el usuario final consume directamente, como las secciones de contacto, experiencia o habilidades en un CV. Junto con la capa shared, se encarga de definir cómo se muestra la información en la interfaz.
+4. **shared (El CÓMO)**: Contiene la lógica transversal y las herramientas técnicas que permiten que los módulos funcionen. Es la infraestructura técnica que incluye plantillas (templates), ayudantes (helpers) y elementos de UI, definiendo las herramientas necesarias para mostrar la información al usuario.
 
 ---
 
@@ -112,8 +115,6 @@ Aunque el proyecto puede visualizarse mediante un servidor estático simple, se 
     npm run build
     ```
 
-- **Servidor Local Alternativo:** Si solo desea revisar la interfaz estática, puede usar la extensión **Live Server** de VS Code abriendo el archivo `index.html`.
-
 ---
 
 ## 🗺 Roadmap
@@ -121,9 +122,7 @@ Aunque el proyecto puede visualizarse mediante un servidor estático simple, se 
 - [x] Lanzamiento de dominio personalizado y optimización móvil.
 - [x] Refactorización modular (MVC) y escalabilidad.
 - [x] Integración de Supabase para gestión de datos dinámicos.
-- [x] Implementación de soporte multi-idioma (Dual-Language Toggle).
-- [ ] Generación dinámica de CV en formato PDF desde la web.
-- [ ] Dashboard administrativo para actualización de experiencia en tiempo real.
+- [ ] Dashboard administrativo para gestionar nuevos registros en la base de datos.
 
 ---
 
