@@ -23,7 +23,7 @@ Este documento presenta la arquitectura técnica detallada de una base de datos 
        width="100%" 
        style="max-width: 100%; border-radius: 10px;">
   <figcaption>
-    <br><a href="https://dbdiagram.io/d/profiles-management-69fa525754a51d93d39b7377">🔗 Diagrama ERD, versión interactiva</a>
+    <br><a href="https://dbdiagram.io/d/profiles-management-69fa525754a51d93d39b7377">🔗 Diagrama ERD, versión interactiva</a><br>
   </figcaption>
 </figure>
 
