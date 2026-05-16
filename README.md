@@ -8,12 +8,12 @@
 Este repositorio contiene el ecosistema digital de mi trayectoria profesional. No es solo un currículum estático, sino una plataforma de alto rendimiento con **arquitectura modular escalable**, diseñada para ser compatible con sistemas ATS y ofrecer una experiencia de lectura técnica bilingüe optimizada.
 
 <figure align="center">
-  <img src="./assets/img/screenshot.gif" 
+  <br><img src="./assets/img/screenshot.gif" 
        alt="Vista previa del Curriculum Vitae" 
        width="683" 
        style="max-width: 100%; border-radius: 10px;">
   <figcaption>
-    <a href="https://curriculum.joseazocar.pro">🔗 Versión en vivo</a>
+    <br><a href="https://curriculum.joseazocar.pro">🔗 Versión en vivo</a>
   </figcaption>
 </figure>
 

@@ -2,6 +2,8 @@
 
 Este documento presenta la arquitectura técnica detallada de una base de datos diseñada para la gestión de perfiles profesionales con soporte de internacionalización (i18n) nativo. El diseño prioriza la integridad referencial y el desacoplamiento entre la estructura lógica de los datos y su representación en distintos idiomas.
 
+---
+
 ## 📖 Tabla de Contenidos
 
 - [📐 Introducción al Modelo Entidad-Relación (ERD)](#introducción-al-modelo-entidad-relación-erd)
@@ -11,21 +13,25 @@ Este documento presenta la arquitectura técnica detallada de una base de datos 
 - [🐘 Base de Datos PostgresSQL - Supabase](#base-de-datos-postgressql---supabase)
 - [↩️ Regresar al README principal](../../README.md)
 
+---
+
 ## 📐 Introducción al Modelo Entidad-Relación (ERD)
 
 <figure align="center">
-  <img src="./assets/profiles-management.svg" 
+  <br><img src="./assets/profiles-management.svg" 
        alt="Diagrama ERD" 
        width="100%" 
        style="max-width: 100%; border-radius: 10px;">
   <figcaption>
-    <a href="https://dbdiagram.io/d/profiles-management-69fa525754a51d93d39b7377">🔗 Diagrama ERD, versión interactiva</a>
+    <br><a href="https://dbdiagram.io/d/profiles-management-69fa525754a51d93d39b7377">🔗 Diagrama ERD, versión interactiva</a>
   </figcaption>
 </figure>
 
 El diseño de este esquema sigue un patrón de "núcleo y radios" (hub-and-spoke), donde la entidad `profiles` funciona como el nodo central de toda la arquitectura. De esta tabla raíz dependen jerárquicamente las entidades que componen la identidad profesional del usuario: información de contacto, resúmenes ejecutivos, experiencia laboral, formación académica y competencias técnicas.
 
 Una característica fundamental de este modelo es la separación estricta entre metadatos estructurales y contenido literario. Mientras que las tablas base almacenan datos técnicos, fechas, URLs y relaciones de clasificación, el contenido textual susceptible de traducción se segrega en tablas con el sufijo `*_translations`. Este enfoque de normalización evita el crecimiento horizontal ineficiente de columnas (como `bio_en`, `bio_es`) y permite una escalabilidad ilimitada hacia nuevos idiomas sin alterar la lógica de negocio ni la estructura de las tablas principales.
+
+---
 
 ## 🔗 Resumen de Cardinalidad y Relaciones
 
@@ -43,13 +49,15 @@ La siguiente tabla describe la interconectividad del sistema basada en el análi
 |`skill_types`    |`skills`               |1:N         |Protección de catálogo con `ON DELETE SET NULL`.       |
 |Tablas Base      |Tablas `*_translations`|1:N         |Clave única compuesta mediante `idx_..._lang`.         |
 
+---
+
 ## 📖 Diccionario de Datos Detallado
 
 ### Grupo: Perfil e Identidad Directa
 
 Este grupo gestiona la identidad básica y los canales de comunicación. La relación 1:1 con el contacto se garantiza mediante una restricción `UNIQUE` en la clave foránea.
 
-**Tabla: `profiles`**
+📋 **Tabla: `profiles`**
 
 |Columna     |Tipo        |Restricciones    |Descripción                                        |
 |------------|------------|-----------------|---------------------------------------------------|
@@ -58,7 +66,7 @@ Este grupo gestiona la identidad básica y los canales de comunicación. La rela
 |`website`   |VARCHAR(100)|**-**            |URL del sitio web o portafolio personal.           |
 |`created_at`|TIMESTAMPTZ |**DEFAULT now()**|Marca de tiempo de creación con zona horaria.      |
 
-**Tabla: `profiles_contact`**
+📋 **Tabla: `profiles_contact`**
 
 |Columna     |Tipo        |Restricciones                                                                |Descripción                               |
 |------------|------------|-----------------------------------------------------------------------------|------------------------------------------|
@@ -72,7 +80,7 @@ Este grupo gestiona la identidad básica y los canales de comunicación. La rela
 
 Gestiona la narrativa laboral y los hitos de carrera del perfil.
 
-**Tabla: `summaries`**
+📋 **Tabla: `summaries`**
 
 |Columna     |Tipo       |Restricciones                  |Descripción                            |
 |------------|-----------|-------------------------------|---------------------------------------|
@@ -81,7 +89,7 @@ Gestiona la narrativa laboral y los hitos de carrera del perfil.
 |`is_default`|BOOLEAN    |**DEFAULT false**              |Define si este resumen es el principal.|
 |`created_at`|TIMESTAMPTZ|**DEFAULT now()**              |Fecha de creación.                     |
 
-**Tabla: `experiences`**
+📋 **Tabla: `experiences`**
 
 |Columna     |Tipo        |Restricciones                              |Descripción                              |
 |------------|------------|-------------------------------------------|-----------------------------------------|
@@ -94,7 +102,7 @@ Gestiona la narrativa laboral y los hitos de carrera del perfil.
 |`is_active` |BOOLEAN     |**DEFAULT true**                           |Control de visibilidad en el CV.         |
 |`created_at`|TIMESTAMPTZ |**DEFAULT now()**                          |Fecha de creación.                       |
 
-**Tabla: `responsibilities`**
+📋 **Tabla: `responsibilities`**
 
 |Columna        |Tipo       |Restricciones                                      |Descripción                                   |
 |---------------|-----------|---------------------------------------------------|----------------------------------------------|
@@ -104,9 +112,9 @@ Gestiona la narrativa laboral y los hitos de carrera del perfil.
 
 ### Grupo: Educación y Habilidades
 
-Define la taxonomía de grados académicos y habilidades. Note que las tablas de tipos no utilizan borrado en cascada para proteger la integridad de los catálogos.
+Defvine la taxonomía de grados académicos y habilidades. Note que las tablas de tipos no utilizan borrado en cascada para proteger la integridad de los catálogos.
 
-**Tabla: `education_types` / `skill_types` (Catálogos)**
+📋 **Tabla: `education_types` / `skill_types` (Catálogos)**
 
 |Columna     |Tipo       |Restricciones                          |Descripción                               |
 |------------|-----------|---------------------------------------|------------------------------------------|
@@ -114,20 +122,20 @@ Define la taxonomía de grados académicos y habilidades. Note que las tablas de
 |`slug`      |VARCHAR(50)|**NOT NULL, UNIQUE** (idx_[tabla]_slug)|Código único (ej: 'master', 'tech-stack').|
 |`created_at`|TIMESTAMPTZ|**DEFAULT now()**                      |Fecha de creación.                        |
 
-**Tabla: `education`**
+📋 **Tabla: `education`**
 
 |Columna     |Tipo       |Restricciones                                      |Descripción                      |
 |------------|-----------|---------------------------------------------------|---------------------------------|
 |`id`        |IDENTITY   |**PK**                                             |ID único de educación.           |
 |`profile_id`|INTEGER    |**NOT FULL, FK** (`fk_education_profile`)          |Perfil asociado.                 |
-|`type_id`   |INTEGER    |**FK** (`fk_education_type`) **ON DELETE SET NULL**|Categoría (Grado, Curso, etc.).  |
+|`type_id`   |INTEGER    |**FK** (`fk_education_type`) **ON DELETE SET NULL**|Categoría (Grado, Cursovv, etc.).|
 |`start_date`|DATE       |**-**                                              |Inicio del estudio.              |
 |`end_date`  |DATE       |**-**                                              |Fin del estudio.                 |
 |`url`       |TEXT       |**-**                                              |Link a certificado o institución.|
 |`is_active` |BOOLEAN    |**DEFAULT true**                                   |Visibilidad del registro.        |
 |`created_at`|TIMESTAMPTZ|**DEFAULT now()**                                  |Fecha de registro.               |
 
-**Tabla: `skills`**
+📋 **Tabla: `skills`**
 
 |Columna     |Tipo       |Restricciones                                   |Descripción                       |
 |------------|-----------|------------------------------------------------|----------------------------------|
@@ -140,7 +148,7 @@ Define la taxonomía de grados académicos y habilidades. Note que las tablas de
 
 Todas las tablas de este grupo comparten la restricción *`UNIQUE`* compuesta por *[parent_id]* y *`language_code`* mediante un índice *`idx_..._lang`*, asegurando una sola versión por idioma.
 
-**Tabla: `profiles_translations`**
+📋 **Tabla: `profiles_translations`**
 
 |Columna        |Tipo        |Restricciones                      |Descripción                    |
 |---------------|------------|-----------------------------------|-------------------------------|
@@ -150,18 +158,18 @@ Todas las tablas de este grupo comparten la restricción *`UNIQUE`* compuesta po
 |`location`     |VARCHAR(150)|**-**                              |Ubicación geográfica traducida.|
 |`created_at`   |TIMESTAMPTZ |**DEFAULT now()**                  | Fecha de creación             |
 
-**Tabla: `summaries_translations`**
+📋 **Tabla: `summaries_translations`**
 
 |Columna        |Tipo        |Restricciones                        |Descripción                                   |
 |---------------|------------|-------------------------------------|----------------------------------------------|
 |`id`           |IDENTITY    |**PK**                               |ID de traducción.                             |
-|`summary_id`   |INTEGER     |**FK** (`fk_sumdmaries_trans_summary`)|Vínculo al resumen base.                      |
+|`summary_id`   |INTEGER     |**FK** (`fk_sumdmaries_trans_summary`)|Vínculo al resumen base.                     |
 |`language_code`|CHAR(2)     |**NOT NULL**                         |ISO del idioma.                               |
 |`label`        |VARCHAR(100)|**-**                                |Título descriptivo (ej: "Perfil Profesional").|
 |`content`      |TEXT        |**NOT NULL**                         |Cuerpo del resumen traducido.                 |
 |`created_at`   |TIMESTAMPTZ |**DEFAULT now()**                    |Fecha de creación                             |
 
-**Tabla: `experiences_translations`**
+📋 **Tabla: `experiences_translations`**
 
 |Columna        |Tipo        |Restricciones                             |Descripción                        |
 |---------------|------------|------------------------------------------|-----------------------------------|
@@ -172,7 +180,7 @@ Todas las tablas de este grupo comparten la restricción *`UNIQUE`* compuesta po
 |`location`     |VARCHAR(100)|**-**                                     |Lugar de trabajo traducido.        |
 |`created_at`   |TIMESTAMPTZ |**DEFAULT now()**                         |Fecha de creación                  |
 
-**Tabla: `responsibilities_translZations`**
+📋 **Tabla: `responsibilities_translZations`**
 
 |Columna            |Tipo        |Restricciones                            |Descripción                    |
 |-------------------|------------|-----------------------------------------|-------------------------------|
@@ -182,7 +190,7 @@ Todas las tablas de este grupo comparten la restricción *`UNIQUE`* compuesta po
 |`description`      |TEXT        |**NOT NULL**                             |Detalle de la tarea realizada. |
 |`created_at`       |TIMESTAMPTZ |**DEFAULT now()**                        |Fecha de creación              |
 
-**Tabla: `education_translations`**
+📋 **Tabla: `education_translations`**
 
 |Columna        |Tipo        |Restricciones                          |Descripción                    |
 |---------------|------------|---------------------------------------|-------------------------------|
@@ -194,7 +202,7 @@ Todas las tablas de este grupo comparten la restricción *`UNIQUE`* compuesta po
 |`location`     |VARCHAR(100)|**-**                                  |Ciudad/País de estudio.        |
 |`created_at`   |TIMESTAMPTZ |**DEFAULT now()**                      |Fecha de creación              |
 
-**Tabla: `skill_translations`**
+📋 **Tabla: `skill_translations`**
 
 |Columna        |Tipo        |Restricciones                  |Descripción                        |
 |---------------|------------|-------------------------------|-----------------------------------|
@@ -203,6 +211,8 @@ Todas las tablas de este grupo comparten la restricción *`UNIQUE`* compuesta po
 |`language_code`|CHAR(2)     |**NOT NULL**                   |ISO del idioma.                    |
 |`name`         |VARCHAR(100)|**NOT NULL**                   |Nombre de la competencia traducido.|
 |`created_at`   |TIMESTAMPTZ |**DEFAULT now()**              |Fecha de creación                  |
+
+---
 
 ## 🌐 Sistema de Internacionalización y Reglas de Integridad
 
@@ -215,6 +225,8 @@ El sistema implementa el estándar ISO 639-1 mediante el uso del tipo de dato `C
 Para asegurar la consistencia absoluta de los datos, se ha implementado la cláusula `ON DELETE CASCADE` en todas las claves foráneas vinculadas a la entidad raíz `profiles`.
 
 Este mecanismo garantiza que la eliminación de un perfil profesional resulte en una limpieza atómica y automática de todos los registros dependientes: información de contacto, experiencias, responsabilidades y todas sus respectivas traducciones. Esto elimina el riesgo de "orfandad de datos" y reduce la sobrecarga en la capa de aplicación, dejando que el motor de la base de datos gestione la integridad estructural de forma nativa y eficiente. El único caso exceptuado son los catálogos de tipos (`education_types` y `skill_types`), cuya persistencia es necesaria para la consistencia de otros perfiles existentes.
+
+---
 
 ## 🐘 Base de Datos PostgresSQL - Supabase
 
