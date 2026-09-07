@@ -2,7 +2,7 @@
 
 CREATE OR REPLACE VIEW v_profiles_public AS
 SELECT
-     p.id,
+    p.id,
     p.full_name,
     -- Ofuscación: ****** + últimos 4 dígitos
     CASE 
