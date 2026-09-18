@@ -11,28 +11,7 @@ export function prepareContactFields(profile, trans, LABELS, lang) {
 export function getContactUrl(key, value) {
     const templates = {
         location: (v) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(v)}`,
-        phone: () => `javascript:void(0)`,
-        email: () => `javascript:void(0)`,
-        website: (v) => `https://${v.replace(/^https?:\/\//, '')}`,
+        website: (v) => `https://${v.replace(/^https?:\/\//, '')}`
     };
-    return templates[key] ? templates[key](value) : "#";
-}
-
-export function initContactListeners(container) {
-    container.addEventListener("click", (event) => {
-        const sensitiveLink = event.target.closest(".js-contact-sensitive");
-        if (!sensitiveLink) return;
-
-        event.preventDefault();
-        // Aquí se debe implementar la función de bases de datos (RPC)
-        const unMaskedData = sensitiveLink.getAttribute("data-masked");
-        const type = sensitiveLink.getAttribute("data-type");
-
-        if (type === "phone") {
-            const cleanPhone = unMaskedData.replace(/\D/g, "");
-            window.location.href = `https://wa.me/${cleanPhone}`;
-        } else if (type === "email") {
-            window.location.href = `mailto:${unMaskedData}`;
-        }
-    });
+    return templates[key] ? templates[key](value) : null;
 }

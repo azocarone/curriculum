@@ -1,25 +1,17 @@
 import { formatCVDateRange } from '@/shared/domain/cv/cv-date.formatters.js';
 import { getContactUrl } from '@shared/utils/contact-helpers';
 
-export function createContactItem(key, label, content, sensitiveText) {
-    const isSensitive = key === 'phone' || key === 'email';
-    const href = getContactUrl(key, content);
-    const extraClass = isSensitive ? "js-contact-sensitive" : "";
-    const dataAttr = isSensitive ? `data-masked="${content}" data-type="${key}"` : "";
-    
-    const display = isSensitive 
-        ? `<span class="header__contact-content header__contact-content--screen">${sensitiveText}</span>
-           <span class="header__contact-content header__contact-content--print">${content}</span>`
-        : content;
+export function createContactItem(key, label, content) {
+    const url = getContactUrl(key, content);
+
+    const contentHtml = url
+        ? `<a class="header__contact-link header__contact-link--${key}" href="${url}" target="_blank" rel="noopener noreferrer">${content}</a>`
+        : `<span class="header__contact-link header__contact-link--${key} header__contact-text">${content}</span>`;
 
     return `
-        <p class="header__contact-item">
+        <p class="header__contact-item header__contact-item--${key}">
             <span class="header__contact-label">${label}:</span>
-            <a class="header__contact-link header__contact-link--${key} ${extraClass}" 
-                href="${href}"
-                ${!isSensitive ? 'target="_blank" rel="noopener noreferrer"' : ""}
-                ${dataAttr}>${display}
-            </a>
+            ${contentHtml}
         </p>
     `;
 }

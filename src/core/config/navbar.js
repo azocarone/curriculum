@@ -1,6 +1,6 @@
 const NAV_LABELS = {
-    es: { portfolio: "Portafolio", download: "Descargar", theme: "Tema", lang: "Inglés", langCode: "en" },
-    en: { portfolio: "Portfolio", download: "Download", theme: "Theme", lang: "Spanish", langCode: "es" }
+    es: { portfolio: "Portafolio", download: "Imprimir", theme: "Tema", lang: "Inglés", langCode: "en" },
+    en: { portfolio: "Portfolio", download: "Print", theme: "Theme", lang: "Spanish", langCode: "es" }
 };
 
 export const getNavContent = (lang) => {
