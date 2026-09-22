@@ -22,7 +22,7 @@ document.addEventListener('DOMContentLoaded', async () => {
         const profileData = await profileService.fetchFullProfile(identifier, lang);
 
         refreshContent(profileData, lang);
-        setupNavListeners(profileData, lang);
+        setupNavListeners(profileData.contact, lang);
 
     } catch (error) {
         console.error("Fallo crítico en la aplicación:", error);

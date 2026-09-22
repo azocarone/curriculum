@@ -2,10 +2,12 @@
 
 CREATE OR REPLACE VIEW v_profiles_public AS
 SELECT
-    p.id,
+     p.id,
     p.full_name,
     -- Ofuscación: ****** + últimos 4 dígitos
     CASE 
+        WHEN pc.phone IS NOT NULL AND length(pc.phone) >= 10 THEN 
+            left(pc.phone, 4) || '*****' || right(pc.phone, 4)
         WHEN pc.phone IS NOT NULL THEN 
             '******' || right(pc.phone, 4)
         ELSE 'No disponible' 
@@ -13,7 +15,7 @@ SELECT
     -- Ofuscación: Primera letra + asteriscos + @ + dominio
     CASE 
         WHEN pc.email IS NOT NULL THEN 
-            left(pc.email, 1) || '****@' || split_part(pc.email, '@', 2)
+            left(pc.email, 3) || '******@' || split_part(pc.email, '@', 2)
         ELSE 'No disponible' 
     END as email,
     p.website   

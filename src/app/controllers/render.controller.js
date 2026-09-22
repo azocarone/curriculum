@@ -6,12 +6,12 @@ export function refreshContent(profileData, lang) {
     const data = adaptProfileData(profileData);
 
     // Render principal
-    section.renderContact(data.contact.profile, data.contact.translation, lang);
+    section.renderContact(data.contact, lang);
     section.renderSummary(data.summary, lang);
     section.renderExperience(data.experiences, lang);
     section.renderEducation(data.education, lang);
     section.renderSkills(data.skills, lang);
 
     // Render layout global
-    renderLayout({ lang, author: data.profile.full_name });
+    renderLayout({ lang, author: data.contact.full_name });
 };

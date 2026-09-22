@@ -112,6 +112,7 @@ select jsonb_build_object(
         select coalesce(jsonb_agg(
             jsonb_build_object(
                 'id', sk.id,
+                'is_active', sk.is_active,
 
                 'skill_types', (
                     select jsonb_build_object('slug', st.slug)
@@ -129,6 +130,7 @@ select jsonb_build_object(
         ), '[]'::jsonb)
         from skills sk
         where sk.profile_id = p.id
+          and sk.is_active = true
     )
 
 )

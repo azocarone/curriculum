@@ -1,10 +1,10 @@
-export function prepareContactFields(profile, trans, LABELS, lang) {
+export function prepareContactFields(contact, LABELS, lang) {
     const { profile: i18n } = LABELS[lang];
     return [
-        { key: 'location', label: i18n.location, content: trans.location },
-        { key: 'phone',    label: i18n.phone,    content: profile.phone },
-        { key: 'email',    label: i18n.email,    content: profile.email },
-        { key: 'website',  label: i18n.website,  content: profile.website }
+        { key: 'location', label: i18n.location, content: contact.location },
+        { key: 'phone',    label: i18n.phone,    content: contact.phone },
+        { key: 'email',    label: i18n.email,    content: contact.email },
+        { key: 'website',  label: i18n.website,  content: contact.website }
     ].filter(f => f.content);
 }
 
