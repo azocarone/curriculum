@@ -17,11 +17,11 @@ export function createContactItem(key, label, content) {
 }
 
 export function createExperienceItemHTML(exp, lang) {
-    const trans = exp.experiences_translations?.[0] ?? {};
     const dateRange = formatCVDateRange(lang, exp.start_date, exp.end_date);
     
+    // Mapeo directo de la propiedad 'description' dentro de cada responsabilidad
     const responsibilities = (exp.responsibilities ?? [])
-        .map(res => res.responsibilities_translations?.[0]?.description)
+        .map(res => res.description)
         .filter(Boolean)
         .map(desc => `<li class="main__experience-responsibility-item">${desc}</li>`)
         .join("");
@@ -30,10 +30,10 @@ export function createExperienceItemHTML(exp, lang) {
         <ul class="main__experience-list">
             <li class="main__experience-item">
                 <a class="main__experience-info" href="${exp.url || '#'}" target="_blank" rel="noopener noreferrer">
-                    <h3 class="main__experience-position">${trans.position ?? ''}</h3>
+                    <h3 class="main__experience-position">${exp.position ?? ''}</h3>
                     <p class="main__experience-dates">${dateRange}</p>
                     <p class="main__experience-company">${exp.company}</p>
-                    <p class="main__experience-location">${trans.location ?? ''}</p>
+                    <p class="main__experience-location">${exp.location ?? ''}</p>
                 </a>
                 <ul class="main__experience-responsibilities-list">
                     ${responsibilities}
