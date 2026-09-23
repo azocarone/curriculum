@@ -1,13 +1,13 @@
 import { renderGroupedSection } from '@shared/ui/render-engine';
 import { LABELS } from '@shared/i18n/labels';
 
-// 1. Definimos la secuencia exacta que deseamos mostrar en la UI
+// Definición de la secuencia exacta deseada a mostrar en la UI
 const SKILL_ORDER = ['soft', 'technical', 'languages'];
 
 export function renderSkills(skillGroups, lang = "es") {
     if (!skillGroups) return;
 
-    // 2. Reordenamos las entradas del objeto antes de renderizar
+    // Reordena las entradas del objeto antes de renderizar
     const orderedGroups = Object.keys(skillGroups)
         .sort((a, b) => {
             const indexA = SKILL_ORDER.indexOf(a);
@@ -19,7 +19,7 @@ export function renderSkills(skillGroups, lang = "es") {
             return acc;
         }, {});
 
-    // 3. Renderizamos pasando el objeto ya garantizado en orden
+    // Renderizado pasando el objeto ya garantizado en orden
     renderGroupedSection(
         "skills",
         orderedGroups,
