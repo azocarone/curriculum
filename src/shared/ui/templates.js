@@ -44,16 +44,15 @@ export function createExperienceItemHTML(exp, lang) {
 }
 
 export function createEducationItemHTML(item, lang, slug) {
-    const t = item.education_translations?.[0] ?? {};
     const dateRange = formatCVDateRange(lang, item.start_date, item.end_date);
-    const showLocation = slug !== 'training' && t.location;
+    const showLocation = slug !== 'training' && item.location;
 
     return `
         <li class="main__section-subitem">
             <a class="main__section-subitem__link" href="${item.url || '#'}" target="_blank" rel="noopener noreferrer">
-                <span class="main__section-subitem__title">${t.title ?? ''}: </span>
-                <span class="main__section-subitem__institution">${t.institution ?? ''}; </span>
-                ${showLocation ? `<span class="main__section-subitem__location">${t.location}; </span>` : ''}
+                <span class="main__section-subitem__title">${item.title ?? ''}: </span>
+                <span class="main__section-subitem__institution">${item.institution ?? ''}; </span>
+                ${showLocation ? `<span class="main__section-subitem__location">${item.location}; </span>` : ''}
                 <span class="main__section-subitem__dates">${dateRange}</span>
             </a>
         </li>
