@@ -2,7 +2,7 @@ import { renderGroupedSection } from '@shared/ui/render-engine';
 import { LABELS } from '@shared/i18n/labels';
 
 // Definición de la secuencia exacta deseada a mostrar en la UI
-const SKILL_ORDER = ['soft', 'technical', 'languages'];
+const SKILL_ORDER = ['ai', 'data', 'development', 'cloud', 'business', 'languages'];
 
 export function renderSkills(skillGroups, lang = "es") {
     if (!skillGroups) return;

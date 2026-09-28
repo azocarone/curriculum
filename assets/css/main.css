@@ -23,13 +23,19 @@
     transition: color 0.3s ease;
 }
 
+.main__section-title--skills {
+    font-size: calc(var(--font-size-base) * 1.125);
+}
+
 .main__section-title--summary::before,
 .main__section-title--experience::before,
 .main__section-title--academic::before,
-.main__section-title--training::before,
 .main__section-title--certifications::before,
-.main__section-title--technical::before,
-.main__section-title--soft::before,
+.main__section-title--ai::before,
+.main__section-title--data::before,
+.main__section-title--development::before,
+.main__section-title--cloud::before,
+.main__section-title--business::before,
 .main__section-title--languages::before {
     font-family: "Font Awesome 7 Free";
     font-weight: var(--main-icon-weight);
@@ -41,12 +47,14 @@
 
 /* Mapeo de Iconos Content */
 .main__section-title--summary::before { content: "\f508"; }
-.main__section-title--experience::before { content: "\f0b1"; }
+.main__section-title--experience::before { content: "\f559"; }
 .main__section-title--academic::before { content: "\f19d"; }
-.main__section-title--training::before { content: "\f51b"; }
 .main__section-title--certifications::before { content: "\f0A3"; }
-.main__section-title--technical::before { content: "\f5dc"; }
-.main__section-title--soft::before { content: "\f004"; }
+.main__section-title--ai::before { content: "\f5dc"; }
+.main__section-title--data::before { content: "\f1c0"; }
+.main__section-title--development::before { content: "\f121"; }
+.main__section-title--cloud::before { content: "\f0c2"; }
+.main__section-title--business::before { content: "\f0b1"; }
 .main__section-title--languages::before { content: "\f1ab"; }
 
 .main__experience-list,
@@ -56,17 +64,18 @@
     padding: 0;
     margin: 0;
 }
-
 .main__section--flex {
     display: flex;
     flex-direction: row;
+    flex-wrap: wrap; /* Permite que pasen a la siguiente fila */
     gap: var(--main-gap-medium);
-    font-size: 0.95em; /* Ajuste relativo más limpio */
+    font-size: 0.95em;
 }
 
 .main__section--flex > * {
     box-sizing: border-box;
-    flex: 1;
+    /* 50% de ancho menos la mitad del gap para evitar que se desborde */
+    flex: 0 0 calc(50% - (var(--main-gap-medium) / 2));
 }
 
 .main__experience-info {
@@ -195,10 +204,12 @@
     .main__section-title--summary::before,
     .main__section-title--experience::before,
     .main__section-title--academic::before,
-    .main__section-title--training::before,
     .main__section-title--certifications::before,
-    .main__section-title--technical::before,
-    .main__section-title--soft::before,
+    .main__section-title--ai::before,
+    .main__section-title--data::before,
+    .main__section-title--development::before,
+    .main__section-title--cloud::before,
+    .main__section-title--business::before,
     .main__section-title--languages::before {
         display: none;
     }

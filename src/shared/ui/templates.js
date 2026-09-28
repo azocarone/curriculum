@@ -50,9 +50,9 @@ export function createEducationItemHTML(item, lang, slug) {
     return `
         <li class="main__section-subitem">
             <a class="main__section-subitem__link" href="${item.url || '#'}" target="_blank" rel="noopener noreferrer">
-                <span class="main__section-subitem__title">${item.title ?? ''}: </span>
-                <span class="main__section-subitem__institution">${item.institution ?? ''}; </span>
-                ${showLocation ? `<span class="main__section-subitem__location">${item.location}; </span>` : ''}
+                <span class="main__section-subitem__title">${item.title ?? ''}&nbsp;-&nbsp;</span>
+                <span class="main__section-subitem__institution">${item.institution ?? ''}</span>
+                ${showLocation ? `<span class="main__section-subitem__location">&nbsp;(${item.location})&nbsp;</span>` : ''}
                 <span class="main__section-subitem__dates">${dateRange}</span>
             </a>
         </li>
