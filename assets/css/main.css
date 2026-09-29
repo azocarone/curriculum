@@ -28,15 +28,16 @@
 }
 
 .main__section-title--summary::before,
-.main__section-title--experience::before,
-.main__section-title--academic::before,
-.main__section-title--certifications::before,
+.main__section-title--skills::before,
 .main__section-title--ai::before,
 .main__section-title--data::before,
 .main__section-title--development::before,
 .main__section-title--cloud::before,
 .main__section-title--business::before,
-.main__section-title--languages::before {
+.main__section-title--languages::before,
+.main__section-title--experience::before,
+.main__section-title--academic::before,
+.main__section-title--certifications::before {
     font-family: "Font Awesome 7 Free";
     font-weight: var(--main-icon-weight);
     color: transparent;
@@ -47,15 +48,16 @@
 
 /* Mapeo de Iconos Content */
 .main__section-title--summary::before { content: "\f508"; }
-.main__section-title--experience::before { content: "\f559"; }
-.main__section-title--academic::before { content: "\f19d"; }
-.main__section-title--certifications::before { content: "\f0A3"; }
+.main__section-title--skills::before { content: "\f5fd"; }
 .main__section-title--ai::before { content: "\f5dc"; }
 .main__section-title--data::before { content: "\f1c0"; }
 .main__section-title--development::before { content: "\f121"; }
 .main__section-title--cloud::before { content: "\f0c2"; }
 .main__section-title--business::before { content: "\f0b1"; }
 .main__section-title--languages::before { content: "\f1ab"; }
+.main__section-title--experience::before { content: "\f559"; }
+.main__section-title--academic::before { content: "\f19d"; }
+.main__section-title--certifications::before { content: "\f0A3"; }
 
 .main__experience-list,
 .main__section-list,
@@ -202,15 +204,16 @@
 
     /* Ocultar iconos en móvil/print para ahorrar espacio */
     .main__section-title--summary::before,
-    .main__section-title--experience::before,
-    .main__section-title--academic::before,
-    .main__section-title--certifications::before,
+    .main__section-title--skills::before,
     .main__section-title--ai::before,
     .main__section-title--data::before,
     .main__section-title--development::before,
     .main__section-title--cloud::before,
     .main__section-title--business::before,
-    .main__section-title--languages::before {
+    .main__section-title--languages::before,
+    .main__section-title--experience::before,
+    .main__section-title--academic::before,
+    .main__section-title--certifications::before {
         display: none;
     }
     

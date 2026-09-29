@@ -1,13 +1,16 @@
 import { renderGroupedSection } from '@shared/ui/render-engine';
 import { LABELS } from '@shared/i18n/labels';
 
-// Definición de la secuencia exacta deseada a mostrar en la UI
 const SKILL_ORDER = ['ai', 'data', 'development', 'cloud', 'business', 'languages'];
 
 export function renderSkills(skillGroups, lang = "es") {
     if (!skillGroups) return;
 
-    // Reordena las entradas del objeto antes de renderizar
+    // Obtención segura del idioma con fallback a 'es'
+    const selectedLang = LABELS[lang] ? lang : "es";
+    const { title = '', categories = {} } = LABELS[selectedLang]?.skills || {};
+
+    // Reordenar grupos según SKILL_ORDER
     const orderedGroups = Object.keys(skillGroups)
         .sort((a, b) => {
             const indexA = SKILL_ORDER.indexOf(a);
@@ -19,13 +22,23 @@ export function renderSkills(skillGroups, lang = "es") {
             return acc;
         }, {});
 
-    // Renderizado pasando el objeto ya garantizado en orden
+    // Renderizado integrado atómico
     renderGroupedSection(
         "skills",
         orderedGroups,
-        LABELS[lang].skills,
-        (list) => list.map(skill => {
-            return `<li class="main__section-subitem main__section-subitem--punctuation">${skill.name || ''}</li>`;
-        }).join("")
+        categories,
+        (list) => {
+            if (!Array.isArray(list)) return '';
+            return list.map(skill => {
+                const name = typeof skill === 'string' ? skill : (skill?.name || '');
+                return `<li class="main__section-subitem main__section-subitem--punctuation">${name}</li>`;
+            }).join("");
+        },
+        {
+            headingTag: "h3",
+            titleClass: "main__section-title--skills",
+            wrapperClass: "main__section--flex",
+            sectionTitle: title
+        }
     );
 }

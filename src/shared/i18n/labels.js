@@ -13,12 +13,15 @@ export const LABELS = {
             certifications: "Certificaciones y Formación"
         },
         skills: {
-            ai: "Inteligencia Artificial",
-            data: "Ciencia de Datos y Analítica",
-            development: "Desarrollo Web y Software",
-            cloud: "Cloud e Infraestructura",
-            business: "Negocios, Agilidad y Soft Skills",
-            languages: "Idiomas"
+            title: "Competencias Clave y Stack Técnico",
+            categories: {
+                ai: "Inteligencia Artificial",
+                data: "Ciencia de Datos y Analítica",
+                development: "Desarrollo Web y Software",
+                cloud: "Cloud e Infraestructura",
+                business: "Negocios, Agilidad y Soft Skills",
+                languages: "Idiomas"
+            }
         } 
     },
     en: {
@@ -35,12 +38,15 @@ export const LABELS = {
             certifications: "Certifications & Training"
         },
         skills: {
-            ai: "AI & Intelligence",
-            data: "Data Science & Analytics",
-            development: "Web & Software Dev",
-            cloud: "Cloud & Infrastructure",
-            business: "Business, Agility & Soft Skill",
-            languages: "Languages"
+            title: "Technical Skills & Core Competencies",
+            categories: {
+                ai: "AI & Intelligence",
+                data: "Data Science & Analytics",
+                development: "Web & Software Dev",
+                cloud: "Cloud & Infrastructure",
+                business: "Business, Agility & Soft Skill",
+                languages: "Languages"
+            }
         } 
      }
 }
