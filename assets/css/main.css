@@ -23,7 +23,7 @@
     transition: color 0.3s ease;
 }
 
-.main__section-title--skills {
+.main__section-subtitle {
     font-size: calc(var(--font-size-base) * 1.125);
 }
 

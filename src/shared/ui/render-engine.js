@@ -12,7 +12,7 @@ export function renderGroupedSection(containerId, groups, labels = {}, itemRende
 
     const {
         headingTag = "h2",
-        titleClass = "",
+        titleClass = "main__section-title",
         wrapperClass = "",
         sectionTitle = ""
     } = options;
@@ -23,7 +23,7 @@ export function renderGroupedSection(containerId, groups, labels = {}, itemRende
     const itemsHtml = Object.entries(groups).map(([slug, list]) => `
         <ul class="main__section-list">
             <li class="main__section-item">
-                <${headingTag} class="main__section-title main__section-title--${slug}${titleClass ? ` ${titleClass}` : ''}">
+                <${headingTag} class="${titleClass ? `${titleClass}` : ''} main__section-title--${slug}">
                     ${safeLabels[slug] || slug}
                 </${headingTag}>
                 <ul class="main__section-sublist main__section-sublist--flex">

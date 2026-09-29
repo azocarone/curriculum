@@ -9,10 +9,9 @@ export function createContactItem(key, label, content) {
         : `<span class="header__contact-link header__contact-link--${key} header__contact-text">${content}</span>`;
 
     return `
-        <p class="header__contact-item header__contact-item--${key}">
-            <span class="header__contact-label">${label}:</span>
-            ${contentHtml}
-        </p>
+        <li class="header__contact-item header__contact-item--${key}">
+            <span class="header__contact-label">${label}:</span>${contentHtml}
+        </li>
     `;
 }
 

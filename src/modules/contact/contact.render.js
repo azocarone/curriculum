@@ -14,7 +14,11 @@ export function renderContact(contact, lang = "es") {
 
     headerContact.innerHTML = `
         <h1 class="header__name" id="full_name">${contact.full_name}</h1>
-        <p><strong>${contact.title}</strong></p> 
-        <address class="header__contact-address">${htmlContent}</address>
+        <h2 class="header__subtitle">${contact.title}</h2> 
+        <address class="header__contact-address">
+            <ul class="header__contact-list">
+                ${htmlContent}
+            </ul>
+        </address>
     `;
 }

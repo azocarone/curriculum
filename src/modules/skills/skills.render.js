@@ -36,7 +36,7 @@ export function renderSkills(skillGroups, lang = "es") {
         },
         {
             headingTag: "h3",
-            titleClass: "main__section-title--skills",
+            titleClass: "main__section-subtitle",
             wrapperClass: "main__section--flex",
             sectionTitle: title
         }
