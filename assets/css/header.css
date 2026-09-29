@@ -69,7 +69,7 @@ body.dark-theme {
     flex-direction: row;
     justify-content: space-between;
     list-style: none;
-    padding: var(--header-spacing-small) 0;
+    padding: 0;
 }
 
 .header__contact-item {
