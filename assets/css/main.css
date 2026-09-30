@@ -6,6 +6,19 @@
     --main-icon-weight: 600;
     --main-icon-spacing: 0.6rem; /* Incrementado ligeramente */
     --main-icon-stroke: 0.0625rem;
+
+    /* Modo Claro (Light Mode) */
+    --main-section-title-color: #0f172a;
+    --main-section-subtitle-color: #334155;
+    --main-section-subitem-color: #342A1E;
+    --main-section-subitem-bg-color: #f4f6f8;
+}
+
+body.dark-theme {
+    --main-section-title-color: #ffffff;
+    --main-section-subtitle-color: #f1f5f9;
+    --main-section-subitem-color: #cbd5e1;
+    --main-section-subitem-bg-color: #1a2436;
 }
 
 .main__section,
@@ -17,7 +30,7 @@
     display: flex;
     align-items: center;
     font-size: calc(var(--font-size-base) * 1.25); /* Un poco más grande para jerarquía */
-    color: var(--accent-color);
+    color: var(--main-section-title-color);
     text-transform: capitalize;
     margin: 0 0 var(--main-spacing-medium) 0;
     transition: color 0.3s ease;
@@ -25,6 +38,7 @@
 
 .main__section-subtitle {
     font-size: calc(var(--font-size-base) * 1.125);
+    color: var(--main-section-subtitle-color);
 }
 
 .main__section-title--summary::before,
@@ -134,10 +148,10 @@
 }
 
 .main__section-subitem {
-    background-color: var(--card-bg);
+    background-color: var(--main-section-subitem-bg-color);
     border: 0.0625rem solid var(--border-color);
     border-radius: 0.35rem; /* Bordes un poco más suaves */
-    color: var(--text-color);
+    color: var(--main-section-subitem-color);
     padding: 0.4rem 0.8rem;
     font-size: 0.85rem;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Transición más fluida */
