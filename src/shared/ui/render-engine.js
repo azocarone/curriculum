@@ -19,9 +19,12 @@ export function renderGroupedSection(containerId, groups, labels = {}, itemRende
 
     const safeLabels = labels || {};
 
+    // Condición para evaluar si es la sección 'education'
+    const listClassModifier = containerId === "education" ? " main__section-list--clean" : "";
+
     // Generación del HTML para cada grupo/categoría
     const itemsHtml = Object.entries(groups).map(([slug, list]) => `
-        <ul class="main__section-list">
+        <ul class="main__section-list${listClassModifier}">
             <li class="main__section-item">
                 <${headingTag} class="${titleClass ? `${titleClass}` : ''} main__section-title--${slug}">
                     ${safeLabels[slug] || slug}
