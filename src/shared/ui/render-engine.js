@@ -8,18 +8,19 @@
  */
 
 const CLASS_MODIFIERS = {
-  skills: { 
-    list: "", 
-    subList: " main__section-sublist--flex" 
-  },
-  education: { 
-    list: " main__section-list--clean", 
-    subList: "" 
-  }
+    skills: {
+        list: "", 
+        subList: " main__section-sublist--skills" 
+    },
+    education: { 
+        list: " main__section-list--clean", 
+        subList: "" 
+    }
 };
 
 const SLUG_CLASS_MODIFIERS = {
-  certifications: " main__section-sublist--certifications"
+    academic: " main__section-sublist--academic",
+    certifications: " main__section-sublist--certifications"
 };
 
 export function renderGroupedSection(containerId, groups, labels = {}, itemRenderer, options = {}) {

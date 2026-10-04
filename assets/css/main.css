@@ -1,10 +1,13 @@
+/* ==========================================================================
+   1. VARIABLES & THEMING (Bloque Main)
+   ========================================================================== */
 :root {
     --main-spacing-small: clamp(0.5rem, 1vw, 1rem);
     --main-spacing-medium: clamp(1rem, 2vw, 1.818rem);
     --main-gap-small: 0.5rem;
     --main-gap-medium: 0.875rem;
     --main-icon-weight: 600;
-    --main-icon-spacing: 0.6rem; /* Incrementado ligeramente */
+    --main-icon-spacing: 0.6rem;
     --main-icon-stroke: 0.0625rem;
 
     /* Modo Claro (Light Mode) */
@@ -25,26 +28,40 @@ body.dark-theme {
     --main-section-subitem-bg-color: #1a2436;
 }
 
-.main__section,
-.main__experience-item {
+/* ==========================================================================
+   2. BLOQUE PRINCIPAL & CONTENEDORES (.main__section)
+   ========================================================================== */
+.main__section {
     margin-bottom: var(--main-spacing-medium);
 }
 
+.main__section--skills {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--main-gap-medium);
+    font-size: 0.95em;
+}
+
+.main__section--skills > * {
+    box-sizing: border-box;
+    flex: 0 0 calc(50% - (var(--main-gap-medium) / 2));
+}
+
+/* ==========================================================================
+   3. ELEMENTO TÍTULO GENERAL Y MODIFICADORES DE ICONO EN ORDEN HTML
+   ========================================================================== */
 .main__section-title {
     display: flex;
     align-items: center;
-    font-size: calc(var(--font-size-base) * 1.25); /* Un poco más grande para jerarquía */
+    font-size: calc(var(--font-size-base) * 1.25);
     color: var(--main-section-title-color);
     text-transform: capitalize;
     margin: 0 0 var(--main-spacing-medium) 0;
     transition: color 0.3s ease;
 }
 
-.main__section-subtitle {
-    font-size: calc(var(--font-size-base) * 1.125);
-    color: var(--main-section-subtitle-color);
-}
-
+/* Base de Pseudo-elementos para Iconos */
 .main__section-title--summary::before,
 .main__section-title--skills::before,
 .main__section-title--ai::before,
@@ -64,8 +81,10 @@ body.dark-theme {
     transition: -webkit-text-stroke 0.3s ease;
 }
 
-/* Mapeo de Iconos Content */
+/* Iconos #summary (Perfil Profesional) */
 .main__section-title--summary::before { content: "\f508"; }
+
+/* Iconos #skills (Competencias Clave) */
 .main__section-title--skills::before { content: "\f5fd"; }
 .main__section-title--ai::before { content: "\f5dc"; }
 .main__section-title--data::before { content: "\f1c0"; }
@@ -73,122 +92,94 @@ body.dark-theme {
 .main__section-title--cloud::before { content: "\f0c2"; }
 .main__section-title--business::before { content: "\f0b1"; }
 .main__section-title--languages::before { content: "\f1ab"; }
+
+/* Iconos #experience (Experiencia Laboral) */
 .main__section-title--experience::before { content: "\f559"; }
+
+/* Iconos #education (Educación y Certificaciones) */
 .main__section-title--academic::before { content: "\f19d"; }
 .main__section-title--certifications::before { content: "\f0A3"; }
 
-.main__experience-list,
-.main__section-list,
-.main__section-sublist {
-    list-style: none;
-    margin: 0;
-    padding: 0;
+/* ==========================================================================
+   4. ELEMENTO SUBTÍTULO (.main__section-subtitle)
+   ========================================================================== */
+.main__section-subtitle {
+    font-size: calc(var(--font-size-base) * 1.125);
+    color: var(--main-section-subtitle-color);
 }
 
+/* ==========================================================================
+   5. ESTRUCTURA DE LISTAS GENERACIONALES (.main__section-list)
+   ========================================================================== */
 .main__section-list {
+    list-style: none;
+    margin: 0 0 1.5rem 0;
+    padding: 0 0.9375rem 0.9375rem;
     background-color: var(--main-section-list-bg-color);
     border: 0.0625rem solid var(--main-section-list-border-color);
     border-radius: 0.55rem;
-    padding: 0 0.9375rem 0.9375rem;
 }
 
-.main__section-list--clean  {
+.main__section-list--clean {
     background-color: inherit;
     border: none;
     border-radius: 0;
     padding: 0;
 }
 
-.main__section--flex {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap; /* Permite que pasen a la siguiente fila */
-    gap: var(--main-gap-medium);
-    font-size: 0.95em;
-}
-
-.main__section--flex > * {
-    box-sizing: border-box;
-    /* 50% de ancho menos la mitad del gap para evitar que se desborde */
-    flex: 0 0 calc(50% - (var(--main-gap-medium) / 2));
-}
-
-.main__experience-info {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: var(--main-gap-small);
-    font-size: 0.9em;
-    color: inherit;
-    line-height: 1.4;
-    border-bottom: 1px solid var(--border-color); /* Línea sutil divisoria */
-    padding-bottom: 0.5rem;
-    margin-bottom: 0.8rem;
-}
-
-.main__experience-info > * {
-    white-space: nowrap;
+/* Sublistas */
+.main__section-sublist {
+    list-style: none;
     margin: 0;
+    padding: 0;
 }
 
-.main__experience-info > *:nth-child(odd) {
-    justify-self: start;
-    text-align: left;
-    font-weight: 700; /* Resalta el Cargo/Título */
-}
-
-.main__experience-info > *:nth-child(even) {
-    justify-self: end;
-    text-align: right;
-    color: var(--text-muted); /* Suaviza fechas y lugares */
-}
-
-.main__experience-info > *:nth-child(n+2):nth-child(-n+4) {
-    font-style: italic;
-}
-
-.main__experience-responsibilities-list {
-    list-style-type: disc;
-    list-style-position: outside;
-    padding-left: 1.2rem;
-    margin: 0.5rem 0 var(--main-spacing-medium) 0;
-    color: var(--text-color);
-}
-
-.main__experience-responsibility-item {
-    padding: 0.25rem 0;
-    line-height: 1.5;
-}
-
-.main__section-sublist--flex {
+.main__section-sublist--skills {
     display: flex;
     flex-wrap: wrap;
     gap: var(--main-gap-small);
     line-height: 1.4;
+}
+
+.main__section-sublist--academic {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.main__section-sublist--academic .main__section-subitem {
+    width: 100%;
+    box-sizing: border-box;
 }
 
 .main__section-sublist--certifications {
     display: flex;
     flex-wrap: wrap;
-    gap: 1.5rem 1rem; /* Espaciado entre filas y columnas */
+    gap: 1.5rem 1rem;
     list-style: none;
     padding: 0;
     margin: 0;
 }
 
 .main__section-sublist--certifications .main__section-subitem {
-  /* Calcula el ancho para 2 columnas considerando el espacio del gap */
-  flex: 1 1 calc(50% - 0.5rem);
-  box-sizing: border-box;
+    flex: 1 1 calc(50% - 0.5rem);
+    box-sizing: border-box;
 }
 
+/* ==========================================================================
+   6. ELEMENTOS HIJO Y NIETO DE LISTA (.main__section-subitem*)
+   ========================================================================== */
 .main__section-subitem {
     background-color: var(--main-section-subitem-bg-color);
     border: 0.0625rem solid var(--border-color);
-    border-radius: 0.35rem; /* Bordes un poco más suaves */
+    border-radius: 0.35rem;
     color: var(--main-section-subitem-color);
     padding: 0.4rem 0.8rem;
     font-size: 0.85rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1); /* Transición más fluida */
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: default;
 }
 
@@ -206,7 +197,7 @@ body.dark-theme {
         color: var(--accent-color);
         transform: translateY(-3px);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        background-color: var(--header-bg); /* Cambio sutil de fondo */
+        background-color: var(--header-bg);
     }
 }
 
@@ -231,8 +222,70 @@ body.dark-theme {
     text-decoration-color: var(--underline-color);
 }
 
+/* ==========================================================================
+   7. BLOQUE DE EXPERIENCIA LABORAL (.main__experience-*)
+   ========================================================================== */
+.main__experience-list {
+    list-style: none;
+    margin: 0 0 1.5rem 0;
+    padding: 0;
+}
+
+.main__experience-item {
+    margin-bottom: var(--main-spacing-medium);
+}
+
+.main__experience-info {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: var(--main-gap-small);
+    font-size: 0.9em;
+    color: inherit;
+    line-height: 1.4;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 0.5rem;
+    margin-bottom: 0.8rem;
+}
+
+.main__experience-info > * {
+    white-space: nowrap;
+    margin: 0;
+}
+
+.main__experience-info > *:nth-child(odd) {
+    justify-self: start;
+    text-align: left;
+    font-weight: 700;
+}
+
+.main__experience-info > *:nth-child(even) {
+    justify-self: end;
+    text-align: right;
+    color: var(--text-muted);
+}
+
+.main__experience-info > *:nth-child(n+2):nth-child(-n+4) {
+    font-style: italic;
+}
+
+.main__experience-responsibilities-list {
+    list-style-type: disc;
+    list-style-position: outside;
+    padding-left: 1.2rem;
+    margin: 0.5rem 0 var(--main-spacing-medium) 0;
+    color: var(--text-color);
+}
+
+.main__experience-responsibility-item {
+    padding: 0.25rem 0;
+    line-height: 1.5;
+}
+
+/* ==========================================================================
+   8. MEDIA QUERIES & ADAPTABILIDAD RESPONSIVE
+   ========================================================================== */
 @media screen and (max-width: 480px), print {
-    .main__section--flex {
+    .main__section--skills {
         flex-direction: column;
     }
 
@@ -247,10 +300,9 @@ body.dark-theme {
     .main__experience-info > * {
         align-self: flex-start;
         text-align: left;
-        white-space: normal; /* Permite que el texto rompa en móvil */
+        white-space: normal;
     }
 
-    /* Ocultar iconos en móvil/print para ahorrar espacio */
     .main__section-title--summary::before,
     .main__section-title--skills::before,
     .main__section-title--ai::before,
@@ -264,7 +316,7 @@ body.dark-theme {
     .main__section-title--certifications::before {
         display: none;
     }
-    
+
     .main__section-subitem {
         transform: none !important;
         box-shadow: none !important;
