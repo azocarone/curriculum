@@ -49,7 +49,7 @@ export function createEducationItemHTML(item, lang, slug) {
     return `
         <li class="main__section-subitem">
             <a class="main__section-subitem__link" href="${item.url || '#'}" target="_blank" rel="noopener noreferrer">
-                <h3 class="main__section-subitem__title">${item.title ?? ''}&nbsp;-&nbsp;</h3>
+                <h3 class="main__section-subitem__title">${item.title ?? ''}</h3>
                 <p class="main__section-subitem__institution">${item.institution ?? ''}</p>
                 <p class="main__section-subitem__dates">${dateRange}</p>
             </a>

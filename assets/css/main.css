@@ -166,6 +166,21 @@ body.dark-theme {
     line-height: 1.4;
 }
 
+.main__section-sublist--certifications {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem 1rem; /* Espaciado entre filas y columnas */
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.main__section-sublist--certifications .main__section-subitem {
+  /* Calcula el ancho para 2 columnas considerando el espacio del gap */
+  flex: 1 1 calc(50% - 0.5rem);
+  box-sizing: border-box;
+}
+
 .main__section-subitem {
     background-color: var(--main-section-subitem-bg-color);
     border: 0.0625rem solid var(--border-color);

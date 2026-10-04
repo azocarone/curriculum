@@ -6,6 +6,22 @@
  * @param {Function} itemRenderer - Callback para renderizar los elementos de cada sublista.
  * @param {Object} [options={}] - Opciones opcionales de configuración.
  */
+
+const CLASS_MODIFIERS = {
+  skills: { 
+    list: "", 
+    subList: " main__section-sublist--flex" 
+  },
+  education: { 
+    list: " main__section-list--clean", 
+    subList: "" 
+  }
+};
+
+const SLUG_CLASS_MODIFIERS = {
+  certifications: " main__section-sublist--certifications"
+};
+
 export function renderGroupedSection(containerId, groups, labels = {}, itemRenderer, options = {}) {
     const container = document.getElementById(containerId);
     if (!container || !groups) return;
@@ -19,22 +35,25 @@ export function renderGroupedSection(containerId, groups, labels = {}, itemRende
 
     const safeLabels = labels || {};
 
-    // Condición para evaluar si es la sección 'education'
-    const listClassModifier = containerId === "education" ? " main__section-list--clean" : "";
+    const { list: listClassModifier, subList: subListClassModifier } =
+        CLASS_MODIFIERS[containerId] ?? { list: "", subList: "" };
 
     // Generación del HTML para cada grupo/categoría
-    const itemsHtml = Object.entries(groups).map(([slug, list]) => `
+    const itemsHtml = Object.entries(groups).map(([slug, list]) => {
+        const slugSubListModifier = SLUG_CLASS_MODIFIERS[slug] ?? "";
+        
+        return `
         <ul class="main__section-list${listClassModifier}">
             <li class="main__section-item">
                 <${headingTag} class="${titleClass ? `${titleClass}` : ''} main__section-title--${slug}">
                     ${safeLabels[slug] || slug}
                 </${headingTag}>
-                <ul class="main__section-sublist main__section-sublist--flex">
+                <ul class="main__section-sublist${subListClassModifier}${slugSubListModifier}">
                     ${itemRenderer(list, slug)}
                 </ul>
             </li>
         </ul>
-    `).join("");
+    `}).join("");
 
     const innerContent = wrapperClass
         ? `<div class="${wrapperClass}">${itemsHtml}</div>`
