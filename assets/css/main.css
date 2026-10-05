@@ -43,37 +43,6 @@ body.dark-theme {
     --main-experience-responsibilities-list-color: #cbd5e1;
 }
 
-.main__section {
-    margin-bottom: var(--main-spacing-medium);
-}
-
-.main__section-title {
-    display: flex;
-    align-items: center;
-    font-size: calc(var(--font-size-base) * 1.25);
-    color: var(--main-section-title-color);
-    text-transform: capitalize;
-    margin: 0 0 var(--main-spacing-medium) 0;
-    transition: color 0.3s ease;
-}
-
-.main__section-content {
-    color: var(--main-section-content-color);
-}
-
-.main__section--skills {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    gap: var(--main-gap-medium);
-    font-size: 0.95em;
-}
-
-.main__section--skills > * {
-    box-sizing: border-box;
-    flex: 0 0 calc(50% - (var(--main-gap-medium) / 2));
-}
-
 /* Base de Pseudo-elementos para Iconos */
 .main__section-title--summary::before,
 .main__section-title--skills::before,
@@ -94,28 +63,45 @@ body.dark-theme {
     transition: -webkit-text-stroke 0.3s ease;
 }
 
-/* Iconos #summary (Perfil Profesional) */
-.main__section-title--summary::before { content: "\f508"; }
+/* 1. SECCIÓN PRINCIPAL & PERFIL PROFESIONAL (#summary) */
+.main__section {
+    margin-bottom: var(--main-spacing-medium);
+}
 
-/* Iconos #skills (Competencias Clave) */
-.main__section-title--skills::before { content: "\f5fd"; }
-.main__section-title--ai::before { content: "\f5dc"; }
-.main__section-title--data::before { content: "\f1c0"; }
-.main__section-title--development::before { content: "\f121"; }
-.main__section-title--cloud::before { content: "\f0c2"; }
-.main__section-title--business::before { content: "\f0b1"; }
-.main__section-title--languages::before { content: "\f1ab"; }
+.main__section-title {
+    display: flex;
+    align-items: center;
+    font-size: calc(var(--font-size-base) * 1.25);
+    color: var(--main-section-title-color);
+    text-transform: capitalize;
+    margin: 0 0 var(--main-spacing-medium) 0;
+    transition: color 0.3s ease;
+}
 
-/* Iconos #experience (Experiencia Laboral) */
-.main__section-title--experience::before { content: "\f559"; }
+.main__section-title--summary::before { 
+    content: "\f508"; 
+}
 
-/* Iconos #education (Educación y Certificaciones) */
-.main__section-title--academic::before { content: "\f19d"; }
-.main__section-title--certifications::before { content: "\f0A3"; }
+.main__section-content {
+    color: var(--main-section-content-color);
+}
 
-.main__section-subtitle {
-    font-size: calc(var(--font-size-base) * 1.125);
-    color: var(--main-section-subtitle-color);
+/* 2. COMPETENCIAS CLAVE Y STACK TÉCNICO (#skills) */
+.main__section-title--skills::before { 
+    content: "\f5fd"; 
+}
+
+.main__section--skills {
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    gap: var(--main-gap-medium);
+    font-size: 0.95em;
+}
+
+.main__section--skills > * {
+    box-sizing: border-box;
+    flex: 0 0 calc(50% - (var(--main-gap-medium) / 2));
 }
 
 .main__section-list {
@@ -127,12 +113,17 @@ body.dark-theme {
     border-radius: 0.55rem;
 }
 
-.main__section-list--clean {
-    background-color: inherit;
-    border: none;
-    border-radius: 0;
-    padding: 0;
+.main__section-subtitle {
+    font-size: calc(var(--font-size-base) * 1.125);
+    color: var(--main-section-subtitle-color);
 }
+
+.main__section-title--ai::before { content: "\f5dc"; }
+.main__section-title--data::before { content: "\f1c0"; }
+.main__section-title--development::before { content: "\f121"; }
+.main__section-title--cloud::before { content: "\f0c2"; }
+.main__section-title--business::before { content: "\f0b1"; }
+.main__section-title--languages::before { content: "\f1ab"; }
 
 .main__section-sublist {
     list-style: none;
@@ -147,34 +138,6 @@ body.dark-theme {
     line-height: 1.4;
 }
 
-.main__section-sublist--academic {
-    display: flex;
-    flex-direction: column;
-    gap: 1.5rem 1rem;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.main__section-sublist--academic .main__section-subitem {
-    width: 100%;
-    box-sizing: border-box;
-}
-
-.main__section-sublist--certifications {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 1.5rem 1rem;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-}
-
-.main__section-sublist--certifications .main__section-subitem {
-    flex: 1 1 calc(50% - 0.5rem);
-    box-sizing: border-box;
-}
-
 .main__section-subitem {
     background-color: var(--main-section-subitem-bg-color);
     border: 0.0625rem solid var(--border-color);
@@ -186,6 +149,13 @@ body.dark-theme {
     cursor: default;
 }
 
+.main__section-subitem:hover {
+    border-color: var(--accent-color);
+    transform: translateY(-3px);
+    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+    background-color: var(--header-bg);
+}
+
 .main__section-subitem--punctuation:not(:last-child)::after {
     content: ",";
 }
@@ -194,63 +164,9 @@ body.dark-theme {
     content: ".";
 }
 
-@media screen {
-    .main__section-subitem:hover {
-        border-color: var(--accent-color);
-        transform: translateY(-3px);
-        box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-        background-color: var(--header-bg);
-    }
-}
-
-.main__section-subitem__link {
-    color: inherit;
-    text-decoration: none;
-    display: block;
-}
-
-.main__section-subitem__title {
-    font-size: 0.875rem;
-    font-weight: bold;
-    color: var(--main-section-subitem-title-color);
-    margin-bottom: 0;
-}
-
-.main__section-subitem__institution {
-    font-size: 0.75rem;
-    font-style: italic;
-    color: var(--main-section-subitem-institution-color);
-    margin: 0;
-    opacity: 0.9;
-}
-
-.main__section-subitem__location {
-    text-decoration: underline;
-    text-underline-offset: 2px;
-    text-decoration-color: var(--underline-color);
-}
-
-.main__section-subitem__dates {
-    font-size: 0.6875rem;
-    color: var(--main-section-subitem-dates-color);
-}
-
-.main__section-subitem__title,
-.main__section-subitem__dates {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.main__section-subitem__tag {
-    background-color: var(--main-section-subitem-bg-color);
-    border: 0.0625rem solid var(--border-color);
-    border-radius: 0.35rem;
-    color: var(--main-section-subitem-tag-color);
-    padding: 0.15rem 0.65rem;
-    font-size: 0.625rem;
-    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
-    cursor: default;
+/* 3. EXPERIENCIA LABORAL (#experience) */
+.main__section-title--experience::before { 
+    content: "\f559"; 
 }
 
 .main__experience-list {
@@ -300,13 +216,13 @@ body.dark-theme {
     color: var(--main-experience-position);
 }
 
-.main__experience-company {
-    color: var(--main-experience-company);
-}
-
 .main__experience-dates,
 .main__experience-location {
     color: var(--main-experience-others);
+}
+
+.main__experience-company {
+    color: var(--main-experience-company);
 }
 
 .main__experience-responsibilities-list {
@@ -322,6 +238,95 @@ body.dark-theme {
     line-height: 1.5;
 }
 
+/* 4. EDUCACIÓN Y CERTIFICACIONES (#education) */
+.main__section-list--clean {
+    background-color: inherit;
+    border: none;
+    border-radius: 0;
+    padding: 0;
+}
+
+.main__section-title--academic::before { 
+    content: "\f19d"; 
+}
+
+.main__section-sublist--academic {
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.main__section-sublist--academic .main__section-subitem {
+    width: 100%;
+    box-sizing: border-box;
+}
+
+.main__section-subitem__link {
+    color: inherit;
+    text-decoration: none;
+    display: block;
+}
+
+.main__section-subitem__title,
+.main__section-subitem__dates {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main__section-subitem__title {
+    font-size: 0.875rem;
+    font-weight: bold;
+    color: var(--main-section-subitem-title-color);
+    margin-bottom: 0;
+}
+
+.main__section-subitem__tag {
+    background-color: var(--main-section-subitem-bg-color);
+    border: 0.0625rem solid var(--border-color);
+    border-radius: 0.35rem;
+    color: var(--main-section-subitem-tag-color);
+    padding: 0.15rem 0.65rem;
+    font-size: 0.625rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+}
+
+.main__section-subitem__institution {
+    font-size: 0.75rem;
+    font-style: italic;
+    color: var(--main-section-subitem-institution-color);
+    margin: 0;
+    opacity: 0.9;
+}
+
+.main__section-subitem__dates {
+    font-size: 0.6875rem;
+    color: var(--main-section-subitem-dates-color);
+}
+
+.main__section-title--certifications::before { 
+    content: "\f0A3"; 
+}
+
+.main__section-sublist--certifications {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 1.5rem 1rem;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.main__section-sublist--certifications .main__section-subitem {
+    flex: 1 1 calc(50% - 0.5rem);
+    box-sizing: border-box;
+}
+
+/* MEDIA QUERIES */
 @media screen and (max-width: 480px), print {
     .main__section--skills {
         flex-direction: column;
@@ -353,10 +358,5 @@ body.dark-theme {
     .main__section-title--academic::before,
     .main__section-title--certifications::before {
         display: none;
-    }
-
-    .main__section-subitem {
-        transform: none !important;
-        box-shadow: none !important;
     }
 }
