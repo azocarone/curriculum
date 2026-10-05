@@ -1,6 +1,3 @@
-/* ==========================================================================
-   1. VARIABLES & THEMING (Bloque Main)
-   ========================================================================== */
 :root {
     --main-spacing-small: clamp(0.5rem, 1vw, 1rem);
     --main-spacing-medium: clamp(1rem, 2vw, 1.818rem);
@@ -12,27 +9,56 @@
 
     /* Modo Claro (Light Mode) */
     --main-section-title-color: #0f172a;
+    --main-section-content-color: #334155;
     --main-section-subtitle-color: #334155;
     --main-section-list-bg-color: #f1f5f9;
     --main-section-list-border-color: #cbd5e1;
     --main-section-subitem-color: #342A1E;
     --main-section-subitem-bg-color: #f4f6f8;
+    --main-section-subitem-title-color: #1f2937;
+    --main-section-subitem-institution-color: #4b5563;
+    --main-section-subitem-dates-color: #4b5563;
+    --main-section-subitem-tag-color: #374151;
+    --main-experience-position: #1f2937;
+    --main-experience-company: #0284c7;
+    --main-experience-others: #64748b;
+    --main-experience-responsibilities-list-color: #334155;
 }
 
 body.dark-theme {
     --main-section-title-color: #ffffff;
+    --main-section-content-color: #cbd5e1;
     --main-section-subtitle-color: #f1f5f9;
     --main-section-list-bg-color: #0f172a;
     --main-section-list-border-color: #263245;
     --main-section-subitem-color: #cbd5e1;
     --main-section-subitem-bg-color: #1a2436;
+    --main-section-subitem-title-color: #f3f4f8;
+    --main-section-subitem-institution-color: #9ca3af;
+    --main-section-subitem-dates-color: #9ca3af;
+    --main-section-subitem-tag-color: #d1d5d8;
+    --main-experience-position: #f3f4f8;
+    --main-experience-company: #38bdf8;
+    --main-experience-others: #94a3b8;
+    --main-experience-responsibilities-list-color: #cbd5e1;
 }
 
-/* ==========================================================================
-   2. BLOQUE PRINCIPAL & CONTENEDORES (.main__section)
-   ========================================================================== */
 .main__section {
     margin-bottom: var(--main-spacing-medium);
+}
+
+.main__section-title {
+    display: flex;
+    align-items: center;
+    font-size: calc(var(--font-size-base) * 1.25);
+    color: var(--main-section-title-color);
+    text-transform: capitalize;
+    margin: 0 0 var(--main-spacing-medium) 0;
+    transition: color 0.3s ease;
+}
+
+.main__section-content {
+    color: var(--main-section-content-color);
 }
 
 .main__section--skills {
@@ -46,19 +72,6 @@ body.dark-theme {
 .main__section--skills > * {
     box-sizing: border-box;
     flex: 0 0 calc(50% - (var(--main-gap-medium) / 2));
-}
-
-/* ==========================================================================
-   3. ELEMENTO TÍTULO GENERAL Y MODIFICADORES DE ICONO EN ORDEN HTML
-   ========================================================================== */
-.main__section-title {
-    display: flex;
-    align-items: center;
-    font-size: calc(var(--font-size-base) * 1.25);
-    color: var(--main-section-title-color);
-    text-transform: capitalize;
-    margin: 0 0 var(--main-spacing-medium) 0;
-    transition: color 0.3s ease;
 }
 
 /* Base de Pseudo-elementos para Iconos */
@@ -100,17 +113,11 @@ body.dark-theme {
 .main__section-title--academic::before { content: "\f19d"; }
 .main__section-title--certifications::before { content: "\f0A3"; }
 
-/* ==========================================================================
-   4. ELEMENTO SUBTÍTULO (.main__section-subtitle)
-   ========================================================================== */
 .main__section-subtitle {
     font-size: calc(var(--font-size-base) * 1.125);
     color: var(--main-section-subtitle-color);
 }
 
-/* ==========================================================================
-   5. ESTRUCTURA DE LISTAS GENERACIONALES (.main__section-list)
-   ========================================================================== */
 .main__section-list {
     list-style: none;
     margin: 0 0 1.5rem 0;
@@ -169,9 +176,6 @@ body.dark-theme {
     box-sizing: border-box;
 }
 
-/* ==========================================================================
-   6. ELEMENTOS HIJO Y NIETO DE LISTA (.main__section-subitem*)
-   ========================================================================== */
 .main__section-subitem {
     background-color: var(--main-section-subitem-bg-color);
     border: 0.0625rem solid var(--border-color);
@@ -194,7 +198,7 @@ body.dark-theme {
 @media screen {
     .main__section-subitem:hover {
         border-color: var(--accent-color);
-        color: var(--accent-color);
+        /*color: var(--accent-color);*/
         transform: translateY(-3px);
         box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
         background-color: var(--header-bg);
@@ -208,11 +212,17 @@ body.dark-theme {
 }
 
 .main__section-subitem__title {
+    font-size: 0.875rem;
     font-weight: bold;
+    color: var(--main-section-subitem-title-color);
+    margin-bottom: 0;
 }
 
 .main__section-subitem__institution {
+    font-size: 0.75rem;
     font-style: italic;
+    color: var(--main-section-subitem-institution-color);
+    margin: 0;
     opacity: 0.9;
 }
 
@@ -222,9 +232,29 @@ body.dark-theme {
     text-decoration-color: var(--underline-color);
 }
 
-/* ==========================================================================
-   7. BLOQUE DE EXPERIENCIA LABORAL (.main__experience-*)
-   ========================================================================== */
+.main__section-subitem__dates {
+    font-size: 0.6875rem;
+    color: var(--main-section-subitem-dates-color);
+}
+
+.main__section-subitem__title,
+.main__section-subitem__dates {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.main__section-subitem__tag {
+    background-color: var(--main-section-subitem-bg-color);
+    border: 0.0625rem solid var(--border-color);
+    border-radius: 0.35rem;
+    color: var(--main-section-subitem-tag-color);
+    padding: 0.15rem 0.65rem;
+    font-size: 0.625rem;
+    transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    cursor: default;
+}
+
 .main__experience-list {
     list-style: none;
     margin: 0 0 1.5rem 0;
@@ -261,11 +291,24 @@ body.dark-theme {
 .main__experience-info > *:nth-child(even) {
     justify-self: end;
     text-align: right;
-    color: var(--text-muted);
+    color: var(--main-experience-others);
 }
 
 .main__experience-info > *:nth-child(n+2):nth-child(-n+4) {
     font-style: italic;
+}
+
+.main__experience-position {
+    color: var(--main-experience-position);
+}
+
+.main__experience-company {
+    color: var(--main-experience-company);
+}
+
+.main__experience-dates,
+.main__experience-location {
+    color: var(--main-experience-others);
 }
 
 .main__experience-responsibilities-list {
@@ -273,7 +316,7 @@ body.dark-theme {
     list-style-position: outside;
     padding-left: 1.2rem;
     margin: 0.5rem 0 var(--main-spacing-medium) 0;
-    color: var(--text-color);
+    color: var(--main-experience-responsibilities-list-color);  
 }
 
 .main__experience-responsibility-item {
@@ -281,9 +324,6 @@ body.dark-theme {
     line-height: 1.5;
 }
 
-/* ==========================================================================
-   8. MEDIA QUERIES & ADAPTABILIDAD RESPONSIVE
-   ========================================================================== */
 @media screen and (max-width: 480px), print {
     .main__section--skills {
         flex-direction: column;
