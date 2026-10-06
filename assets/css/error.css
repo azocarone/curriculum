@@ -1,135 +1,137 @@
+:root {
+    /* TOKENS LOCALES SEMÁNTICOS - MODO CLARO */
+    --error-bg-color: var(--color-slate-50);
+    --error-card-bg: var(--color-white);
+    --error-card-border: var(--color-slate-300);
+    --error-card-shadow: 0 12px 32px rgba(15, 23, 42, 0.12);
+    --error-accent-color: var(--color-danger-600);
+    --error-title-color: var(--color-slate-900);
+    --error-description-color: var(--color-slate-700);
+    
+    --error-detail-bg: var(--color-slate-100);
+    --error-detail-border: var(--color-slate-200);
+    --error-detail-color: var(--color-danger-800);
+    
+    --error-button-bg: var(--color-slate-900);
+    --error-button-color: var(--color-white);
+    --error-button-hover-bg: var(--color-sky-600);
+}
+
+body.dark-theme {
+    /* TOKENS LOCALES SEMÁNTICOS - MODO OSCURO */
+    --error-bg-color: rgba(2, 6, 23, 0.95);
+    --error-card-bg: var(--color-slate-800);
+    --error-card-border: #263245;
+    --error-card-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
+    --error-accent-color: var(--color-danger-400);
+    --error-title-color: var(--color-white);
+    --error-description-color: var(--color-slate-300);
+    
+    --error-detail-bg: var(--color-slate-900);
+    --error-detail-border: #263245;
+    --error-detail-color: #fca5a5;
+    
+    --error-button-bg: var(--color-slate-100);
+    --error-button-color: var(--color-slate-900);
+    --error-button-hover-bg: var(--color-sky-400);
+}
 
 /* ==========================================================================
    MENSAJES DE ERROR (RESPONSIVE & THEME-AWARE)
    ========================================================================== */
 
-/* Contenedor principal que centra el mensaje en pantalla */
 .error-screen {
     display: flex;
     align-items: center;
     justify-content: center;
-    min-height: 100dvh; /* Altura dinámica para navegadores móviles */
+    min-height: 100dvh;
     width: 100%;
-    padding: 20px;
-    background-color: var(--bg-color, #f4f4f7);
+    padding: 1.25rem;
+    background-color: var(--error-bg-color);
     box-sizing: border-box;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 10000;
+    transition: background-color 0.3s ease;
 }
 
-/* Tarjeta de error */
-.error-card {
-    background-color: var(--card-bg, #ffffff);
-    padding: 40px;
-    border-radius: 16px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.08);
+.error-screen__card {
+    background-color: var(--error-card-bg);
+    padding: 2.5rem;
+    border-radius: 0.75rem;
+    border: 0.0625rem solid var(--error-card-border);
+    box-shadow: var(--error-card-shadow);
     text-align: center;
-    max-width: 450px;
+    max-width: 28.125rem;
     width: 100%;
-    border-top: 5px solid #e74c3c; /* Acento visual de error */
+    border-top: 0.3125rem solid var(--error-accent-color);
     box-sizing: border-box;
-    transition: transform 0.3s ease;
+    transition: background-color 0.3s ease, border-color 0.3s ease, box-shadow 0.3s ease;
 }
 
-/* Icono de advertencia generado por CSS (SVG) */
-.error-card::before {
+.error-screen__card::before {
     content: "";
     display: block;
-    margin: 0 auto 20px auto;
-    width: 64px;
-    height: 64px;
-    /* SVG de advertencia en formato Data URI */
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23e74c3c'%3E%3Cpath d='M12 2L1 21h22L12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z'/%3E%3C/svg%3E");
+    margin: 0 auto 1.25rem auto;
+    width: 4rem;
+    height: 4rem;
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23dc2626'%3E%3Cpath d='M12 2L1 21h22L12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z'/%3E%3C/svg%3E");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
 }
 
-.error-card h2 {
-    margin: 0 0 10px 0;
-    font-size: 1.5rem;
-    color: var(--text-color, #333);
+.error-screen__title {
+    margin: 0 0 0.625rem 0;
+    font-size: calc(var(--font-size-base, 1rem) * 1.5);
+    font-weight: 700;
+    color: var(--error-title-color);
+    transition: color 0.3s ease;
 }
 
-.error-card p {
-    margin: 0 0 20px 0;
+.error-screen__description {
+    margin: 0 0 1.25rem 0;
     line-height: 1.6;
-    color: var(--text-muted, #666);
+    color: var(--error-description-color);
+    transition: color 0.3s ease;
 }
 
-/* Detalle técnico del error (estilo consola) */
-.error-detail {
+.error-screen__detail {
     display: inline-block;
-    padding: 8px 12px;
-    background-color: var(--bg-alt, #f8f9fa);
-    border-radius: 6px;
+    padding: 0.5rem 0.875rem;
+    background-color: var(--error-detail-bg);
+    border: 0.0625rem solid var(--error-detail-border);
+    border-radius: 0.375rem;
     font-family: 'Courier New', Courier, monospace;
     font-size: 0.85rem;
-    color: #cc0000;
-    margin-bottom: 25px;
+    font-weight: 600;
+    color: var(--error-detail-color);
+    margin-bottom: 1.5625rem;
     word-break: break-all;
+    transition: background-color 0.3s ease, border-color 0.3s ease, color 0.3s ease;
 }
 
-/* Botón de reintento */
-.btn-retry {
-    background-color: #333;
-    color: #fff;
+.error-screen__button-retry {
+    background-color: var(--error-button-bg);
+    color: var(--error-button-color);
     border: none;
-    padding: 12px 24px;
-    border-radius: 8px;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.5rem;
     font-size: 1rem;
     font-weight: 600;
     cursor: pointer;
-    transition: background-color 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease;
     width: auto;
 }
 
-.btn-retry:hover {
-    background-color: #555;
+.error-screen__button-retry:hover {
+    background-color: var(--error-button-hover-bg);
 }
 
-/* ==========================================================================
-   MODO OSCURO (Adaptación)
-   ========================================================================== */
-body.dark-theme .error-card {
-    background-color: #1e1e1e;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.4);
-    color: #e0e0e0;
-}
-
-body.dark-theme .error-card h2 { color: #fff; }
-body.dark-theme .error-card p { color: #aaa; }
-body.dark-theme .error-detail {
-    background-color: #2d2d2d;
-    color: #ff6b6b;
-}
-
-body.dark-theme .btn-retry {
-    background-color: #f1f1f1;
-    color: #1a1a1a;
-}
-
-/* ==========================================================================
-   RESPONSIVE (Móviles)
-   ========================================================================== */
-@media (max-width: 480px) {
-    .error-screen {
-        padding: 15px;
-    }
-
-    .error-card {
-        padding: 30px 20px;
-    }
-
-    .error-card::before {
-        width: 50px;
-        height: 50px;
-    }
-
-    .btn-retry {
-        width: 100%; /* Botón grande para facilitar el toque táctil */
-        padding: 15px;
-    }
+@media screen and (max-width: 480px) {
+    .error-screen { padding: 0.9375rem; }
+    .error-screen__card { padding: 1.875rem 1.25rem; }
+    .error-screen__card::before { width: 3.125rem; height: 3.125rem; }
+    .error-screen__button-retry { width: 100%; padding: 0.9375rem; }
 }

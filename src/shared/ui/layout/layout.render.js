@@ -24,7 +24,7 @@ function renderNavbar(lang) {
                 ${attr('id', id)}
                 ${attr('data-action', action)}
                 ${attr('data-lang', itemLang)}>
-                <i class="${icon}"></i> ${label}
+                <i class="header__nav-link-icon ${icon}"></i> ${label}
             </a>
         </li>
     `).join("");

@@ -1,21 +1,5 @@
 :root {
-    /* 1. TOKENS PRIMITIVOS (Valores base unificados) */
-    --color-slate-900: #0f172a;
-    --color-slate-800: #1a2436;
-    --color-slate-700: #334155;
-    --color-slate-600: #4b5563;
-    --color-slate-500: #64748b;
-    --color-slate-400: #94a3b8;
-    --color-slate-300: #cbd5e1;
-    --color-slate-200: #e2e8f0;
-    --color-slate-100: #f1f5f9;
-    --color-slate-50:  #f8fafc;
-    --color-white:     #ffffff;
-    
-    --color-sky-600:   #0284c7;
-    --color-sky-400:   #38bdf8;
-
-    /* 2. ESPACIADOS Y GEOMETRÍA BASE */
+    /* ESPACIADOS Y GEOMETRÍA BASE */
     --main-spacing-small:  clamp(0.5rem, 1vw, 1rem);
     --main-spacing-medium: clamp(1rem, 2vw, 1.818rem);
     --main-gap-small:      0.5rem;
@@ -24,58 +8,44 @@
     --main-icon-spacing:   0.6rem;
     --main-icon-stroke:    0.0625rem;
 
-    /* 3. TOKENS SEMÁNTICOS - MODO CLARO */
-    --text-primary:    var(--color-slate-900);
-    --text-secondary:  var(--color-slate-700);
-    --text-muted:      var(--color-slate-600);
-    --bg-card:         var(--color-slate-100);
-    --border-card:     var(--color-slate-300);
-
-    /* Mapeo BEM directo usando alias semánticos */
-    --main-section-title-color:             var(--text-primary);
-    --main-section-content-color:           var(--text-secondary);
-    --main-section-subtitle-color:          var(--text-secondary);
-    --main-section-list-bg-color:           var(--bg-card);
-    --main-section-list-border-color:       var(--border-card);
-    --main-section-subitem-color:           #342A1E;
-    --main-section-subitem-bg-color:        #f4f6f8;
-    --main-section-subitem-title-color:     #1f2937;
-    --main-section-subitem-institution-color: var(--text-muted);
-    --main-section-subitem-dates-color:     var(--text-muted);
-    --main-section-subitem-tag-color:       #374151;
-    --main-experience-position:             #1f2937;
+    /* TOKENS LOCALES SEMÁNTICOS - MODO CLARO */
+    --main-section-title-color:             var(--color-slate-900);
+    --main-section-content-color:           var(--color-slate-700);
+    --main-section-subtitle-color:          var(--color-slate-800);
+    --main-section-list-bg-color:           var(--color-slate-100);
+    --main-section-list-border-color:       var(--color-slate-300);
+    --main-section-subitem-color:           var(--color-slate-800);
+    --main-section-subitem-bg-color:        var(--color-white);
+    --main-section-subitem-title-color:     var(--color-slate-900);
+    --main-section-subitem-institution-color: var(--color-slate-600);
+    --main-section-subitem-dates-color:     var(--color-slate-500);
+    --main-section-subitem-tag-color:       var(--color-slate-700);
+    --main-experience-position:             var(--color-slate-900);
     --main-experience-company:              var(--color-sky-600);
     --main-experience-others:               var(--color-slate-500);
-    --main-experience-responsibilities-list-color: var(--text-secondary);
+    --main-experience-responsibilities-list-color: var(--color-slate-700);
 }
 
 body.dark-theme {
-    /* REDEFINICIÓN DE TOKENS SEMÁNTICOS PARA MODO OSCURO */
-    --text-primary:   var(--color-white);
-    --text-secondary: var(--color-slate-300);
-    --text-muted:     #9ca3af;
-    --bg-card:        var(--color-slate-900);
-    --border-card:    #263245;
-
-    /* Mapeo BEM ajustado dinámicamente */
-    --main-section-title-color:             var(--text-primary);
-    --main-section-content-color:           var(--text-secondary);
+    /* TOKENS LOCALES SEMÁNTICOS - MODO OSCURO */
+    --main-section-title-color:             var(--color-white);
+    --main-section-content-color:           var(--color-slate-300);
     --main-section-subtitle-color:          #f1f5f9;
-    --main-section-list-bg-color:           var(--bg-card);
-    --main-section-list-border-color:       var(--border-card);
-    --main-section-subitem-color:           var(--text-secondary);
+    --main-section-list-bg-color:           var(--color-slate-900);
+    --main-section-list-border-color:       #263245;
+    --main-section-subitem-color:           var(--color-slate-300);
     --main-section-subitem-bg-color:        var(--color-slate-800);
     --main-section-subitem-title-color:     #f3f4f8;
-    --main-section-subitem-institution-color: var(--text-muted);
-    --main-section-subitem-dates-color:     var(--text-muted);
+    --main-section-subitem-institution-color: var(--color-slate-400);
+    --main-section-subitem-dates-color:     var(--color-slate-400);
     --main-section-subitem-tag-color:       #d1d5d8;
     --main-experience-position:             #f3f4f8;
     --main-experience-company:              var(--color-sky-400);
     --main-experience-others:               var(--color-slate-400);
-    --main-experience-responsibilities-list-color: var(--text-secondary);
+    --main-experience-responsibilities-list-color: var(--color-slate-300);
 }
 
-/* Base de Pseudo-elementos para Iconos */
+/* Pseudo-elementos de Iconos */
 .main__section-title--summary::before,
 .main__section-title--skills::before,
 .main__section-title--ai::before,
@@ -95,7 +65,7 @@ body.dark-theme {
     transition: -webkit-text-stroke 0.3s ease;
 }
 
-/* 1. SECCIÓN PRINCIPAL & PERFIL PROFESIONAL (#summary) */
+/* SECCIÓN PRINCIPAL & PERFIL PROFESIONAL (#summary) */
 .main__section {
     margin-bottom: var(--main-spacing-medium);
 }
@@ -110,18 +80,11 @@ body.dark-theme {
     transition: color 0.3s ease;
 }
 
-.main__section-title--summary::before { 
-    content: "\f508"; 
-}
+.main__section-title--summary::before { content: "\f508"; }
+.main__section-content { color: var(--main-section-content-color); }
 
-.main__section-content {
-    color: var(--main-section-content-color);
-}
-
-/* 2. COMPETENCIAS CLAVE Y STACK TÉCNICO (#skills) */
-.main__section-title--skills::before { 
-    content: "\f5fd"; 
-}
+/* COMPETENCIAS CLAVE Y STACK TÉCNICO (#skills) */
+.main__section-title--skills::before { content: "\f5fd"; }
 
 .main__section--skills {
     display: flex;
@@ -130,6 +93,7 @@ body.dark-theme {
     gap: var(--main-gap-medium);
     font-size: 0.95em;
 }
+
 .main__section-list {
     list-style: none;
     box-sizing: border-box;
@@ -180,22 +144,14 @@ body.dark-theme {
 .main__section-subitem:hover {
     border-color: var(--accent-color);
     transform: translateY(-3px);
-    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
-    background-color: var(--header-bg);
+    box-shadow: 0 4px 12px rgba(15, 23, 42, 0.08);
 }
 
-.main__section-subitem--punctuation:not(:last-child)::after {
-    content: ",";
-}
+.main__section-subitem--punctuation:not(:last-child)::after { content: ","; }
+.main__section-subitem--punctuation:last-child::after { content: "."; }
 
-.main__section-subitem--punctuation:last-child::after {
-    content: ".";
-}
-
-/* 3. EXPERIENCIA LABORAL (#experience) */
-.main__section-title--experience::before { 
-    content: "\f559"; 
-}
+/* EXPERIENCIA LABORAL (#experience) */
+.main__section-title--experience::before { content: "\f559"; }
 
 .main__experience-list {
     list-style: none;
@@ -219,7 +175,6 @@ body.dark-theme {
     margin-bottom: 0.8rem;
 }
 
-/* Base común para todos los elementos */
 .main__experience-position,
 .main__experience-dates,
 .main__experience-company,
@@ -228,7 +183,6 @@ body.dark-theme {
     margin: 0;
 }
 
-/* Columna 1 (Izquierda): Alineación a la izquierda y peso de fuente */
 .main__experience-position,
 .main__experience-company {
     grid-column: 1;
@@ -237,7 +191,6 @@ body.dark-theme {
     font-weight: 700;
 }
 
-/* Columna 2 (Derecha): Alineación a la derecha, cursiva y color secundario */
 .main__experience-dates,
 .main__experience-location {
     grid-column: 2;
@@ -247,7 +200,6 @@ body.dark-theme {
     color: var(--main-experience-others);
 }
 
-/* Asignación de filas y colores específicos */
 .main__experience-position { grid-row: 1; color: var(--main-experience-position); }
 .main__experience-dates    { grid-row: 1; }
 .main__experience-company  { grid-row: 2; color: var(--main-experience-company); font-style: italic; }
@@ -266,7 +218,7 @@ body.dark-theme {
     line-height: 1.5;
 }
 
-/* 4. EDUCACIÓN Y CERTIFICACIONES (#education) */
+/* EDUCACIÓN Y CERTIFICACIONES (#education) */
 .main__section-list--clean {
     background-color: inherit;
     border: none;
@@ -274,9 +226,7 @@ body.dark-theme {
     padding: 0;
 }
 
-.main__section-title--academic::before { 
-    content: "\f19d"; 
-}
+.main__section-title--academic::before { content: "\f19d"; }
 
 .main__section-sublist--academic {
     display: flex;
@@ -336,9 +286,7 @@ body.dark-theme {
     color: var(--main-section-subitem-dates-color);
 }
 
-.main__section-title--certifications::before { 
-    content: "\f0A3"; 
-}
+.main__section-title--certifications::before { content: "\f0a3"; }
 
 .main__section-sublist--certifications {
     display: flex;
@@ -355,18 +303,8 @@ body.dark-theme {
 }
 
 @media screen and (max-width: 480px), print {
-    .main__section--skills {
-        flex-direction: column;
-    }
-
-    .main__experience-info {
-        display: flex;
-        flex-direction: column;
-        gap: 0.3rem;
-        border-bottom: none;
-        padding-bottom: 0;
-    }
-
+    .main__section--skills { flex-direction: column; }
+    .main__experience-info { display: flex; flex-direction: column; gap: 0.3rem; border-bottom: none; padding-bottom: 0; }
     .main__experience-position,
     .main__experience-dates,
     .main__experience-company,
@@ -376,7 +314,6 @@ body.dark-theme {
         white-space: normal;
         justify-self: auto;
     }
-
     .main__section-title--summary::before,
     .main__section-title--skills::before,
     .main__section-title--ai::before,
@@ -387,7 +324,5 @@ body.dark-theme {
     .main__section-title--languages::before,
     .main__section-title--experience::before,
     .main__section-title--academic::before,
-    .main__section-title--certifications::before {
-        display: none;
-    }
+    .main__section-title--certifications::before { display: none; }
 }
