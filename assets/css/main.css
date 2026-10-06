@@ -1,46 +1,78 @@
 :root {
-    --main-spacing-small: clamp(0.5rem, 1vw, 1rem);
-    --main-spacing-medium: clamp(1rem, 2vw, 1.818rem);
-    --main-gap-small: 0.5rem;
-    --main-gap-medium: 0.875rem;
-    --main-icon-weight: 600;
-    --main-icon-spacing: 0.6rem;
-    --main-icon-stroke: 0.0625rem;
+    /* 1. TOKENS PRIMITIVOS (Valores base unificados) */
+    --color-slate-900: #0f172a;
+    --color-slate-800: #1a2436;
+    --color-slate-700: #334155;
+    --color-slate-600: #4b5563;
+    --color-slate-500: #64748b;
+    --color-slate-400: #94a3b8;
+    --color-slate-300: #cbd5e1;
+    --color-slate-200: #e2e8f0;
+    --color-slate-100: #f1f5f9;
+    --color-slate-50:  #f8fafc;
+    --color-white:     #ffffff;
+    
+    --color-sky-600:   #0284c7;
+    --color-sky-400:   #38bdf8;
 
-    /* Modo Claro (Light Mode) */
-    --main-section-title-color: #0f172a;
-    --main-section-content-color: #334155;
-    --main-section-subtitle-color: #334155;
-    --main-section-list-bg-color: #f1f5f9;
-    --main-section-list-border-color: #cbd5e1;
-    --main-section-subitem-color: #342A1E;
-    --main-section-subitem-bg-color: #f4f6f8;
-    --main-section-subitem-title-color: #1f2937;
-    --main-section-subitem-institution-color: #4b5563;
-    --main-section-subitem-dates-color: #4b5563;
-    --main-section-subitem-tag-color: #374151;
-    --main-experience-position: #1f2937;
-    --main-experience-company: #0284c7;
-    --main-experience-others: #64748b;
-    --main-experience-responsibilities-list-color: #334155;
+    /* 2. ESPACIADOS Y GEOMETRÍA BASE */
+    --main-spacing-small:  clamp(0.5rem, 1vw, 1rem);
+    --main-spacing-medium: clamp(1rem, 2vw, 1.818rem);
+    --main-gap-small:      0.5rem;
+    --main-gap-medium:     0.875rem;
+    --main-icon-weight:    600;
+    --main-icon-spacing:   0.6rem;
+    --main-icon-stroke:    0.0625rem;
+
+    /* 3. TOKENS SEMÁNTICOS - MODO CLARO */
+    --text-primary:    var(--color-slate-900);
+    --text-secondary:  var(--color-slate-700);
+    --text-muted:      var(--color-slate-600);
+    --bg-card:         var(--color-slate-100);
+    --border-card:     var(--color-slate-300);
+
+    /* Mapeo BEM directo usando alias semánticos */
+    --main-section-title-color:             var(--text-primary);
+    --main-section-content-color:           var(--text-secondary);
+    --main-section-subtitle-color:          var(--text-secondary);
+    --main-section-list-bg-color:           var(--bg-card);
+    --main-section-list-border-color:       var(--border-card);
+    --main-section-subitem-color:           #342A1E;
+    --main-section-subitem-bg-color:        #f4f6f8;
+    --main-section-subitem-title-color:     #1f2937;
+    --main-section-subitem-institution-color: var(--text-muted);
+    --main-section-subitem-dates-color:     var(--text-muted);
+    --main-section-subitem-tag-color:       #374151;
+    --main-experience-position:             #1f2937;
+    --main-experience-company:              var(--color-sky-600);
+    --main-experience-others:               var(--color-slate-500);
+    --main-experience-responsibilities-list-color: var(--text-secondary);
 }
 
 body.dark-theme {
-    --main-section-title-color: #ffffff;
-    --main-section-content-color: #cbd5e1;
-    --main-section-subtitle-color: #f1f5f9;
-    --main-section-list-bg-color: #0f172a;
-    --main-section-list-border-color: #263245;
-    --main-section-subitem-color: #cbd5e1;
-    --main-section-subitem-bg-color: #1a2436;
-    --main-section-subitem-title-color: #f3f4f8;
-    --main-section-subitem-institution-color: #9ca3af;
-    --main-section-subitem-dates-color: #9ca3af;
-    --main-section-subitem-tag-color: #d1d5d8;
-    --main-experience-position: #f3f4f8;
-    --main-experience-company: #38bdf8;
-    --main-experience-others: #94a3b8;
-    --main-experience-responsibilities-list-color: #cbd5e1;
+    /* REDEFINICIÓN DE TOKENS SEMÁNTICOS PARA MODO OSCURO */
+    --text-primary:   var(--color-white);
+    --text-secondary: var(--color-slate-300);
+    --text-muted:     #9ca3af;
+    --bg-card:        var(--color-slate-900);
+    --border-card:    #263245;
+
+    /* Mapeo BEM ajustado dinámicamente */
+    --main-section-title-color:             var(--text-primary);
+    --main-section-content-color:           var(--text-secondary);
+    --main-section-subtitle-color:          #f1f5f9;
+    --main-section-list-bg-color:           var(--bg-card);
+    --main-section-list-border-color:       var(--border-card);
+    --main-section-subitem-color:           var(--text-secondary);
+    --main-section-subitem-bg-color:        var(--color-slate-800);
+    --main-section-subitem-title-color:     #f3f4f8;
+    --main-section-subitem-institution-color: var(--text-muted);
+    --main-section-subitem-dates-color:     var(--text-muted);
+    --main-section-subitem-tag-color:       #d1d5d8;
+    --main-experience-position:             #f3f4f8;
+    --main-experience-company:              var(--color-sky-400);
+    --main-experience-others:               var(--color-slate-400);
+    --main-experience-responsibilities-list-color: var(--text-secondary);
 }
 
 /* Base de Pseudo-elementos para Iconos */
@@ -98,19 +130,15 @@ body.dark-theme {
     gap: var(--main-gap-medium);
     font-size: 0.95em;
 }
-
-.main__section--skills > * {
-    box-sizing: border-box;
-    flex: 0 0 calc(50% - (var(--main-gap-medium) / 2));
-}
-
 .main__section-list {
     list-style: none;
-    margin: 0 0 1.5rem 0;
-    padding: 0 0.9375rem 0.9375rem;
+    box-sizing: border-box;
+    flex: 0 0 calc(50% - (var(--main-gap-medium) / 2));
     background-color: var(--main-section-list-bg-color);
+    padding: 0 0.9375rem 0.9375rem;
     border: 0.0625rem solid var(--main-section-list-border-color);
     border-radius: 0.55rem;
+    margin: 0 0 1.5rem 0;
 }
 
 .main__section-subtitle {
@@ -191,39 +219,39 @@ body.dark-theme {
     margin-bottom: 0.8rem;
 }
 
-.main__experience-info > * {
+/* Base común para todos los elementos */
+.main__experience-position,
+.main__experience-dates,
+.main__experience-company,
+.main__experience-location {
     white-space: nowrap;
     margin: 0;
 }
 
-.main__experience-info > *:nth-child(odd) {
+/* Columna 1 (Izquierda): Alineación a la izquierda y peso de fuente */
+.main__experience-position,
+.main__experience-company {
+    grid-column: 1;
     justify-self: start;
     text-align: left;
     font-weight: 700;
 }
 
-.main__experience-info > *:nth-child(even) {
-    justify-self: end;
-    text-align: right;
-    color: var(--main-experience-others);
-}
-
-.main__experience-info > *:nth-child(n+2):nth-child(-n+4) {
-    font-style: italic;
-}
-
-.main__experience-position {
-    color: var(--main-experience-position);
-}
-
+/* Columna 2 (Derecha): Alineación a la derecha, cursiva y color secundario */
 .main__experience-dates,
 .main__experience-location {
+    grid-column: 2;
+    justify-self: end;
+    text-align: right;
+    font-style: italic;
     color: var(--main-experience-others);
 }
 
-.main__experience-company {
-    color: var(--main-experience-company);
-}
+/* Asignación de filas y colores específicos */
+.main__experience-position { grid-row: 1; color: var(--main-experience-position); }
+.main__experience-dates    { grid-row: 1; }
+.main__experience-company  { grid-row: 2; color: var(--main-experience-company); font-style: italic; }
+.main__experience-location { grid-row: 2; }
 
 .main__experience-responsibilities-list {
     list-style-type: disc;
@@ -326,7 +354,6 @@ body.dark-theme {
     box-sizing: border-box;
 }
 
-/* MEDIA QUERIES */
 @media screen and (max-width: 480px), print {
     .main__section--skills {
         flex-direction: column;
@@ -340,10 +367,14 @@ body.dark-theme {
         padding-bottom: 0;
     }
 
-    .main__experience-info > * {
+    .main__experience-position,
+    .main__experience-dates,
+    .main__experience-company,
+    .main__experience-location {
         align-self: flex-start;
         text-align: left;
         white-space: normal;
+        justify-self: auto;
     }
 
     .main__section-title--summary::before,
