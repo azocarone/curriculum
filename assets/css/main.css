@@ -291,14 +291,25 @@ body.dark-theme {
 .main__section-sublist--certifications {
     display: flex;
     flex-wrap: wrap;
+    justify-content: center;
     gap: 1.5rem 1rem;
     list-style: none;
     padding: 0;
-    margin: 0;
+    margin: 0
 }
 
 .main__section-sublist--certifications .main__section-subitem {
-    flex: 1 1 calc(50% - 0.5rem);
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    /* 
+       flex: flex-grow flex-shrink flex-basis
+       0 = NO permite que la tarjeta se estire para llenar la fila.
+       1 = permite reducir de tamaño en pantallas pequeñas.
+    */
+    flex: 1 0 calc(33.333% - 1rem); 
+    min-width: 15rem;
+    max-width: 23.75rem;
     box-sizing: border-box;
 }
 
