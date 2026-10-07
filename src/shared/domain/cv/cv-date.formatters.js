@@ -9,7 +9,7 @@ export function formatMonthYear(dateStr, lang) {
 
     const locale = lang === "es" ? "es-ES" : "en-US";
 
-    const month = date.toLocaleString(locale, { month: "long" });
+    const month = date.toLocaleString(locale, { month: "short" });
     const year = date.toLocaleString(locale, { year: "numeric" });
 
     return `${month.charAt(0).toUpperCase() + month.slice(1)} ${year}`;
