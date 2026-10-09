@@ -313,7 +313,7 @@ body.dark-theme {
     box-sizing: border-box;
 }
 
-@media screen and (max-width: 480px), print {
+@media screen and (max-width: 480px) {
     .main__section--skills { flex-direction: column; }
     .main__experience-info { display: flex; flex-direction: column; gap: 0.3rem; border-bottom: none; padding-bottom: 0; }
     .main__experience-position,

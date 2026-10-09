@@ -208,7 +208,7 @@ body.dark-theme .header__nav-link-icon {
 .header__contact-link--email::before    { content: "\f0e0"; }
 .header__contact-link--website::before  { content: "\f0ac"; }
 
-@media screen and (max-width: 480px), print {
+@media screen and (max-width: 480px) {
     .header__contact { align-items: flex-start; }
     .header__contact-list { flex-direction: column; width: 100%; gap: 0.4rem; }
     .header__contact-item { display: flex; flex-direction: row; gap: 0.5rem; } 
