@@ -1,12 +1,14 @@
 /* ==========================================================================
 HOJA DE ESTILOS DE IMPRESIÓN COMPLETA - ESTILO HARVARD (OPTIMIZADA PARA ATS)
-METODOLOGÍA BEM | DESTINO: GENERACIÓN DE PDF / IMPRESIÓN
 ========================================================================== */
 
 @page {
     /* Formato Carta con márgenes Harvard simétricos (1.5 cm) */
     size: letter portrait;
-    margin: 1.5cm;
+    margin-top: 1.5cm;
+    margin-bottom: 1.5cm;
+    margin-left: 1.5cm;
+    margin-right: 1.5cm;
 }
 
 @media print {
@@ -16,16 +18,19 @@ METODOLOGÍA BEM | DESTINO: GENERACIÓN DE PDF / IMPRESIÓN
     ---------------------------------------------------------------------- */
     *,
     *::before,
-    *::after {
+    ::after {
         background: transparent !important;
         color: #000000 !important;
+        /* Texto en negro absoluto sobre papel */
         box-shadow: none !important;
         text-shadow: none !important;
         transition: none !important;
     }
 
     html,
-    body {
+    body,
+    body.dark-theme,
+    #body {
         width: 100% !important;
         max-width: 100% !important;
         height: auto !important;
@@ -33,6 +38,7 @@ METODOLOGÍA BEM | DESTINO: GENERACIÓN DE PDF / IMPRESIÓN
         padding: 0 !important;
         background-color: #ffffff !important;
         font-family: "Times New Roman", Times, Georgia, serif !important;
+        /* Tipografía Harvard */
         font-size: 10pt !important;
         line-height: 1.35 !important;
     }
@@ -51,11 +57,29 @@ METODOLOGÍA BEM | DESTINO: GENERACIÓN DE PDF / IMPRESIÓN
     }
 
     /* ----------------------------------------------------------------------
-    2. ELEMENTOS A OCULTAR (NAVEGACIÓN Y ELEMENTOS INTERACTIVOS)
+    2. ELEMENTOS A OCULTAR (NAVEGACIÓN, MENÚS Y ELEMENTOS INTERACTIVOS)
     ---------------------------------------------------------------------- */
+    #nav,
+    #menu-toggle,
+    #theme-toggle,
+    #language-toggle,
+    #download-toggle,
     .header__nav,
+    .header__nav-icon,
+    .header__nav-menu,
+    .header__nav-list,
     .footer {
         display: none !important;
+    }
+
+    #header,
+    #summary,
+    #skills,
+    #experience,
+    #education {
+        display: block !important;
+        visibility: visible !important;
+        width: 100% !important;
     }
 
     /* ----------------------------------------------------------------------
@@ -124,12 +148,12 @@ METODOLOGÍA BEM | DESTINO: GENERACIÓN DE PDF / IMPRESIÓN
         white-space: nowrap !important;
     }
 
-    /* Ocultar etiquetas explícitas */
+    /* Ocultar etiquetas explícitas (Ubicación:, Teléfono:, etc.) */
     .header__contact-label {
         display: none !important;
     }
 
-    /* Reset BEM en enlaces y textos de contacto */
+    /* Reset estricto BEM en enlaces y textos de contacto */
     .header__contact-link,
     .header__contact-text {
         display: inline-block !important;
@@ -241,7 +265,7 @@ METODOLOGÍA BEM | DESTINO: GENERACIÓN DE PDF / IMPRESIÓN
     }
 
     /* ----------------------------------------------------------------------
-    6. EXPERIENCIA LABORAL
+    6. EXPERIENCIA LABORAL (FECHAS Y UBICACIÓN AJUSTADAS A 8.5pt)
     ---------------------------------------------------------------------- */
     .main__experience-list {
         list-style: none !important;
@@ -325,7 +349,7 @@ METODOLOGÍA BEM | DESTINO: GENERACIÓN DE PDF / IMPRESIÓN
     }
 
     /* ----------------------------------------------------------------------
-    7. EDUCACIÓN ACADÉMICA Y CERTIFICACIONES
+    7. EDUCACIÓN ACADÉMICA Y CERTIFICACIONES (CORRECCIÓN DE LÍNEAS HUÉRFANAS)
     ---------------------------------------------------------------------- */
     .main__section-sublist--academic,
     .main__section-sublist--certifications,
@@ -400,6 +424,7 @@ METODOLOGÍA BEM | DESTINO: GENERACIÓN DE PDF / IMPRESIÓN
         display: flex !important;
         flex-direction: row !important;
         flex-wrap: nowrap !important;
+        /* Previene la caída de fechas a renglones nuevos */
         justify-content: space-between !important;
         align-items: baseline !important;
         width: 100% !important;
