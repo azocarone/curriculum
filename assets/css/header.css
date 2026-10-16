@@ -1,22 +1,22 @@
+/* ==========================================================================
+   DESIGN TOKENS LOCALES (HEADER)
+   ========================================================================== */
+
 :root {
-    /* TOKENS LOCALES - MODO CLARO (HEADER) */
     --header-name-color: var(--color-slate-900);
     --header-subtitle-color: var(--color-slate-700);
     --header-contact-address: var(--color-slate-600);
     --header-nav-hover-bg: var(--color-slate-100);
+    --header-menu-bg: #ffffff;
 }
 
 body.dark-theme {
-    /* TOKENS LOCALES - MODO OSCURO (HEADER) */
-    --header-name-color: var(--color-white);
+    --header-name-color: #ffffff;
     --header-subtitle-color: #f1f5f9;
-    --header-contact-address: var(--color-slate-400);
-    --header-nav-hover-bg: #2d333b;
+    --header-contact-address: #cbd5e1;
+    --header-nav-hover-bg: rgba(255, 255, 255, 0.08);
+    --header-menu-bg: #1f1f1f; /* Fondo sólido opaco para el menú desplegable */
 }
-
-/* ==========================================================================
-   Estructura Principal del Header
-   ========================================================================== */
 
 .header {
     position: -webkit-sticky;
@@ -24,27 +24,21 @@ body.dark-theme {
     top: 0;
     z-index: 1000;
     background-color: var(--header-bg);
-
-    -webkit-backdrop-filter: blur(6px);
-    backdrop-filter: blur(6px);
-
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
     color: var(--text-color);
-    padding-left: calc(var(--spacing) * 2);
-    padding-right: calc(var(--spacing) * 2);
-    padding-bottom: var(--spacing);
+    width: 100%; /* Ocupa todo el ancho de la ventana */
+    padding: 0 clamp(1.5rem, 4vw, 4rem); /* Padding lateral fluido y simétrico */
     border-bottom: 0.0625rem solid var(--border-color);
-    margin-left: -1rem;
-    margin-right: -1rem;
-    margin-bottom: var(--spacing);
+    margin-bottom: calc(var(--spacing) * 1.4);
     transition: background-color 0.3s ease, border-color 0.3s ease;
 }
 
-/* Navegación y Menú Desplegable */
 .header__nav-toggle {
     opacity: 0;
     position: absolute;
-    top: clamp(0.5rem, 1vw, 0.875rem);
-    right: clamp(0.5rem, 1vw, 0.875rem);
+    top: var(--spacing);
+    right: clamp(1.5rem, 4vw, 4rem); /* Coincide exactamente con el margen derecho del header */
     z-index: 1001;
 }
 
@@ -55,8 +49,8 @@ body.dark-theme {
     width: clamp(1rem, 2vw, 1.25rem);
     height: clamp(1rem, 2vw, 1.25rem);
     position: absolute;
-    top: clamp(0.5rem, 1vw, 0.875rem);
-    right: clamp(0.5rem, 1vw, 0.875rem);
+    top: var(--spacing);
+    right: clamp(1.5rem, 4vw, 4rem); /* Alineado perfectamente al margen interior */
     cursor: pointer;
     color: var(--text-color);
 }
@@ -75,16 +69,16 @@ body.dark-theme {
 .header__nav-menu {
     display: none;
     position: absolute;
-    top: clamp(2rem, 4vw, 3.2rem);
-    right: 0; 
-    z-index: 100;
+    top: calc(var(--spacing) + 2rem); /* Se despliega limpiamente debajo del icono */
+    right: clamp(1.5rem, 4vw, 4rem);  /* Mantiene el mismo margen alineado */
+    z-index: 1002;
     width: max-content;
-    min-width: 160px;
+    min-width: 170px;
     max-width: 300px;
-    background-color: var(--card-bg); 
+    background-color: var(--header-menu-bg);
     border: 0.0625rem solid var(--border-color);
     border-radius: 0.5rem; 
-    box-shadow: 0 10px 25px rgba(15, 23, 42, 0.15);
+    box-shadow: 0 15px 35px rgba(0, 0, 0, 0.8);
     overflow: hidden;
 }
 
@@ -105,7 +99,7 @@ body.dark-theme {
     height: 2.8rem;
     color: var(--text-color);
     font-size: clamp(0.75rem, 1.5vw, 0.85rem);
-    padding: 0 1.5rem;
+    padding: 0 1.25rem;
     white-space: nowrap;
     border-bottom: 0.0625rem solid var(--border-color);
     transition: background-color 0.2s ease, color 0.2s ease;
@@ -134,12 +128,10 @@ body.dark-theme .header__nav-link-icon {
     border-bottom: none;
 }
 
-/* Lógica de Activación del Menú */
 .header__nav-toggle:checked + .header__nav-icon .header__nav-icon-bar { display: none; }
 .header__nav-toggle:checked + .header__nav-icon .header__nav-icon-close { display: block; }
 .header__nav-toggle:checked ~ .header__nav-menu { display: block; }
 
-/* Contacto y Perfil */
 .header__contact {
     display: flex;
     flex-direction: column;

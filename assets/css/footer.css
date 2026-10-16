@@ -1,7 +1,13 @@
+/* ==========================================================================
+   COMPONENTES BEM (FOOTER)
+   ========================================================================== */
+
 .footer {
     font-size: calc(var(--font-size-base) - 20%);
     text-align: center;
-    padding-top: var(--spacing);
+    width: 100%;
+    padding: var(--spacing) clamp(1.5rem, 4vw, 4rem);
     border-top: 0.0625rem solid var(--border-color);
     margin-top: var(--spacing);
+    box-sizing: border-box;
 }
