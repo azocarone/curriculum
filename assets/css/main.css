@@ -3,8 +3,8 @@
    ========================================================================== */
 
 :root {
-    --main-spacing-small:  clamp(0.5rem, 1vw, 1rem);
-    --main-spacing-medium: clamp(1rem, 2vw, 1.818rem);
+    --main-spacing-small:  clamp(0.4rem, 0.8vw, 0.8rem);
+    --main-spacing-medium: clamp(0.875rem, 1.5vw, 1.5rem);
     --main-gap-small:      0.5rem;
     --main-gap-medium:     0.875rem;
     --main-icon-weight:    600;
@@ -27,7 +27,6 @@
     --main-experience-others:               var(--color-slate-500);
     --main-experience-responsibilities-list-color: var(--color-slate-700);
 
-    /* En Modo Claro: Plano (sin sombra) en reposo, sombra original completa al hacer Hover */
     --main-card-shadow:                     none;
     --main-card-shadow-hover:               0 18px 40px rgba(0, 0, 0, 0.25);
 }
@@ -36,22 +35,24 @@ body.dark-theme {
     --main-section-title-color:             #ffffff;
     --main-section-content-color:           #cbd5e1;
     --main-section-subtitle-color:          #f8fafc;
-    --main-section-list-bg-color:           linear-gradient(145deg, #1f1f1f, #121212);
-    --main-section-list-border-color:       rgba(255, 255, 255, 0.12);
+    
+    /* Mapeo completo de variables locales para las tarjetas en Modo Oscuro */
+    --main-section-list-bg-color:           linear-gradient(145deg, #2a2a2a, #1a1a1a);
+    --main-section-list-border-color:       rgba(255, 255, 255, 0.08);
+    
     --main-section-subitem-color:           #e2e8f0;
-    --main-section-subitem-bg-color:        #18181b;
+    --main-section-subitem-bg-color:        #232325;
     --main-section-subitem-title-color:     #ffffff;
     --main-section-subitem-institution-color: #cbd5e1;
-    --main-section-subitem-dates-color:     #94a3b8;
+    --main-section-subitem-dates-color:     #a1a1aa;
     --main-section-subitem-tag-color:       #38bdf8;
     --main-experience-position:             #ffffff;
     --main-experience-company:              #38bdf8;
-    --main-experience-others:               #94a3b8;
+    --main-experience-others:               #a1a1aa;
     --main-experience-responsibilities-list-color: #e2e8f0;
 
-    /* En Modo Oscuro: Mantiene sus valores originales intactos */
-    --main-card-shadow:                     0 12px 30px rgba(0, 0, 0, 0.15);
-    --main-card-shadow-hover:               0 18px 40px rgba(0, 0, 0, 0.25);
+    --main-card-shadow:                     0 6px 24px rgba(0, 0, 0, 0.3);
+    --main-card-shadow-hover:               0 12px 36px rgba(0, 0, 0, 0.45);
 }
 
 /* Pseudo-elementos de Iconos */
@@ -76,16 +77,16 @@ body.dark-theme {
 
 /* SECCIÓN PRINCIPAL & PERFIL PROFESIONAL (#summary) */
 .main {
-    max-width: 1150px; /* Ampliamos un poco el límite para dar más holgura a las cards */
-    width: 92%;        /* Asegura adaptabilidad en pantallas medianas */
-    margin: 0 auto;    /* Centra el contenedor principal */
+    max-width: 1080px;
+    width: 92%;        
+    margin: 0 auto;    
     padding: 0;
 }
 
 .main__section-title {
     display: flex;
     align-items: center;
-    font-size: calc(var(--font-size-base) * 1.25);
+    font-size: calc(var(--font-size-base) * 1.2);
     color: var(--main-section-title-color);
     text-transform: capitalize;
     margin: var(--spacing) 0 var(--spacing) 0;
@@ -111,14 +112,14 @@ body.dark-theme {
     box-sizing: border-box;
     flex: 0 0 calc(50% - (var(--main-gap-medium) / 2));
     background: var(--main-section-list-bg-color);
-    padding: 1.25rem;
+    padding: 1.1rem 1.25rem;
     border: 0.0625rem solid var(--main-section-list-border-color);
     border-top-width: 3px;
     border-top-style: solid;
     border-top-color: var(--border-highlight);
     border-radius: 0.75rem;
     box-shadow: var(--main-card-shadow);
-    margin: 0 0 1.5rem 0;
+    margin: 0 0 1.25rem 0;
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
                 box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
                 border-top-color 0.3s ease;
@@ -131,9 +132,9 @@ body.dark-theme {
 }
 
 .main__section-subtitle {
-    font-size: calc(var(--font-size-base) * 1.125);
+    font-size: calc(var(--font-size-base) * 1.05);
     color: var(--main-section-subtitle-color);
-    margin: 0 0 calc(var(--spacing) * 0.85)
+    margin: 0 0 calc(var(--spacing) * 0.75)
 }
 
 .main__section-title--ai::before { content: "\f5dc"; }
@@ -161,8 +162,8 @@ body.dark-theme {
     border: 0.0625rem solid var(--border-color);
     border-radius: 0.35rem;
     color: var(--main-section-subitem-color);
-    padding: 0.4rem 0.8rem;
-    font-size: 0.85rem;
+    padding: 0.35rem 0.7rem;
+    font-size: 0.825rem;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: default;
 }
@@ -181,7 +182,7 @@ body.dark-theme {
 
 .main__experience-list {
     list-style: none;
-    margin: 0 0 1.5rem 0;
+    margin: 0 0 1.25rem 0;
     padding: 0;
 }
 
@@ -197,8 +198,8 @@ body.dark-theme {
     color: inherit;
     line-height: 1.4;
     border-bottom: 1px solid var(--border-color);
-    padding-bottom: 0.5rem;
-    margin-bottom: 0.8rem;
+    padding-bottom: 0.4rem;
+    margin-bottom: 0.7rem;
 }
 
 .main__experience-position,
@@ -235,12 +236,12 @@ body.dark-theme {
     list-style-type: disc;
     list-style-position: outside;
     padding-left: 1.2rem;
-    margin: 0.5rem 0 var(--main-spacing-medium) 0;
+    margin: 0.4rem 0 var(--main-spacing-medium) 0;
     color: var(--main-experience-responsibilities-list-color);  
 }
 
 .main__experience-responsibility-item {
-    padding: 0.25rem 0;
+    padding: 0.2rem 0;
     line-height: 1.5;
 }
 
@@ -258,7 +259,7 @@ body.dark-theme {
 .main__section-sublist--academic {
     display: flex;
     flex-direction: column;
-    gap: 1.5rem 1rem;
+    gap: 1.25rem 1rem;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -273,7 +274,7 @@ body.dark-theme {
     border-top-style: solid;
     border-top-color: var(--border-highlight);
     border-radius: 0.75rem;
-    padding: 1.5rem;
+    padding: 1.25rem;
     box-shadow: var(--main-card-shadow);
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
                 box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
@@ -300,7 +301,7 @@ body.dark-theme {
 }
 
 .main__section-subitem__title {
-    font-size: 0.875rem;
+    font-size: 0.85rem;
     font-weight: bold;
     color: var(--main-section-subitem-title-color);
     margin: 0;
@@ -311,8 +312,8 @@ body.dark-theme {
     border: 0.0625rem solid var(--border-color);
     border-radius: 0.35rem;
     color: var(--main-section-subitem-tag-color);
-    padding: 0.15rem 0.65rem;
-    font-size: 0.625rem;
+    padding: 0.15rem 0.6rem;
+    font-size: 0.6rem;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: default;
 }
@@ -335,9 +336,9 @@ body.dark-theme {
 }
 
 .main__section-subitem__dates {
-    font-size: 0.6875rem;
+    font-size: 0.65rem;
     color: var(--main-section-subitem-dates-color);
-    margin: calc(var(--spacing) * 0.5) 0 0;
+    margin: calc(var(--spacing) * 0.4) 0 0;
 }
 
 .main__section-title--certifications::before { content: "\f0a3"; }
@@ -346,7 +347,7 @@ body.dark-theme {
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
-    gap: 1.5rem 1rem;
+    gap: 1.25rem 1rem;
     list-style: none;
     padding: 0;
     margin: 0;
@@ -357,8 +358,8 @@ body.dark-theme {
     flex-direction: column;
     justify-content: space-between;
     flex: 1 0 calc(33.333% - 1rem); 
-    min-width: 15rem;
-    max-width: 23.75rem;
+    min-width: 14rem;
+    max-width: 22rem;
     box-sizing: border-box;
     background: var(--main-section-list-bg-color);
     border: 0.0625rem solid var(--main-section-list-border-color);
@@ -366,7 +367,7 @@ body.dark-theme {
     border-top-style: solid;
     border-top-color: var(--border-highlight);
     border-radius: 0.75rem;
-    padding: 1.5rem;
+    padding: 1.25rem;
     box-shadow: var(--main-card-shadow);
     transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
                 box-shadow 0.4s cubic-bezier(0.4, 0, 0.2, 1), 
@@ -377,6 +378,17 @@ body.dark-theme {
     border-top-color: var(--accent-color);
     transform: translateY(-4px);
     box-shadow: var(--main-card-shadow-hover);
+}
+
+@media screen and (min-width: 769px) and (max-width: 1400px) {
+    .main {
+        max-width: 1024px;
+    }
+    .main__section-list,
+    .main__section-sublist--academic .main__section-subitem,
+    .main__section-sublist--certifications .main__section-subitem {
+        padding: 1.15rem;
+    }
 }
 
 @media screen and (max-width: 480px) {

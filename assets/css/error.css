@@ -1,5 +1,5 @@
 /* ==========================================================================
-   DESIGN TOKENS LOCALES (ERROR SCREEN)
+   DESIGN TOKENS LOCALES (ERROR SCREEN - ESTÁNDAR PROFESIONAL)
    ========================================================================== */
 
 :root {
@@ -7,31 +7,38 @@
     --error-card-bg: var(--color-white);
     --error-card-border: var(--color-slate-300);
     --error-card-shadow: 0 12px 32px rgba(15, 23, 42, 0.12);
-    --error-accent-color: var(--color-danger-600);
+    --error-accent-color: #ef4444; /* Rojo moderno estándar (Tailwind Red 500) */
     --error-title-color: var(--color-slate-900);
     --error-description-color: var(--color-slate-700);
-    --error-detail-bg: var(--color-slate-100);
-    --error-detail-border: var(--color-slate-200);
-    --error-detail-color: var(--color-danger-800);
+    
+    /* Contenedor de código de error limpio y profesional en modo claro */
+    --error-detail-bg: #fef2f2;
+    --error-detail-border: #fecaca;
+    --error-detail-color: #b91c1c;
+    
     --error-button-bg: var(--color-slate-900);
     --error-button-color: var(--color-white);
-    --error-button-hover-bg: var(--color-sky-600);
+    --error-button-hover-bg: #ef4444;
 }
 
 body.dark-theme {
-    --error-bg-color: rgba(2, 6, 23, 0.95);
-    --error-card-bg: var(--color-slate-800);
-    --error-card-border: #263245;
-    --error-card-shadow: 0 12px 32px rgba(0, 0, 0, 0.5);
-    --error-accent-color: var(--color-danger-400);
-    --error-title-color: var(--color-white);
-    --error-description-color: var(--color-slate-300);
-    --error-detail-bg: var(--color-slate-900);
-    --error-detail-border: #263245;
+    --error-bg-color: rgba(10, 10, 10, 0.95);
+    --error-card-bg: #18181b;
+    --error-card-border: rgba(255, 255, 255, 0.12);
+    --error-card-shadow: 0 16px 40px rgba(0, 0, 0, 0.7);
+    --error-accent-color: #f87171; /* Rojo brillante de alta visibilidad para modo oscuro */
+    --error-title-color: #ffffff;
+    --error-description-color: #a1a1aa;
+    
+    /* Contenedor de código de error técnico oscuro con acento rojo sutil */
+    --error-detail-bg: rgba(239, 68, 68, 0.08);
+    --error-detail-border: rgba(239, 68, 68, 0.25);
     --error-detail-color: #fca5a5;
-    --error-button-bg: var(--color-slate-100);
-    --error-button-color: var(--color-slate-900);
-    --error-button-hover-bg: var(--color-sky-400);
+    
+    /* Botón de acción con estilo de consola/desarrollador */
+    --error-button-bg: #f43f5e;
+    --error-button-color: #ffffff;
+    --error-button-hover-bg: #e11d48;
 }
 
 /* ==========================================================================
@@ -55,7 +62,7 @@ body.dark-theme {
 }
 
 .error-screen__card {
-    background-color: var(--error-card-bg);
+    background: var(--error-card-bg);
     padding: 2.5rem;
     border-radius: 0.75rem;
     border: 0.0625rem solid var(--error-card-border);
@@ -72,12 +79,17 @@ body.dark-theme {
     content: "";
     display: block;
     margin: 0 auto 1.25rem auto;
-    width: 4rem;
-    height: 4rem;
-    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23dc2626'%3E%3Cpath d='M12 2L1 21h22L12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z'/%3E%3C/svg%3E");
+    width: 3.5rem;
+    height: 3.5rem;
+    /* Icono SVG con el rojo estándar profesional */
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23ef4444'%3E%3Cpath d='M12 2L1 21h22L12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z'/%3E%3C/svg%3E");
     background-size: contain;
     background-repeat: no-repeat;
     background-position: center;
+}
+
+body.dark-theme .error-screen__card::before {
+    background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='%23f87171'%3E%3Cpath d='M12 2L1 21h22L12 2zm1 14h-2v-2h2v2zm0-4h-2V7h2v5z'/%3E%3C/svg%3E");
 }
 
 .error-screen__title {
@@ -97,7 +109,7 @@ body.dark-theme {
 
 .error-screen__detail {
     display: inline-block;
-    padding: 0.5rem 0.875rem;
+    padding: 0.625rem 1rem;
     background-color: var(--error-detail-bg);
     border: 0.0625rem solid var(--error-detail-border);
     border-radius: 0.375rem;
@@ -114,22 +126,23 @@ body.dark-theme {
     background-color: var(--error-button-bg);
     color: var(--error-button-color);
     border: none;
-    padding: 0.75rem 1.5rem;
+    padding: 0.75rem 1.75rem;
     border-radius: 0.5rem;
-    font-size: 1rem;
-    font-weight: 600;
+    font-size: 0.95rem;
+    font-weight: 700;
     cursor: pointer;
-    transition: background-color 0.2s ease, color 0.2s ease;
+    transition: background-color 0.2s ease, color 0.2s ease, transform 0.2s ease;
     width: auto;
 }
 
 .error-screen__button-retry:hover {
     background-color: var(--error-button-hover-bg);
+    transform: translateY(-1px);
 }
 
 @media screen and (max-width: 480px) {
     .error-screen { padding: 0.9375rem; }
     .error-screen__card { padding: 1.875rem 1.25rem; }
-    .error-screen__card::before { width: 3.125rem; height: 3.125rem; }
+    .error-screen__card::before { width: 3rem; height: 3rem; }
     .error-screen__button-retry { width: 100%; padding: 0.9375rem; }
 }

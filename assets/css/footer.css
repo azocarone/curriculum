@@ -3,7 +3,7 @@
    ========================================================================== */
 
 .footer {
-    font-size: calc(var(--font-size-base) - 20%);
+    font-size: calc(var(--font-size-base) - 15%);
     text-align: center;
     width: 100%;
     padding: var(--spacing) clamp(1.5rem, 4vw, 4rem);
