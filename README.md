@@ -1,158 +1,258 @@
-# 📑 Curriculum Digital - José Azócar
+# 📄 CV Digital Multilingüe — Estilo Harvard & ATS Compatible | José Azócar
 
-<br>
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT) [![Vite](https://img.shields.io/badge/Vite-6.x-646CDF?style=flat&logo=vite&logoColor=white)](https://vitejs.dev/) [![JavaScript](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?style=flat&logo=javascript&logoColor=black)](https://developer.mozilla.org/es/docs/Web/JavaScript) [![Supabase](https://img.shields.io/badge/Supabase-PostgreSQL-3FCF8E?style=flat&logo=supabase&logoColor=white)](https://supabase.com/) [![Architecture](https://img.shields.io/badge/Architecture-DDD-00599C?style=flat&logo=diagrams.net&logoColor=white)](#--arquitectura-y-estructura-de-directorios) [![Status](https://img.shields.io/badge/Status-Production-success?style=flat&logo=github&logoColor=white)](https://curriculum.joseazocar.pro/)
 
-[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
-[![Stack: Vite](https://img.shields.io/badge/Frontend-Vite-646CFF?logo=vite)](https://vitejs.dev/)
-[![Backend: Supabase](https://img.shields.io/badge/Backend-Supabase-3ECF8E?logo=supabase)](https://supabase.com/)
-[![JS: ES6+](https://img.shields.io/badge/JavaScript-ES6+-F7DF1E?logo=javascript)](https://developer.mozilla.org/en-US/docs/Web/JavaScript)
-
-<br>
-
-Este repositorio presenta el **currículum digital** de José Azócar, una plataforma técnica diseñada con un estilo **Harvard** y optimizada para sistemas de selección **ATS**. El proyecto destaca por su **arquitectura modular escalable** que utiliza **JavaScript** moderno, **Vite** y una base de datos en **Supabase** para gestionar contenido **multilingüe**. Entre sus funciones principales se encuentran un motor de **doble idioma** instantáneo, soporte para **modo oscuro** y una estructura orientada a dominios para facilitar el mantenimiento. El sistema integra lógica avanzada de **base de datos** mediante **PLpgSQL** y funciones de servidor para ofrecer un alto rendimiento.
-
-<br>
+Plataforma técnica de currículum digital de alto rendimiento, cuya maquetación para impresión está diseñada bajo los estándares visuales de la **Universidad de Harvard** y optimizada para la lectura de sistemas de seguimiento de candidatos (**ATS - Applicant Tracking System**). Desarrollada con una arquitectura modular orientada a dominios (**DDD**) en **JavaScript Vanilla (ES6+)**, empaquetada con **Vite**, y respaldada por una base de datos relacional en **Supabase (PostgreSQL)** con procedimientos **PL/pgSQL** y **Edge Functions**. Permite la conmutación de idiomas reactiva en tiempo real (Español/Inglés) sin recarga de página y adaptación dinámica de temas (Claro/Oscuro).
 
 <div align="center">
     <img src="./assets/img/screenshot.gif" alt="Vista previa del Curriculum Vitae" width="95%" height="95%" style="border-radius: 10px; box-shadow: 0 4px 8px rgba(0,0,0,0.2);">
-</div>
+</div><br>
 
-<div align="right">
-    <p><br>🔗 <a href="https://curriculum.joseazocar.pro/">Ver el Curriculum.</a></p>
-</div>
-
-<br>
-
-## 📖 Tabla de Contenidos
-
-- [🛠 Auditoría del Stack Tecnológico](#-auditoría-del-stack-tecnológico)
-- [🗄️ Arquitectura de Base de Datos para Perfiles Multilingües](#️-arquitectura-de-base-de-datos-para-perfiles-multilingües)
-- [🏗 Arquitectura del Sistema](#-arquitectura-del-sistema)
-- [✨ Características Principales](#-características-principales)
-- [💻 Instalación y Configuración](#-instalación-y-configuración)
-- [⚙️ Variables de Entorno](#️-variables-de-entorno)
-- [🚀 Uso y Desarrollo](#-uso-y-desarrollo)
-- [🗺 Roadmap](#-roadmap)
-- [⚖️ Licencia](#️-licencia)
-
-<br>
-
-## 🛠 Auditoría del Stack Tecnológico
-
-Se identifica el siguiente ecosistema técnico:
-
-- **Frontend Core**: HTML5 Semántico, CSS3 con metodología **BEM** y JavaScript moderno (ES6+).
-- **Herramientas de Construcción**: **Vite** como empaquetador para una experiencia de desarrollo rápida y gestión de aliases de rutas.
-- **Backend & Persistencia**: **Supabase (PostgreSQL)** para la gestión dinámica de datos y traducciones mediante PostgREST.
-- **Lógica de Servidor**: Implementación de **Edge Functions** de Supabase para lógica en el servidor.
-- **Distribución de Lenguajes**: Predominio de PLpgSQL (44.3%) y JavaScript (30.6%), lo que refleja una fuerte lógica de base de datos integrada.
-
-<br>
-
-## 🗄️ Arquitectura de Base de Datos para Perfiles Multilingües
-
-> ℹ️ **Nota:** El diseño detallado de tablas, relaciones y lógica multilingüe se encuentra en el archivo anexo:
-> [Consultar especificaciones técnicas ↗️](docs/database/README.md)
-
-<br>
-
-## 🏗 Arquitectura del Sistema
-
-El proyecto implementa un **Diseño Orientado a Dominios (DDD)**, para maximizar la escalabilidad y el desacoplamiento en la aplicación JavaScript Vanilla:
-
-1. **app (Capa de Aplicación)**: Actúa como el nivel de orquestación del sistema. En esta capa residen los Controllers, que no siguen un patrón MVC tradicional, sino que funcionan como orquestadores de la interfaz de usuario (UI). Sus responsabilidades incluyen coordinar los datos, manejar el flujo de la aplicación (como estados de carga o eventos globales) y decidir qué componentes deben renderizarse.
-2. **core (Infraestructura)**: Representa los cimientos y la infraestructura del proyecto. Contiene la configuración global y las conexiones con servicios externos (por ejemplo, Supabase). Es donde se define, en conjunto con los módulos, la lógica de cómo obtener los datos a través de servicios.
-3. **modules (El QUÉ)**: Representa las secciones funcionales y el dominio del negocio. Es la parte que el usuario final consume directamente, como las secciones de contacto, experiencia o habilidades en un CV. Junto con la capa shared, se encarga de definir cómo se muestra la información en la interfaz.
-4. **shared (El CÓMO)**: Contiene la lógica transversal y las herramientas técnicas que permiten que los módulos funcionen. Es la infraestructura técnica que incluye plantillas (templates), ayudantes (helpers) y elementos de UI, definiendo las herramientas necesarias para mostrar la información al usuario.
-
-<br>
-
-## ✨ Características Principales
-
-- **Dual-Language Engine**: Selector de idioma instantáneo (ES/EN) mediante manipulación reactiva del DOM sin recarga de página.
-- **Resiliencia de Datos**: Uso avanzado de `async/await` con gestión proactiva de errores y estados de carga (Loading/Error UI).
-- **Diseño de Alto Rendimiento**:
-    - **Iconografía In-line**: Uso de Data URIs (SVG) para minimizar peticiones HTTP.
-    - **Viewport Adaptativo**: Implementación de unidades `dvh` para un ajuste perfecto en navegadores móviles modernos.
-- **Theming Dinámico**: Sistema de cambio de tema (Claro/Oscuro) persistente y basado en preferencias del usuario.
-
-<br>
-
-## 💻 Instalación y Configuración
-
-Siga estos pasos para configurar el entorno de desarrollo localmente:
-
-1. **Clonar el repositorio:**
-
-    ```bash
-    git clone https://github.com/azocarone/curriculum.git
-    cd curriculum
-    ```
-
-2. **Instalar dependencias:**
-    
-    ```bash
-    npm install
-    ```
-
-3. **Configurar el entorno:** Cree un archivo `.env` en la raíz (ver sección de variables de entorno).
-
-<br>
-
-## ⚙️ Variables de Entorno
-
-Para que el sistema se comunique con la base de datos de Supabase, es necesario configurar las siguientes variables:
-
-| Variable                 | Descripción                         | Requerido |
-| :----------------------- | :---------------------------------- | :-------- |
-| `VITE_SUPABASE_URL`      | URL del proyecto en Supabase        | Sí        |
-| `VITE_SUPABASE_ANON_KEY` | Clave pública de la API de Supabase | Sí        |
-
-<br>
-
-## 🚀 Uso y Desarrollo
-
-Aunque el proyecto puede visualizarse mediante un servidor estático simple, se recomienda el flujo de trabajo profesional integrado:
-
-- **Entorno de Desarrollo:**
-    
-    ```bash
-    npm run dev
-    ```
-
-- **Construcción para Producción:**
-    
-    ```bash
-    npm run build
-    ```
-
-<br>
-
-## 🗺 Roadmap
-
-- [x] Lanzamiento de dominio personalizado y optimización móvil.
-- [x] Refactorización modular (MVC) y escalabilidad.
-- [x] Integración de Supabase para gestión de datos dinámicos.
-- [ ] Dashboard administrativo para gestionar nuevos registros en la base de datos.
-
-<br>
-
-## ⚖️ Licencia
-
-Este proyecto se distribuye bajo **licencia MIT**, permitiendo a otros desarrolladores explorar su configuración técnica y despliegue profesional. El contenido personal y la trayectoria profesional son propiedad intelectual de **José Azócar**.
-
-<br>
+🌐 **Sitio Web en Producción:** [curriculum.joseazocar.pro](https://curriculum.joseazocar.pro/)
 
 ---
 
-<br>
+## 📑 Tabla de Contenidos
 
-<p align="center">
+- [📌 Propósito y Visión General](#-propósito-y-visión-general)
+  - [Problema que Resuelve y Caso de Uso](#problema-que-resuelve-y-caso-de-uso)
+  - [Objetivos Clave](#objetivos-clave)
+- [🏗 Arquitectura y Estructura de Directorios](#-arquitectura-y-estructura-de-directorios)
+- [🛠 Stack Tecnológico y Dependencias Clave](#-stack-tecnológico-y-dependencias-clave)
+  - [Distribución de Lenguajes](#distribución-de-lenguajes)
+  - [Herramientas y Frameworks](#herramientas-y-frameworks)
+- [📐 Patrones de Diseño y Decisiones Técnicas](#-patrones-de-diseño-y-decisiones-técnicas)
+- [🗄 Arquitectura de Base de Datos y Supabase Edge Functions](#-arquitectura-de-base-de-datos-y-supabase-edge-functions)
+  - [Modelado y Esquema Multilingüe (PostgreSQL & PL/pgSQL)](#modelado-y-esquema-multilingüe-postgresql--plpgsql)
+  - [Supabase Edge Functions (Lógica Serverless Backend)](#supabase-edge-functions-lógica-serverless-backend)
+- [⚙ Configuración de Entorno y Backend](#-configuración-de-entorno-y-backend)
+  - [Variables de Entorno](#variables-de-entorno)
+  - [Configuración Local de `.env`](#configuración-local-de-env)
+- [🔄 Puntos de Entrada y Ciclo de Ejecución](#-puntos-de-entrada-y-ciclo-de-ejecución)
+- [💻 Instalación y Configuración Local](#-instalación-y-configuración-local)
+- [⚖ Licencia y Propiedad Intelectual](#-licencia-y-propiedad-intelectual)
+
+---
+
+## 📌 Propósito y Visión General
+
+### Problema que Resuelve y Caso de Uso
+Los archivos PDF tradicionales de currículum enfrentan serias limitaciones en los procesos de selección modernos:
+1. **Inflexibilidad e Incompatibilidad ATS:** Muchos formatos gráficos complejos son rechazados o leídos incorrectamente por los sistemas automáticos de rastreo de candidatos (ATS).
+2. **Gestión Multilingüe Dispersa:** Mantener versiones separadas en varios idiomas en documentos estáticos incrementa el riesgo de desactualización y errores de versión.
+3. **Falta de Dinamismo:** Los perfiles estáticos no permiten la actualización centralizada e instantánea de proyectos, certificaciones y métricas profesionales.
+
+Esta plataforma resuelve estos problemas proporcionando una solución web viva, indexable por motores de búsqueda, con compatibilidad ATS rigurosa y respaldo en base de datos.
+
+### Objetivos Clave
+- **Valor de Negocio:** Presentación ejecutiva limpia y estandarizada (estilo Harvard) que resalta la trayectoria de **José Antonio Azócar Marcano** (Ing. en Informática | Especialista en Agentes de IA, Cloud & Automatización).
+- **Rendimiento (Performance-First):** Carga ultra-rápida sin dependencias pesadas de frameworks UI, optimizando cada byte mediante iconografía en línea y empaquetado optimizado con Vite.
+- **Seguridad y Escalabilidad:** Conexión segura mediante Row Level Security (RLS) en PostgreSQL/Supabase y gestión de traducción mediante procedimientos PL/pgSQL en servidor.
+
+---
+
+## 🏗 Arquitectura y Estructura de Directorios
+
+El repositorio implementa un **Diseño Orientado a Dominios (DDD - Domain-Driven Design)** en JavaScript Vanilla, garantizando un desacoplamiento estricto entre la capa de presentación, la lógica de orquestación y el acceso a datos.
+
+```text
+curriculum/
+├── assets/                  # Recursos estáticos (imágenes, gráficos, screenshots)
+├── docs/                    # Documentación técnica extendida
+│   └── database/            # Especificaciones y esquemas de la BD PostgreSQL
+├── src/                     # Código fuente modular de la aplicación
+│   ├── app/                 # Capa de Aplicación (Controllers y orquestadores UI)
+│   ├── core/                # Infraestructura Core (Configuración y cliente Supabase)
+│   ├── modules/             # Dominios de Negocio (Contacto, Experiencia, Habilidades, etc.)
+│   └── shared/              # Recursos Compartidos (Helpers, Templates HTML, componentes UI)
+├── supabase/                # Migraciones, procedimientos PL/pgSQL y Edge Functions
+├── .gitignore               # Exclusiones del control de versiones
+├── LICENSE                  # Archivo de licencia de software libre MIT
+├── README.md                # Documentación principal del proyecto
+├── aliases.js               # Definición unificada de alias de rutas
+├── generate-jsconfig.js     # Script de generación automática para jsconfig.json
+├── index.html               # Punto de entrada HTML semántico principal
+├── jsconfig.json            # Mapeo de rutas para soporte de autocompletado en IDE
+├── package.json             # Manifiesto de dependencias y scripts de ejecucion
+├── package-lock.json        # Bloqueo de versiones exactas de dependencias
+├── robots.txt               # Directivas para rastreadores web (SEO)
+├── sitemap.xml              # Mapa del sitio estructurado (SEO)
+└── vite.config.js           # Configuración del bundler Vite y resolución de alias (@)
+```
+
+---
+
+## 🛠 Stack Tecnológico y Dependencias Clave
+
+### Distribución de Lenguajes
+Basado en las métricas de la base de código auditada:
+- **CSS3:** 45.8%
+- **JavaScript (ES6+):** 36.9%
+- **PL/pgSQL:** 10.0%
+- **HTML5:** 5.1%
+- **TypeScript:** 2.2%
+
+### Herramientas y Frameworks
+- **Frontend Core:** HTML5 Semántico, CSS3 estructurado bajo metodología **BEM**, y JavaScript moderno (ES6+).
+- **Herramienta de Build:** **Vite**, encargado del empaquetado ultra-rápido, Hot Module Replacement (HMR) y resolución de alias de módulo.
+- **Backend & Persistencia:** **Supabase (PostgreSQL 15+)** expuesto mediante API REST automática (PostgREST).
+- **Lógica en Base de Datos:** Procedimientos almacenados en **PL/pgSQL** para la orquestación y consulta estructurada de datos multilingües.
+- **Tooling Developer Experience:** Node.js, NPM, scripts de generación dinámica de configuración (`generate-jsconfig.js`).
+
+---
+
+## 📐 Patrones de Diseño y Decisiones Técnicas
+
+1. **Domain-Driven Design (DDD):**
+   - Separa de forma clara los módulos funcionales (`modules`), la capa de orquestación (`app`), la infraestructura de red (`core`) y las utilidades transversales (`shared`), evitando la degradación del código con el tiempo.
+2. **Controller Orchestration (SPA Vanilla JS):**
+   - Los controladores en `src/app` actúan como orquestadores de UI y flujo de datos sin requerir un pesado framework SPA (como React o Angular), manteniendo la huella del bundle al mínimo.
+3. **Dual-Language Engine (Conmutador Reactivo ES/EN):**
+   - Permite la alternancia de idioma instantánea mediante renderizado reactivo de plantillas HTML dinámicas en el cliente sin recargar la página.
+4. **Metodología BEM (Block Element Modifier) en CSS:**
+   - Mantiene especificidad CSS plana (un solo nivel de clase), evitando conflictos de cascada y garantizando modularidad visual.
+5. **Iconografía In-line (Data URIs / SVG):**
+   - Elimina solicitudes HTTP adicionales para iconos, mejorando la puntuación en Google Lighthouse y el tiempo de primer dibujado con contenido (FCP).
+6. **Viewport Adaptativo con `dvh`:**
+   - Utiliza unidades de alto de pantalla dinámicas (`dvh`) para prevenir solapamientos causados por la barra de navegación de navegadores móviles modernos (iOS Safari / Android Chrome).
+7. **Gestión Resiliente de Datos:**
+   - Implementación de `async/await` con manejo explícito de errores y renderizado proactivo de estados de interfaz (`Loading UI` y `Error UI`).
+
+---
+
+## 🗄 Arquitectura de Base de Datos y Supabase Edge Functions
+
+### Modelado y Esquema Multilingüe (PostgreSQL & PL/pgSQL)
+La plataforma delega la gestión de perfiles multilingües (Español / Inglés) a la capa de persistencia mediante **PostgreSQL** en **Supabase**. Las tablas relacionales normalizadas almacenan la información profesional (experiencia, habilidades, proyectos, educación y certificaciones).
+
+- **Consultas Dinámicas mediante PL/pgSQL:** Se utilizan funciones y procedimientos almacenados en **PL/pgSQL** para procesar las solicitudes según el parámetro de idioma ( / ), retornando objetos estructurados en formato JSON directamente desde la base de datos [4, 5].
+- **Seguridad Row Level Security (RLS):** Garantiza políticas de lectura pública restringida para asegurar que el cliente web solo acceda a los datos autorizados en modo de lectura.
+- **Documentación Extensa:** Para consultar el diagrama Entidad-Relación, la definición de tablas, relaciones y scripts de migraciones, consulte la documentación oficial en el repositorio:
+  👉 [**Especificaciones Técnicas de la Base de Datos**](docs/database/README.md).
+
+### Supabase Edge Functions (Lógica Serverless Backend)
+El directorio  alberga la infraestructura de **Supabase Edge Functions** escritas en TypeScript/Deno. Estas funciones serverless ejecutan lógica backend en el borde (Edge Network), permitiendo:
+- **Procesamiento de Eventos y Formularios:** Manejo seguro de envíos de formularios de contacto y validación de payloads.
+- **Aislamiento de Lógica Sensible:** Ejecución de operaciones backend sin exponer llaves privadas ni lógica de negocio crítica al navegador cliente.
+- **Integración CI/CD y Despliegue:** Despliegue automatizado mediante la CLI de Supabase integrada en los flujos de trabajo de desarrollo.
+
+---
+
+## ⚙ Configuración de Entorno y Backend
+
+### Variables de Entorno
+El cliente web requiere conectarse a la API de Supabase mediante las siguientes variables declaradas en la raíz del proyecto:
+
+| Variable | Ámbito | Descripción / Uso | Requerido |
+| :--- | :--- | :--- | :---: |
+| `VITE_SUPABASE_URL` | Cliente (`VITE_`) | URL del proyecto o instancia de Supabase PostgreSQL | Sí |
+| `VITE_SUPABASE_ANON_KEY` | Cliente (`VITE_`) | Clave pública de la API de Supabase (Anon Key con RLS) | Sí |
+
+### Configuración Local de `.env`
+Cree un archivo `.env` en la raíz del directorio con el siguiente contenido:
+
+```env
+# Configuración del Cliente Supabase
+VITE_SUPABASE_URL=<tu_supabase_url>
+VITE_SUPABASE_ANON_KEY=<tu_supabase_anon_key>
+```
+
+---
+
+## 🔄 Puntos de Entrada y Ciclo de Ejecución
+
+1. **Solicitud Inicial:** El navegador solicita `index.html`. Se cargan los metadatos SEO, estilos globales y el punto de entrada de JavaScript impulsado por Vite.
+2. **Resolución de Alias:** Vite procesa el archivo de entrada e interpreta los alias de ruta (`@/app`, `@/core`, `@/modules`, `@/shared`) definidos en `aliases.js`.
+3. **Inicialización de Infraestructura (`src/core`):** Se instancian los clientes globales y la conexión segura con la API de Supabase utilizando `VITE_SUPABASE_URL` y `VITE_SUPABASE_ANON_KEY`.
+4. **Orquestación de Aplicación (`src/app`):** El controlador principal asume el mando, activa el estado de carga (`Loading UI`) y solicita los datos necesarios a la base de datos.
+5. **Consulta a Supabase (PL/pgSQL / PostgREST):** Se ejecutan las funciones o consultas en Supabase para obtener la información profesional correspondiente al idioma seleccionado.
+6. **Inyección Reactiva en el DOM (`src/modules` + `src/shared`):** Los módulos combinan los datos recibidos con las plantillas HTML compartidas e inyectan el contenido en el DOM.
+7. **Manejo de Eventos Interactivos:** El sistema escucha la interacción con el conmutador de idiomas (ES/EN) o selector de tema (Claro/Oscuro), actualizando la vista de forma inmediata.
+
+---
+
+## 💻 Instalación y Configuración Local
+
+Siga estos pasos para ejecutar el proyecto en un entorno de desarrollo local:
+
+### Prerrequisitos de Entorno
+- **Node.js** (v18.0.0 o superior) y **NPM**
+- **Git**
+- **Docker Desktop** (Requerido para ejecutar la pila local de Supabase: PostgreSQL, PostgREST, GoTrue, Studio UI)
+- **Deno** (Runtime para desarrollo y ejecución local de las Edge Functions en TypeScript)
+- **Supabase CLI** (Herramienta CLI para gestión de base de datos, migraciones y servidor local)
+
+### Instalación de Herramientas Backend (Supabase CLI & Deno)
+
+1. **Instalación de Deno:**
+   - **macOS / Linux:** Instalar mediante `brew install deno` o siguiendo las instrucciones oficiales en deno.land.
+   - **Windows:** Instalar mediante `winget install deno.deno` o `choco install deno`.
+   - **Verificación:** `deno --version`
+
+2. **Instalación de Supabase CLI:**
+   - **Vía NPM (global):** `npm install -g supabase`
+   - **Vía Homebrew (macOS):** `brew install supabase/tap/supabase`
+   - **Verificación:** `supabase --version`
+
+### Flujo de Instalación y Desarrollo Local
+
+1. **Clonar el repositorio:**
+   ```bash
+   git clone https://github.com/azocarone/curriculum.git
+   cd curriculum
+   ```
+
+2. **Instalar dependencias del proyecto:**
+   ```bash
+   npm install
+   ```
+
+3. **Iniciar los servicios locales de Supabase (requiere Docker activo):**
+   ```bash
+   supabase start
+   ```
+   *Nota: Este comando iniciará la base de datos PostgreSQL local, el servidor API y Supabase Studio UI, mostrando en la terminal las claves de API local (`API URL` y `anon key`).*
+
+4. **Configurar las variables de entorno:**
+   Cree el archivo `.env` en la raíz del proyecto agregando las credenciales locales o de producción de Supabase:
+   ```env
+   VITE_SUPABASE_URL=<tu_supabase_url>
+   VITE_SUPABASE_ANON_KEY=<tu_supabase_anon_key>
+   ```
+
+5. **Ejecutar y depurar las Edge Functions localmente:**
+   ```bash
+   supabase functions serve
+   ```
+   *Servidor local para probar las funciones serverless de la carpeta `supabase/functions/` utilizando Deno.*
+
+6. **Iniciar el servidor de desarrollo del cliente (Vite):**
+   ```bash
+   npm run dev
+   ```
+   Abra su navegador y navegue a `http://localhost:5173`.
+
+7. **Construir para producción:**
+   ```bash
+   npm run build
+   ```
+   Los archivos optimizados y minificados se generarán en la carpeta `dist/`.
+
+---
+
+## ⚖ Licencia y Propiedad Intelectual
+
+- **Licencia de Software:** El código fuente, la arquitectura técnica y los scripts de este repositorio se distribuyen bajo la **Licencia MIT**. Esto permite la consulta, clonación y reutilización de la estructura técnica.
+- **Propiedad Intelectual del Contenido:** La trayectoria laboral, datos de contacto, proyectos personales e información profesional descrita en la plataforma pertenecen exclusivamente a **José Antonio Azócar Marcano** (Ing. en Informática | Especialista en Agentes de IA, Cloud & Automatización).
+
+---
+
+<br><p align="center">
     <img width="40px" src="./assets/img/azocarone.svg" align="right" alt="Logo" />
     <div align="right">
         <strong>José Antonio Azócar Marcano</strong><br>
-        Ing. Informático | Consultor I&O: Infraestructura y Ops.<br>
-        ⬆ <a href="#-curriculum-digital---josé-azócar">Up</a>
+        Ing. en Informática | Especialista en Agentes de IA, Cloud & Automatización.<br>
+        ⬆ <a href="#-cv-digital-multilingüe--estilo-harvard--ats-compatible--josé-azócar">Up</a>
     </div>
     <br clear="all">
 </p>
