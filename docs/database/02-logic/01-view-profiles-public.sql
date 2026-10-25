@@ -1,23 +1,23 @@
 -- Vista Publica Datos Ofuscados
 
-CREATE OR REPLACE VIEW v_profiles_public AS
-SELECT
-     p.id,
-    p.full_name,
-    -- Ofuscación: ****** + últimos 4 dígitos
-    CASE 
-        WHEN pc.phone IS NOT NULL AND length(pc.phone) >= 10 THEN 
-            left(pc.phone, 4) || '*****' || right(pc.phone, 4)
-        WHEN pc.phone IS NOT NULL THEN 
-            '******' || right(pc.phone, 4)
-        ELSE 'No disponible' 
-    END as phone,
-    -- Ofuscación: Primera letra + asteriscos + @ + dominio
-    CASE 
-        WHEN pc.email IS NOT NULL THEN 
-            left(pc.email, 3) || '******@' || split_part(pc.email, '@', 2)
-        ELSE 'No disponible' 
-    END as email,
-    p.website   
-FROM profiles p
-LEFT JOIN profiles_contact pc ON p.id = pc.profile_id;
+create view public.v_profiles_public as
+select
+  p.id,
+  p.full_name,
+  p.location,
+  case
+    when p.phone is not null
+    and length(p.phone::text) >= 10 then ("left" (p.phone::text, 4) || '*****'::text) || "right" (p.phone::text, 4)
+    when p.phone is not null then '******'::text || "right" (p.phone::text, 4)
+    else 'No disponible'::text
+  end as phone,
+  case
+    when p.email is not null then ("left" (p.email::text, 3) || '******@'::text) || split_part(p.email::text, '@'::text, 2)
+    else 'No disponible'::text
+  end as email,
+  p.website,
+  pt.id as default_title_id
+from
+  profiles p
+  left join profiles_titles pt on p.id = pt.profile_id
+  and pt.is_default = true;
