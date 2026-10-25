@@ -44,18 +44,38 @@ export function createExperienceItemHTML(exp, lang) {
 
 export function createEducationItemHTML(item, lang, slug) {
     const dateRange = formatCVDateRange(lang, item.start_date, item.end_date);
-    const showLocation = slug !== 'training' && item.location;
+
+    // Genera los badges superiores (ej. Grado, CIV, Posgrado)
+    const topBadgesHTML = (item.top_badges || [])
+        .map(badge => `<span class="main__section-subitem__tag">${badge}</span>`)
+        .join('');
+
+    // Genera los badges inferiores (ej. 500 hrs, Vigente)
+    const bottomBadgesHTML = (item.bottom_badges || [])
+        .map(badge => `<span class="main__section-subitem__tag">${badge}</span>`)
+        .join('');
 
     return `
         <li class="main__section-subitem">
             <a class="main__section-subitem__link" href="${item.url || '#'}" target="_blank" rel="noopener noreferrer">
-                <h3 class="main__section-subitem__title">${item.title ?? ''}
-                    <span class="main__section-subitem__tag">${item.category ?? ''}</span>
-                </h3>
-                <p class="main__section-subitem__institution">${item.institution ?? ''}</p>
-                <p class="main__section-subitem__dates">${dateRange}
-                    <span class="main__section-subitem__tag">${item.duration ?? ''}</span>
-                </p>
+                
+                <!-- Fila Superior: Título + Badges a la derecha en pantalla / en flujo continuo en impresión -->
+                <div class="main__section-subitem__row">
+                    <div class="main__section-subitem__info">
+                        <h3 class="main__section-subitem__title">${item.title ?? ''}</h3>
+                        ${topBadgesHTML ? `<div class="main__section-subitem__tags-group">${topBadgesHTML}</div>` : ''}
+                        <p class="main__section-subitem__institution">${item.institution ?? ''}</p>
+                    </div>
+                </div>
+
+                <!-- Fila Inferior: Fechas + Badges inferiores -->
+                <div class="main__section-subitem__row main__section-subitem__row--bottom">
+                    <div class="main__section-subitem__meta">
+                        <p class="main__section-subitem__dates">${dateRange}</p>
+                    </div>
+                    ${bottomBadgesHTML ? `<div class="main__section-subitem__tags-group">${bottomBadgesHTML}</div>` : ''}
+                </div>
+
             </a>
         </li>
     `;

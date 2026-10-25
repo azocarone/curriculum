@@ -287,17 +287,49 @@ body.dark-theme {
     box-shadow: var(--main-card-shadow-hover);
 }
 
+/* --- ESTILOS DE PANTALLA REFACTORIZADOS PARA TARJETAS --- */
+
 .main__section-subitem__link {
     color: inherit;
     text-decoration: none;
-    display: block;
+    display: flex;
+    flex-direction: column;
+    gap: 0.8rem;
 }
 
-.main__section-subitem__title,
-.main__section-subitem__dates {
+.main__section-subitem__row {
     display: flex;
     justify-content: space-between;
+    align-items: flex-start;
+    gap: 1rem;
+    width: 100%;
+}
+
+.main__section-subitem__row--bottom {
+    align-items: flex-end;
+}
+
+.main__section-subitem__info {
+    display: flex;
+    flex-wrap: wrap;
     align-items: center;
+    justify-content: space-between;
+    width: 100%;
+    gap: 0.25rem 0.5rem;
+}
+
+.main__section-subitem__meta {
+    display: flex;
+    flex-direction: column;
+}
+
+.main__section-subitem__tags-group {
+    display: flex;
+    align-items: center;
+    gap: 0.5rem;
+    flex-wrap: wrap;
+    justify-content: flex-end;
+    flex-shrink: 0;
 }
 
 .main__section-subitem__title {
@@ -316,9 +348,11 @@ body.dark-theme {
     font-size: 0.6rem;
     transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
     cursor: default;
+    white-space: nowrap;
 }
 
 .main__section-subitem__institution {
+    width: 100%;
     font-size: 0.75rem;
     font-style: italic;
     color: var(--main-section-subitem-institution-color);
@@ -338,8 +372,10 @@ body.dark-theme {
 .main__section-subitem__dates {
     font-size: 0.65rem;
     color: var(--main-section-subitem-dates-color);
-    margin: calc(var(--spacing) * 0.4) 0 0;
+    margin: 0;
 }
+
+/* ------------------------------------------------------ */
 
 .main__section-title--certifications::before { content: "\f0a3"; }
 

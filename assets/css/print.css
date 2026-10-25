@@ -325,7 +325,7 @@ METODOLOGÍA BEM | DESTINO: GENERACIÓN DE PDF / IMPRESIÓN
     }
 
     /* ----------------------------------------------------------------------
-    7. EDUCACIÓN ACADÉMICA Y CERTIFICACIONES
+    7. EDUCACIÓN ACADÉMICA Y CERTIFICACIONES (SECCIÓN 7 REFACTORIZADA)
     ---------------------------------------------------------------------- */
     .main__section-sublist--academic,
     .main__section-sublist--certifications,
@@ -346,9 +346,6 @@ METODOLOGÍA BEM | DESTINO: GENERACIÓN DE PDF / IMPRESIÓN
         display: block !important;
         width: 100% !important;
         max-width: 100% !important;
-        float: none !important;
-        clear: both !important;
-        margin-top: 0 !important;
         margin-bottom: 0.35rem !important;
         padding: 0 !important;
         border: none !important;
@@ -357,25 +354,45 @@ METODOLOGÍA BEM | DESTINO: GENERACIÓN DE PDF / IMPRESIÓN
         break-inside: avoid !important;
     }
 
-    .main__section-subitem__link,
-    .main__section-subitem__title,
-    .main__section-subitem__institution,
-    .main__section-subitem__dates,
-    .main__section-subitem__tag {
+    .main__section-subitem__link {
+        display: flex !important;
+        flex-direction: row !important;
+        flex-wrap: nowrap !important;
+        justify-content: space-between !important;
+        align-items: baseline !important;
+        width: 100% !important;
+        text-decoration: none !important;
+        gap: 0.5rem !important;
+    }
+
+    /* Aplanado continuo del flujo HTML */
+    .main__section-subitem__row,
+    .main__section-subitem__info,
+    .main__section-subitem__meta,
+    .main__section-subitem__tags-group {
+        display: inline !important;
         margin: 0 !important;
         padding: 0 !important;
-        line-height: 1.3 !important;
+        border: none !important;
+        background: transparent !important;
+        width: auto !important;
     }
 
-    .main__section-sublist--certifications .main__section-subitem::before,
-    .main__section-sublist--certifications .main__section-subitem::after,
-    .main__section-sublist--academic .main__section-subitem::before,
-    .main__section-sublist--academic .main__section-subitem::after {
-        display: none !important;
-        content: "" !important;
+    /* Título principal con viñeta */
+    .main__section-subitem__title {
+        display: inline !important;
+        font-size: 9.5pt !important;
+        font-weight: bold !important;
+        color: #000000 !important;
     }
 
-    /* Tags secundarios (horas/vigencia) en 8.5pt e itálica */
+    .main__section-subitem__title::before {
+        content: "▪  " !important;
+        font-size: 8pt !important;
+        font-weight: normal !important;
+    }
+
+    /* Badges procesados en línea justo después del título */
     .main__section-subitem__tag {
         display: inline !important;
         font-size: 8.5pt !important;
@@ -396,36 +413,10 @@ METODOLOGÍA BEM | DESTINO: GENERACIÓN DE PDF / IMPRESIÓN
         font-style: normal !important;
     }
 
-    .main__section-subitem__link {
-        display: flex !important;
-        flex-direction: row !important;
-        flex-wrap: nowrap !important;
-        justify-content: space-between !important;
-        align-items: baseline !important;
-        width: 100% !important;
-        max-width: 100% !important;
-        text-decoration: none !important;
-        gap: 0.5rem !important;
-    }
-
-    .main__section-subitem__title,
+    /* Institución después de los badges */
     .main__section-subitem__institution {
         display: inline !important;
         font-size: 9.5pt !important;
-    }
-
-    .main__section-subitem__title {
-        font-weight: bold !important;
-        color: #000000 !important;
-    }
-
-    .main__section-subitem__title::before {
-        content: "▪  " !important;
-        font-size: 8pt !important;
-        font-weight: normal !important;
-    }
-
-    .main__section-subitem__institution {
         font-style: italic !important;
         font-weight: normal !important;
         color: #000000 !important;
@@ -437,7 +428,7 @@ METODOLOGÍA BEM | DESTINO: GENERACIÓN DE PDF / IMPRESIÓN
         font-weight: normal !important;
     }
 
-    /* Fechas de educación/certificaciones reducidas a 8.5pt con peso normal */
+    /* Fechas al extremo derecho */
     .main__section-subitem__dates {
         display: inline-block !important;
         margin-left: auto !important;
