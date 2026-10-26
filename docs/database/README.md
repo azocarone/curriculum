@@ -2,8 +2,6 @@
 
 Este documento presenta la arquitectura técnica detallada de una base de datos diseñada para la gestión de perfiles profesionales con soporte de internacionalización (i18n) nativo. El diseño prioriza la integridad referencial y el desacoplamiento entre la estructura lógica de los datos y su representación en distintos idiomas.
 
----
-
 ## 📖 Tabla de Contenidos
 
 - [📐 Introducción al Modelo Entidad-Relación (ERD)](#introducción-al-modelo-entidad-relación-erd)
@@ -12,8 +10,6 @@ Este documento presenta la arquitectura técnica detallada de una base de datos 
 - [🌐 Sistema de Internacionalización y Reglas de Integridad](#sistema-de-internacionalización-y-reglas-de-integridad)
 - [🐘 Base de Datos PostgresSQL - Supabase](#base-de-datos-postgressql---supabase)
 - [↩️ Regresar al README principal](../../README.md)
-
----
 
 ## 📐 Introducción al Modelo Entidad-Relación (ERD)
 
@@ -24,197 +20,243 @@ Este documento presenta la arquitectura técnica detallada de una base de datos 
        style="max-width: 100%; border-radius: 10px;">
   <figcaption>
     <br><a href="https://dbdiagram.io/d/profiles-management-69fa525754a51d93d39b7377">🔗 Diagrama ERD, versión interactiva</a><br>
+    <br><a href="./assets/profiles-management.html">🔗 Diagrama ERD, versión interactiva</a><br>
   </figcaption>
 </figure>
 
----
+<br>
 
-El diseño de este esquema sigue un patrón de "núcleo y radios" (hub-and-spoke), donde la entidad `profiles` funciona como el nodo central de toda la arquitectura. De esta tabla raíz dependen jerárquicamente las entidades que componen la identidad profesional del usuario: información de contacto, resúmenes ejecutivos, experiencia laboral, formación académica y competencias técnicas.
+El diseño de este esquema sigue un patrón de "núcleo y radios" (hub-and-spoke), donde la entidad `profiles` funciona como el nodo central de toda la arquitectura. De esta tabla raíz dependen jerárquicamente las entidades que componen la identidad profesional del usuario: resúmenes ejecutivos, competencias técnicas, experiencia laboral y formación académica.
 
 Una característica fundamental de este modelo es la separación estricta entre metadatos estructurales y contenido literario. Mientras que las tablas base almacenan datos técnicos, fechas, URLs y relaciones de clasificación, el contenido textual susceptible de traducción se segrega en tablas con el sufijo `*_translations`. Este enfoque de normalización evita el crecimiento horizontal ineficiente de columnas (como `bio_en`, `bio_es`) y permite una escalabilidad ilimitada hacia nuevos idiomas sin alterar la lógica de negocio ni la estructura de las tablas principales.
-
----
 
 ## 🔗 Resumen de Cardinalidad y Relaciones
 
 La siguiente tabla describe la interconectividad del sistema basada en el análisis de las claves foráneas y restricciones de unicidad definidas en el modelo:
 
-|Entidad Origen   |Entidad Destino        |Cardinalidad|Definición Técnica Optimizada                          |
-|-----------------|-----------------------|------------|-------------------------------------------------------|
-|`profiles`       |`profiles_contact`     |1:1         |Garantizada mediante `UNIQUE INDEX` en `profile_id`.   |
-|`profiles`       |`summaries`            |1:N         |FK con integridad referencial `DEFERRABLE`.            |
-|`profiles`       |`experiences`          |1:N         |FK con borrado en cascada gestionado por índice.       |
-|`profiles`       |`education`            |1:N         |FK hacia perfil con soporte de transacciones diferidas.|
-|`profiles`       |`skills`               |1:N         |Relación escalable mediante `idx_skills_profile`.      |
-|`experiences`    |`responsibilities`     |1:N         |Dependencia fuerte (Weak Entity) mediante FK.          |
-|`education_types`|`education`            |1:N         |Protección de catálogo con `ON DELETE SET NULL`.       |
-|`skill_types`    |`skills`               |1:N         |Protección de catálogo con `ON DELETE SET NULL`.       |
-|Tablas Base      |Tablas `*_translations`|1:N         |Clave única compuesta mediante `idx_..._lang`.         |
-
----
+| Entidad Origen | Entidad Destino | Cardinalidad | Definición Técnica Optimizada |
+| --- | --- | --- | --- |
+| `profiles` | `profiles_titles` | 1:N | FK con integridad referencial `DEFERRABLE` y borrado en cascada. |
+| `profiles` | `summaries` | 1:N | FK con integridad referencial `DEFERRABLE` y borrado en cascada. |
+| `profiles` | `skills` | 1:N | FK con integridad referencial `DEFERRABLE` y borrado en cascada. |
+| `profiles` | `experiences` | 1:N | FK con borrado en cascada gestionado por índice. |
+| `profiles` | `education` | 1:N | FK hacia perfil con soporte de transacciones diferidas y borrado en cascada. |
+| `skill_types` | `skills` | 1:N | Protección de catálogo con `ON DELETE SET NULL`. |
+| `experiences` | `responsibilities` | 1:N | Dependencia fuerte (Weak Entity) mediante FK con borrado en cascada. |
+| `education_types` | `education` | 1:N | Protección de catálogo con `ON DELETE SET NULL`. |
+| Tablas Base | Tablas `*_translations` | 1:N | Clave única compuesta mediante índice único en entidad y código de idioma (`language_code`). |
 
 ## 📖 Diccionario de Datos Detallado
 
 ### Grupo: Perfil e Identidad Directa
 
-Este grupo gestiona la identidad básica y los canales de comunicación. La relación 1:1 con el contacto se garantiza mediante una restricción `UNIQUE` en la clave foránea.
+Este grupo gestiona la identidad básica y los canales de comunicación.
+
+<br>
 
 📋 **Tabla: `profiles`**
 
-|Columna     |Tipo        |Restricciones    |Descripción                                        |
-|------------|------------|-----------------|---------------------------------------------------|
-|`id`        |IDENTITY    |**PK**           |Identificador único autoincremental (estándar SQL).|
-|`full_name` |VARCHAR(100)|**NOT NULL**     |Nombre completo del profesional.                   |
-|`website`   |VARCHAR(100)|**-**            |URL del sitio web o portafolio personal.           |
-|`created_at`|TIMESTAMPTZ |**DEFAULT now()**|Marca de tiempo de creación con zona horaria.      |
+| Columna | Tipo | Restricciones | Descripción |
+| --- | --- | --- | --- |
+| `id` | IDENTITY | **PK** | Identificador único autoincremental (estándar SQL). |
+| `full_name` | VARCHAR(100) | **NOT NULL** | Nombre completo del profesional. |
+| `location` | VARCHAR(150) | **NOT NULL** | Ubicación o ciudad de residencia. |
+| `phone` | VARCHAR(20) | **NOT NULL** | Número de teléfono de contacto. |
+| `email` | VARCHAR(100) | **NOT NULL, UNIQUE** | Correo electrónico principal con índice único (`idx_profiles_email`). |
+| `website` | VARCHAR(100) | **-** | URL del sitio web o portafolio personal. |
+| `created_at` | TIMESTAMPTZ | **DEFAULT now()** | Marca de tiempo de creación con zona horaria. |
 
-📋 **Tabla: `profiles_contact`**
+<br>
 
-|Columna     |Tipo        |Restricciones                                                                |Descripción                               |
-|------------|------------|-----------------------------------------------------------------------------|------------------------------------------|
-|`id`        |IDENTITY    |**PK**                                                                       |Identificador único.                      |
-|`profile_id`|INTEGER     |**FK** (`fk_contact_profile`), **UNIQUE** (`idx_profiles_contact_profile_id`)|Relación 1:1, permite validación diferida.|
-|`phone`     |VARCHAR(20) |**-**                                                                        |Teléfono.                                 |
-|`email`     |VARCHAR(100)|**UNIQUE** (idx_profiles_contact_email), **NOT NULL**                        |Correo electrónico validado.              |
-|`created_at`|TIMESTAMPTZ |**DEFAULT now()**                                                            |Auditoría de creación.                    |
+📋 **Tabla: `profiles_titles`**
+
+| Columna | Tipo | Restricciones | Descripción |
+| --- | --- | --- | --- |
+| `id` | IDENTITY | **PK** | Identificador único autoincremental. |
+| `profile_id` | INTEGER | **NOT NULL, FK** | Relación con la tabla `profiles` (`ON DELETE CASCADE DEFERRABLE`). |
+| `is_default` | BOOLEAN | **NOT NULL, DEFAULT false** | Indica si es el título profesional predeterminado. |
+| `created_at` | TIMESTAMPTZ | **DEFAULT now()** | Marca de tiempo de creación con zona horaria. |
+| `version` | VARCHAR | **-** | Versión o variante del título. |                    |
 
 ### Grupo: Contenido Profesional
 
 Gestiona la narrativa laboral y los hitos de carrera del perfil.
 
+<br>
+
 📋 **Tabla: `summaries`**
 
-|Columna     |Tipo       |Restricciones                  |Descripción                            |
-|------------|-----------|-------------------------------|---------------------------------------|
-|`id`        |IDENTITY   |**PK**                         |ID único del resumen.                  |
-|`profile_id`|INTEGER    |**FK** (`fk_summaries_profile`)|Referencia al perfil dueño.            |
-|`is_default`|BOOLEAN    |**DEFAULT false**              |Define si este resumen es el principal.|
-|`created_at`|TIMESTAMPTZ|**DEFAULT now()**              |Fecha de creación.                     |
+| Columna | Tipo | Restricciones | Descripción |
+| --- | --- | --- | --- |
+| `id` | IDENTITY | **PK** | Identificador único autoincremental. |
+| `profile_id` | INTEGER | **FK** | Relación con la tabla `profiles` (`ON DELETE CASCADE DEFERRABLE`). |
+| `is_default` | BOOLEAN | **DEFAULT false** | Indica si es el resumen predeterminado del perfil. |
+| `created_at` | TIMESTAMPTZ | **DEFAULT now()** | Marca de tiempo de creación con zona horaria. |
+| `version` | VARCHAR | **-** | Versión o variante del resumen. |
+
+<br>
 
 📋 **Tabla: `experiences`**
 
-|Columna     |Tipo        |Restricciones                              |Descripción                              |
-|------------|------------|-------------------------------------------|-----------------------------------------|
-|`id`        |IDENTITY    |**PK**                                     |ID único de experiencia.                 |
-|`profile_id`|INTEGER     |**NOT NULL, FK** (`fk_experiences_profile`)|Referencia al perfil dueño.              |
-|`company`   |VARCHAR(100)|**NOT NULL**                               |Nombre de la organización.               |
-|`start_date`|DATE        |**NOT NULL**                               |Fecha de inicio de labores.              |
-|`end_date`  |DATE        |**-**                                      |Fecha de cese (NULL indica "actualidad").|
-|`url`       |TEXT        |**-**                                      |Enlace a la empresa o proyecto.          |
-|`is_active` |BOOLEAN     |**DEFAULT true**                           |Control de visibilidad en el CV.         |
-|`created_at`|TIMESTAMPTZ |**DEFAULT now()**                          |Fecha de creación.                       |
+| Columna | Tipo | Restricciones | Descripción |
+| --- | --- | --- | --- |
+| `id` | IDENTITY | **PK** | Identificador único autoincremental. |
+| `profile_id` | INTEGER | **FK** | Relación con la tabla `profiles` (`ON DELETE CASCADE DEFERRABLE`). |
+| `company` | VARCHAR(100) | **NOT NULL** | Nombre de la empresa u organización. |
+| `start_date` | DATE | **NOT NULL** | Fecha de inicio de la experiencia laboral. |
+| `end_date` | DATE | **-** | Fecha de finalización (nulo si el puesto está activo). |
+| `url` | TEXT | **-** | Enlace web relacionado con la experiencia. |
+| `is_active` | BOOLEAN | **DEFAULT true** | Indica si la experiencia laboral sigue vigente. |
+| `created_at` | TIMESTAMPTZ | **DEFAULT now()** | Marca de tiempo de creación con zona horaria. |
+| `location` | VARCHAR(100) | **-** | Ubicación geográfica del puesto de trabajo. |
+
+<br>
 
 📋 **Tabla: `responsibilities`**
 
-|Columna        |Tipo       |Restricciones                                      |Descripción                                   |
-|---------------|-----------|---------------------------------------------------|----------------------------------------------|
-|`id`           |IDENTITY   |**PK**                                             |ID único de responsabilidad.                  |
-|`experience_id`|INTEGER    |**NOT NULL, FK** (`fk_responsibilities_experience`)|Vínculo con la experiencia laboral específica.|
-|`created_at`   |TIMESTAMPTZ|**DEFAULT now()**                                  |Fecha de registro.                            |
+| Columna | Tipo | Restricciones | Descripción |
+| --- | --- | --- | --- |
+| `id` | IDENTITY | **PK** | Identificador único autoincremental. |
+| `experience_id` | INTEGER | **FK** | Relación con la tabla `experiences` (`ON DELETE CASCADE DEFERRABLE`). |
+| `created_at` | TIMESTAMPTZ | **DEFAULT now()** | Marca de tiempo de creación con zona horaria. |
 
-### Grupo: Educación y Habilidades
+### Grupo: Habilidades
 
-Defvine la taxonomía de grados académicos y habilidades. Note que las tablas de tipos no utilizan borrado en cascada para proteger la integridad de los catálogos.
+Declara las habilidades. Note que las tablas de tipos no utilizan borrado en cascada para proteger la integridad de los catálogos.
 
-📋 **Tabla: `education_types` / `skill_types` (Catálogos)**
+<br>
 
-|Columna     |Tipo       |Restricciones                          |Descripción                               |
-|------------|-----------|---------------------------------------|------------------------------------------|
-|`id`        |IDENTITY   |**PK**                                 |ID único del tipo de categoría.           |
-|`slug`      |VARCHAR(50)|**NOT NULL, UNIQUE** (idx_[tabla]_slug)|Código único (ej: 'master', 'tech-stack').|
-|`created_at`|TIMESTAMPTZ|**DEFAULT now()**                      |Fecha de creación.                        |
+📋 **Tabla: `skill_types` (Catálogos)**
 
-📋 **Tabla: `education`**
+| Columna | Tipo | Restricciones | Descripción |
+| --- | --- | --- | --- |
+| `id` | IDENTITY | **PK** | Identificador único autoincremental. |
+| `slug` | VARCHAR(50) | **NOT NULL, UNIQUE** | Identificador textual único del tipo de habilidad (índice único `idx_skill_types_slug`). |
+| `created_at` | TIMESTAMPTZ | **DEFAULT now()** | Marca de tiempo de creación con zona horaria. |
+| `context` | TEXT | **-** | Contexto adicional o descripción del tipo de habilidad. |
 
-|Columna     |Tipo       |Restricciones                                      |Descripción                      |
-|------------|-----------|---------------------------------------------------|---------------------------------|
-|`id`        |IDENTITY   |**PK**                                             |ID único de educación.           |
-|`profile_id`|INTEGER    |**NOT FULL, FK** (`fk_education_profile`)          |Perfil asociado.                 |
-|`type_id`   |INTEGER    |**FK** (`fk_education_type`) **ON DELETE SET NULL**|Categoría (Grado, Cursovv, etc.).|
-|`start_date`|DATE       |**-**                                              |Inicio del estudio.              |
-|`end_date`  |DATE       |**-**                                              |Fin del estudio.                 |
-|`url`       |TEXT       |**-**                                              |Link a certificado o institución.|
-|`is_active` |BOOLEAN    |**DEFAULT true**                                   |Visibilidad del registro.        |
-|`created_at`|TIMESTAMPTZ|**DEFAULT now()**                                  |Fecha de registro.               |
+<br>
 
 📋 **Tabla: `skills`**
 
-|Columna     |Tipo       |Restricciones                                   |Descripción                       |
-|------------|-----------|------------------------------------------------|----------------------------------|
-|`iZd`       |IDENTITY   |**PK**                                          |ID único de habilidad.            |
-|`profile_id`|INTEGER    |**NOT NULL, FK** (`fk_skills_profile`)          |Perfil asociado.                  |
-|`type_id`   |INTEGER    |**FK** (`fk_skills_type`) **ON DELETE SET NULL**|Categoría (Blanda, Técnica, etc.).|
-|`created_at`|TIMESTAMPTZ|**DEFAULT now()**                               |Fecha de registro.                |
+| Columna | Tipo | Restricciones | Descripción |
+| --- | --- | --- | --- |
+| `id` | IDENTITY | **PK** | Identificador único autoincremental. |
+| `profile_id` | INTEGER | **NOT NULL, FK** | Relación con la tabla `profiles` (`ON DELETE CASCADE DEFERRABLE`). |
+| `type_id` | INTEGER | **FK** | Relación con la tabla `skill_types` (`ON DELETE SET NULL`). |
+| `is_active` | BOOLEAN | **DEFAULT true** | Estado de actividad de la habilidad. |
+| `created_at` | TIMESTAMPTZ | **DEFAULT now()** | Marca de tiempo de creación con zona horaria. |
+
+### Grupo: Educación Académica y Certificaciones
+
+Define la taxonomía de grados académicos y certificaciones. Note que las tablas de tipos no utilizan borrado en cascada para proteger la integridad de los catálogos.
+
+<br>
+
+📋 **Tabla: `education_types`**
+
+| Columna | Tipo | Restricciones | Descripción |
+| --- | --- | --- | --- |
+| `id` | IDENTITY | **PK** | Identificador único autoincremental. |
+| `slug` | VARCHAR(50) | **NOT NULL, UNIQUE** | Identificador textual único del tipo de educación (índice único `idx_education_types_slug`). |
+| `created_at` | TIMESTAMPTZ | **DEFAULT now()** | Marca de tiempo de creación con zona horaria. |
+
+<br>
+
+📋 **Tabla: `education`**
+
+| Columna | Tipo | Restricciones | Descripción |
+| --- | --- | --- | --- |
+| `id` | IDENTITY | **PK** | Identificador único autoincremental. |
+| `profile_id` | INTEGER | **FK** | Relación con la tabla `profiles` (`ON DELETE CASCADE DEFERRABLE`). |
+| `type_id` | INTEGER | **FK** | Relación con la tabla `education_types` (`ON DELETE SET NULL`). |
+| `start_date` | DATE | **-** | Fecha de inicio de los estudios. |
+| `end_date` | DATE | **-** | Fecha de finalización o graduación. |
+| `url` | TEXT | **-** | Enlace web relacionado con la institución o estudio. |
+| `is_active` | BOOLEAN | **DEFAULT true** | Indica si los estudios se encuentran activos. |
+| `created_at` | TIMESTAMPTZ | **DEFAULT now()** | Marca de tiempo de creación con zona horaria. |
+| `institution` | VARCHAR(150) | **NOT NULL, DEFAULT ''** | Nombre de la institución educativa. |
+| `location` | VARCHAR(100) | **-** | Ubicación geográfica de la institución. |
 
 ### Grupo de Traducciones
 
 Todas las tablas de este grupo comparten la restricción *`UNIQUE`* compuesta por *[parent_id]* y *`language_code`* mediante un índice *`idx_..._lang`*, asegurando una sola versión por idioma.
 
-📋 **Tabla: `profiles_translations`**
+<br>
 
-|Columna        |Tipo        |Restricciones                      |Descripción                    |
-|---------------|------------|-----------------------------------|-------------------------------|
-|`id`           |IDENTITY    |**PK**                             |ID de traducción.              |
-|`profile_id`   |INTEGER     |**FK** (`fk_profiles_trans_profile`)|Vínculo al perfil base.       |
-|`language_code`|CHAR(2)     |**NOT NULL**                       |ISO del idioma (es, en).       |
-|`location`     |VARCHAR(150)|**-**                              |Ubicación geográfica traducida.|
-|`created_at`   |TIMESTAMPTZ |**DEFAULT now()**                  | Fecha de creación             |
+📋 **Tabla: `profiles_titles_translations`**
+
+| Columna | Tipo | Restricciones | Descripción |
+| --- | --- | --- | --- |
+| `id` | IDENTITY | **PK** | Identificador único autoincremental. |
+| `title_id` | INTEGER | **NOT NULL, FK** | Relación con la tabla `profiles_titles` (`ON DELETE CASCADE DEFERRABLE`). |
+| `language_code` | CHARACTER(2) | **NOT NULL** | Código de idioma ISO 639-1 (ej. 'es', 'en'). |
+| `content` | TEXT | **NOT NULL** | Contenido traducido del título profesional. |
+| `created_at` | TIMESTAMPTZ | **DEFAULT now()** | Marca de tiempo de creación con zona horaria. |
+
+<br>
 
 📋 **Tabla: `summaries_translations`**
 
-|Columna        |Tipo        |Restricciones                        |Descripción                                   |
-|---------------|------------|-------------------------------------|----------------------------------------------|
-|`id`           |IDENTITY    |**PK**                               |ID de traducción.                             |
-|`summary_id`   |INTEGER     |**FK** (`fk_sumdmaries_trans_summary`)|Vínculo al resumen base.                     |
-|`language_code`|CHAR(2)     |**NOT NULL**                         |ISO del idioma.                               |
-|`label`        |VARCHAR(100)|**-**                                |Título descriptivo (ej: "Perfil Profesional").|
-|`content`      |TEXT        |**NOT NULL**                         |Cuerpo del resumen traducido.                 |
-|`created_at`   |TIMESTAMPTZ |**DEFAULT now()**                    |Fecha de creación                             |
+| Columna | Tipo | Restricciones | Descripción |
+| --- | --- | --- | --- |
+| `id` | IDENTITY | **PK** | Identificador único autoincremental. |
+| `summary_id` | INTEGER | **FK** | Relación con la tabla `summaries` (`ON DELETE CASCADE DEFERRABLE`). |
+| `language_code` | CHARACTER(2) | **NOT NULL** | Código de idioma ISO 639-1. |
+| `content` | TEXT | **NOT NULL** | Texto del resumen traducido. |
+| `created_at` | TIMESTAMPTZ | **DEFAULT now()** | Marca de tiempo de creación con zona horaria. |
 
-📋 **Tabla: `experiences_translations`**
-
-|Columna        |Tipo        |Restricciones                             |Descripción                        |
-|---------------|------------|------------------------------------------|-----------------------------------|
-|`id`           |IDENTITY    |**PK**                                    |ID de traducción.                  |
-|`experience_id`|INTEGER     |**FK** (`fk_experiences_trans_experience`)|Vínculo a la experiencia base.     |
-|`language_code`|CHAR(2)     |**NOT NULL**                              |ISO del idioma.                    |
-|`position`     |VARCHAR(100)|**NOT NULL**                              |Cargo o puesto (ej: "Senior  Dev").|
-|`location`     |VARCHAR(100)|**-**                                     |Lugar de trabajo traducido.        |
-|`created_at`   |TIMESTAMPTZ |**DEFAULT now()**                         |Fecha de creación                  |
-
-📋 **Tabla: `responsibilities_translZations`**
-
-|Columna            |Tipo        |Restricciones                            |Descripción                    |
-|-------------------|------------|-----------------------------------------|-------------------------------|
-|`id`               |IDENTITY    |**PK**                                   |ID de traducción.              |
-|`responsibility_id`|INTEGER     |**FK** (`fk_responsibilities_trans_resp`)|Vínculo a responsabilidad base.|
-|`language_code`    |CHAR(2)     |**NOT NULL**                             |ISO del idioma.                |
-|`description`      |TEXT        |**NOT NULL**                             |Detalle de la tarea realizada. |
-|`created_at`       |TIMESTAMPTZ |**DEFAULT now()**                        |Fecha de creación              |
-
-📋 **Tabla: `education_translations`**
-
-|Columna        |Tipo        |Restricciones                          |Descripción                    |
-|---------------|------------|---------------------------------------|-------------------------------|
-|`id`           |IDENTITY    |**PK**                                 |ID de traducción.              |
-|`education_id` |INTEGER     |**FK** (`fk_education_trans_education`)|Vínculo a educación base.      |
-|`language_code`|CHAR(2)     |**NOT NULL**                           |ISO del idioma.                |
-|`title`        |VARCHAR(150)|**NOT NULL**                           |Título obtenido.               |
-|`institution`  |VARCHAR(150)|**NOT NULL**                           |Nombre de la entidad educativa.|
-|`location`     |VARCHAR(100)|**-**                                  |Ciudad/País de estudio.        |
-|`created_at`   |TIMESTAMPTZ |**DEFAULT now()**                      |Fecha de creación              |
+<br>
 
 📋 **Tabla: `skill_translations`**
 
-|Columna        |Tipo        |Restricciones                  |Descripción                        |
-|---------------|------------|-------------------------------|-----------------------------------|
-|`id`           |IDENTITY    |**PK**                         |ID de traducción.                  |
-|`skill_id`     |INTEGER     |**FK** (`fk_skill_trans_skill`)|Vínculo a habilidad base.          |
-|`language_code`|CHAR(2)     |**NOT NULL**                   |ISO del idioma.                    |
-|`name`         |VARCHAR(100)|**NOT NULL**                   |Nombre de la competencia traducido.|
-|`created_at`   |TIMESTAMPTZ |**DEFAULT now()**              |Fecha de creación                  |
+| Columna | Tipo | Restricciones | Descripción |
+| --- | --- | --- | --- |
+| `id` | IDENTITY | **PK** | Identificador único autoincremental. |
+| `skill_id` | INTEGER | **FK** | Relación con la tabla `skills` (`ON DELETE CASCADE`). |
+| `language_code` | CHARACTER(2) | **NOT NULL** | Código de idioma ISO 639-1. |
+| `name` | VARCHAR(100) | **NOT NULL** | Nombre de la habilidad traducido. |
+| `created_at` | TIMESTAMPTZ | **DEFAULT now()** | Marca de tiempo de creación con zona horaria. |
 
----
+<br>
+
+📋 **Tabla: `experiences_translations`**
+
+| Columna | Tipo | Restricciones | Descripción |
+| --- | --- | --- | --- |
+| `id` | IDENTITY | **PK** | Identificador único autoincremental. |
+| `experience_id` | INTEGER | **FK** | Relación con la tabla `experiences` (`ON DELETE CASCADE DEFERRABLE`). |
+| `language_code` | CHARACTER(2) | **NOT NULL** | Código de idioma ISO 639-1. |
+| `position` | VARCHAR(100) | **NOT NULL** | Nombre del puesto o cargo traducido. |
+| `created_at` | TIMESTAMPTZ | **DEFAULT now()** | Marca de tiempo de creación con zona horaria. |
+
+<br>
+
+📋 **Tabla: `responsibilities_translations`**
+
+| Columna | Tipo | Restricciones | Descripción |
+| --- | --- | --- | --- |
+| `id` | IDENTITY | **PK** | Identificador único autoincremental. |
+| `responsibility_id` | INTEGER | **FK** | Relación con la tabla `responsibilities` (`ON DELETE CASCADE DEFERRABLE`). |
+| `language_code` | CHARACTER(2) | **NOT NULL** | Código de idioma ISO 639-1. |
+| `description` | TEXT | **NOT NULL** | Descripción de la responsabilidad traducida. |
+| `created_at` | TIMESTAMPTZ | **DEFAULT now()** | Marca de tiempo de creación con zona horaria. |
+
+<br>
+
+📋 **Tabla: `education_translations`**
+
+| Columna | Tipo | Restricciones | Descripción |
+| --- | --- | --- | --- |
+| `id` | IDENTITY | **PK** | Identificador único autoincremental. |
+| `education_id` | INTEGER | **FK** | Relación con la tabla `education` (`ON DELETE CASCADE DEFERRABLE`). |
+| `language_code` | CHARACTER(2) | **NOT NULL** | Código de idioma ISO 639-1. |
+| `title` | VARCHAR(150) | **NOT NULL** | Título académico o de estudio traducido. |
+| `created_at` | TIMESTAMPTZ | **DEFAULT now()** | Marca de tiempo de creación con zona horaria. |
+| `top_badges` | TEXT[] | **-** | Arreglo de etiquetas o insignias superiores traducidas. |
+| `bottom_badges` | TEXT[] | **-** | Arreglo de etiquetas o insignias inferiores traducidas. |
+
+<br>
 
 ## 🌐 Sistema de Internacionalización y Reglas de Integridad
 
@@ -228,8 +270,6 @@ Para asegurar la consistencia absoluta de los datos, se ha implementado la cláu
 
 Este mecanismo garantiza que la eliminación de un perfil profesional resulte en una limpieza atómica y automática de todos los registros dependientes: información de contacto, experiencias, responsabilidades y todas sus respectivas traducciones. Esto elimina el riesgo de "orfandad de datos" y reduce la sobrecarga en la capa de aplicación, dejando que el motor de la base de datos gestione la integridad estructural de forma nativa y eficiente. El único caso exceptuado son los catálogos de tipos (`education_types` y `skill_types`), cuya persistencia es necesaria para la consistencia de otros perfiles existentes.
 
----
-
 ## 🐘 Base de Datos PostgresSQL - Supabase
 
 Abarca todo lo que se es: formación, habilidades y trayectoria. Es "la identidad profesional" normalizada en tablas.
@@ -238,6 +278,8 @@ Abarca todo lo que se es: formación, habilidades y trayectoria. Es "la identida
 
 Los scripts se encuentran organizados en la carpeta `./database/` bajo la siguiente jerarquía:
 
+<br>
+
 |Carpeta       |Descripción                               |
 |--------------|------------------------------------------|
 |./01-schema/  |Definición de tablas y relaciones (DDL).  |
@@ -245,6 +287,8 @@ Los scripts se encuentran organizados en la carpeta `./database/` bajo la siguie
 |./03-security/|Aplicar RLS y politicas.                  |
 |./04-seeds/   |Inserción para datos maestros.            |
 |./functions/  |Edge Functions.                           |
+
+<br>
 
 > _**Nota**: Para una instalación limpia, ejecute los scripts en el orden numérico indicado en cada carpeta._
 
@@ -280,6 +324,6 @@ Como se hara una carga inicial limpia, se prepararán los queries de SQL para pe
 
 2. [Master data trsnslation](./04-seeds/02-master-data-trsnslation.sql)
 
-#### Edge Functions (functions)
+#### 5. Edge Functions (functions)
 
 - [get-profile](./functions/get-profile/index.ts)
