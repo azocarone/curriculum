@@ -14,13 +14,12 @@ Este documento presenta la arquitectura técnica detallada de una base de datos 
 ## 📐 Introducción al Modelo Entidad-Relación (ERD)
 
 <figure align="center">
-  <br><img src="./assets/profiles-management.svg" 
+  <br><img src="./assets/modelo_entidad_relacion.svg" 
        alt="Diagrama ERD" 
        width="100%" 
        style="max-width: 100%; border-radius: 10px;">
   <figcaption>
-    <br><a href="https://dbdiagram.io/d/profiles-management-69fa525754a51d93d39b7377">🔗 Diagrama ERD, versión interactiva</a><br>
-    <br><a href="./assets/profiles-management.html">🔗 Diagrama ERD, versión interactiva</a><br>
+    <br><a href="https://dbdiagram.io/e/6adf6e33ed134e407e0d924d/6adf6fc5aac33014102491ed">🔗 Diagrama ERD, versión interactiva</a><br>
   </figcaption>
 </figure>
 
