@@ -15,10 +15,7 @@ create table public.profiles (
   constraint fk_profiles_user foreign key (user_id) references auth.users (id) on delete cascade
 ) TABLESPACE pg_default;
 
--- Índice para acelerar búsquedas y verificaciones de sesión
 create index if not exists idx_profiles_user_id on public.profiles using btree (user_id) TABLESPACE pg_default;
-
--- Índice único en email (se mantiene como en tu script original)
 create unique index if not exists idx_profiles_email on public.profiles using btree (email) TABLESPACE pg_default;
 
 -- 2. PROFILES_TITLES
