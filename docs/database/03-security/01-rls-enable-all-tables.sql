@@ -1,6 +1,10 @@
 -- HABILITAR RLS EN TODAS LAS TABLAS
 
--- Sin esto, aunque la tabla exista, la API no dejará pasar datos si marcaste "Enable Automatic RLS"
+/*  Sin esto, aunque la tabla exista, la API no dejará pasar datos habiendo marcado "Enable Automatic RLS".
+    
+    La activación de RLS en todas las tablas del sistema asegurar que ninguna quede expuesta por defecto
+    sin control de políticas:
+*/
 
 ALTER TABLE profiles ENABLE ROW LEVEL SECURITY;
 ALTER TABLE profiles_titles ENABLE ROW LEVEL SECURITY;

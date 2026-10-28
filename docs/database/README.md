@@ -58,6 +58,7 @@ Este grupo gestiona la identidad básica y los canales de comunicación.
 | Columna | Tipo | Restricciones | Descripción |
 | --- | --- | --- | --- |
 | `id` | IDENTITY | **PK** | Identificador único autoincremental (estándar SQL). |
+| `user_id` | UUID | **NULL, FK** | Vínculo con auth.users(id). Por defecto toma auth.uid(). Permite asociar el perfil al usuario autenticado para aplicar RLS. |
 | `full_name` | VARCHAR(100) | **NOT NULL** | Nombre completo del profesional. |
 | `location` | VARCHAR(150) | **NOT NULL** | Ubicación o ciudad de residencia. |
 | `phone` | VARCHAR(20) | **NOT NULL** | Número de teléfono de contacto. |
@@ -310,6 +311,8 @@ Los scripts se encuentran organizados en la carpeta `./database/` bajo la siguie
 1. [RLS enable all tables](./03-security/01-rls-enable-all-tables.sql)
 
 2. [Policies public reading](./03-security/02-policies-public-reading.sql)
+
+3. [Grant Permissions Edge Function](./03-security/03-grant-permissions-edge-function.sql)
 
 > _**Nota:** Siempre que modifique una tabla en `./01-schema/`, verifique si las políticas en `./03-security/` o las funciones en `./02-logic/` necesitan una actualización. La integridad del sistema depende de la sincronía entre estas tres capas."_
 

@@ -1,10 +1,14 @@
 -- POLÍTICAS DE LECTURA PÚBLICA (SELECT)
 
--- Permite que JavaScript Vanilla haga consultas sin errores 403.
+/*  Nota: 'anon' es el rol que usa la App por defecto.  
 
--- Nota: 'anon' es el rol que usa la App por defecto.
+    Dado que las tablas secundarias y de traducciones contienen información propia de un currículum público
+    que la Edge Function y la RPC consultan masivamente, deben mantener su política de lectura pública para
+    el rol `anon`.   
 
-CREATE POLICY "Permitir lectura pública en profiles" ON profiles FOR SELECT TO anon USING (true);
+    También, permitirá que JavaScript Vanilla haga consultas sin errores 403.
+*/
+
 CREATE POLICY "Permitir lectura pública en profiles_titles" ON profiles_titles FOR SELECT TO anon USING (true);
 CREATE POLICY "Permitir lectura pública en summaries" ON summaries FOR SELECT TO anon USING (true);
 CREATE POLICY "Permitir lectura pública en skill_types" ON skill_types FOR SELECT TO anon USING (true);
@@ -22,3 +26,20 @@ CREATE POLICY "Permitir lectura pública traducciones skills" ON skill_translati
 CREATE POLICY "Permitir lectura pública traducciones experiences" ON experiences_translations FOR SELECT TO anon USING (true);
 CREATE POLICY "Permitir lectura pública traducciones responsibilities" ON responsibilities_translations FOR SELECT TO anon USING (true);
 CREATE POLICY "Permitir lectura pública traducciones education" ON education_translations FOR SELECT TO anon USING (true);
+
+-- Protección estricta de datos sensibles
+
+-- Lectura completa solo para el propio usuario autenticado
+CREATE POLICY "Usuarios pueden ver su propio perfil" 
+ON public.profiles 
+FOR SELECT 
+TO authenticated 
+USING (auth.uid() = user_id);
+
+-- Edición solo para el propio usuario autenticado
+CREATE POLICY "Usuarios pueden actualizar su propio perfil" 
+ON public.profiles 
+FOR UPDATE 
+TO authenticated 
+USING (auth.uid() = user_id)
+WITH CHECK (auth.uid() = user_id);
