@@ -14,7 +14,7 @@ Este documento presenta la arquitectura técnica detallada de una base de datos 
 ## 📐 Introducción al Modelo Entidad-Relación (ERD)
 
 <figure align="center">
-  <br><img src="./assets/modelo_entidad_relacion.svg" 
+  <br><img src="./assets/modelo_entidad_relacion_v2.svg" 
        alt="Diagrama ERD" 
        width="100%" 
        style="max-width: 100%; border-radius: 10px;">

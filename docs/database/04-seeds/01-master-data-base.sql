@@ -2,9 +2,10 @@
 
 -- 1. PROFILES
 INSERT INTO public.profiles (
-    id, full_name, location, phone, email, website, created_at
+    id, user_id, full_name, location, phone, email, website, created_at
 ) VALUES (
-    1, 
+    1,
+    null, 
     'José Antonio Azócar Marcano', 
     'San Diego (Carabobo), Venezuela', 
     '+58********26', 
