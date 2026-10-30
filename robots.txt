@@ -12,4 +12,4 @@ Disallow: /src/
 Allow: /assets/img/
 
 # Indicar la ubicación del mapa del sitio (Sitemap)
-Sitemap: https://curriculum.joseazocar.pro/sitemap.xml
+Sitemap: https://curriculum.joseazocar.pro/sitemap.xmlrobots.txt sitemap.xmlrobots.txt sitemap.xml
