@@ -71,6 +71,7 @@ curriculum/
 ├── assets/                  # Recursos estáticos (imágenes, gráficos, screenshots)
 ├── docs/                    # Documentación técnica extendida
 │   └── database/            # Especificaciones y esquemas de la BD PostgreSQL
+├── public/                  # Recursos estáticos que se copian tal cual al directorio raiz de la compilación (`dist/`)
 ├── src/                     # Código fuente modular de la aplicación
 │   ├── app/                 # Capa de Aplicación (Controllers y orquestadores UI)
 │   ├── core/                # Infraestructura Core (Configuración y cliente Supabase)
